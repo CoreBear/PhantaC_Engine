@@ -1,0 +1,15 @@
+﻿  compilation header save succeeded; see C:\Users\corym\source\repos\Fanta-C\Fanta-C\BasicPixelShader.csh
+  compilation object save succeeded; see C:\Users\corym\source\repos\Fanta-C\Debug\BasicPixelShader.cso
+  compilation header save succeeded; see C:\Users\corym\source\repos\Fanta-C\Fanta-C\BasicVertexShader.csh
+  compilation object save succeeded; see C:\Users\corym\source\repos\Fanta-C\Debug\BasicVertexShader.cso
+  Main.cpp
+c:\users\corym\source\repos\fanta-c\fanta-c\main.cpp(111): warning C4244: '=': conversion from 'double' to 'unsigned char', possible loss of data
+  Renderer.cpp
+c:\users\corym\source\repos\fanta-c\fanta-c\basicpixelshader.csh(34): error C3927: '->': trailing return type is not allowed after a non-function declarator
+c:\users\corym\source\repos\fanta-c\fanta-c\basicpixelshader.csh(34): error C3484: syntax error: expected '->' before the return type
+c:\users\corym\source\repos\fanta-c\fanta-c\basicpixelshader.csh(34): error C3409: empty attribute block is not allowed
+c:\users\corym\source\repos\fanta-c\fanta-c\basicpixelshader.csh(34): error C2059: syntax error: '='
+c:\users\corym\source\repos\fanta-c\fanta-c\basicpixelshader.csh(35): error C2143: syntax error: missing ';' before '{'
+c:\users\corym\source\repos\fanta-c\fanta-c\basicpixelshader.csh(35): error C2447: '{': missing function header (old-style formal list?)
+  WorldObject.cpp
+  Generating Code...
