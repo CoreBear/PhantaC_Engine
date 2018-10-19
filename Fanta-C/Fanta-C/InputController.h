@@ -22,6 +22,9 @@ public:
 
 	// Mutator
 	void AssignCamera(Camera* camera) { cameraPtr = camera; }
+
+	// Clean-up
+	~InputController() { if (cameraPtr != nullptr) delete cameraPtr; }
 };
 
 #endif

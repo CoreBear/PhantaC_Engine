@@ -12,7 +12,6 @@ class TransformObject
 	float				moveInput[2] = { 0, 0 };																			// Stores which direction to move in x and z axis
 	XMMATRIX			myTransformMatrix;
 	XMMATRIX			myWorldMatrix;
-	XMVECTOR			stabilizationVectors[3];																			// Position, Forward, Up
 	const XMVECTOR		worldVectors[3] = { XMVectorSet(1, 0, 0, 1), XMVectorSet(0, 1, 0, 1), XMVectorSet(0, 0, 1, 1) };	// X-Axis, Y-Axis, Z-Axis
 
 	// Mutators
@@ -23,8 +22,8 @@ class TransformObject
 public:
 	// Initialization
 	TransformObject();																										// Generic instantiation at origin
-	TransformObject(float xPos, float yPos, float zPos, float inMoveSpeed = 0, float inRotationSpeed = 0);
-	TransformObject(XMVECTOR position, XMVECTOR forward, XMVECTOR up, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	TransformObject(XMVECTOR* position, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	TransformObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Accessors
 	XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }

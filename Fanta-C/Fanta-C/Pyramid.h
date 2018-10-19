@@ -15,7 +15,8 @@ class Pyramid : public GeometricObject
 public:
 	// Initialization
 	Pyramid(float scale = 1);
-	Pyramid(float x, float y, float z, float scale = 1);
+	Pyramid(XMVECTOR* position, float scale = 1);
+	Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Update
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;

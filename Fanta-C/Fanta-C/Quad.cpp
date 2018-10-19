@@ -10,7 +10,17 @@ Quad::Quad(float scale)
 		vertices[iterators[0]].color = Colors::DarkOrange;
 	}
 }
-Quad::Quad(float x, float y, float z, float scale) : GeometricObject(x, y, z)
+Quad::Quad(XMVECTOR* position, float scale) : GeometricObject(position)
+{
+	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
+	{
+		vertices[iterators[0]].localPos.x = (iterators[0] % numberOfVertices == 0 || iterators[0] % numberOfVertices == numberOfVertices - 1) ? -scale : scale;
+		vertices[iterators[0]].localPos.y = (iterators[0] % numberOfVertices < numberOfVertices * 0.5f) ? scale : -scale;
+		vertices[iterators[0]].localPos.z = 0;
+		vertices[iterators[0]].color = Colors::DarkOrange;
+	}
+}
+Quad::Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : GeometricObject(position, forward, up, inMoveSpeed, inRotationSpeed)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{

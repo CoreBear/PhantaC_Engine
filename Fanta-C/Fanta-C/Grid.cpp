@@ -43,7 +43,7 @@ Grid::Grid()
 		}
 	}
 }
-Grid::Grid(float x, float y, float z) : GeometricObject(x, y, z)
+Grid::Grid(XMVECTOR* position) : GeometricObject(position)
 {
 	uchar		lineDistanceApart = 2;
 	ushort		numberOfGridLines = ushort(numberOfVertices * 0.25f);

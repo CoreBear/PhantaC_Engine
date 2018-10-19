@@ -41,7 +41,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 		return -1;
 	}
 
-	// This shootingStarts the "Run" loop and only returns when the user closes the main window
+	// This starts the "Run" loop and only returns when the user closes the main window
 	int returnCode = Run(hInstance, windowHandle);
 
 	return returnCode;
@@ -59,7 +59,7 @@ int InitializeApplication(HINSTANCE hInstance, int cmdShow)
 	wndClass.lpszMenuName = nullptr;						// Pointer to string that specifies the resource name of the class menu
 	wndClass.lpszClassName = windowClassName;				// Pointer to string which uniquely identifies this window class
 
-															// If window was not registered...
+	// If window was not registered...
 	if (!RegisterClassEx(&wndClass)) return -1;
 
 	// Creates a rectcubeAngle that will be passed into the window setup

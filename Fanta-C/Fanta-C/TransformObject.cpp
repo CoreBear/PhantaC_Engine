@@ -6,29 +6,35 @@
 TransformObject::TransformObject()
 {
 	moveSpeed = 0;
-	rotationSpeed = 0;
-	
-	stabilizationVectors[0] = XMVectorSet(0, 0, 0, 1);		// Position
-	stabilizationVectors[1] = XMVectorSet(0, 0, 1, 1);		// Forward direction
-	stabilizationVectors[2] = XMVectorSet(0, 1, 0, 1);		// Up direction
-
-	myWorldMatrix = XMMatrixLookAtRH(stabilizationVectors[0], stabilizationVectors[1], stabilizationVectors[2]);
+	rotationSpeed = 0;	
+	myWorldMatrix = XMMatrixIdentity();
 }
-TransformObject::TransformObject(float xPos, float yPos, float zPos, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed)
+TransformObject::TransformObject(XMVECTOR* position, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed)
 {
-	stabilizationVectors[0] = XMVectorSet(xPos, yPos,     zPos, 1);		// Position
-	stabilizationVectors[1] = XMVectorSet(xPos, yPos, zPos + 1, 1);		// Forward direction
-	stabilizationVectors[2] = XMVectorSet(	 0,	   1,		 0, 1);		// Up direction
-
-	myWorldMatrix = XMMatrixLookAtRH(stabilizationVectors[0], stabilizationVectors[1], stabilizationVectors[2]);
+	myWorldMatrix = XMMatrixIdentity();
+	myWorldMatrix.r[3] = *position;					
 }
-TransformObject::TransformObject(XMVECTOR position, XMVECTOR forward, XMVECTOR up, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed)
+TransformObject::TransformObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed)
 {
-	stabilizationVectors[0] = position;
-	stabilizationVectors[1] = forward;
-	stabilizationVectors[2] = up;
+	if (camera)
+		myWorldMatrix = XMMatrixLookAtLH(position, forward, up);
+	else
+	{
+		// Position
+		myWorldMatrix.r[3] = position;
 
-	myWorldMatrix = XMMatrixLookAtLH(stabilizationVectors[0], stabilizationVectors[1], stabilizationVectors[2]);
+		// Forward
+		myWorldMatrix.r[2] = (forward + position) - position;
+		myWorldMatrix.r[2] = XMVector3Normalize(myWorldMatrix.r[2]);
+
+		// Right
+		myWorldMatrix.r[0] = XMVector3Cross(up, myWorldMatrix.r[2]);
+		myWorldMatrix.r[0] = XMVector3Normalize(myWorldMatrix.r[0]);
+
+		// Up
+		myWorldMatrix.r[1] = XMVector3Cross(myWorldMatrix.r[2], myWorldMatrix.r[0]);
+		myWorldMatrix.r[1] = XMVector3Normalize(myWorldMatrix.r[1]);
+	}
 }
 #pragma endregion
 

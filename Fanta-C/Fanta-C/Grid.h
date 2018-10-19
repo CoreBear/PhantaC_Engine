@@ -16,7 +16,7 @@ class Grid : public GeometricObject
 public:
 	// Initialization
 	Grid();
-	Grid(float x, float y, float z);
+	Grid(XMVECTOR* position);
 	
 	// Update
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;

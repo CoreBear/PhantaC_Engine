@@ -14,16 +14,16 @@
 #pragma region Initialization
 SceneManager::SceneManager(InputController* inputController)
 {
-	cameraPtr = new Camera(XMVectorSet(0, 10, -15, 1), XMVectorSet(0, 0, 1, 1), XMVectorSet(0, 1, 0, 1), 0.0075f, 0.2f);
+	cameraPtr = new Camera(XMVectorSet(0, 2, -20, 1), XMVectorSet(0, 0, 1, 0), XMVectorSet(0, 1, 0, 0), 0.0075f, 0.2f);
 	inputController->AssignCamera(cameraPtr);
-	AddObjectToScene(new Cube(	  -10, -1,  10, 1));		// Fix up direction, because the "-1" is up...
-	AddObjectToScene(new Cube(	   10, -2,  10, 2));
-	AddObjectToScene(new Cube(	  -10, -3, -10, 3));
-	AddObjectToScene(new Cube(	   10, -4, -10, 4));
-	AddObjectToScene(new Pyramid(	0, -5,   0, 4));
-	AddObjectToScene(new Triangle(-10, -5,   0, 2));
-	AddObjectToScene(new Quad(	   10, -5,   0, 3));
+
 	AddObjectToScene(new Grid);
+	AddObjectToScene(new Cube(&XMVectorSet(		 0, 5, 0, 1), 2));
+	AddObjectToScene(new Cube(&XMVectorSet(		 5, 5, 0, 1), &XMVectorSet(0, 0, 1, 0), &XMVectorSet(0, 1, 0, 0), 1));
+	AddObjectToScene(new Pyramid(&XMVectorSet(  -5, 5, 0, 1), 3));
+	AddObjectToScene(new Triangle(&XMVectorSet(-10, 5, 0, 1), 1));
+	AddObjectToScene(new Quad(&XMVectorSet(     10, 5, 0, 1), 3));
+
 }
 #pragma endregion
 

@@ -15,7 +15,8 @@ class Cube : public GeometricObject
 public:
 	// Initialization
 	Cube(float scale = 1);
-	Cube(float x, float y, float z, float scale = 1);
+	Cube(XMVECTOR* position, float scale = 1);
+	Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Update
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;

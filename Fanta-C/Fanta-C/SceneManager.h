@@ -21,6 +21,9 @@ public:
 	// Accessors
 	Camera* GetCameraPtr() { return cameraPtr; }
 	std::vector<GeometricObject*>* GetObjectsToRenderPtr() { return &objectsToRender; }
+
+	// Clean-up
+	~SceneManager() { if (cameraPtr != nullptr) delete cameraPtr; }
 };
 
 #endif
