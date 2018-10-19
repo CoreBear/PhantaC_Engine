@@ -1,6 +1,9 @@
+#pragma region Dependencies
 #include "Quad.h"
+#pragma endregion
 
-Quad::Quad(float scale)
+#pragma region Initialization
+Quad::Quad(float scale) : centroid(XMVectorSet(0, 0, 0, 1))
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
@@ -10,7 +13,7 @@ Quad::Quad(float scale)
 		vertices[iterators[0]].color = Colors::DarkOrange;
 	}
 }
-Quad::Quad(XMVECTOR* position, float scale) : GeometricObject(position)
+Quad::Quad(XMVECTOR* position, float scale) : centroid(*position), GeometricObject(position)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
@@ -20,7 +23,7 @@ Quad::Quad(XMVECTOR* position, float scale) : GeometricObject(position)
 		vertices[iterators[0]].color = Colors::DarkOrange;
 	}
 }
-Quad::Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : GeometricObject(position, forward, up, inMoveSpeed, inRotationSpeed)
+Quad::Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : centroid(*position), GeometricObject(position, forward, up, inMoveSpeed, inRotationSpeed)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
@@ -30,6 +33,9 @@ Quad::Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, flo
 		vertices[iterators[0]].color = Colors::DarkOrange;
 	}
 }
+#pragma endregion
+
+#pragma region Update
 void Quad::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
@@ -38,3 +44,4 @@ void Quad::AddMeToLineRenderer(LineRenderer& lineRenderer)
 			vertices[iterators[0]].color, vertices[(iterators[0] + 1) % numberOfVertices].color);
 	}
 }
+#pragma endregion

@@ -10,6 +10,8 @@ class Cube : public GeometricObject
 {
 	constexpr static uchar	numberOfIndicesVertices[2] = { 18, 8 };
 	uchar					indices[numberOfIndicesVertices[0]];
+	XMVECTOR				centroid;
+	XMVECTOR				extents;									// Also the max
 	SIMPLE_VERTEX			vertices[numberOfIndicesVertices[1]];
 
 public:
@@ -19,6 +21,7 @@ public:
 	Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Update
+	void Update() override;
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;
 
 	// Accessors

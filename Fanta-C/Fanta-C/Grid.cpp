@@ -1,4 +1,6 @@
+#pragma region Dependencies
 #include "Grid.h"
+#pragma endregion
 
 #pragma region Initialization
 Grid::Grid()

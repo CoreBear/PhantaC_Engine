@@ -15,10 +15,10 @@
 #pragma endregion
 
 #pragma region Global Variables
-HWND						windowHandle;							// Instance/Pointer to the program window
-LPCSTR						windowClassName = "Fanta-CWinClass";	// Unique for the application
-LPCSTR						windowName = "Fanta-C Engine";			// Name of window
-InputController				inputController;
+HWND				windowHandle;							// Instance/Pointer to the program window
+InputController		inputController; 
+LPCSTR				windowClassName = "Fanta-CWinClass";	// Unique for the application
+LPCSTR				windowName = "Fanta-C Engine";			// Name of window
 #pragma endregion
 
 #pragma region Prototypes
@@ -120,8 +120,8 @@ int Run(HINSTANCE hInstance, HWND windowHandle)
 			// Stores the time at the beginning of the frame
 			//time(&startTime);
 
-			inputController.Update();
-
+			inputController.UpdateController();
+			sceneManager.UpdateScene();
 			renderer.RenderScene();
 
 			// Stores the time at the end of the frame

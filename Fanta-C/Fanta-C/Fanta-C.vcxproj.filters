@@ -30,9 +30,6 @@
     <ClCompile Include="Grid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InputController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -52,6 +49,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pyramid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -105,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pyramid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

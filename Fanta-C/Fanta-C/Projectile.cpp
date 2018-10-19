@@ -1,0 +1,30 @@
+#pragma region Dependencies
+#include "Projectile.h"
+#pragma endregion
+
+#pragma region Initialization
+Projectile::Projectile() : centroid(XMVectorSet(0, 0, 0, 1)), GeometricObject(0.01f)
+{
+	// Start position
+	vertices[0].localPos.x = 0;
+	vertices[0].localPos.y = 0;
+	vertices[0].localPos.z = -1;
+	vertices[0].color = Colors::Red;
+
+	// End position
+	vertices[1].localPos.x = 0;
+	vertices[1].localPos.y = 0;
+	vertices[1].localPos.z = 1;
+	vertices[1].color = Colors::Red;
+}
+
+#pragma region Update
+void Projectile::Update()
+{
+	Translate(0, 0.01f);
+}
+void Projectile::AddMeToLineRenderer(LineRenderer& lineRenderer)
+{
+	lineRenderer.AddNewLine(vertices[0].localPos, vertices[1].localPos,	vertices[0].color, vertices[1].color);
+}
+#pragma endregion

@@ -1,5 +1,8 @@
+#pragma region Dependencies
 #include "Triangle.h"
+#pragma endregion
 
+#pragma region Initialization
 Triangle::Triangle(float scale)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
@@ -63,6 +66,9 @@ Triangle::Triangle(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float sc
 		vertices[iterators[0]].color = Colors::Blue;
 	}
 }
+#pragma endregion
+
+#pragma region Update
 void Triangle::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
@@ -71,3 +77,4 @@ void Triangle::AddMeToLineRenderer(LineRenderer& lineRenderer)
 			vertices[iterators[0]].color, vertices[(iterators[0] + 1) % numberOfVertices].color);
 	}
 }
+#pragma endregion

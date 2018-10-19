@@ -10,6 +10,8 @@ class Pyramid : public GeometricObject
 {
 	constexpr static uchar	numberOfIndicesVertices[2] = { 13, 5 };
 	uchar					indices[numberOfIndicesVertices[0]];
+	XMVECTOR				centroid;
+	XMVECTOR				extents;									// Also the max
 	SIMPLE_VERTEX			vertices[numberOfIndicesVertices[1]];
 
 public:

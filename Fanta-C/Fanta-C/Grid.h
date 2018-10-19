@@ -20,10 +20,6 @@ public:
 	
 	// Update
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;
-
-	// Accessors
-	const ushort GetNumberOfVertices() const { return numberOfVertices; }
-	const SIMPLE_VERTEX* GetVertices() const { return vertices; }
 };
 
 #endif

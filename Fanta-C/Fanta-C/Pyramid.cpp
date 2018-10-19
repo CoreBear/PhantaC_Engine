@@ -1,7 +1,14 @@
+#pragma region Dependencies
 #include "Pyramid.h"
+#pragma endregion
 
-Pyramid::Pyramid(float scale)
+#pragma region Initialization
+Pyramid::Pyramid(float scale) : centroid(XMVectorSet(0, 0, 0, 1))
 {
+	// XYZ
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = scale;
+
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{
 		if (iterators[0] < 4)
@@ -29,8 +36,12 @@ Pyramid::Pyramid(float scale)
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
 }
-Pyramid::Pyramid(XMVECTOR* position, float scale) : GeometricObject(position)
+Pyramid::Pyramid(XMVECTOR* position, float scale) : centroid(*position), GeometricObject(position)
 {
+	// XYZ
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = scale;
+
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{
 		if (iterators[0] < 4)
@@ -58,8 +69,12 @@ Pyramid::Pyramid(XMVECTOR* position, float scale) : GeometricObject(position)
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
 }
-Pyramid::Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : GeometricObject(position, forward, up, inMoveSpeed, inRotationSpeed)
+Pyramid::Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : centroid(*position), GeometricObject(position, forward, up, inMoveSpeed, inRotationSpeed)
 {
+	// XYZ
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = scale;
+
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{
 		if (iterators[0] < 4)
@@ -87,6 +102,9 @@ Pyramid::Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scal
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
 }
+#pragma endregion
+
+#pragma region Update
 void Pyramid::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
@@ -106,3 +124,4 @@ void Pyramid::AddMeToLineRenderer(LineRenderer& lineRenderer)
 		}
 	}
 }
+#pragma endregion

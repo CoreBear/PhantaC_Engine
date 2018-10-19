@@ -10,7 +10,7 @@ class Camera : public TransformObject
 	
 public:
 	// Initialization
-	Camera(XMVECTOR position, XMVECTOR forward, XMVECTOR up, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Camera(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Accessors
 	const XMMATRIX& GetProjectionMatrix() const { return projectionMatrix; }

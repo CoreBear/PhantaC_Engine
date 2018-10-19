@@ -9,6 +9,8 @@
 class Quad : public GeometricObject
 {
 	constexpr static uchar	numberOfVertices = 4;
+	XMVECTOR				centroid;
+	XMVECTOR				extents;							// Also the max
 	SIMPLE_VERTEX			vertices[numberOfVertices];
 
 public:
@@ -19,10 +21,6 @@ public:
 
 	// Update
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;
-
-	// Accessors
-	const uchar GetNumberOfVertices() const { return numberOfVertices; }
-	const SIMPLE_VERTEX* GetVertices() const { return vertices; }
 };
 
 #endif

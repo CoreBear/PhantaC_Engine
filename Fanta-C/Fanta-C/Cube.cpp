@@ -1,7 +1,14 @@
+#pragma region Dependencies
 #include "Cube.h"
+#pragma endregion
 
-Cube::Cube(float scale)
+#pragma region Initialization
+Cube::Cube(float scale) : centroid(XMVectorSet(0, 0, 0, 1))
 {
+	// XYZ
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = scale;
+
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{
 		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
@@ -21,8 +28,12 @@ Cube::Cube(float scale)
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
 }
-Cube::Cube(XMVECTOR* position, float scale) : GeometricObject(position)
+Cube::Cube(XMVECTOR* position, float scale) : centroid(*position), GeometricObject(position)
 {
+	// XYZ
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = scale;
+
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{
 		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
@@ -42,8 +53,12 @@ Cube::Cube(XMVECTOR* position, float scale) : GeometricObject(position)
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
 }
-Cube::Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : GeometricObject(position, forward, up, inMoveSpeed, inRotationSpeed)
+Cube::Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : centroid(*position), GeometricObject(position, forward, up, inMoveSpeed, inRotationSpeed)
 {
+	// XYZ
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = scale;
+
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{
 		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
@@ -62,6 +77,15 @@ Cube::Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, flo
 
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
+}
+#pragma endregion
+
+#pragma region Update
+void Cube::Update()
+{
+	ResetTransformMatrix();
+	Translate(0.001f, 0);
+	UpdateWorldMatrix();
 }
 void Cube::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
@@ -83,3 +107,4 @@ void Cube::AddMeToLineRenderer(LineRenderer& lineRenderer)
 		}
 	}
 }
+#pragma endregion

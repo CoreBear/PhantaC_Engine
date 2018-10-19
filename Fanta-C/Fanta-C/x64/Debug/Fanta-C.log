@@ -1,4 +1,4 @@
-﻿  SceneManager.cpp
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\scenemanager.h(26): warning C4150: deletion of pointer to incomplete type 'Camera'; no destructor called
-  c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\scenemanager.h(5): note: see declaration of 'Camera'
+﻿  Cube.cpp
+  SceneManager.cpp
+  Generating Code...
   Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Debug\Fanta-C.exe

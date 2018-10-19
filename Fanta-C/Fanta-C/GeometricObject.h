@@ -10,11 +10,13 @@ class GeometricObject : public TransformObject
 public:
 	// Initialization
 	GeometricObject() {};
+	GeometricObject(float inMoveSpeed) : TransformObject(inMoveSpeed) {};
 	GeometricObject(XMVECTOR* position) : TransformObject(position) {};
 	GeometricObject(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed = 0, float inRotationSpeed = 0) : TransformObject(false, *position, *forward, *up, inMoveSpeed, inRotationSpeed) {}
 
 	// Update
-	virtual void AddMeToLineRenderer(LineRenderer& lineRenderer) {};		// Figure out how to make this a purely virtual function and make the class an ABC
+	virtual void Update(){}
+	virtual void AddMeToLineRenderer(LineRenderer& lineRenderer) {}		// Figure out how to make this a purely virtual function and make the class an ABC
 };
 
 #endif

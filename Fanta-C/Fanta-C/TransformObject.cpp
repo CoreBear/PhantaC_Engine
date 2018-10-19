@@ -3,10 +3,12 @@
 #pragma endregion
 
 #pragma region Initialization
-TransformObject::TransformObject()
+TransformObject::TransformObject() : moveSpeed(0), rotationSpeed(0)
 {
-	moveSpeed = 0;
-	rotationSpeed = 0;	
+	myWorldMatrix = XMMatrixIdentity();
+}
+TransformObject::TransformObject(float inMoveSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(0)
+{
 	myWorldMatrix = XMMatrixIdentity();
 }
 TransformObject::TransformObject(XMVECTOR* position, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed)
@@ -39,49 +41,6 @@ TransformObject::TransformObject(bool camera, XMVECTOR position, XMVECTOR forwar
 #pragma endregion
 
 #pragma region Public Interface
-void TransformObject::Transform(bool* keysCurrentlyPressed)
-{
-	// Reset transformation matrix
-	myTransformMatrix = XMMatrixIdentity();
-
-	// A - Yaw Left
-	if (keysCurrentlyPressed[0])
-		OnYAxis(-rotationSpeed);
-
-	// D - Yaw Right
-	if (keysCurrentlyPressed[1])
-		OnYAxis(rotationSpeed);
-
-	// I - Nose Down
-	if (keysCurrentlyPressed[2])
-		OnXAxis(-rotationSpeed);
-
-	// J - Roll Left
-	if (keysCurrentlyPressed[3])
-		OnZAxis(-rotationSpeed);
-
-	// K - Nose Up
-	if (keysCurrentlyPressed[4])
-		OnXAxis(rotationSpeed);
-
-	// L - Roll Right
-	if (keysCurrentlyPressed[5])
-		OnZAxis(rotationSpeed);
-
-	// S - Move Back
-	if (keysCurrentlyPressed[6])
-		Translate(0, moveSpeed);
-
-	// W - Move Forward
-	if (keysCurrentlyPressed[7])
-		Translate(0, -moveSpeed);
-
-	// Apply the the transform to object's world matrix
-	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
-}
-#pragma endregion
-
-#pragma region Black
 void TransformObject::OnXAxis(float speed)
 {
 	myTransformMatrix.r[1].m128_f32[1] =  cos(XMConvertToRadians(speed));

@@ -3,15 +3,86 @@
 #pragma endregion
 
 #pragma region Update
-void InputController::Update()
+void InputController::UpdateController()
 {
-	cameraPtr->Transform(keysCurrentlyPressed);
+	// Cannot pass these functions, because they are member functions
+
+	// A - Yaw Left
+	if (keysCurrentlyPressed[0])
+	{
+		playerPtr->ResetTransformMatrix();
+		playerPtr->OnYAxis(-playerPtr->GetRotationsSpeed());
+		playerPtr->UpdateWorldMatrix();
+	}
+
+	// D - Yaw Right
+	if (keysCurrentlyPressed[1])
+	{
+		playerPtr->ResetTransformMatrix();
+		playerPtr->OnYAxis(playerPtr->GetRotationsSpeed());
+		playerPtr->UpdateWorldMatrix();
+	}
+
+	// I - Nose Down
+	if (keysCurrentlyPressed[2])
+	{
+		playerPtr->ResetTransformMatrix();
+		playerPtr->OnXAxis(-playerPtr->GetRotationsSpeed());
+		playerPtr->UpdateWorldMatrix();
+	}
+
+	// J - Roll Left
+	if (keysCurrentlyPressed[3])
+	{
+		playerPtr->ResetTransformMatrix();
+		playerPtr->OnZAxis(-playerPtr->GetRotationsSpeed());
+		playerPtr->UpdateWorldMatrix();
+	}
+
+	// K - Nose Up
+	if (keysCurrentlyPressed[4])
+	{
+		playerPtr->ResetTransformMatrix();
+		playerPtr->OnXAxis(playerPtr->GetRotationsSpeed());
+		playerPtr->UpdateWorldMatrix();
+	}
+
+	// L - Roll Right
+	if (keysCurrentlyPressed[5])
+	{
+		playerPtr->ResetTransformMatrix();
+		playerPtr->OnZAxis(playerPtr->GetRotationsSpeed());
+		playerPtr->UpdateWorldMatrix();
+	}
+
+	// S - Move Back
+	if (keysCurrentlyPressed[6])
+	{
+		playerPtr->ResetTransformMatrix();
+		playerPtr->Translate(0, playerPtr->GetMoveSpeed());
+		playerPtr->UpdateWorldMatrix();
+	}
+
+	// W - Move Forward
+	if (keysCurrentlyPressed[7])
+	{
+		playerPtr->ResetTransformMatrix();
+		playerPtr->Translate(0, -playerPtr->GetMoveSpeed());
+		playerPtr->UpdateWorldMatrix();
+	}
+
+	// Space - Shoot
+	if (keysCurrentlyPressed[8])
+	{
+
+	}
 }
 #pragma endregion
 
 #pragma region Input
 void InputController::KeyPressed(ushort keyPressed)
 {
+	// Add more to each switch for "Pushed this frame"
 	switch (keyPressed)
 	{
 	case A:
@@ -38,12 +109,16 @@ void InputController::KeyPressed(ushort keyPressed)
 	case W:
 		keysCurrentlyPressed[7] = true;
 		break;
+	case SPACE:
+		keysCurrentlyPressed[8] = true;
+		break;
 	default:
 		break;
 	}
 }
 void InputController::KeyReleased(ushort keyReleased)
 {
+	// Add more to each switch for "Released this frame"
 	switch (keyReleased)
 	{
 	case A:
@@ -69,6 +144,9 @@ void InputController::KeyReleased(ushort keyReleased)
 		break;
 	case W:
 		keysCurrentlyPressed[7] = false;
+		break;
+	case SPACE:
+		keysCurrentlyPressed[8] = false;
 		break;
 	default:
 		break;
