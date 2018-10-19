@@ -1,6 +1,6 @@
 #pragma region Dependencies
-#include "SceneManager.h"
-
+// My Headers
+#include "SceneManager.h"		// Connection to declarations
 #include "Camera.h"
 #include "Cube.h"
 #include "GeometricObject.h"
@@ -13,39 +13,42 @@
 
 #pragma region Initialization
 SceneManager::SceneManager(InputController* inputController)
-{
-	cameraPtr = new Camera(&XMVectorSet(0, 2, -20, 1), &XMVectorSet(0, 0, 1, 0), &XMVectorSet(0, 1, 0, 0), 0.0075f, 0.2f);
-	inputController->AssignPlayer(GetCameraPtr());
-
+{	
 	// Make sure the grid goes in first, since it's static
 	// Figure out a way to make things static another way
+	
+	// Add cene's main camera
+	AddObjectToScene(new Camera(&XMVectorSet(0, 3, -20, 1), &XMVectorSet(0, 0, 1, 0), &XMVectorSet(0, 1, 0, 0), 0.0075f, 0.2f));
+	
+	// In scene objects, other than camera
 	AddObjectToScene(new Grid);
 	AddObjectToScene(new Cube(&XMVectorSet(		  -5, 5, 0, 1), 1));
-	AddObjectToScene(new Cube(&XMVectorSet(		   5, 5, 0, 1), &XMVectorSet(0, 0, 1, 0), &XMVectorSet(0, 1, 0, 0), 1));
+	//AddObjectToScene(new Cube(&XMVectorSet(		   5, 5, 0, 1), &XMVectorSet(0, 0, 1, 0), &XMVectorSet(0, 1, 0, 0), 1));
 	//AddObjectToScene(new Pyramid(&XMVectorSet(  -5, 5, 0, 1), 1));
 	//AddObjectToScene(new Triangle(&XMVectorSet(-10, 5, 0, 1), 1));
 	//AddObjectToScene(new Quad(&XMVectorSet(     10, 5, 0, 1), 1));
+
+	// Assigns a TransformObject to the player's pointer (currently the main camera)
+	playerPtr = new Player(sceneObjects[0]);
 }
 #pragma endregion
 
 #pragma region Update
-void SceneManager::UpdateScene()
+void SceneManager::Update()
 {
 	// Skip the first place, because the grid is static
-	for (iterators[0] = 1; iterators[0] < objectsToRender.size(); ++iterators[0])
-	{
-		objectsToRender[iterators[0]]->Update();
-	}
+	for (iterators[0] = 1; iterators[0] < sceneObjects.size(); ++iterators[0])
+		sceneObjects[iterators[0]]->Update();
 }
 #pragma endregion
 
-#pragma region Scene Modifiers
-void SceneManager::AddObjectToScene(GeometricObject* object)
+#pragma region Black Box
+void SceneManager::AddObjectToScene(TransformObject* object)
 {
-	objectsToRender.push_back(object);
+	sceneObjects.push_back(object);
 }
-void SceneManager::RemoveObjectFromScene(GeometricObject* object)
+void SceneManager::RemoveObjectFromScene(TransformObject* object)
 {
-	objectsToRender.erase(std::remove(objectsToRender.begin(), objectsToRender.end(), object), objectsToRender.end());
+	sceneObjects.erase(std::remove(sceneObjects.begin(), sceneObjects.end(), object), sceneObjects.end());
 }
 #pragma endregion

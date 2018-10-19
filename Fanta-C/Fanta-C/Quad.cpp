@@ -1,5 +1,6 @@
 #pragma region Dependencies
-#include "Quad.h"
+// My Headers
+#include "Quad.h"		// Connection to declarations
 #pragma endregion
 
 #pragma region Initialization
@@ -35,7 +36,7 @@ Quad::Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, flo
 }
 #pragma endregion
 
-#pragma region Update
+#pragma region Public Interface
 void Quad::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])

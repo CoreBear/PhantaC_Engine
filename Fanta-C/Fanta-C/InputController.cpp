@@ -1,85 +1,38 @@
 #pragma region Dependencies
-#include "InputController.h"
+// My Headers
+#include "InputController.h"		// Connection to declarations
+
+// Defines
+// Mouse position capture
+#define GET_X_LPARAM(lp) ((int)(short)LOWORD(lp))
+#define GET_Y_LPARAM(lp) ((int)(short)HIWORD(lp))
 #pragma endregion
 
 #pragma region Update
-void InputController::UpdateController()
+void InputController::Update()
 {
-	// Cannot pass these functions, because they are member functions
-
-	// A - Yaw Left
 	if (keysCurrentlyPressed[0])
-	{
-		playerPtr->ResetTransformMatrix();
-		playerPtr->OnYAxis(-playerPtr->GetRotationsSpeed());
-		playerPtr->UpdateWorldMatrix();
-	}
-
-	// D - Yaw Right
+		playerPtr->ControllerInput(A);
 	if (keysCurrentlyPressed[1])
-	{
-		playerPtr->ResetTransformMatrix();
-		playerPtr->OnYAxis(playerPtr->GetRotationsSpeed());
-		playerPtr->UpdateWorldMatrix();
-	}
-
-	// I - Nose Down
+		playerPtr->ControllerInput(D);
 	if (keysCurrentlyPressed[2])
-	{
-		playerPtr->ResetTransformMatrix();
-		playerPtr->OnXAxis(-playerPtr->GetRotationsSpeed());
-		playerPtr->UpdateWorldMatrix();
-	}
-
-	// J - Roll Left
+		playerPtr->ControllerInput(I);
 	if (keysCurrentlyPressed[3])
-	{
-		playerPtr->ResetTransformMatrix();
-		playerPtr->OnZAxis(-playerPtr->GetRotationsSpeed());
-		playerPtr->UpdateWorldMatrix();
-	}
-
-	// K - Nose Up
+		playerPtr->ControllerInput(J);
 	if (keysCurrentlyPressed[4])
-	{
-		playerPtr->ResetTransformMatrix();
-		playerPtr->OnXAxis(playerPtr->GetRotationsSpeed());
-		playerPtr->UpdateWorldMatrix();
-	}
-
-	// L - Roll Right
+		playerPtr->ControllerInput(K);
 	if (keysCurrentlyPressed[5])
-	{
-		playerPtr->ResetTransformMatrix();
-		playerPtr->OnZAxis(playerPtr->GetRotationsSpeed());
-		playerPtr->UpdateWorldMatrix();
-	}
-
-	// S - Move Back
+		playerPtr->ControllerInput(L);
 	if (keysCurrentlyPressed[6])
-	{
-		playerPtr->ResetTransformMatrix();
-		playerPtr->Translate(0, playerPtr->GetMoveSpeed());
-		playerPtr->UpdateWorldMatrix();
-	}
-
-	// W - Move Forward
+		playerPtr->ControllerInput(S);
 	if (keysCurrentlyPressed[7])
-	{
-		playerPtr->ResetTransformMatrix();
-		playerPtr->Translate(0, -playerPtr->GetMoveSpeed());
-		playerPtr->UpdateWorldMatrix();
-	}
-
-	// Space - Shoot
+		playerPtr->ControllerInput(W);
 	if (keysCurrentlyPressed[8])
-	{
-
-	}
+		playerPtr->ControllerInput(SPACE);
 }
 #pragma endregion
 
-#pragma region Input
+#pragma region Public Interface
 void InputController::KeyPressed(ushort keyPressed)
 {
 	// Add more to each switch for "Pushed this frame"
@@ -162,6 +115,74 @@ void InputController::MouseButtonRelease(ushort buttonReleased)
 }
 void InputController::MouseMovement(ushort xPosition, ushort yPosition)
 {
-
+	//GET_X_LPARAM(lParam); This came from inputController.MouseMovement(
 }
 #pragma endregion
+
+	////{
+	////	playerPtr->ResetTransformMatrix();
+	////	playerPtr->OnYAxis(-playerPtr->GetRotationsSpeed());
+	////	playerPtr->UpdateWorldMatrix();
+	////}
+
+	//// D - Yaw Right
+	//if (keysCurrentlyPressed[1])
+	////{
+	////	playerPtr->ResetTransformMatrix();
+	////	playerPtr->OnYAxis(playerPtr->GetRotationsSpeed());
+	////	playerPtr->UpdateWorldMatrix();
+	////}
+
+	//// I - Nose Down
+	//if (keysCurrentlyPressed[2])
+	//	//{
+	//	//	playerPtr->ResetTransformMatrix();
+	//	//	playerPtr->OnXAxis(-playerPtr->GetRotationsSpeed());
+	//	//	playerPtr->UpdateWorldMatrix();
+	//	//}
+
+	//// J - Roll Left
+	//if (keysCurrentlyPressed[3])
+	//	//{
+	//	//	playerPtr->ResetTransformMatrix();
+	//	//	playerPtr->OnZAxis(-playerPtr->GetRotationsSpeed());
+	//	//	playerPtr->UpdateWorldMatrix();
+	//	//}
+
+	//// K - Nose Up
+	//if (keysCurrentlyPressed[4])
+	//	//{
+	//	//	playerPtr->ResetTransformMatrix();
+	//	//	playerPtr->OnXAxis(playerPtr->GetRotationsSpeed());
+	//	//	playerPtr->UpdateWorldMatrix();
+	//	//}
+
+	//// L - Roll Right
+	//if (keysCurrentlyPressed[5])
+	//	//{
+	//	//	playerPtr->ResetTransformMatrix();
+	//	//	playerPtr->OnZAxis(playerPtr->GetRotationsSpeed());
+	//	//	playerPtr->UpdateWorldMatrix();
+	//	//}
+
+	//// S - Move Back
+	//if (keysCurrentlyPressed[6])
+	//	//{
+	//	//	playerPtr->ResetTransformMatrix();
+	//	//	playerPtr->Translate(0, playerPtr->GetMoveSpeed());
+	//	//	playerPtr->UpdateWorldMatrix();
+	//	//}
+
+	//// W - Move Forward
+	//if (keysCurrentlyPressed[7])
+	//	//{
+	//	//	playerPtr->ResetTransformMatrix();
+	//	//	playerPtr->Translate(0, -playerPtr->GetMoveSpeed());
+	//	//	playerPtr->UpdateWorldMatrix();
+	//	//}
+
+	//// Space - Shoot
+	//if (keysCurrentlyPressed[8])
+	//{
+
+	//}

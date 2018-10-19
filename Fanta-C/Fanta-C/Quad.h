@@ -19,7 +19,7 @@ public:
 	Quad(XMVECTOR* position, float scale = 1);
 	Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
-	// Update
+	// Public Interface
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;
 };
 

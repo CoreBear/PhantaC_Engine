@@ -1,5 +1,6 @@
 #pragma region Dependencies
-#include "Camera.h"
+// My Headers
+#include "Camera.h"		// Connection to declarations
 #pragma endregion
 
 #pragma region Initialization

@@ -1,5 +1,6 @@
 #pragma region Dependencies
-#include "Grid.h"
+// My Headers
+#include "Grid.h"		// Connection to declarations
 #pragma endregion
 
 #pragma region Initialization
@@ -89,7 +90,7 @@ Grid::Grid(XMVECTOR* position) : GeometricObject(position)
 }
 #pragma endregion
 
-#pragma region Update
+#pragma region Public Interface
 void Grid::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices - 1; iterators[0] += 2)

@@ -18,7 +18,7 @@ public:
 	Grid();
 	Grid(XMVECTOR* position);
 	
-	// Update
+	// Public Interface
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;
 };
 

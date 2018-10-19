@@ -118,7 +118,9 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="LineRenderer.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Pyramid.cpp" />
     <ClCompile Include="Quad.cpp" />
@@ -134,7 +136,9 @@
     <ClInclude Include="GeometricObject.h" />
     <ClInclude Include="GeometryGlobals.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="InputGlobals.h" />
     <ClInclude Include="LineRenderer.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Pool.h" />
     <ClInclude Include="ProgramGlobals.h" />
     <ClInclude Include="Projectile.h" />

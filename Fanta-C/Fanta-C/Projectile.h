@@ -17,6 +17,8 @@ public:
 
 	// Update 
 	void Update() override;
+
+	// Public Interface
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;
 };
 

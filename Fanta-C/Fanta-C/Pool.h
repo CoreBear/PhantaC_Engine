@@ -33,24 +33,12 @@ public:
 		// If no inactive elements
 		return -1;
 	}
-	Generic& operator[](ushort index)
-	{
-		return pool[index];
-	}
-	const Generic& operator[](ushort index) const
-	{
-		return pool[index];
-	}
+	Generic& operator[](ushort index) { return pool[index]; }
+	const Generic& operator[](ushort index) const { return pool[index]; }
 	
 	// Accessors
-	ushort Capacity() const
-	{
-		return N;
-	}
-	ushort GetSize() const
-	{
-		return currentCount;
-	}
+	const ushort Capacity() const { return N; }
+	const ushort GetSize() const { return currentCount; }
 };
 
 #endif

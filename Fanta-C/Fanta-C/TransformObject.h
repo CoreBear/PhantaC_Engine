@@ -21,18 +21,21 @@ public:
 	TransformObject(XMVECTOR* position, float inMoveSpeed = 0, float inRotationSpeed = 0);
 	TransformObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
-	// Accessors
-	float GetMoveSpeed() { return moveSpeed; }
-	float GetRotationsSpeed() { return rotationSpeed; }
-	XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }
+	// Update
+	virtual void Update() { return; }
 
-	// Mutators
+	// Public Interface
 	void OnXAxis(float speed);
 	void OnYAxis(float speed);
 	void OnZAxis(float speed);
 	void ResetTransformMatrix() { myTransformMatrix = XMMatrixIdentity(); }
-	void Translate(float x, float y);
+	void Translate(float x, float y, float z);
 	void UpdateWorldMatrix() { myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix); }
+	
+	// Accessors
+	const float GetMoveSpeed() const { return moveSpeed; }
+	const float GetRotationsSpeed() const { return rotationSpeed; }
+	XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }
 };
 
 #endif

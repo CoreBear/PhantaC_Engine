@@ -1,32 +1,33 @@
 #ifndef _SCENE_MANAGER_H
 #define _SCENE_MANAGER_H
 
+#include <DirectXMath.h>
+#include "Player.h"
 #include "Pool.h"
 #include "Projectile.h"
 #include <vector>
 class Camera;
-class GeometricObject;
+class TransformObject;
 
 class SceneManager
 {
-	Camera*							cameraPtr;
-	std::vector<GeometricObject*>	objectsToRender;
-	Pool<Projectile, 20>			pooledProjectiles;
+	Player*							playerPtr;
+	//Pool<Projectile, 20>			pooledProjectiles;
+	std::vector<TransformObject*>	sceneObjects;
+
+	// Black Box
+	void AddObjectToScene(TransformObject* object);
+	void RemoveObjectFromScene(TransformObject* object);
 
 public:
 	// Initialization
 	SceneManager(class InputController* inputController);
 
 	// Update
-	void UpdateScene();
-
-	// Scene Modifiers
-	void AddObjectToScene(GeometricObject* object);
-	void RemoveObjectFromScene(GeometricObject* object);
+	void Update();
 
 	// Accessors
-	Camera* GetCameraPtr() { return cameraPtr; }
-	std::vector<GeometricObject*>* GetObjectsToRenderPtr() { return &objectsToRender; }
+	std::vector<TransformObject*>* GetSceneObjectsPtr() { return &sceneObjects; }
 };
 
 #endif

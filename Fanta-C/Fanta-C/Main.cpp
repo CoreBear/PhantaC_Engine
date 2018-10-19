@@ -1,22 +1,18 @@
 #pragma region Dependencies
-// System Includes
+// System Headers
 #include <Windows.h>			// Contains all destd::finitions for creating a windows based application
-
 #include <time.h>				// For delta time
 
+// My Headers
 #include "InputController.h"
 #include "ProgramGlobals.h"
 #include "Renderer.h"
 #include "SceneManager.h"
-
-// Mouse position capture
-#define GET_X_LPARAM(lp) ((int)(short)LOWORD(lp))
-#define GET_Y_LPARAM(lp) ((int)(short)HIWORD(lp))
 #pragma endregion
 
 #pragma region Global Variables
 HWND				windowHandle;							// Instance/Pointer to the program window
-InputController		inputController; 
+InputController		inputController;						
 LPCSTR				windowClassName = "Fanta-CWinClass";	// Unique for the application
 LPCSTR				windowName = "Fanta-C Engine";			// Name of window
 #pragma endregion
@@ -120,9 +116,9 @@ int Run(HINSTANCE hInstance, HWND windowHandle)
 			// Stores the time at the beginning of the frame
 			//time(&startTime);
 
-			inputController.UpdateController();
-			sceneManager.UpdateScene();
-			renderer.RenderScene();
+			inputController.Update();
+			sceneManager.Update();
+			renderer.Update(sceneManager.GetSceneObjectsPtr());
 
 			// Stores the time at the end of the frame
 			//time(&endTime);
@@ -146,8 +142,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_KEYUP:
 		inputController.KeyReleased((ushort)wParam);
 		break;
-	case WM_MOUSEMOVE:
-		inputController.MouseMovement(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+	/*case WM_MOUSEMOVE:
+		inputController.MouseMovement((ushort)lParam, (ushort)lParam);
 		break;
 	case WM_LBUTTONDOWN:
 	case WM_RBUTTONDOWN:
@@ -156,7 +152,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_LBUTTONUP:
 	case WM_RBUTTONUP:
 		inputController.MouseButtonRelease((ushort)wParam);
-		break;
+		break;*/
 	default:
 		return DefWindowProc(hwnd, message, wParam, lParam);
 	}

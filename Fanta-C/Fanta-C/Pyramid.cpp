@@ -1,5 +1,6 @@
 #pragma region Dependencies
-#include "Pyramid.h"
+// My Headers	
+#include "Pyramid.h"		// Connection to declarations
 #pragma endregion
 
 #pragma region Initialization
@@ -104,7 +105,7 @@ Pyramid::Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scal
 }
 #pragma endregion
 
-#pragma region Update
+#pragma region Public Interface
 void Pyramid::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])

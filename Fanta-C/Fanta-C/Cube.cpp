@@ -1,5 +1,6 @@
 #pragma region Dependencies
-#include "Cube.h"
+// My Headers
+#include "Cube.h"		// Connection to declarations
 #pragma endregion
 
 #pragma region Initialization
@@ -83,10 +84,13 @@ Cube::Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, flo
 #pragma region Update
 void Cube::Update()
 {
-	ResetTransformMatrix();
+	/*ResetTransformMatrix();
 	Translate(0.001f, 0);
-	UpdateWorldMatrix();
+	UpdateWorldMatrix();*/
 }
+#pragma endregion
+
+#pragma region Public Interface
 void Cube::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0] - 1; ++iterators[0])

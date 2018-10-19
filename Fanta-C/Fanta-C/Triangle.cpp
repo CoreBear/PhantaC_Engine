@@ -1,5 +1,6 @@
 #pragma region Dependencies
-#include "Triangle.h"
+// My Headers
+#include "Triangle.h"			// Connection to declarations
 #pragma endregion
 
 #pragma region Initialization
@@ -68,7 +69,7 @@ Triangle::Triangle(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float sc
 }
 #pragma endregion
 
-#pragma region Update
+#pragma region Public Interface
 void Triangle::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])

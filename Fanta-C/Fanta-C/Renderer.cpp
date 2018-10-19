@@ -1,14 +1,16 @@
 #pragma region Dependencies
-#include "Renderer.h"
+// My Headers
+#include "Renderer.h"			// Connection to declarations
+#include "Camera.h"
+#include "GeometryGlobals.h"
+#include "ProgramGlobals.h"
+#include "SceneManager.h"
 
+// System Headers
 // DirectX Includes
 #include <d3dcompiler.h>				// Required for loading and compiling HLSL shaders
 #include <DirectXMath.h>
 #include <DirectXColors.h>
-
-// Shaders
-#include "BasicPixelShader.csh"
-#include "BasicVertexShader.csh"
 
 // Link Library Dependencies	
 // Automatically linked in linker stage
@@ -18,20 +20,14 @@
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "winmm.lib")
 
-#include "Camera.h"
-#include "GeometryGlobals.h"
-#include "ProgramGlobals.h"
-#include "SceneManager.h"
+// Shaders
+#include "BasicPixelShader.csh"
+#include "BasicVertexShader.csh"
 #pragma endregion
 
 #pragma region Initialization
 Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager& sceneManager)
 {
-	#pragma region Assign Pointers
-	camera = sceneManager.GetCameraPtr();
-	objectsToRender = sceneManager.GetObjectsToRenderPtr();
-	#pragma endregion
-
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
 	ZeroMemory(&swapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
@@ -177,7 +173,7 @@ Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager& sceneMa
 
 	#pragma region Consistant Pipeline Pieces (Will be changed in the future)
 	// Resources
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &camera->GetProjectionMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &static_cast<Camera*>(sceneManager.GetSceneObjectsPtr()->at(0))->GetProjectionMatrix(), 0, 0);
 
 	// Input Assembler
 	deviceContext->IASetInputLayout(inputLayout[INPUT_LAYOUT::DEFAULT]);
@@ -201,41 +197,45 @@ Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager& sceneMa
 }
 #pragma endregion
 
-#pragma region Render Pipeline
-void Renderer::ResetScreen()
-{
-	deviceContext->ClearRenderTargetView(renderTargetView[RENDER_TARGET_VIEW::DEFAULT], DirectX::Colors::Black);
-	deviceContext->ClearDepthStencilView(depthStencilView[DEPTH_STENCIL_VIEW::DEFAULT], D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, maxZBufferDepth, 0);
-}
-void Renderer::RenderScene()
+#pragma region Public Interface
+void Renderer::Update(std::vector<TransformObject*>* sceneObjects)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
-	//Move Camera
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &camera->GetWorldMatrix(), 0, 0);
+	// Load view matrix (camera's world matrix) into vram
+	// If camera is not moving, we can set this during initialization
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &sceneObjects->at(0)->GetWorldMatrix(), 0, 0);
 
-	//																								Add anything you want to draw here
+	//											Add anything you want to draw here
 	// ------------------------------------------------------------------------------------------------------------------------------- 
 	//
 	// Look into multi-threading this
-	// For now, draw things according to painter's algorithm
-
-	for (renderIterator = 0; renderIterator < objectsToRender->size(); ++renderIterator)
+	// Skip over index 0, because of camera
+	// Load objects into line renderer, then draw them
+	for (renderIterator = 1; renderIterator < sceneObjects->size(); ++renderIterator)
 	{
-		objectsToRender->at(renderIterator)->AddMeToLineRenderer(lineRenderer);
-		DrawLineRenders(objectsToRender->at(renderIterator)->GetWorldMatrix());
+		dynamic_cast<GeometricObject*>(sceneObjects->at(renderIterator))->AddMeToLineRenderer(lineRenderer);
+		DrawLineRenders(sceneObjects->at(renderIterator)->GetWorldMatrix());
 	}
 
-	//																								Don't add anything under here
+	//											Don't add anything under here
 	// --------------------------------------------------------------------------------------------------------------------------------
 	//
 	// Show frame to user
 	swapChain->Present(vSync, 0);
 }
+#pragma endregion
+
+#pragma region Black Box
+void Renderer::ResetScreen()
+{
+	deviceContext->ClearRenderTargetView(renderTargetView[RENDER_TARGET_VIEW::DEFAULT], DirectX::Colors::Black);
+	deviceContext->ClearDepthStencilView(depthStencilView[DEPTH_STENCIL_VIEW::DEFAULT], D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, maxZBufferDepth, 0);
+}
 void Renderer::DrawLineRenders(const XMMATRIX& objectTransform)
 {
-	// Update transform
+	// Upload object's world matrix into vram
 	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, &objectTransform, 0, 0);
 
 	// Load lines into VRAM
@@ -278,7 +278,6 @@ Renderer::~Renderer()
 	ReleaseResource(depthStencilBuffer[TEXTURE2D::COUNT]);
 	ReleaseResource(swapChain);
 
-	delete camera;
 	// How do vectors delete? Becase objectsTo... may need to be deleted
 	#pragma endregion
 }

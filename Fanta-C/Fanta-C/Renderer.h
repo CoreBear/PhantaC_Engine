@@ -16,10 +16,6 @@ class Renderer
 	// Line Renderer Variables
 	LineRenderer					lineRenderer;									// Object that renders lines on screen
 
-	// World Object Variables
-	class Camera*					camera;
-	std::vector<GeometricObject*>*	objectsToRender;								// Stores objects for rendering
-
 	// Pipeline Variables
 	const float						maxZBufferDepth = 1.0f;							// Self-explanatory
 	const uchar						vSync = 0;										// 0 - vSync off. 1 - On
@@ -45,7 +41,7 @@ class Renderer
 	template<typename Generic>
 	inline void ReleaseResource(Generic& ptr);
 
-	// Render Pipeline
+	// Black Box
 	void ResetScreen();
 	void DrawLineRenders(const XMMATRIX& objectTransform);
 
@@ -53,9 +49,10 @@ public:
 	// Initialization
 	Renderer(HINSTANCE hInstance, HWND windowHandle, class SceneManager& sceneManager);
 
-	// Render Pipeline
-	void RenderScene();
+	// Update
+	void Update(std::vector<TransformObject*>* sceneObjects);
 
+	// Clean-up
 	~Renderer();
 };
 
