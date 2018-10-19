@@ -15,8 +15,6 @@
 #pragma endregion
 
 #pragma region Global Variables
-// Window Variables
-float						deltaTime = 0;
 HWND						windowHandle;							// Instance/Pointer to the program window
 LPCSTR						windowClassName = "Fanta-CWinClass";	// Unique for the application
 LPCSTR						windowName = "Fanta-C Engine";			// Name of window
@@ -89,6 +87,7 @@ int InitializeApplication(HINSTANCE hInstance, int cmdShow)
 int Run(HINSTANCE hInstance, HWND windowHandle)
 {
 	constexpr double			targetedFrameCompletionTime = double(1000) / targetFPS;
+	//float						deltaTime = 0;
 	MSG							msg = { 0 };
 	SceneManager				sceneManager(&inputController);
 	Renderer					renderer(hInstance, windowHandle, sceneManager);
@@ -116,15 +115,17 @@ int Run(HINSTANCE hInstance, HWND windowHandle)
 		else
 		{
 			// Stores how long it took to complet the frame
-			deltaTime = float(difftime(endTime, startTime));
+			//deltaTime = endTime - startTime;
 
 			// Stores the time at the beginning of the frame
-			time(&startTime);
+			//time(&startTime);
+
+			inputController.Update();
 
 			renderer.RenderScene();
 
 			// Stores the time at the end of the frame
-			time(&endTime);
+			//time(&endTime);
 		}
 	}
 
@@ -140,21 +141,21 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		PostQuitMessage(0);
 		break;
 	case WM_KEYDOWN:
-		inputController.KeyPressed((ushort)wParam, deltaTime);
+		inputController.KeyPressed((ushort)wParam);
 		break;
 	case WM_KEYUP:
-		inputController.KeyReleased((ushort)wParam, deltaTime);
+		inputController.KeyReleased((ushort)wParam);
 		break;
 	case WM_MOUSEMOVE:
 		inputController.MouseMovement(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 		break;
 	case WM_LBUTTONDOWN:
 	case WM_RBUTTONDOWN:
-		inputController.MouseButtonPressed((ushort)wParam, deltaTime);
+		inputController.MouseButtonPressed((ushort)wParam);
 		break;
 	case WM_LBUTTONUP:
 	case WM_RBUTTONUP:
-		inputController.MouseButtonRelease((ushort)wParam, deltaTime);
+		inputController.MouseButtonRelease((ushort)wParam);
 		break;
 	default:
 		return DefWindowProc(hwnd, message, wParam, lParam);

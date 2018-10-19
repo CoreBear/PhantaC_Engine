@@ -10,19 +10,19 @@ using namespace DirectX;
 
 class Grid : public GeometricObject
 {
-	constexpr static uchar				numberOfVertices = 100;
-	SIMPLE_VERTEX						vertices[numberOfVertices];							// First 22 are horizontal
+	constexpr static ushort				numberOfVertices = 500;
+	SIMPLE_VERTEX						vertices[numberOfVertices];			// First 22 are horizontal
 
 public:
 	// Initialization
 	Grid();
-	Grid(char x, char y, char z);
+	Grid(float x, float y, float z);
 	
 	// Update
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;
 
 	// Accessors
-	const uchar GetNumberOfVertices() const { return numberOfVertices; }
+	const ushort GetNumberOfVertices() const { return numberOfVertices; }
 	const SIMPLE_VERTEX* GetVertices() const { return vertices; }
 };
 

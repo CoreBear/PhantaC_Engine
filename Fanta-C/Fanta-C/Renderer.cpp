@@ -158,11 +158,11 @@ Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager& sceneMa
 	#pragma endregion
 	
 	#pragma region Shaders
-	// Create vertex shader
-	device->CreateVertexShader(BasicVertexShader, sizeof(BasicVertexShader), nullptr, &vertexShader[VERTEX_SHADER::DEFAULT]);
-	
 	// Create pixel shader
 	device->CreatePixelShader(BasicPixelShader, sizeof(BasicPixelShader), nullptr, &pixelShader[PIXEL_SHADER::DEFAULT]);
+	
+	// Create vertex shader
+	device->CreateVertexShader(BasicVertexShader, sizeof(BasicVertexShader), nullptr, &vertexShader[VERTEX_SHADER::DEFAULT]);
 	#pragma endregion
 	
 	#pragma region Input Layout
@@ -178,7 +178,6 @@ Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager& sceneMa
 	#pragma region Consistant Pipeline Pieces (Will be changed in the future)
 	// Resources
 	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &camera->GetProjectionMatrix(), 0, 0);
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &sceneManager.GetCameraPtr()->GetViewMatrix(), 0, 0);
 
 	// Input Assembler
 	deviceContext->IASetInputLayout(inputLayout[INPUT_LAYOUT::DEFAULT]);
@@ -214,7 +213,7 @@ void Renderer::RenderScene()
 	ResetScreen();
 
 	//Move Camera
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &camera->GetViewMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &camera->GetWorldMatrix(), 0, 0);
 
 	//																								Add anything you want to draw here
 	// ------------------------------------------------------------------------------------------------------------------------------- 

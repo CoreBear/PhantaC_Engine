@@ -115,13 +115,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Pool.cpp" />
+    <ClCompile Include="Pyramid.cpp" />
+    <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="TransformObject.cpp" />
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -132,11 +137,14 @@
     <ClInclude Include="LineRenderer.h" />
     <ClInclude Include="Pool.h" />
     <ClInclude Include="ProgramGlobals.h" />
+    <ClInclude Include="Pyramid.h" />
+    <ClInclude Include="Quad.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderStructures.h" />
     <ClInclude Include="InputController.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="TransformObject.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="Typedefs.h" />
   </ItemGroup>
   <ItemGroup>

@@ -3,11 +3,11 @@
 #pragma region Initialization
 Grid::Grid()
 {
-	uchar					lineDistanceApart = 1;
-	uchar					numberOfGridLines = numberOfVertices * 0.25f;
-	uchar					halfGridWidth = uchar(numberOfGridLines * 0.5f);
-	uchar vertCount;
-	XMFLOAT3 tempVertex;
+	uchar		lineDistanceApart = 1;
+	ushort		numberOfGridLines = ushort(numberOfVertices * 0.25f);
+	ushort		halfGridWidth = ushort(numberOfGridLines * 0.5f);
+	ushort		vertCount;
+	XMFLOAT3	tempVertex;
 
 	// Horizontal & Vertical lines
 	for (vertCount = 0, iterators[0] = 0; iterators[0] < 2; ++iterators[0])
@@ -43,13 +43,13 @@ Grid::Grid()
 		}
 	}
 }
-Grid::Grid(char x, char y, char z) : GeometricObject(x, y, z)
+Grid::Grid(float x, float y, float z) : GeometricObject(x, y, z)
 {
-	uchar					lineDistanceApart = 1;
-	uchar					numberOfGridLines = numberOfVertices * 0.25f;
-	uchar					halfGridWidth = uchar(numberOfGridLines * 0.5f);
-	uchar vertCount;
-	XMFLOAT3 tempVertex;
+	uchar		lineDistanceApart = 2;
+	ushort		numberOfGridLines = ushort(numberOfVertices * 0.25f);
+	ushort		halfGridWidth = ushort(numberOfGridLines * 0.5f);
+	ushort		vertCount;
+	XMFLOAT3	tempVertex;
 
 	// Horizontal & Vertical lines
 	for (vertCount = 0, iterators[0] = 0; iterators[0] < 2; ++iterators[0])

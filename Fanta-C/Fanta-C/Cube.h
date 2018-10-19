@@ -14,8 +14,8 @@ class Cube : public GeometricObject
 
 public:
 	// Initialization
-	Cube();
-	Cube(char x, char y, char z);
+	Cube(float scale = 1);
+	Cube(float x, float y, float z, float scale = 1);
 
 	// Update
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;

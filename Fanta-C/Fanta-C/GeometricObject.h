@@ -10,7 +10,7 @@ class GeometricObject : public TransformObject
 public:
 	// Initialization
 	GeometricObject() {};
-	GeometricObject(char x, char y, char z) : TransformObject(x, y, z) {};
+	GeometricObject(float x, float y, float z) : TransformObject(x, y, z) {};
 
 	// Update
 	virtual void AddMeToLineRenderer(LineRenderer& lineRenderer) {};		// Figure out how to make this a purely virtual function and make the class an ABC

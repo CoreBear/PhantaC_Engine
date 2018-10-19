@@ -1,12 +1,12 @@
 #include "Cube.h"
 
-Cube::Cube()
+Cube::Cube(float scale)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{
-		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -1 : 1;
-		vertices[iterators[0]].localPos.y = (iterators[0] % 4 < 2) ? 1 : -1;
-		vertices[iterators[0]].localPos.z = (iterators[0] < 4) ? -1 : 1;
+		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
+		vertices[iterators[0]].localPos.y = (iterators[0] % 4 < 2) ? scale : -scale;
+		vertices[iterators[0]].localPos.z = (iterators[0] < 4) ? -scale : scale;
 		vertices[iterators[0]].color = Colors::Red;
 	}
 
@@ -21,13 +21,13 @@ Cube::Cube()
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
 }
-Cube::Cube(char x, char y, char z) : GeometricObject(x, y, z)
+Cube::Cube(float x, float y, float z, float scale) : GeometricObject(x, y, z)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{
-		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -1 : 1;
-		vertices[iterators[0]].localPos.y = (iterators[0] % 4 < 2) ? 1 : -1;
-		vertices[iterators[0]].localPos.z = (iterators[0] < 4) ? -1 : 1;
+		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
+		vertices[iterators[0]].localPos.y = (iterators[0] % 4 < 2) ? scale : -scale;
+		vertices[iterators[0]].localPos.z = (iterators[0] < 4) ? -scale : scale;
 		vertices[iterators[0]].color = Colors::Red;
 	}
 

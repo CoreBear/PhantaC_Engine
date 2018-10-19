@@ -7,22 +7,30 @@ using namespace DirectX;
 
 class TransformObject
 {
-protected:
-	DirectX::XMMATRIX		myWorldMatrix;
+	float				moveSpeed;																							
+	float				rotationSpeed;																				
+	float				moveInput[2] = { 0, 0 };																			// Stores which direction to move in x and z axis
+	XMMATRIX			myTransformMatrix;
+	XMMATRIX			myWorldMatrix;
+	XMVECTOR			stabilizationVectors[3];																			// Position, Forward, Up
+	const XMVECTOR		worldVectors[3] = { XMVectorSet(1, 0, 0, 1), XMVectorSet(0, 1, 0, 1), XMVectorSet(0, 0, 1, 1) };	// X-Axis, Y-Axis, Z-Axis
 
+	// Mutators
+	void OnXAxis(float speed);
+	void OnYAxis(float speed);
+	void OnZAxis(float speed);
+	void Translate(float x, float y);
 public:
 	// Initialization
-	TransformObject() { myWorldMatrix = XMMatrixIdentity(); }
-	TransformObject(char xPos, char yPos, char zPos)
-	{
-		myWorldMatrix = XMMatrixIdentity();
-		myWorldMatrix.r[3].m128_f32[0] = xPos;
-		myWorldMatrix.r[3].m128_f32[1] = yPos;
-		myWorldMatrix.r[3].m128_f32[2] = zPos;
-	}
+	TransformObject();																										// Generic instantiation at origin
+	TransformObject(float xPos, float yPos, float zPos, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	TransformObject(XMVECTOR position, XMVECTOR forward, XMVECTOR up, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Accessors
-	DirectX::XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }
+	XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }
+
+	// Mutators
+	void Transform(bool* keysCurrentlyPressed);																				// Calls move and rotate to create a new matrix that will transform object
 };
 
 #endif
