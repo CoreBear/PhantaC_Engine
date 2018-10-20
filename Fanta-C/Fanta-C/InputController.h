@@ -1,10 +1,12 @@
 #ifndef _INPUT_CONTROLLER_H
 #define _INPUT_CONTROLLER_H
 
-#include "InputGlobals.h"
+// My Headers
+#include "GlobalInput.h"
 #include "Typedefs.h"
-#include "Camera.h"
-#include "Player.h"
+
+// Forward Declarations
+class Player;
 
 class InputController
 {
@@ -43,6 +45,9 @@ public:
 	void MouseButtonPressed(ushort buttonPressed);
 	void MouseButtonRelease(ushort buttonReleased);
 	void MouseMovement(ushort xPosition, ushort yPosition);
+
+	// Mutators
+	void AssignPlayer(Player* inPlayerPtr) { playerPtr = inPlayerPtr; }
 };
 
 #endif

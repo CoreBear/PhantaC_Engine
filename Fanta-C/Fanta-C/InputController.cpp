@@ -1,6 +1,7 @@
 #pragma region Dependencies
 // My Headers
 #include "InputController.h"		// Connection to declarations
+#include "Player.h"
 
 // Defines
 // Mouse position capture
@@ -118,71 +119,3 @@ void InputController::MouseMovement(ushort xPosition, ushort yPosition)
 	//GET_X_LPARAM(lParam); This came from inputController.MouseMovement(
 }
 #pragma endregion
-
-	////{
-	////	playerPtr->ResetTransformMatrix();
-	////	playerPtr->OnYAxis(-playerPtr->GetRotationsSpeed());
-	////	playerPtr->UpdateWorldMatrix();
-	////}
-
-	//// D - Yaw Right
-	//if (keysCurrentlyPressed[1])
-	////{
-	////	playerPtr->ResetTransformMatrix();
-	////	playerPtr->OnYAxis(playerPtr->GetRotationsSpeed());
-	////	playerPtr->UpdateWorldMatrix();
-	////}
-
-	//// I - Nose Down
-	//if (keysCurrentlyPressed[2])
-	//	//{
-	//	//	playerPtr->ResetTransformMatrix();
-	//	//	playerPtr->OnXAxis(-playerPtr->GetRotationsSpeed());
-	//	//	playerPtr->UpdateWorldMatrix();
-	//	//}
-
-	//// J - Roll Left
-	//if (keysCurrentlyPressed[3])
-	//	//{
-	//	//	playerPtr->ResetTransformMatrix();
-	//	//	playerPtr->OnZAxis(-playerPtr->GetRotationsSpeed());
-	//	//	playerPtr->UpdateWorldMatrix();
-	//	//}
-
-	//// K - Nose Up
-	//if (keysCurrentlyPressed[4])
-	//	//{
-	//	//	playerPtr->ResetTransformMatrix();
-	//	//	playerPtr->OnXAxis(playerPtr->GetRotationsSpeed());
-	//	//	playerPtr->UpdateWorldMatrix();
-	//	//}
-
-	//// L - Roll Right
-	//if (keysCurrentlyPressed[5])
-	//	//{
-	//	//	playerPtr->ResetTransformMatrix();
-	//	//	playerPtr->OnZAxis(playerPtr->GetRotationsSpeed());
-	//	//	playerPtr->UpdateWorldMatrix();
-	//	//}
-
-	//// S - Move Back
-	//if (keysCurrentlyPressed[6])
-	//	//{
-	//	//	playerPtr->ResetTransformMatrix();
-	//	//	playerPtr->Translate(0, playerPtr->GetMoveSpeed());
-	//	//	playerPtr->UpdateWorldMatrix();
-	//	//}
-
-	//// W - Move Forward
-	//if (keysCurrentlyPressed[7])
-	//	//{
-	//	//	playerPtr->ResetTransformMatrix();
-	//	//	playerPtr->Translate(0, -playerPtr->GetMoveSpeed());
-	//	//	playerPtr->UpdateWorldMatrix();
-	//	//}
-
-	//// Space - Shoot
-	//if (keysCurrentlyPressed[8])
-	//{
-
-	//}

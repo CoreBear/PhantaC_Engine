@@ -1,12 +1,16 @@
 #ifndef _RENDERER_H
 #define _RENDERER_H
 
+// My Headers
+#include "GlobalDirectX.h"
+#include "GlobalStructures.h"
+#include "LineRenderer.h"
+
+// System Headers
 #include <d3d11.h>	
 #include <vector>
 
-#include "GeometricObject.h"
-#include "LineRenderer.h"
-#include "RenderStructures.h"
+// Global Headers
 #include "Typedefs.h"
 
 class Renderer
@@ -14,7 +18,7 @@ class Renderer
 	uchar							renderIterator;									// Iterator for object rendering
 
 	// Line Renderer Variables
-	LineRenderer					lineRenderer;									// Object that renders lines on screen
+	LineRenderer				lineRenderer;									// Object that renders lines on screen
 
 	// Pipeline Variables
 	const float						maxZBufferDepth = 1.0f;							// Self-explanatory
@@ -50,7 +54,7 @@ public:
 	Renderer(HINSTANCE hInstance, HWND windowHandle, class SceneManager& sceneManager);
 
 	// Update
-	void Update(std::vector<TransformObject*>* sceneObjects);
+	void Update(std::vector<class TransformObject*>* sceneObjects);
 
 	// Clean-up
 	~Renderer();

@@ -1,40 +1,25 @@
 #ifndef _TRANSFORM_OBJECT_H
 #define _TRANSFORM_OBJECT_H
 
+// System Headers
+#include "GlobalDirectX.h"
+
+// My Headers
 #include "Typedefs.h"
-#include <DirectXMath.h>
 using namespace DirectX;
 
 class TransformObject
 {
-	float				moveSpeed;
-	float				rotationSpeed;
-	float				moveInput[2] = { 0, 0 };																			// Stores which direction to move in x and z axis
-	XMMATRIX			myTransformMatrix;
 	XMMATRIX			myWorldMatrix;
 	const XMVECTOR		worldVectors[3] = { XMVectorSet(1, 0, 0, 1), XMVectorSet(0, 1, 0, 1), XMVectorSet(0, 0, 1, 1) };	// X-Axis, Y-Axis, Z-Axis
 		
 public:
 	// Initialization
-	TransformObject();																										// Generic instantiation at origin
-	TransformObject(float inMoveSpeed);																										// Generic instantiation at origin
-	TransformObject(XMVECTOR* position, float inMoveSpeed = 0, float inRotationSpeed = 0);
-	TransformObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up, float inMoveSpeed = 0, float inRotationSpeed = 0);
-
-	// Update
-	virtual void Update() { return; }
-
-	// Public Interface
-	void OnXAxis(float speed);
-	void OnYAxis(float speed);
-	void OnZAxis(float speed);
-	void ResetTransformMatrix() { myTransformMatrix = XMMatrixIdentity(); }
-	void Translate(float x, float y, float z);
-	void UpdateWorldMatrix() { myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix); }
+	TransformObject() { myWorldMatrix = XMMatrixIdentity(); }														// Generic instantiation at origin
+	TransformObject(XMVECTOR* position) : myWorldMatrix(XMMatrixIdentity()) { myWorldMatrix.r[3] = *position; }		// Instatiation at specific position
+	TransformObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up);		
 	
 	// Accessors
-	const float GetMoveSpeed() const { return moveSpeed; }
-	const float GetRotationsSpeed() const { return rotationSpeed; }
 	XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }
 };
 

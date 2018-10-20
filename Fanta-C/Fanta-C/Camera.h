@@ -1,8 +1,10 @@
 #ifndef _CAMERA_H
 #define _CAMERA_H
 
-#include "TransformObject.h"
+// My Headers
+#include "GlobalDirectX.h"
 #include "ProgramGlobals.h"
+#include "TransformObject.h"
 
 class Camera : public TransformObject
 {
@@ -10,7 +12,7 @@ class Camera : public TransformObject
 	
 public:
 	// Initialization
-	Camera(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Camera(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up);
 
 	// Accessors
 	const XMMATRIX& GetProjectionMatrix() const { return projectionMatrix; }

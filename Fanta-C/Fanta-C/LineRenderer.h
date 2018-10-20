@@ -1,10 +1,11 @@
 #ifndef _LINE_RENDERER_H
 #define _LINE_RENDERER_H
 
-#include "Typedefs.h"
 #include <array>
-#include "GeometryGlobals.h"
-#include <DirectXMath.h>
+#include "GlobalDirectX.h"
+#include "GlobalGeometry.h"
+#include "Typedefs.h"
+
 using namespace DirectX;
 
 class LineRenderer

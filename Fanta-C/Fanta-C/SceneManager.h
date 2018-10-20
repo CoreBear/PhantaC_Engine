@@ -1,17 +1,18 @@
 #ifndef _SCENE_MANAGER_H
 #define _SCENE_MANAGER_H
 
-#include <DirectXMath.h>
-#include "Player.h"
-#include "Pool.h"
-#include "Projectile.h"
+// My Headers
+#include "GlobalDirectX.h"
+
+// System Headers
 #include <vector>
-class Camera;
+
+// Forward Declaration
 class TransformObject;
 
 class SceneManager
 {
-	Player*							playerPtr;
+	class Player*					playerPtr;
 	//Pool<Projectile, 20>			pooledProjectiles;
 	std::vector<TransformObject*>	sceneObjects;
 

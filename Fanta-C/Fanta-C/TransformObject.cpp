@@ -4,20 +4,7 @@
 #pragma endregion
 
 #pragma region Initialization
-TransformObject::TransformObject() : moveSpeed(0), rotationSpeed(0)
-{
-	myWorldMatrix = XMMatrixIdentity();
-}
-TransformObject::TransformObject(float inMoveSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(0)
-{
-	myWorldMatrix = XMMatrixIdentity();
-}
-TransformObject::TransformObject(XMVECTOR* position, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed)
-{
-	myWorldMatrix = XMMatrixIdentity();
-	myWorldMatrix.r[3] = *position;					
-}
-TransformObject::TransformObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed)
+TransformObject::TransformObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up)
 {
 	if (!camera)
 	{
@@ -41,32 +28,40 @@ TransformObject::TransformObject(bool camera, XMVECTOR position, XMVECTOR forwar
 }
 #pragma endregion
 
-#pragma region Public Interface
-void TransformObject::OnXAxis(float speed)
-{
-	myTransformMatrix.r[1].m128_f32[1] =  cos(XMConvertToRadians(speed));
-	myTransformMatrix.r[1].m128_f32[2] =  sin(XMConvertToRadians(speed));
-	myTransformMatrix.r[2].m128_f32[1] = -myTransformMatrix.r[1].m128_f32[2];
-	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[1].m128_f32[1];
-}
-void TransformObject::OnYAxis(float speed)
-{
-	myTransformMatrix.r[0].m128_f32[0] =  cos(XMConvertToRadians(speed));
-	myTransformMatrix.r[0].m128_f32[2] =  sin(XMConvertToRadians(speed));
-	myTransformMatrix.r[2].m128_f32[0] = -myTransformMatrix.r[0].m128_f32[2];
-	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[0].m128_f32[0];
-}
-void TransformObject::OnZAxis(float speed)
-{
-	myTransformMatrix.r[0].m128_f32[0] =  cos(XMConvertToRadians(speed));
-	myTransformMatrix.r[0].m128_f32[1] =  sin(XMConvertToRadians(speed));
-	myTransformMatrix.r[1].m128_f32[0] = -myTransformMatrix.r[0].m128_f32[1];
-	myTransformMatrix.r[1].m128_f32[1] =  myTransformMatrix.r[0].m128_f32[0];
-}
-void TransformObject::Translate(float x, float y, float z)
-{
-	myTransformMatrix.r[3].m128_f32[0] = x;
-	myTransformMatrix.r[3].m128_f32[1] = y;
-	myTransformMatrix.r[3].m128_f32[2] = z;
-}
-#pragma endregion
+//#pragma region Public Interface
+//void TransformObject::OnXAxis(float speed)
+//{
+//	ResetTransformMatrix();
+//	myTransformMatrix.r[1].m128_f32[1] =  cos(XMConvertToRadians(speed));
+//	myTransformMatrix.r[1].m128_f32[2] =  sin(XMConvertToRadians(speed));
+//	myTransformMatrix.r[2].m128_f32[1] = -myTransformMatrix.r[1].m128_f32[2];
+//	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[1].m128_f32[1];
+//	UpdateWorldMatrix();
+//}
+//void TransformObject::OnYAxis(float speed)
+//{
+//	ResetTransformMatrix();
+//	myTransformMatrix.r[0].m128_f32[0] =  cos(XMConvertToRadians(speed));
+//	myTransformMatrix.r[0].m128_f32[2] =  sin(XMConvertToRadians(speed));
+//	myTransformMatrix.r[2].m128_f32[0] = -myTransformMatrix.r[0].m128_f32[2];
+//	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[0].m128_f32[0];
+//	UpdateWorldMatrix();
+//}
+//void TransformObject::OnZAxis(float speed)
+//{
+//	ResetTransformMatrix();
+//	myTransformMatrix.r[0].m128_f32[0] =  cos(XMConvertToRadians(speed));
+//	myTransformMatrix.r[0].m128_f32[1] =  sin(XMConvertToRadians(speed));
+//	myTransformMatrix.r[1].m128_f32[0] = -myTransformMatrix.r[0].m128_f32[1];
+//	myTransformMatrix.r[1].m128_f32[1] =  myTransformMatrix.r[0].m128_f32[0];
+//	UpdateWorldMatrix();
+//}
+//void TransformObject::Translate(float x, float y, float z)
+//{
+//	ResetTransformMatrix();
+//	myTransformMatrix.r[3].m128_f32[0] = x;
+//	myTransformMatrix.r[3].m128_f32[1] = y;
+//	myTransformMatrix.r[3].m128_f32[2] = z;
+//	UpdateWorldMatrix();
+//}
+//#pragma endregion

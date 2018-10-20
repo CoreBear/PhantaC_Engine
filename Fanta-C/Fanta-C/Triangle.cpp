@@ -1,11 +1,16 @@
 #pragma region Dependencies
 // My Headers
 #include "Triangle.h"			// Connection to declarations
+#include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Initialization
 Triangle::Triangle(float scale)
 {
+	// XYZ (Make sure triangle is flat by making z = 0)
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
+
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
 		switch (iterators[0])
@@ -25,8 +30,12 @@ Triangle::Triangle(float scale)
 		vertices[iterators[0]].color = Colors::Blue;
 	}
 }
-Triangle::Triangle(XMVECTOR* position, float scale) : GeometricObject(position)
+Triangle::Triangle(XMVECTOR* position, float scale) : RenderObject(position)
 {
+	// XYZ (Make sure triangle is flat by making z = 0
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
+
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
 		switch (iterators[0])
@@ -46,8 +55,12 @@ Triangle::Triangle(XMVECTOR* position, float scale) : GeometricObject(position)
 		vertices[iterators[0]].color = Colors::Blue;
 	}
 }
-Triangle::Triangle(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : GeometricObject(position, forward, up, inMoveSpeed, inRotationSpeed)
+Triangle::Triangle(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale) : RenderObject(position, forward, up)
 {
+	// XYZ (Make sure triangle is flat by making z = 0
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
+
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
 		switch (iterators[0])

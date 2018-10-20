@@ -1,35 +1,26 @@
 #ifndef _CUBE_H
 #define _CUBE_H
 
-#include "GeometricObject.h"
-#include "GeometryGlobals.h"
-#include "LineRenderer.h"
+// My Headers
+#include "GlobalDirectX.h"
+#include "GlobalGeometry.h"
 #include "ProgramGlobals.h"
+#include "RenderObject.h"
 
-class Cube : public GeometricObject
+class Cube : public RenderObject
 {
-	constexpr static uchar	numberOfIndicesVertices[2] = { 18, 8 };
+	constexpr static uchar	numberOfIndicesVertices[2] = { 32, 8 };
 	uchar					indices[numberOfIndicesVertices[0]];
-	XMVECTOR				centroid;
-	XMVECTOR				extents;									// Also the max
 	SIMPLE_VERTEX			vertices[numberOfIndicesVertices[1]];
 
 public:
 	// Initialization
 	Cube(float scale = 1);
 	Cube(XMVECTOR* position, float scale = 1);
-	Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
-
-	// Update
-	void Update() override;
+	Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1);
 
 	// Public Interface
-	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;
-
-	// Accessors
-	const uchar* GetIndices() const { return indices; }
-	const uchar GetNumberOfIndicesVertices(char index) const { return numberOfIndicesVertices[index]; }
-	const SIMPLE_VERTEX* GetVertices() const { return vertices; }
+	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;
 };
 
 #endif

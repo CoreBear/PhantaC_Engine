@@ -1,10 +1,11 @@
 #pragma region Dependencies
 // My Headers	
 #include "Pyramid.h"		// Connection to declarations
+#include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Initialization
-Pyramid::Pyramid(float scale) : centroid(XMVectorSet(0, 0, 0, 1))
+Pyramid::Pyramid(float scale)
 {
 	// XYZ
 	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
@@ -30,14 +31,14 @@ Pyramid::Pyramid(float scale) : centroid(XMVectorSet(0, 0, 0, 1))
 
 	char tempIndices[] =
 	{
-		0, 1, 2, 3, 0,			// Bottom face
-		4, 0, 4, 1, 4, 2, 4, 3	// Connectors
+		0, 1, 2, 3, 0,	// Bottom face
+		4, 1, 3, 4, 2	// Connectors
 	};
 
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
 }
-Pyramid::Pyramid(XMVECTOR* position, float scale) : centroid(*position), GeometricObject(position)
+Pyramid::Pyramid(XMVECTOR* position, float scale) : RenderObject(position)
 {
 	// XYZ
 	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
@@ -63,14 +64,14 @@ Pyramid::Pyramid(XMVECTOR* position, float scale) : centroid(*position), Geometr
 
 	char tempIndices[] =
 	{
-		0, 1, 2, 3, 0,			// Bottom face
-		4, 0, 4, 1, 4, 2, 4, 3	// Connectors
+		0, 1, 2, 3, 0,	// Bottom face
+		4, 1, 3, 4, 2	// Connectors
 	};
 
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
 }
-Pyramid::Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : centroid(*position), GeometricObject(position, forward, up, inMoveSpeed, inRotationSpeed)
+Pyramid::Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale) : RenderObject(position, forward, up)
 {
 	// XYZ
 	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
@@ -96,8 +97,8 @@ Pyramid::Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scal
 
 	char tempIndices[] =
 	{
-		0, 1, 2, 3, 0,			// Bottom face
-		4, 0, 4, 1, 4, 2, 4, 3	// Connectors
+		0, 1, 2, 3, 0,	// Bottom face
+		4, 1, 3, 4, 2	// Connectors
 	};
 
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
@@ -108,21 +109,10 @@ Pyramid::Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scal
 #pragma region Public Interface
 void Pyramid::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
-	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
+	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0] - 1; ++iterators[0])
 	{
-		if (iterators[0] < 4)
-		{
-				lineRenderer.AddNewLine(vertices[indices[iterators[0]]].localPos, vertices[indices[(iterators[0] + 1) % 4]].localPos,
-					vertices[indices[iterators[0]]].color, vertices[indices[(iterators[0] + 1) % 4]].color);
-		}
-		else
-		{
-			if (iterators[0] % 2 != 0)
-			{
-				lineRenderer.AddNewLine(vertices[indices[iterators[0]]].localPos, vertices[indices[iterators[0] + 1]].localPos,
-					vertices[indices[iterators[0]]].color, vertices[indices[iterators[0] + 1]].color);
-			}
-		}
+		lineRenderer.AddNewLine(vertices[indices[iterators[0]]].localPos, vertices[indices[iterators[0] + 1]].localPos,
+			vertices[indices[iterators[0]]].color, vertices[indices[iterators[0] + 1]].color);
 	}
 }
 #pragma endregion

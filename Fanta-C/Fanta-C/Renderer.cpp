@@ -1,16 +1,15 @@
 #pragma region Dependencies
 // My Headers
-#include "Renderer.h"			// Connection to declarations
+#include "Renderer.h"				// Connection to declarations
 #include "Camera.h"
-#include "GeometryGlobals.h"
+#include "GlobalGeometry.h"
 #include "ProgramGlobals.h"
+#include "RenderObject.h"
 #include "SceneManager.h"
 
 // System Headers
 // DirectX Includes
-#include <d3dcompiler.h>				// Required for loading and compiling HLSL shaders
-#include <DirectXMath.h>
-#include <DirectXColors.h>
+#include <d3dcompiler.h>			// Required for loading and compiling HLSL shaders
 
 // Link Library Dependencies	
 // Automatically linked in linker stage
@@ -45,9 +44,9 @@ Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager& sceneMa
 	swapChainDesc.Windowed = TRUE;
 
 	UINT createDeviceFlags = 0;
-#if _DEBUG
+	#if _DEBUG
 	createDeviceFlags = D3D11_CREATE_DEVICE_DEBUG;
-#endif
+	#endif
 
 	// These are the feature levels that we will accept.
 	D3D_FEATURE_LEVEL featureLevels[] =
@@ -211,11 +210,11 @@ void Renderer::Update(std::vector<TransformObject*>* sceneObjects)
 	// ------------------------------------------------------------------------------------------------------------------------------- 
 	//
 	// Look into multi-threading this
-	// Skip over index 0, because of camera
+	// Skip over index 0, because of camera (it doesn't get "rendered")
 	// Load objects into line renderer, then draw them
 	for (renderIterator = 1; renderIterator < sceneObjects->size(); ++renderIterator)
 	{
-		dynamic_cast<GeometricObject*>(sceneObjects->at(renderIterator))->AddMeToLineRenderer(lineRenderer);
+		static_cast<RenderObject*>(sceneObjects->at(renderIterator))->AddMeToLineRenderer(lineRenderer);
 		DrawLineRenders(sceneObjects->at(renderIterator)->GetWorldMatrix());
 	}
 

@@ -1,11 +1,16 @@
 #pragma region Dependencies
 // My Headers
 #include "Quad.h"		// Connection to declarations
+#include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Initialization
-Quad::Quad(float scale) : centroid(XMVectorSet(0, 0, 0, 1))
+Quad::Quad(float scale)
 {
+	// XYZ (Make sure quad is flat by making z = 0)
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
+
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
 		vertices[iterators[0]].localPos.x = (iterators[0] % numberOfVertices == 0 || iterators[0] % numberOfVertices == numberOfVertices - 1) ? -scale : scale;
@@ -14,8 +19,12 @@ Quad::Quad(float scale) : centroid(XMVectorSet(0, 0, 0, 1))
 		vertices[iterators[0]].color = Colors::DarkOrange;
 	}
 }
-Quad::Quad(XMVECTOR* position, float scale) : centroid(*position), GeometricObject(position)
+Quad::Quad(XMVECTOR* position, float scale) : RenderObject(position)
 {
+	// XYZ (Make sure quad is flat by making z = 0
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
+
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
 		vertices[iterators[0]].localPos.x = (iterators[0] % numberOfVertices == 0 || iterators[0] % numberOfVertices == numberOfVertices - 1) ? -scale : scale;
@@ -24,8 +33,12 @@ Quad::Quad(XMVECTOR* position, float scale) : centroid(*position), GeometricObje
 		vertices[iterators[0]].color = Colors::DarkOrange;
 	}
 }
-Quad::Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : centroid(*position), GeometricObject(position, forward, up, inMoveSpeed, inRotationSpeed)
+Quad::Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale) : RenderObject(position, forward, up)
 {
+	// XYZ (Make sure quad is flat by making z = 0
+	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+		extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
+
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
 		vertices[iterators[0]].localPos.x = (iterators[0] % numberOfVertices == 0 || iterators[0] % numberOfVertices == numberOfVertices - 1) ? -scale : scale;

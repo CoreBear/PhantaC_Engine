@@ -1,25 +1,24 @@
 #ifndef _PROJECTILE_H
 #define _PROJECTILE_H
 
-#include "GeometricObject.h"
-#include "GeometryGlobals.h"
+#include "RenderObject.h"
+#include "GlobalGeometry.h"
 #include "LineRenderer.h"
 #include "ProgramGlobals.h"
 
-class Projectile : public GeometricObject
+class Projectile : public RenderObject
 {
-	XMVECTOR				centroid;
-	SIMPLE_VERTEX			vertices[2];
-
-public:
-	// Initialize
-	Projectile();
-
-	// Update 
-	void Update() override;
-
-	// Public Interface
-	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;
+//	SIMPLE_VERTEX			vertices[2];
+//
+//public:
+//	// Initialize
+//	Projectile();
+//
+//	// Update 
+//	void Update() override;
+//
+//	// Public Interface
+//	void AddMeToLineRenderer(LineRenderer& lineRenderer) override;
 };
 
 #endif
