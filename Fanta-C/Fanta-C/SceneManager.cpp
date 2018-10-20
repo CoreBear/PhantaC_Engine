@@ -27,13 +27,13 @@ SceneManager::SceneManager(InputController* inputController)
 	// Objects pointed to will not move if there is no move or rotation speed
 	AddObjectToScene(new Grid);
 	AddObjectToScene(new Quad(&XMVectorSet(	  -10, 5, 0, 1), 1));
-	AddObjectToScene(new Cube(&XMVectorSet(	   -5, 5, 0, 1), 2, 0.0075f, 0.1f));
-	AddObjectToScene(new Pyramid(&XMVectorSet(  0, 5, 0, 1), 3, 0.0075f, 0.1f));
-	AddObjectToScene(new Cube(&XMVectorSet(	    5, 5, 0, 1), 2));
+	AddObjectToScene(new Cube(&XMVectorSet(	   -5, 5, 0, 1), 1, 0.0075f, 0.1f));
+	AddObjectToScene(new Pyramid(&XMVectorSet(  0, 5, 0, 1), 1, 0.0075f, 0.1f));
+	AddObjectToScene(new Cube(&XMVectorSet(	    5, 5, 0, 1), 1));
 	AddObjectToScene(new Triangle(&XMVectorSet(10, 5, 0, 1), 1));
 
 	// Assigns a WorldObject to the player's pointer (currently the main camera)
-	playerPtr = new Player((ObjectTransform*)sceneObjects[4], &sceneObjects[4]->GetWorldMatrix());
+	playerPtr = new Player((ObjectTransform*)sceneObjects[3], &sceneObjects[3]->GetWorldMatrix());
 
 	// Point the input controller at the player
 	inputController->AssignPlayer(playerPtr);

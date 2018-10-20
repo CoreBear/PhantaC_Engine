@@ -3,7 +3,7 @@
 #pragma endregion
 
 #pragma region Public Interface
-void ObjectTransform::OnWorldXAxis(float angle)
+void ObjectTransform::RotateOnWorldXAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[1].m128_f32[1] =  cos(XMConvertToRadians(angle));
@@ -12,7 +12,7 @@ void ObjectTransform::OnWorldXAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[1].m128_f32[1];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void ObjectTransform::OnWorldYAxis(float angle)
+void ObjectTransform::RotateOnWorldYAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] =  cos(XMConvertToRadians(angle));
@@ -21,7 +21,7 @@ void ObjectTransform::OnWorldYAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void ObjectTransform::OnWorldZAxis(float angle)
+void ObjectTransform::RotateOnWorldZAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] =  cos(XMConvertToRadians(angle));
@@ -30,7 +30,7 @@ void ObjectTransform::OnWorldZAxis(float angle)
 	myTransformMatrix.r[1].m128_f32[1] =  myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void ObjectTransform::OnXAxis(float angle)
+void ObjectTransform::RotateOnXAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[1].m128_f32[1] = cos(XMConvertToRadians(angle));
@@ -39,7 +39,7 @@ void ObjectTransform::OnXAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] = myTransformMatrix.r[1].m128_f32[1];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
 }
-void ObjectTransform::OnYAxis(float angle)
+void ObjectTransform::RotateOnYAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] = cos(XMConvertToRadians(angle));
@@ -48,13 +48,22 @@ void ObjectTransform::OnYAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] = myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
 }
-void ObjectTransform::OnZAxis(float angle)
+void ObjectTransform::RotateOnZAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] = cos(XMConvertToRadians(angle));
 	myTransformMatrix.r[0].m128_f32[1] = sin(XMConvertToRadians(angle));
 	myTransformMatrix.r[1].m128_f32[0] = -myTransformMatrix.r[0].m128_f32[1];
 	myTransformMatrix.r[1].m128_f32[1] = myTransformMatrix.r[0].m128_f32[0];
+	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
+}
+void ObjectTransform::Scale(float x, float y, float z)
+{
+	// This isn't fully correct
+	myTransformMatrix = XMMatrixIdentity();
+	myTransformMatrix.r[0] *= x;
+	myTransformMatrix.r[1] *= y;
+	myTransformMatrix.r[2] *= z;
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
 }
 void ObjectTransform::Translate(float x, float y, float z)
@@ -65,13 +74,15 @@ void ObjectTransform::Translate(float x, float y, float z)
 	myTransformMatrix.r[3].m128_f32[2] = z;
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void ObjectTransform::WorldTranslate(float x, float y, float z)
+void ObjectTransform::WorldTranslate(uchar index, float speed)
 {
-	// Use global matrix to implement this
-	myTransformMatrix = XMMatrixIdentity();
-	myTransformMatrix.r[3].m128_f32[0] = x;
-	myTransformMatrix.r[3].m128_f32[1] = y;
-	myTransformMatrix.r[3].m128_f32[2] = z;
-	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
+	// index 0 - horizontal, 1 - vertical, 2 - for/back
+	// Store object direction
+	myTranslationVector = (myWorldMatrix.r[index] + myWorldMatrix.r[3]) - myWorldMatrix.r[3];
+	myTranslationVector = XMVector3Normalize(myTranslationVector);
+	
+	myWorldMatrix.r[3].m128_f32[0] += myTranslationVector.m128_f32[0] * speed;
+	myWorldMatrix.r[3].m128_f32[1] += myTranslationVector.m128_f32[1] * speed;
+	myWorldMatrix.r[3].m128_f32[2] += myTranslationVector.m128_f32[2] * speed;
 }
 #pragma endregion

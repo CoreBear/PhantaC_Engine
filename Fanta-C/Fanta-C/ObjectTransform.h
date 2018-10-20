@@ -12,8 +12,8 @@ class ObjectTransform : public WorldObject
 protected:
 	float			moveSpeed;
 	float			rotationSpeed;
-	XMMATRIX		globalMatrix;
 	XMMATRIX		myTransformMatrix;
+	XMVECTOR		myTranslationVector;
 
 public:
 	// Initialization
@@ -22,14 +22,15 @@ public:
 	ObjectTransform(bool camera, XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed), WorldObject(camera, *position, *forward, *up) { return; }
 
 	// Public Interface
-	void OnXAxis(float angle);
-	void OnYAxis(float angle);
-	void OnZAxis(float angle);
-	void OnWorldXAxis(float angle);
-	void OnWorldYAxis(float angle);
-	void OnWorldZAxis(float angle);
+	void RotateOnWorldXAxis(float angle);
+	void RotateOnWorldYAxis(float angle);
+	void RotateOnWorldZAxis(float angle);
+	void RotateOnZAxis(float angle);
+	void RotateOnXAxis(float angle);
+	void RotateOnYAxis(float angle);
+	void Scale(float x, float y, float z);
 	void Translate(float x, float y, float z);
-	void WorldTranslate(float x, float y, float z);
+	void WorldTranslate(uchar index, float speed);
 
 	// Accessors
 	float GetMoveSpeed() const { return moveSpeed; }

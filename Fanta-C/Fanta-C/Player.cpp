@@ -6,25 +6,58 @@
 #pragma region Public Interface
 void Player::ControllerInput(ushort key)
 {
+	// For world objects
 	switch (key)
 	{
 	case A:
-		characterPtr->OnYAxis(-characterPtr->GetRotationSpeed());
+		characterPtr->RotateOnYAxis(characterPtr->GetRotationSpeed());
 		break;												   
 	case D:													   
-		characterPtr->OnYAxis(characterPtr->GetRotationSpeed());
+		characterPtr->RotateOnYAxis(-characterPtr->GetRotationSpeed());
 		break;												   
 	case I:													   
-		characterPtr->OnXAxis(-characterPtr->GetRotationSpeed());
+		characterPtr->RotateOnXAxis(characterPtr->GetRotationSpeed());
 		break;												   
 	case J:													   
-		characterPtr->OnZAxis(-characterPtr->GetRotationSpeed());
+		characterPtr->RotateOnZAxis(characterPtr->GetRotationSpeed());
 		break;												   
 	case K:													   
-		characterPtr->OnXAxis(characterPtr->GetRotationSpeed());
+		characterPtr->RotateOnXAxis(-characterPtr->GetRotationSpeed());
 		break;												   
 	case L:													   
-		characterPtr->OnZAxis(characterPtr->GetRotationSpeed());
+		characterPtr->RotateOnZAxis(-characterPtr->GetRotationSpeed());
+		break;
+	case S:
+		characterPtr->WorldTranslate(2, -characterPtr->GetMoveSpeed());
+		break;
+	case W:
+		characterPtr->WorldTranslate(2, characterPtr->GetMoveSpeed());
+		break;
+	case SPACE:
+		pooledProjectiles.AllocateNew();
+		break;
+	}
+
+	// For camera
+	/*switch (key)
+	{
+	case A:
+		characterPtr->RotateOnWorldYAxis(-characterPtr->GetRotationSpeed());
+		break;
+	case D:
+		characterPtr->RotateOnWorldYAxis(characterPtr->GetRotationSpeed());
+		break;
+	case I:
+		characterPtr->RotateOnWorldXAxis(-characterPtr->GetRotationSpeed());
+		break;
+	case J:
+		characterPtr->RotateOnWorldZAxis(-characterPtr->GetRotationSpeed());
+		break;
+	case K:
+		characterPtr->RotateOnWorldXAxis(characterPtr->GetRotationSpeed());
+		break;
+	case L:
+		characterPtr->RotateOnWorldZAxis(characterPtr->GetRotationSpeed());
 		break;
 	case S:
 		characterPtr->Translate(0, 0, characterPtr->GetMoveSpeed());
@@ -35,6 +68,6 @@ void Player::ControllerInput(ushort key)
 	case SPACE:
 		pooledProjectiles.AllocateNew();
 		break;
-	}
+	}*/
 }
 #pragma endregion

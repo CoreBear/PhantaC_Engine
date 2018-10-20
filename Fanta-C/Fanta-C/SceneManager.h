@@ -12,7 +12,7 @@ class WorldObject;
 
 class SceneManager
 {
-	class Player*						playerPtr;
+	class Player*					playerPtr;
 	std::vector<WorldObject*>		sceneObjects;
 
 	// Private
