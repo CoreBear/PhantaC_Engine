@@ -12,9 +12,8 @@ class TransformObject;
 
 class SceneManager
 {
-	class Player*					playerPtr;
-	//Pool<Projectile, 20>			pooledProjectiles;
-	std::vector<TransformObject*>	sceneObjects;
+	class Player*						playerPtr;
+	std::vector<TransformObject*>		sceneObjects;
 
 	// Black Box
 	void AddObjectToScene(TransformObject* object);

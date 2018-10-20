@@ -14,9 +14,9 @@ class Quad : public RenderObject
 
 public:
 	// Initialization
-	Quad(float scale = 1);
-	Quad(XMVECTOR* position, float scale = 1);
-	Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1);
+	Quad(float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Quad(XMVECTOR* position, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Public Interface
 	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;

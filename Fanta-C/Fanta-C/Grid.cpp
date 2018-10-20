@@ -5,7 +5,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Grid::Grid()
+Grid::Grid() : RenderObject(0, 0)
 {
 	uchar		lineDistanceApart = 1;
 	ushort		numberOfGridLines = ushort(numberOfVertices * 0.25f);
@@ -47,7 +47,7 @@ Grid::Grid()
 		}
 	}
 }
-Grid::Grid(XMVECTOR* position) : RenderObject(position)
+Grid::Grid(XMVECTOR* position) : RenderObject(position, 0, 0)
 {
 	uchar		lineDistanceApart = 2;
 	ushort		numberOfGridLines = ushort(numberOfVertices * 0.25f);
@@ -89,7 +89,7 @@ Grid::Grid(XMVECTOR* position) : RenderObject(position)
 		}
 	}
 }
-Grid::Grid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up) : RenderObject(position, forward, up)
+Grid::Grid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up) : RenderObject(position, forward, up, 0, 0)
 {
 	uchar		lineDistanceApart = 2;
 	ushort		numberOfGridLines = ushort(numberOfVertices * 0.25f);

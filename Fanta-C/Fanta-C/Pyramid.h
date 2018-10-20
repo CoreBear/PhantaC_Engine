@@ -15,9 +15,9 @@ class Pyramid : public RenderObject
 
 public:
 	// Initialization
-	Pyramid(float scale = 1);
-	Pyramid(XMVECTOR* position, float scale = 1);
-	Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1);
+	Pyramid(float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Pyramid(XMVECTOR* position, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Public Interface
 	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;

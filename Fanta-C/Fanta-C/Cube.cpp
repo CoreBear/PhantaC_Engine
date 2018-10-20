@@ -5,11 +5,11 @@
 #pragma endregion
 
 #pragma region Initialization
-Cube::Cube(float scale)
+Cube::Cube(float scale, float inMoveSpeed, float inRotationSpeed) : RenderObject(inMoveSpeed, inRotationSpeed)
 {
-	// XYZ
-	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-		extents.m128_f32[iterators[0]] = scale;
+	//// XYZ
+	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+	//	extents.m128_f32[iterators[0]] = scale;
 
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{
@@ -30,11 +30,11 @@ Cube::Cube(float scale)
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
 }
-Cube::Cube(XMVECTOR* position, float scale) : RenderObject(position)
+Cube::Cube(XMVECTOR* position, float scale, float inMoveSpeed, float inRotationSpeed) : RenderObject(position, inMoveSpeed, inRotationSpeed)
 {
-	// XYZ
-	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-		extents.m128_f32[iterators[0]] = scale;
+	//// XYZ
+	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+	//	extents.m128_f32[iterators[0]] = scale;
 
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{
@@ -55,11 +55,11 @@ Cube::Cube(XMVECTOR* position, float scale) : RenderObject(position)
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
 		indices[iterators[0]] = tempIndices[iterators[0]];
 }
-Cube::Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale) : RenderObject(position, forward, up)
+Cube::Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : RenderObject(position, forward, up, inMoveSpeed, inRotationSpeed)
 {
-	// XYZ
-	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-		extents.m128_f32[iterators[0]] = scale;
+	//// XYZ
+	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+	//	extents.m128_f32[iterators[0]] = scale;
 
 	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
 	{

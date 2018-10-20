@@ -10,8 +10,10 @@ using namespace DirectX;
 
 class TransformObject
 {
-	XMMATRIX			myWorldMatrix;
 	const XMVECTOR		worldVectors[3] = { XMVectorSet(1, 0, 0, 1), XMVectorSet(0, 1, 0, 1), XMVectorSet(0, 0, 1, 1) };	// X-Axis, Y-Axis, Z-Axis
+
+protected:
+	XMMATRIX			myWorldMatrix;
 		
 public:
 	// Initialization

@@ -5,11 +5,11 @@
 #pragma endregion
 
 #pragma region Initialization
-Quad::Quad(float scale)
+Quad::Quad(float scale, float inMoveSpeed, float inRotationSpeed) : RenderObject(inMoveSpeed, inRotationSpeed)
 {
-	// XYZ (Make sure quad is flat by making z = 0)
-	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-		extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
+	//// XYZ (Make sure quad is flat by making z = 0)
+	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+	//	extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
 
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
@@ -19,11 +19,11 @@ Quad::Quad(float scale)
 		vertices[iterators[0]].color = Colors::DarkOrange;
 	}
 }
-Quad::Quad(XMVECTOR* position, float scale) : RenderObject(position)
+Quad::Quad(XMVECTOR* position, float scale, float inMoveSpeed, float inRotationSpeed) : RenderObject(position, inMoveSpeed, inRotationSpeed)
 {
-	// XYZ (Make sure quad is flat by making z = 0
-	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-		extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
+	//// XYZ (Make sure quad is flat by making z = 0
+	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+	//	extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
 
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
@@ -33,11 +33,11 @@ Quad::Quad(XMVECTOR* position, float scale) : RenderObject(position)
 		vertices[iterators[0]].color = Colors::DarkOrange;
 	}
 }
-Quad::Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale) : RenderObject(position, forward, up)
+Quad::Quad(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : RenderObject(position, forward, up, inMoveSpeed, inRotationSpeed)
 {
-	// XYZ (Make sure quad is flat by making z = 0
-	for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-		extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
+	//// XYZ (Make sure quad is flat by making z = 0
+	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
+	//	extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
 
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{

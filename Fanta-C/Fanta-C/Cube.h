@@ -15,9 +15,9 @@ class Cube : public RenderObject
 
 public:
 	// Initialization
-	Cube(float scale = 1);
-	Cube(XMVECTOR* position, float scale = 1);
-	Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1);
+	Cube(float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Cube(XMVECTOR* position, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Cube(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Public Interface
 	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;

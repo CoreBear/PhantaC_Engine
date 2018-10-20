@@ -4,26 +4,19 @@
 // My Headers
 #include "GlobalDirectX.h"
 #include "LineRenderer.h"
-#include "TransformObject.h"
+#include "MoveableObject.h"
 #include "Typedefs.h"
 
-class RenderObject : public TransformObject
+class RenderObject : public MoveableObject
 {
-protected:
-	XMVECTOR	centroid;
-	XMVECTOR	extents;			// Also the max
-
 public:
 	// Initialization
-	RenderObject() { centroid = XMVectorSet(0, 0, 0, 1); }
-	RenderObject(XMVECTOR* position) : TransformObject(position) { return; }
-	RenderObject(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up) : TransformObject(false, *position, *forward, *up) { return; }
-
-	// Update
-	//void Update() override { return; }
+	RenderObject(float inMoveSpeed, float inRotationSpeed) : MoveableObject(inMoveSpeed, inRotationSpeed) { return; }
+	RenderObject(XMVECTOR* position, float inMoveSpeed, float inRotationSpeed) : MoveableObject(position, inMoveSpeed, inRotationSpeed) { return; }
+	RenderObject(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed, float inRotationSpeed) : MoveableObject(false, position, forward, up, inMoveSpeed, inRotationSpeed) { return; }
 
 	// Public Interface
-	virtual void AddMeToLineRenderer(LineRenderer& lineRenderer) { return; }	// Figure out how to make this a purely virtual function and make the class an ABC
+	virtual void AddMeToLineRenderer(LineRenderer& lineRenderer) = 0;
 };
 
 #endif

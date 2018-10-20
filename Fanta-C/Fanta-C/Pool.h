@@ -1,6 +1,7 @@
 #ifndef _POOLS_H
 #define _POOLS_H
 
+#include "ProgramGlobals.h"
 #include "Typedefs.h"
 
 template<typename Generic, ushort number>
@@ -21,12 +22,12 @@ public:
 	}
 	ushort AllocateNew()
 	{
-		for (iterator = 0; iterator < N; ++iterator)
+		for (iterators[0] = 0; iterators[0] < number; ++iterators[0])
 		{
-			if (iterator == currentCount)
+			if (iterators[0] == currentCount)
 			{
 				++currentCount;
-				return iterator;
+				return iterators[0];
 			}
 		}
 

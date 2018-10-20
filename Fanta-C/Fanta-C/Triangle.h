@@ -14,9 +14,9 @@ class Triangle : public RenderObject
 
 public:
 	// Initialization
-	Triangle(float scale = 1);
-	Triangle(XMVECTOR* position, float scale = 1);
-	Triangle(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1);
+	Triangle(float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Triangle(XMVECTOR* position, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Triangle(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Public Interface
 	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;

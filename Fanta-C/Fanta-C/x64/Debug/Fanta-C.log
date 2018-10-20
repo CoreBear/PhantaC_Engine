@@ -1,26 +1,5 @@
-﻿  Camera.cpp
-  Cube.cpp
-  Grid.cpp
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(29): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(38): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(40): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(71): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(73): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(80): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(82): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(113): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(115): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(122): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(124): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  LineRenderer.cpp
-  Main.cpp
-  Projectile.cpp
-  Pyramid.cpp
-  Quad.cpp
-  Renderer.cpp
+﻿  Player.cpp
+  InputController.cpp
   SceneManager.cpp
-  TransformObject.cpp
-  Triangle.cpp
   Generating Code...
   Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Debug\Fanta-C.exe
