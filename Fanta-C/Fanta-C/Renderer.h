@@ -45,7 +45,7 @@ class Renderer
 	template<typename Generic>
 	inline void ReleaseResource(Generic& ptr);
 
-	// Black Box
+	// Private
 	void ResetScreen();
 	void DrawLineRenders(const XMMATRIX& objectTransform);
 
@@ -54,7 +54,7 @@ public:
 	Renderer(HINSTANCE hInstance, HWND windowHandle, class SceneManager& sceneManager);
 
 	// Update
-	void Update(std::vector<class TransformObject*>* sceneObjects);
+	void Update(std::vector<class WorldObject*>* sceneObjects);
 
 	// Clean-up
 	~Renderer();

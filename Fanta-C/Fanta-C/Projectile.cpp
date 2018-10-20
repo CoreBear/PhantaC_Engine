@@ -5,7 +5,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Projectile::Projectile() : RenderObject(1, 0)
+Projectile::Projectile() : RenderableObject(1, 0)
 {
 	// Start and end positions
 	for (iterators[0] = 0; iterators[0] < 2; ++iterators[0])

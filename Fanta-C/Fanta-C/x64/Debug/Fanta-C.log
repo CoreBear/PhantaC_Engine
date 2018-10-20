@@ -1,5 +1,20 @@
-﻿  Player.cpp
+﻿  Camera.cpp
+  Cube.cpp
+  Grid.cpp
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(38): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(40): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(47): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   InputController.cpp
+  ObjectTransform.cpp
+  Player.cpp
+  Projectile.cpp
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\projectile.cpp(15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Pyramid.cpp
+  Quad.cpp
+  Renderer.cpp
   SceneManager.cpp
+  Triangle.cpp
+  WorldObject.cpp
   Generating Code...
   Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Debug\Fanta-C.exe

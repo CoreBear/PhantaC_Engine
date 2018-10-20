@@ -1,9 +1,9 @@
 #pragma region Dependencies
-#include "MoveableObject.h"
+#include "ObjectTransform.h"
 #pragma endregion
 
 #pragma region Public Interface
-void MoveableObject::OnWorldXAxis(float angle)
+void ObjectTransform::OnWorldXAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[1].m128_f32[1] =  cos(XMConvertToRadians(angle));
@@ -12,7 +12,7 @@ void MoveableObject::OnWorldXAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[1].m128_f32[1];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void MoveableObject::OnWorldYAxis(float angle)
+void ObjectTransform::OnWorldYAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] =  cos(XMConvertToRadians(angle));
@@ -21,7 +21,7 @@ void MoveableObject::OnWorldYAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void MoveableObject::OnWorldZAxis(float angle)
+void ObjectTransform::OnWorldZAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] =  cos(XMConvertToRadians(angle));
@@ -30,7 +30,7 @@ void MoveableObject::OnWorldZAxis(float angle)
 	myTransformMatrix.r[1].m128_f32[1] =  myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void MoveableObject::OnXAxis(float angle)
+void ObjectTransform::OnXAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[1].m128_f32[1] = cos(XMConvertToRadians(angle));
@@ -39,7 +39,7 @@ void MoveableObject::OnXAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] = myTransformMatrix.r[1].m128_f32[1];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
 }
-void MoveableObject::OnYAxis(float angle)
+void ObjectTransform::OnYAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] = cos(XMConvertToRadians(angle));
@@ -48,7 +48,7 @@ void MoveableObject::OnYAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] = myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
 }
-void MoveableObject::OnZAxis(float angle)
+void ObjectTransform::OnZAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] = cos(XMConvertToRadians(angle));
@@ -57,7 +57,7 @@ void MoveableObject::OnZAxis(float angle)
 	myTransformMatrix.r[1].m128_f32[1] = myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
 }
-void MoveableObject::Translate(float x, float y, float z)
+void ObjectTransform::Translate(float x, float y, float z)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[3].m128_f32[0] = x;
@@ -65,7 +65,7 @@ void MoveableObject::Translate(float x, float y, float z)
 	myTransformMatrix.r[3].m128_f32[2] = z;
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void MoveableObject::WorldTranslate(float x, float y, float z)
+void ObjectTransform::WorldTranslate(float x, float y, float z)
 {
 	// Use global matrix to implement this
 	myTransformMatrix = XMMatrixIdentity();

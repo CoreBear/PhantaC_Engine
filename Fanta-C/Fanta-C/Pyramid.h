@@ -5,20 +5,23 @@
 #include "GlobalDirectX.h"
 #include "GlobalGeometry.h"
 #include "ProgramGlobals.h"
-#include "RenderObject.h"
+#include "RenderableObject.h"
 
-class Pyramid : public RenderObject
+class Pyramid : public RenderableObject
 {
-	constexpr static uchar	numberOfIndicesVertices[2] = { 10, 5 };
-	uchar					indices[numberOfIndicesVertices[0]];
-	SIMPLE_VERTEX			vertices[numberOfIndicesVertices[1]];
+	constexpr static uchar	numberOfLineIndicesVertices[2] = { 8, 5 };
+	uchar					lineIndices[numberOfLineIndicesVertices[0]][2];
+	SIMPLE_VERTEX			vertices[numberOfLineIndicesVertices[1]];
+
+	// Private
+	void Create(float scale);
 
 public:
 	// Initialization
-	Pyramid(float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
-	Pyramid(XMVECTOR* position, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
-	Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0);
-
+	Pyramid(float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0) : RenderableObject(inMoveSpeed, inRotationSpeed) { Create(scale); }
+	Pyramid(XMVECTOR* position, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0) : RenderableObject(position, inMoveSpeed, inRotationSpeed) { Create(scale); }
+	Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0) : RenderableObject(position, forward, up, inMoveSpeed, inRotationSpeed) { Create(scale); }
+	
 	// Public Interface
 	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;
 };

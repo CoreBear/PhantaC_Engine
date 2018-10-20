@@ -5,9 +5,9 @@
 #include "GlobalDirectX.h"
 #include "GlobalGeometry.h"
 #include "ProgramGlobals.h"
-#include "RenderObject.h"
+#include "RenderableObject.h"
 
-class Projectile : public RenderObject
+class Projectile : public RenderableObject
 {
 	SIMPLE_VERTEX			vertices[2];
 

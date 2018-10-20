@@ -3,11 +3,11 @@
 
 // My Headers
 #include "GlobalDirectX.h"
-#include "MoveableObject.h"
+#include "ObjectTransform.h"
 #include "ProgramGlobals.h"
-#include "TransformObject.h"
+#include "WorldObject.h"
 
-class Camera : public MoveableObject
+class Camera : public ObjectTransform
 {
 	XMMATRIX		projectionMatrix;
 	

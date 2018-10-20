@@ -4,115 +4,59 @@
 #include "LineRenderer.h"
 #pragma endregion
 
-#pragma region Initialization
-Pyramid::Pyramid(float scale, float inMoveSpeed, float inRotationSpeed) : RenderObject(inMoveSpeed, inRotationSpeed)
-{
-	//// XYZ
-	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-	//	extents.m128_f32[iterators[0]] = scale;
-
-	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
-	{
-		if (iterators[0] < 4)
-		{
-			vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
-			vertices[iterators[0]].localPos.y = -scale;
-			vertices[iterators[0]].localPos.z = (iterators[0] < 2) ? -scale : scale;
-		}
-		else
-		{
-			vertices[iterators[0]].localPos.x = 0;
-			vertices[iterators[0]].localPos.y = scale;
-			vertices[iterators[0]].localPos.z = 0;
-		}
-
-		vertices[iterators[0]].color = Colors::Green;
-	}
-
-	char tempIndices[] =
-	{
-		0, 1, 2, 3, 0,	// Bottom face
-		4, 1, 3, 4, 2	// Connectors
-	};
-
-	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
-		indices[iterators[0]] = tempIndices[iterators[0]];
-}
-Pyramid::Pyramid(XMVECTOR* position, float scale, float inMoveSpeed, float inRotationSpeed) : RenderObject(position, inMoveSpeed, inRotationSpeed)
-{
-	//// XYZ
-	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-	//	extents.m128_f32[iterators[0]] = scale;
-
-	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
-	{
-		if (iterators[0] < 4)
-		{
-			vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
-			vertices[iterators[0]].localPos.y = -scale;
-			vertices[iterators[0]].localPos.z = (iterators[0] < 2) ? -scale : scale;
-		}
-		else
-		{
-			vertices[iterators[0]].localPos.x = 0;
-			vertices[iterators[0]].localPos.y = scale;
-			vertices[iterators[0]].localPos.z = 0;
-		}
-
-		vertices[iterators[0]].color = Colors::Green;
-	}
-
-	char tempIndices[] =
-	{
-		0, 1, 2, 3, 0,	// Bottom face
-		4, 1, 3, 4, 2	// Connectors
-	};
-
-	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
-		indices[iterators[0]] = tempIndices[iterators[0]];
-}
-Pyramid::Pyramid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed) : RenderObject(position, forward, up, inMoveSpeed, inRotationSpeed)
-{
-	//// XYZ
-	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-	//	extents.m128_f32[iterators[0]] = scale;
-
-	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[1]; ++iterators[0])
-	{
-		if (iterators[0] < 4)
-		{
-			vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
-			vertices[iterators[0]].localPos.y = -scale;
-			vertices[iterators[0]].localPos.z = (iterators[0] < 2) ? -scale : scale;
-		}
-		else
-		{
-			vertices[iterators[0]].localPos.x = 0;
-			vertices[iterators[0]].localPos.y = scale;
-			vertices[iterators[0]].localPos.z = 0;
-		}
-
-		vertices[iterators[0]].color = Colors::Green;
-	}
-
-	char tempIndices[] =
-	{
-		0, 1, 2, 3, 0,	// Bottom face
-		4, 1, 3, 4, 2	// Connectors
-	};
-
-	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0]; ++iterators[0])
-		indices[iterators[0]] = tempIndices[iterators[0]];
-}
-#pragma endregion
-
 #pragma region Public Interface
 void Pyramid::AddMeToLineRenderer(LineRenderer& lineRenderer)
 {
-	for (iterators[0] = 0; iterators[0] < numberOfIndicesVertices[0] - 1; ++iterators[0])
+	for (iterators[0] = 0; iterators[0] < numberOfLineIndicesVertices[0]; ++iterators[0])
 	{
-		lineRenderer.AddNewLine(vertices[indices[iterators[0]]].localPos, vertices[indices[iterators[0] + 1]].localPos,
-			vertices[indices[iterators[0]]].color, vertices[indices[iterators[0] + 1]].color);
+		lineRenderer.AddNewLine(vertices[lineIndices[iterators[0]][0]].localPos, vertices[lineIndices[iterators[0]][1]].localPos,
+								vertices[lineIndices[iterators[0]][0]].color, vertices[lineIndices[iterators[0]][1]].color);
+	}
+}
+#pragma endregion
+
+#pragma region Private
+void Pyramid::Create(float scale)
+{
+	// Create Vertices
+	for (iterators[0] = 0; iterators[0] < numberOfLineIndicesVertices[1]; ++iterators[0])
+	{
+		if (iterators[0] < 4)
+		{
+			vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
+			vertices[iterators[0]].localPos.y = -scale;
+			vertices[iterators[0]].localPos.z = (iterators[0] < 2) ? -scale : scale;
+		}
+		else
+		{
+			vertices[iterators[0]].localPos.x = 0;
+			vertices[iterators[0]].localPos.y = scale;
+			vertices[iterators[0]].localPos.z = 0;
+		}
+
+		vertices[iterators[0]].color = Colors::Green;
+	}
+
+	// Create Indices
+	char tempIndices[] =
+	{
+		4, 1, 0,
+		4, 2, 1,
+		4, 3, 2,
+		4, 0, 3
+	};
+
+	// Iterators for tempIndices traversal
+	uchar index = 0;
+
+	// Create triangle Indices (backwards L)
+	for (iterators[0] = 0; iterators[0] < numberOfLineIndicesVertices[0]; ++iterators[0])
+	{
+		// Start vert & end vert
+		for (iterators[1] = 0; iterators[1] < 2; ++iterators[1])
+			lineIndices[iterators[0]][iterators[1]] = tempIndices[index++];
+
+		if (iterators[0] % 2 == 0) --index;
 	}
 }
 #pragma endregion

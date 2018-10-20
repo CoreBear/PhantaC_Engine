@@ -5,10 +5,10 @@
 #include "Cube.h"
 #include "Grid.h"
 #include "InputController.h"
-#include "MoveableObject.h"
+#include "ObjectTransform.h"
 #include "Player.h"
 #include "Pyramid.h"
-#include "TransformObject.h"
+#include "WorldObject.h"
 #include "Triangle.h"
 #include "Quad.h"
 #pragma endregion
@@ -23,15 +23,17 @@ SceneManager::SceneManager(InputController* inputController)
 	AddObjectToScene(new Camera(&XMVectorSet(0, 3, -20, 1), &XMVectorSet(0, 0, 1, 0), &XMVectorSet(0, 1, 0, 0), 0.0075f, 0.1f));
 	
 	// In scene objects, other than camera
+	// Additional arguements are for move and rotation speed
+	// Objects pointed to will not move if there is no move or rotation speed
 	AddObjectToScene(new Grid);
 	AddObjectToScene(new Quad(&XMVectorSet(	  -10, 5, 0, 1), 1));
 	AddObjectToScene(new Cube(&XMVectorSet(	   -5, 5, 0, 1), 2, 0.0075f, 0.1f));
-	AddObjectToScene(new Pyramid(&XMVectorSet(  0, 5, 0, 1), 3));
+	AddObjectToScene(new Pyramid(&XMVectorSet(  0, 5, 0, 1), 3, 0.0075f, 0.1f));
 	AddObjectToScene(new Cube(&XMVectorSet(	    5, 5, 0, 1), 2));
 	AddObjectToScene(new Triangle(&XMVectorSet(10, 5, 0, 1), 1));
 
-	// Assigns a TransformObject to the player's pointer (currently the main camera)
-	playerPtr = new Player((MoveableObject*)sceneObjects[3], &sceneObjects[3]->GetWorldMatrix());
+	// Assigns a WorldObject to the player's pointer (currently the main camera)
+	playerPtr = new Player((ObjectTransform*)sceneObjects[4], &sceneObjects[4]->GetWorldMatrix());
 
 	// Point the input controller at the player
 	inputController->AssignPlayer(playerPtr);
@@ -46,12 +48,12 @@ void SceneManager::Update()
 }
 #pragma endregion
 
-#pragma region Black Box
-void SceneManager::AddObjectToScene(TransformObject* object)
+#pragma region Private
+void SceneManager::AddObjectToScene(WorldObject* object)
 {
 	sceneObjects.push_back(object);
 }
-void SceneManager::RemoveObjectFromScene(TransformObject* object)
+void SceneManager::RemoveObjectFromScene(WorldObject* object)
 {
 	sceneObjects.erase(std::remove(sceneObjects.begin(), sceneObjects.end(), object), sceneObjects.end());
 }

@@ -1,10 +1,10 @@
 #pragma region Dependencies
 // My Headers
-#include "TransformObject.h"		// Connection to declarations
+#include "WorldObject.h"		// Connection to declarations
 #pragma endregion
 
 #pragma region Initialization
-TransformObject::TransformObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up)
+WorldObject::WorldObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up)
 {
 	if (!camera)
 	{

@@ -13,7 +13,7 @@ class InputController
 	bool		keysCurrentlyPressed[9] = { false };
 	Player*		playerPtr;									
 
-	//// Black Box
+	//// Private
 	//// Down
 	//void KeyADown() { playerPtr->ControllerInput(); }
 	//void KeyDDown() { playerPtr->ControllerInput(); }

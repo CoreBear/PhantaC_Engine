@@ -39,9 +39,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TransformObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Quad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,7 +57,10 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MoveableObject.cpp">
+    <ClCompile Include="WorldObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectTransform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,9 +89,6 @@
     <ClInclude Include="InputController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TransformObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -113,9 +110,6 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RenderObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalStructures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -128,7 +122,13 @@
     <ClInclude Include="GlobalDirectX.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MoveableObject.h">
+    <ClInclude Include="WorldObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderableObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

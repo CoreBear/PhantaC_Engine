@@ -4,7 +4,7 @@
 #include "Camera.h"
 #include "GlobalGeometry.h"
 #include "ProgramGlobals.h"
-#include "RenderObject.h"
+#include "RenderableObject.h"
 #include "SceneManager.h"
 
 // System Headers
@@ -197,7 +197,7 @@ Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager& sceneMa
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(std::vector<TransformObject*>* sceneObjects)
+void Renderer::Update(std::vector<WorldObject*>* sceneObjects)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
@@ -214,7 +214,7 @@ void Renderer::Update(std::vector<TransformObject*>* sceneObjects)
 	// Load objects into line renderer, then draw them
 	for (renderIterator = 1; renderIterator < sceneObjects->size(); ++renderIterator)
 	{
-		static_cast<RenderObject*>(sceneObjects->at(renderIterator))->AddMeToLineRenderer(lineRenderer);
+		static_cast<RenderableObject*>(sceneObjects->at(renderIterator))->AddMeToLineRenderer(lineRenderer);
 		DrawLineRenders(sceneObjects->at(renderIterator)->GetWorldMatrix());
 	}
 
@@ -226,7 +226,7 @@ void Renderer::Update(std::vector<TransformObject*>* sceneObjects)
 }
 #pragma endregion
 
-#pragma region Black Box
+#pragma region Private
 void Renderer::ResetScreen()
 {
 	deviceContext->ClearRenderTargetView(renderTargetView[RENDER_TARGET_VIEW::DEFAULT], DirectX::Colors::Black);

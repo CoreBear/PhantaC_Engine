@@ -8,16 +8,16 @@
 #include <vector>
 
 // Forward Declaration
-class TransformObject;
+class WorldObject;
 
 class SceneManager
 {
 	class Player*						playerPtr;
-	std::vector<TransformObject*>		sceneObjects;
+	std::vector<WorldObject*>		sceneObjects;
 
-	// Black Box
-	void AddObjectToScene(TransformObject* object);
-	void RemoveObjectFromScene(TransformObject* object);
+	// Private
+	void AddObjectToScene(WorldObject* object);
+	void RemoveObjectFromScene(WorldObject* object);
 
 public:
 	// Initialization
@@ -27,7 +27,7 @@ public:
 	void Update();
 
 	// Accessors
-	std::vector<TransformObject*>* GetSceneObjectsPtr() { return &sceneObjects; }
+	std::vector<WorldObject*>* GetSceneObjectsPtr() { return &sceneObjects; }
 };
 
 #endif
