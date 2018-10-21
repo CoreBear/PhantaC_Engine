@@ -2,6 +2,7 @@
 // My Headers
 #include "SceneManager.h"		// Connection to declarations
 #include "Camera.h"
+#include "Circle.h"
 #include "Cube.h"
 #include "Grid.h"
 #include "InputController.h"
@@ -9,6 +10,7 @@
 #include "Player.h"
 #include "Pyramid.h"
 #include "Quad.h"
+#include "Sphere.h"
 #include "Triangle.h"
 #include "WorldObject.h"
 #pragma endregion
@@ -26,7 +28,7 @@ SceneManager::SceneManager(InputController* inputController, ushort* clientDimen
 	// Additional arguements are for move and rotation speed
 	// Objects pointed to will not move if there is no move or rotation speed
 	AddObjectToScene(new Grid);
-	AddObjectToScene(new Cube);
+	AddObjectToScene(new Sphere(&XMVectorSet(0, 5, 0, 1)));
 
 	// For showing off
 	/*AddObjectToScene(new Quad(&XMVectorSet(	  -10, 5, 0, 1), 1));

@@ -84,6 +84,12 @@
     <ClCompile Include="ResourceCacher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -174,6 +180,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ResourceCacher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

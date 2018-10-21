@@ -1,6 +1,6 @@
 #pragma region Dependencies
 // My Headers
-#include "Grid.h"		// Connection to declarations
+#include "Grid.h"				// Connection to declarations
 #include "LineRenderer.h"
 #pragma endregion
 
