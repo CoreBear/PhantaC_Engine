@@ -91,17 +91,17 @@ void GameController::ApplicationLoop()
 			inputController.Update(deltaTime);
 
 			// Call game controller's state machine
-			currentState->UpdateState();
+			currentState->UpdateState(deltaTime);
 
 			// Stores the time at the end of the frame
 			endTime = std::chrono::steady_clock::now();
 		}
 	}
 }
-void GameController::MainGameUpdate()
+void GameController::MainGameUpdate(float deltaTime)
 {
-	sceneManagerPtr->Update();
-	rendererPtr->Update(sceneManagerPtr->GetSceneObjectsPtr());
+	sceneManagerPtr->Update(deltaTime);
+	rendererPtr->Update(sceneManagerPtr->GetvisibleSceneObjects(), sceneManagerPtr->GetCamera());
 }
 #pragma endregion
 

@@ -2,19 +2,13 @@
 #define _PLAYER_H
 
 // My Headers
-#include "GlobalDirectX.h"
-#include "GlobalInput.h"
-#include "ObjectTransform.h"
-#include "Typedefs.h"
+#include "Agent.h"
 
-class Player
+class Player : public Agent
 {
-	ObjectTransform*		characterPtr;
-	XMMATRIX*				myWorldMatrixPtr;
-
 public:
 	// Initialization
-	Player(ObjectTransform* inCharacter, XMMATRIX* inMyWorldMatrixPtr) : characterPtr(inCharacter), myWorldMatrixPtr(inMyWorldMatrixPtr) { return; }
+	Player(ObjectTransform* physicalBodyPtr, float inMoveSpeed, float inRotationSpeed) : Agent(physicalBodyPtr, inMoveSpeed, inRotationSpeed) { return; }
 
 	// Public Interface
 	void ControllerInput(ushort key, float deltaTime);

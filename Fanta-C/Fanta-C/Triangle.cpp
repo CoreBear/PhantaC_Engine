@@ -1,6 +1,8 @@
 #pragma region Dependencies
 // My Headers
 #include "Triangle.h"			// Connection to declarations
+#include "GlobalApplication.h"
+#include "GlobalGeometry.h"
 #include "LineRenderer.h"
 #pragma endregion
 

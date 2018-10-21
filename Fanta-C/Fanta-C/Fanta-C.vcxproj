@@ -115,11 +115,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Agent.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="CollidableObject.cpp" />
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -141,15 +143,17 @@
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Agent.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="CollidableObject.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="EnemyBase.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GlobalDirectX.h" />
-    <ClInclude Include="GameGlobals.h" />
+    <ClInclude Include="GlobalGame.h" />
     <ClInclude Include="ObjectTransform.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="RenderableObject.h" />
@@ -159,7 +163,7 @@
     <ClInclude Include="LineRenderer.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Pool.h" />
-    <ClInclude Include="ProgramGlobals.h" />
+    <ClInclude Include="GlobalApplication.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Pyramid.h" />
     <ClInclude Include="Quad.h" />
@@ -172,7 +176,7 @@
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="WorldObject.h" />
     <ClInclude Include="Triangle.h" />
-    <ClInclude Include="Typedefs.h" />
+    <ClInclude Include="GlobalTypedefs.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BasicPixelShader.hlsl">

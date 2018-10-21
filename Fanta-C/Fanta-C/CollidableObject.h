@@ -2,7 +2,6 @@
 #define _COLLIDABLE_OBJECT_H
 
 // My Headers
-#include "GlobalDirectX.h"
 #include "RenderableObject.h"
 
 class CollidableObject : public RenderableObject
@@ -14,9 +13,8 @@ class CollidableObject : public RenderableObject
 
 public:
 	// Initialization
-	CollidableObject(float scale, float inMoveSpeed, float inRotationSpeed, bool shapeIsFlat = false) : centroid(XMVectorSet(0, 0, 0, 1)), RenderableObject(&XMVectorSet(0, 0, 0, 1), inMoveSpeed, inRotationSpeed) { CreateBounds(shapeIsFlat, scale); }
-	CollidableObject(XMVECTOR* position, float scale, float inMoveSpeed, float inRotationSpeed, bool shapeIsFlat = false) : RenderableObject(position, inMoveSpeed, inRotationSpeed) { CreateBounds(shapeIsFlat, scale); }
-	CollidableObject(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale, float inMoveSpeed, float inRotationSpeed, bool shapeIsFlat = false) : RenderableObject(position, forward, up, inMoveSpeed, inRotationSpeed) { CreateBounds(shapeIsFlat, scale); }
+	CollidableObject(const XMVECTOR& position, float scale, bool shapeIsFlat = false) : centroid(position), RenderableObject(position) { CreateBounds(shapeIsFlat, scale); }
+	CollidableObject(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float scale, bool shapeIsFlat = false) : RenderableObject(position, forward, up) { CreateBounds(shapeIsFlat, scale); }
 };
 
 #endif

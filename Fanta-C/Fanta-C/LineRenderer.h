@@ -5,11 +5,8 @@
 #include <array>
 
 // My Headers
-#include "GlobalDirectX.h"
 #include "GlobalGeometry.h"
-#include "Typedefs.h"
-
-using namespace DirectX;
+#include "GlobalTypedefs.h"
 
 class LineRenderer
 {

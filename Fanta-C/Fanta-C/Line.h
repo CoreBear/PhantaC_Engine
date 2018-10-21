@@ -3,9 +3,7 @@
 
 // My Headers
 #include "CollidableObject.h"
-#include "GlobalDirectX.h"
-#include "GlobalGeometry.h"
-#include "ProgramGlobals.h"
+#include "GlobalGame.h"
 
 class Line : public CollidableObject
 {

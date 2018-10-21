@@ -1,9 +1,10 @@
 #pragma region Dependencies
 // My Headers
 #include "Renderer.h"				// Connection to declarations
+#include "Agent.h"
 #include "Camera.h"
 #include "GlobalGeometry.h"
-#include "ProgramGlobals.h"
+#include "GlobalApplication.h"
 #include "RenderableObject.h"
 #include "SceneManager.h"
 
@@ -25,7 +26,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, ushort* clientDimensions, ushort targetFPS)
+Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* clientDimensions, ushort targetFPS)
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -172,7 +173,7 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, ushort* client
 
 	#pragma region Consistant Pipeline Pieces (Will be changed in the future)
 	// Resources
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &static_cast<Camera*>(sceneManager->GetSceneObjectsPtr()->at(0))->GetProjectionMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &sceneManager->GetCamera()->GetProjectionMatrix(), 0, 0);
 
 	// Input Assembler
 	deviceContext->IASetInputLayout(inputLayout[INPUT_LAYOUT::DEFAULT]);
@@ -197,14 +198,14 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, ushort* client
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(std::vector<WorldObject*>* sceneObjects)
+void Renderer::Update(std::vector<RenderableObject*>* visibleSceneObjets, Camera* cameraPtr)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
 	// Load view matrix (camera's world matrix) into vram
 	// If camera is not moving, we can set this during initialization
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &sceneObjects->at(0)->GetWorldMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &cameraPtr->GetWorldMatrix(), 0, 0);
 
 	//											Add anything you want to draw here
 	// ------------------------------------------------------------------------------------------------------------------------------- 
@@ -212,11 +213,14 @@ void Renderer::Update(std::vector<WorldObject*>* sceneObjects)
 	// Look into multi-threading this
 	// Skip over index 0, because of camera (it doesn't get "rendered")
 	// Load objects into line renderer, then draw them
-	for (renderIterator = 1; renderIterator < sceneObjects->size(); ++renderIterator)
+
+
+	for (renderIterator = 0; renderIterator < visibleSceneObjets->size(); ++renderIterator)
 	{
-		static_cast<RenderableObject*>(sceneObjects->at(renderIterator))->AddMeToLineRenderer(lineRenderer);
-		DrawLineRenders(sceneObjects->at(renderIterator)->GetWorldMatrix());
-	}
+		visibleSceneObjets->at(renderIterator)->AddMeToLineRenderer(lineRenderer);
+		DrawLineRenders(visibleSceneObjets->at(renderIterator)->GetWorldMatrix());
+	}	
+
 
 	//											Don't add anything under here
 	// --------------------------------------------------------------------------------------------------------------------------------

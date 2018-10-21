@@ -1,8 +1,8 @@
 #ifndef _POOLS_H
 #define _POOLS_H
 
-#include "ProgramGlobals.h"
-#include "Typedefs.h"
+#include "GlobalApplication.h"
+#include "GlobalTypedefs.h"
 
 template<typename Generic, ushort number>
 class Pool

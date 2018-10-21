@@ -2,20 +2,17 @@
 #define _RENDERER_H
 
 // My Headers
-#include "GlobalDirectX.h"
 #include "GlobalStructures.h"
+#include "GlobalTypedefs.h"
 #include "LineRenderer.h"
 
 // System Headers
 #include <d3d11.h>	
 #include <vector>
 
-// Global Headers
-#include "Typedefs.h"
-
 class Renderer
 {
-	uchar							renderIterator;									// Iterator for object rendering
+	uchar						renderIterator;									// Iterator for object rendering
 
 	// Line Renderer Variables
 	LineRenderer				lineRenderer;									// Object that renders lines on screen
@@ -51,10 +48,10 @@ class Renderer
 
 public:
 	// Initialization
-	Renderer(HWND windowHandle, class SceneManager* sceneManager, ushort* clientDimensions, ushort targetFPS);
+	Renderer(HWND windowHandle, class SceneManager* sceneManager, const ushort* clientDimensions, ushort targetFPS);
 
 	// Update
-	void Update(std::vector<class WorldObject*>* sceneObjects);
+	void Update(std::vector<class RenderableObject*>* visibleSceneObjets, class Camera* cameraPtr);
 
 	// Clean-up
 	~Renderer();

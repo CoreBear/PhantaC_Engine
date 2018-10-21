@@ -4,10 +4,10 @@
 #pragma endregion
 
 #pragma region Initialization
-Camera::Camera(ushort* clientDimensions, XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed, float inRotationSpeed) : ObjectTransform(true, position, forward, up, inMoveSpeed, inRotationSpeed)
+Camera::Camera(const ushort* clientDimensions, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : ObjectTransform(true, position, forward, up)
 {
-	const float			nearFarPlaneDistances[2] = { 1.0f, 100.0f };	// 0 - NearZ. 1 - FarZ
-	const float			verticalFOV = XMConvertToRadians(45.0f);
+	const float	nearFarPlaneDistances[2] = { 1.0f, 100.0f };	// 0 - NearZ. 1 - FarZ
+	const float	verticalFOV = XMConvertToRadians(45.0f);
 
 	projectionMatrix = XMMatrixPerspectiveFovLH(verticalFOV, float(clientDimensions[1]) / clientDimensions[0], nearFarPlaneDistances[0], nearFarPlaneDistances[1]);
 }

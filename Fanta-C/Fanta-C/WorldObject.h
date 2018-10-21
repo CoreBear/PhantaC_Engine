@@ -5,20 +5,17 @@
 #include "GlobalDirectX.h"
 
 // My Headers
-#include "Typedefs.h"
-using namespace DirectX;
+#include "GlobalTypedefs.h"
 
 class WorldObject
 {
-	const XMVECTOR		worldVectors[3] = { XMVectorSet(1, 0, 0, 1), XMVectorSet(0, 1, 0, 1), XMVectorSet(0, 0, 1, 1) };	// X-Axis, Y-Axis, Z-Axis
-
 protected:
 	XMMATRIX			myWorldMatrix;
 		
 public:
 	// Initialization
-	WorldObject(XMVECTOR* position) : myWorldMatrix(XMMatrixIdentity()) { myWorldMatrix.r[3] = *position; }		// Instatiation at specific position
-	WorldObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up);		
+	WorldObject(const XMVECTOR& position) : myWorldMatrix(XMMatrixIdentity()) { myWorldMatrix.r[3] = position; }		// Instatiation at specific position
+	WorldObject(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up);
 	
 	// Accessors
 	XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }

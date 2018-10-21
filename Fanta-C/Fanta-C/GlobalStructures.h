@@ -1,8 +1,6 @@
 #ifndef _GLOBAL_STRUCTURES_H
 #define _GLOBAL_STRUCTURES_H
 
-#include "GlobalDirectX.h"
-
 enum   CONSTANT_BUFFER_TYPE	{ APPLICATION = 0, FRAME, OBJECT, COUNT };
 
 struct DEPTH_STENCIL_STATE	{ enum { DEFAULT = 0, COUNT }; };

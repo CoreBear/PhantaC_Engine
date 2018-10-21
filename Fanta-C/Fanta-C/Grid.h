@@ -3,9 +3,7 @@
 
 // My Headers
 #include "CollidableObject.h"
-#include "GlobalDirectX.h"
-#include "GlobalGeometry.h"
-#include "ProgramGlobals.h"
+#include "GlobalGame.h"
 
 class Grid : public CollidableObject
 {
@@ -16,9 +14,9 @@ class Grid : public CollidableObject
 
 public:
 	// Initialization
-	Grid() : CollidableObject(1, 0, 0, true) { CreateShape(); }
-	Grid(XMVECTOR* position) : CollidableObject(position, 1, 0, 0, true) { CreateShape(); }
-	Grid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up) : CollidableObject(position, forward, up, 1, 0, 0, true) { CreateShape(); }
+	Grid() : CollidableObject(worldOrigin, 1, true) { CreateShape(); }
+	Grid(const XMVECTOR& position) : CollidableObject(position, 1, true) { CreateShape(); }
+	Grid(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : CollidableObject(position, forward, up, 1, true) { CreateShape(); }
 
 	// Public Interface
 	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;

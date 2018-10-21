@@ -8,7 +8,7 @@ class GameState
 {
 public:
 	// Update
-	virtual void UpdateState() { return; }
+	virtual void UpdateState(float deltaTime) { return; }
 };
 class GameRunning : public GameState
 {
@@ -20,7 +20,7 @@ public:
 	GameRunning(GameController* gameController) : gameControllerPtr(gameController) { return; }
 	
 	// Update
-	void UpdateState() override { gameControllerPtr->MainGameUpdate(); }
+	void UpdateState(float deltaTime) override { gameControllerPtr->MainGameUpdate(deltaTime); }
 };
 class GamePaused : public GameState
 {

@@ -2,17 +2,16 @@
 #define _RENDERABLE_OBJECT_H
 
 // My Headers
-#include "GlobalDirectX.h"
+#include "GlobalTypedefs.h"
 #include "LineRenderer.h"
 #include "ObjectTransform.h"
-#include "Typedefs.h"
 
 class RenderableObject : public ObjectTransform
 {
 public:
 	// Initialization
-	RenderableObject(XMVECTOR* position, float inMoveSpeed, float inRotationSpeed) : ObjectTransform(position, inMoveSpeed, inRotationSpeed) { return; }
-	RenderableObject(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed, float inRotationSpeed) : ObjectTransform(false, position, forward, up, inMoveSpeed, inRotationSpeed) { return; }
+	RenderableObject(const XMVECTOR& position) : ObjectTransform(position) { return; }
+	RenderableObject(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : ObjectTransform(false, position, forward, up) { return; }
 
 	// Public Interface
 	virtual void AddMeToLineRenderer(LineRenderer& lineRenderer) = 0;

@@ -2,10 +2,7 @@
 #define _CAMERA_H
 
 // My Headers
-#include "GlobalDirectX.h"
 #include "ObjectTransform.h"
-#include "ProgramGlobals.h"
-#include "WorldObject.h"
 
 class Camera : public ObjectTransform
 {
@@ -13,7 +10,7 @@ class Camera : public ObjectTransform
 	
 public:
 	// Initialization
-	Camera(ushort* clientDimensions, XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Camera(const ushort* clientDimensions, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up);
 
 	// Accessors
 	const XMMATRIX& GetProjectionMatrix() const { return projectionMatrix; }

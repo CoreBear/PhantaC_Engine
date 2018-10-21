@@ -2,10 +2,8 @@
 #define __OBJECT_TRANSFORM_H
 
 // My Headers
-#include "GlobalDirectX.h"
-#include "LineRenderer.h"
+#include "GlobalTypedefs.h"
 #include "WorldObject.h"
-#include "Typedefs.h"
 
 class ObjectTransform : public WorldObject
 {
@@ -17,8 +15,8 @@ protected:
 
 public:
 	// Initialization
-	ObjectTransform(XMVECTOR* position, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed), WorldObject(position) { return; }
-	ObjectTransform(bool camera, XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed), WorldObject(camera, *position, *forward, *up) { return; }
+	ObjectTransform(const XMVECTOR& position) : WorldObject(position) { return; }
+	ObjectTransform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : WorldObject(camera, position, forward, up) { return; }
 
 	// Public Interface
 	void RotateOnWorldXAxis(float angle);
@@ -34,6 +32,10 @@ public:
 	// Accessors
 	float GetMoveSpeed() const { return moveSpeed; }
 	float GetRotationSpeed() const { return rotationSpeed; }
+
+	// Mutators
+	void SetMoveSpeed(float inMoveSpeed) { moveSpeed = inMoveSpeed; }
+	void SetRotationSpeed(float inRotationSpeed) { rotationSpeed = inRotationSpeed; }
 };
 
 #endif

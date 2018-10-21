@@ -3,9 +3,7 @@
 
 // My Headers
 #include "CollidableObject.h"
-#include "GlobalDirectX.h"
-#include "GlobalGeometry.h"
-#include "ProgramGlobals.h"
+#include "GlobalGame.h"
 
 class Circle : public CollidableObject
 {
@@ -16,9 +14,9 @@ class Circle : public CollidableObject
 
 public:
 	// Initialization
-	Circle(float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0) : CollidableObject(scale, inMoveSpeed, inRotationSpeed, true) { CreateShape(scale); }
-	Circle(XMVECTOR* position, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0) : CollidableObject(position, scale, inMoveSpeed, inRotationSpeed, true) { CreateShape(scale); }
-	Circle(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float scale = 1, float inMoveSpeed = 0, float inRotationSpeed = 0) : CollidableObject(position, forward, up, scale, inMoveSpeed, inRotationSpeed, true) { CreateShape(scale); }
+	Circle(float scale = 1) : CollidableObject(worldOrigin, scale, true) { CreateShape(scale); }
+	Circle(const XMVECTOR& position, float scale = 1) : CollidableObject(position, scale, true) { CreateShape(scale); }
+	Circle(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float scale = 1) : CollidableObject(position, forward, up, scale, true) { CreateShape(scale); }
 
 	// Public Interface
 	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;

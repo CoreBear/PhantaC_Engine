@@ -4,7 +4,7 @@
 #pragma endregion
 
 #pragma region Initialization
-WorldObject::WorldObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up)
+WorldObject::WorldObject(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up)
 {
 	if (!camera)
 	{

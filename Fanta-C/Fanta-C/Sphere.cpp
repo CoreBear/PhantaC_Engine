@@ -1,6 +1,8 @@
 #pragma region Dependencies
 // My Headers
 #include "Sphere.h"		// Connection to declarations
+#include "GlobalApplication.h"
+#include "GlobalGeometry.h"
 #include "LineRenderer.h"
 #pragma endregion
 
@@ -26,7 +28,7 @@ void Sphere::CreateShape(float scale)
 		vertices[iterators[0]].localPos.x = cos(XMConvertToRadians(iterators[0])) * scale;	   // Why does cos(iterators[0]); do something weird?
 		vertices[iterators[0]].localPos.y = 0;												   // Why does cos(iterators[0]); do something weird?
 		vertices[iterators[0]].localPos.z = sin(XMConvertToRadians(iterators[0])) * scale;
-		vertices[iterators[0]].color = Colors::LightCyan;
+		vertices[iterators[0]].color = Colors::DarkMagenta;
 	}
 
 	// Vertical circle

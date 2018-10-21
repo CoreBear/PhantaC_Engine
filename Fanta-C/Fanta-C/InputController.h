@@ -3,7 +3,7 @@
 
 // My Headers
 #include "GlobalInput.h"
-#include "Typedefs.h"
+#include "GlobalTypedefs.h"
 
 // Forward Declarations
 class Player;
@@ -12,28 +12,6 @@ class InputController
 {
 	bool		keysCurrentlyPressed[9] = { false };
 	Player*		playerPtr;									
-
-	//// Private
-	//// Down
-	//void KeyADown() { playerPtr->ControllerInput(); }
-	//void KeyDDown() { playerPtr->ControllerInput(); }
-	//void KeyIDown() { playerPtr->ControllerInput(); }
-	//void KeyJDown() { playerPtr->ControllerInput(); }
-	//void KeyKDown() { playerPtr->ControllerInput(); }
-	//void KeyLDown() { playerPtr->ControllerInput(); }
-	//void KeySDown() { playerPtr->ControllerInput(); }
-	//void KeyWDown() { playerPtr->ControllerInput(); }
-	//void KeySpaceDown() { playerPtr->ControllerInput(); }
-	//// Up
-	//void KeyAUp() { playerPtr->ControllerInput(); }
-	//void KeyDUp() { playerPtr->ControllerInput(); }
-	//void KeyIUp() { playerPtr->ControllerInput(); }
-	//void KeyJUp() { playerPtr->ControllerInput(); }
-	//void KeyKUp() { playerPtr->ControllerInput(); }
-	//void KeyLUp() { playerPtr->ControllerInput(); }
-	//void KeySUp() { playerPtr->ControllerInput(); }
-	//void KeyWUp() { playerPtr->ControllerInput(); }
-	//void KeySpaceUp() { playerPtr->ControllerInput(); }
 
 public:	
 	// Update

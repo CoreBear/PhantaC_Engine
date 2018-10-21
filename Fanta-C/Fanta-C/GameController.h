@@ -6,7 +6,8 @@
 #include <Windows.h>
 
 // My Headers
-#include "Typedefs.h"
+#include "GlobalTypedefs.h"
+
 // Forward Declarations
 class GameState;
 
@@ -42,7 +43,7 @@ public:
 	void InitializeWindow(HINSTANCE hInstance, int cmdShow);
 
 	// Update
-	void MainGameUpdate();			// The update that talks to the game
+	void MainGameUpdate(float deltaTime);			// The update that talks to the game
 
 	// Public Interface
 	// If game is paused, unpause, and vice versa

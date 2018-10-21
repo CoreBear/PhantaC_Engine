@@ -1,6 +1,8 @@
 #pragma region Dependencies
 // My Headers	
 #include "Pyramid.h"		// Connection to declarations
+#include "GlobalApplication.h"
+#include "GlobalGeometry.h"
 #include "LineRenderer.h"
 #pragma endregion
 

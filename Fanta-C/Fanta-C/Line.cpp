@@ -1,11 +1,13 @@
 #pragma region Dependencies
 // My Headers	
 #include "Line.h"			// Connection to headers
+#include "GlobalApplication.h"
+#include "GlobalGeometry.h"
 #include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Initialization
-Line::Line() : CollidableObject(1, 0, 0)
+Line::Line() : CollidableObject(worldOrigin, 1)
 {
 	// Start and end positions
 	for (iterators[0] = 0; iterators[0] < 2; ++iterators[0])
