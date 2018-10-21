@@ -1,19 +1,19 @@
-#ifndef _PROJECTILE_H
-#define _PROJECTILE_H
+#ifndef _LINE_H
+#define _LINE_H
 
 // My Headers
+#include "CollidableObject.h"
 #include "GlobalDirectX.h"
 #include "GlobalGeometry.h"
 #include "ProgramGlobals.h"
-#include "RenderableObject.h"
 
-class Projectile : public RenderableObject
+class Line : public CollidableObject
 {
 	SIMPLE_VERTEX			vertices[2];
 
 public:
 	// Initialize
-	Projectile();
+	Line();
 
 	// Public Interface
 	void AddMeToLineRenderer(LineRenderer& lineRenderer) override { lineRenderer.AddNewLine(vertices[0].localPos, vertices[1].localPos, vertices[0].color, vertices[1].color); }

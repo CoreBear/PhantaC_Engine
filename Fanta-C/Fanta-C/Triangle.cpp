@@ -16,12 +16,8 @@ void Triangle::AddMeToLineRenderer(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Triangle::Create(float scale)
+void Triangle::CreateShape(float scale)
 {
-	//// XYZ (Make sure triangle is flat by making z = 0
-	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-	//	extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
-
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
 		switch (iterators[0])

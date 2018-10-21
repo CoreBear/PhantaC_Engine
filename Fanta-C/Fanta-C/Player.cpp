@@ -7,10 +7,10 @@
 void Player::ControllerInput(ushort key)
 {
 	// For world objects
-	switch (key)
+	/*switch (key)
 	{
 	case A:
-		characterPtr->RotateOnYAxis(characterPtr->GetRotationSpeed());
+		characterPtr->RotateOnYAxis(characterPtr->GetRotationSpeed());S
 		break;												   
 	case D:													   
 		characterPtr->RotateOnYAxis(-characterPtr->GetRotationSpeed());
@@ -34,12 +34,11 @@ void Player::ControllerInput(ushort key)
 		characterPtr->WorldTranslate(2, characterPtr->GetMoveSpeed());
 		break;
 	case SPACE:
-		pooledProjectiles.AllocateNew();
 		break;
-	}
+	}*/
 
 	// For camera
-	/*switch (key)
+	switch (key)
 	{
 	case A:
 		characterPtr->RotateOnWorldYAxis(-characterPtr->GetRotationSpeed());
@@ -66,8 +65,7 @@ void Player::ControllerInput(ushort key)
 		characterPtr->Translate(0, 0, -characterPtr->GetMoveSpeed());
 		break;
 	case SPACE:
-		pooledProjectiles.AllocateNew();
 		break;
-	}*/
+	}
 }
 #pragma endregion

@@ -1,13 +1,10 @@
 #pragma region Dependencies
 // System Headers
 #include <Windows.h>			// Contains all destd::finitions for creating a windows based application
-#include <time.h>				// For delta time
 
 // My Headers
+#include "GameController.h"
 #include "InputController.h"
-#include "ProgramGlobals.h"
-#include "Renderer.h"
-#include "SceneManager.h"
 #pragma endregion
 
 #pragma region Global Variables
@@ -15,6 +12,7 @@ HWND				windowHandle;							// Instance/Pointer to the program window
 InputController		inputController;						
 LPCSTR				windowClassName = "Fanta-CWinClass";	// Unique for the application
 LPCSTR				windowName = "Fanta-C Engine";			// Name of window
+static ushort		clientDimensions[2] = { 720, 1280 };	// Index 0 - Height. 1 - Width
 #pragma endregion
 
 #pragma region Prototypes
@@ -82,13 +80,8 @@ int InitializeApplication(HINSTANCE hInstance, int cmdShow)
 #pragma region Main Loop
 int Run(HINSTANCE hInstance, HWND windowHandle)
 {
-	constexpr double			targetedFrameCompletionTime = double(1000) / targetFPS;
-	//float						deltaTime = 0;
+	GameController				gameController(hInstance, windowHandle, &inputController, clientDimensions);
 	MSG							msg = { 0 };
-	SceneManager				sceneManager(&inputController);
-	Renderer					renderer(hInstance, windowHandle, sceneManager);
-	time_t						endTime = 0;										
-	time_t						startTime = 0;
 	
 	// Main application loop
 	while (true)
@@ -110,18 +103,8 @@ int Run(HINSTANCE hInstance, HWND windowHandle)
 		}
 		else
 		{
-			// Stores how long it took to complet the frame
-			//deltaTime = endTime - startTime;
-
-			// Stores the time at the beginning of the frame
-			//time(&startTime);
-
 			inputController.Update();
-			sceneManager.Update();
-			renderer.Update(sceneManager.GetSceneObjectsPtr());
-
-			// Stores the time at the end of the frame
-			//time(&endTime);
+			gameController.MainThreadUpdate();
 		}
 	}
 

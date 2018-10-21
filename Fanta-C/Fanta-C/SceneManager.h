@@ -2,7 +2,11 @@
 #define _SCENE_MANAGER_H
 
 // My Headers
+#include "Audio.h"
 #include "GlobalDirectX.h"
+#include "Physics.h"
+#include "Scene.h"
+#include "Typedefs.h"
 
 // System Headers
 #include <vector>
@@ -12,7 +16,10 @@ class WorldObject;
 
 class SceneManager
 {
+	Audio							audio;					
+	Physics							physics;				// Collisions and movement
 	class Player*					playerPtr;
+	Scene							scene;					// The actual running of the scene (game update. i.e. scene agents)
 	std::vector<WorldObject*>		sceneObjects;
 
 	// Private
@@ -21,7 +28,7 @@ class SceneManager
 
 public:
 	// Initialization
-	SceneManager(class InputController* inputController);
+	SceneManager(class InputController* inputController, ushort* clientDimensions);
 
 	// Update
 	void Update();

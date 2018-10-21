@@ -16,7 +16,7 @@ void Pyramid::AddMeToLineRenderer(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Pyramid::Create(float scale)
+void Pyramid::CreateShape(float scale)
 {
 	// Create Vertices
 	for (iterators[0] = 0; iterators[0] < numberOfLineIndicesVertices[1]; ++iterators[0])

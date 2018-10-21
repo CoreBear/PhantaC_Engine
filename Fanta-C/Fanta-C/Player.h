@@ -5,14 +5,11 @@
 #include "GlobalDirectX.h"
 #include "GlobalInput.h"
 #include "ObjectTransform.h"
-#include "Pool.h"
-#include "Projectile.h"
 #include "Typedefs.h"
 
 class Player
 {
-	ObjectTransform*			characterPtr;
-	Pool<Projectile, 20>	pooledProjectiles;
+	ObjectTransform*		characterPtr;
 	XMMATRIX*				myWorldMatrixPtr;
 
 public:

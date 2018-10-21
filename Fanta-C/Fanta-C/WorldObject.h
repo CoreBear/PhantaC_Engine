@@ -17,7 +17,6 @@ protected:
 		
 public:
 	// Initialization
-	WorldObject() { myWorldMatrix = XMMatrixIdentity(); }														// Generic instantiation at origin
 	WorldObject(XMVECTOR* position) : myWorldMatrix(XMMatrixIdentity()) { myWorldMatrix.r[3] = *position; }		// Instatiation at specific position
 	WorldObject(bool camera, XMVECTOR position, XMVECTOR forward, XMVECTOR up);		
 	

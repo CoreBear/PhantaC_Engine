@@ -17,28 +17,26 @@ public:
 		tempAsset = pool[index];
 		pool[index] = pool[--currentCount];
 
-		// Assigns and decrements
+		// Assigns and decrements (places asset in unreachable position. i.e. the count)
 		pool[currentCount] = tempAsset;
 	}
 	ushort AllocateNew()
 	{
-		for (iterators[0] = 0; iterators[0] < number; ++iterators[0])
+		// If the current number of assets in container is less than the last available index
+		if (currentCount < number - 1)
 		{
-			if (iterators[0] == currentCount)
-			{
-				++currentCount;
-				return iterators[0];
-			}
+			iterators[0] = currentCount++;
+			return iterators[0];
 		}
 
 		// If no inactive elements
 		return -1;
 	}
-	Generic& operator[](ushort index) { return pool[index]; }
-	const Generic& operator[](ushort index) const { return pool[index]; }
+	Generic& operator[](ushort index) { return pooledAssets[index]; }
+	const Generic& operator[](ushort index) const { return pooledAssets[index]; }
 	
 	// Accessors
-	const ushort Capacity() const { return N; }
+	const ushort Capacity() const { return number; }
 	const ushort GetSize() const { return currentCount; }
 };
 

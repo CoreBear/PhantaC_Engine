@@ -16,12 +16,8 @@ void Quad::AddMeToLineRenderer(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Quad::Create(float scale)
+void Quad::CreateShape(float scale)
 {
-	//// XYZ (Make sure quad is flat by making z = 0
-	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-	//	extents.m128_f32[iterators[0]] = (iterators[0] != 2) ? scale : 0;
-
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
 		vertices[iterators[0]].localPos.x = (iterators[0] % numberOfVertices == 0 || iterators[0] % numberOfVertices == numberOfVertices - 1) ? -scale : scale;

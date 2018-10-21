@@ -19,11 +19,8 @@ void Cube::AddMeToLineRenderer(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Cube::Create(float scale)
+void Cube::CreateShape(float scale)
 {
-	//// XYZ
-	//for (iterators[0] = 0; iterators[0] < 3; ++iterators[0])
-	//	extents.m128_f32[iterators[0]] = scale;
 
 	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[2]; ++iterators[0])
 	{

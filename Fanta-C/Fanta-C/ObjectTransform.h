@@ -17,7 +17,6 @@ protected:
 
 public:
 	// Initialization
-	ObjectTransform(float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed) { return; }
 	ObjectTransform(XMVECTOR* position, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed), WorldObject(position) { return; }
 	ObjectTransform(bool camera, XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed, float inRotationSpeed) : moveSpeed(inMoveSpeed), rotationSpeed(inRotationSpeed), WorldObject(camera, *position, *forward, *up) { return; }
 

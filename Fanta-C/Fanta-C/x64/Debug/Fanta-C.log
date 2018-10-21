@@ -1,2 +1,5 @@
-﻿  Player.cpp
+﻿  Grid.cpp
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\grid.cpp(22): warning C4244: 'initializing': conversion from 'float' to 'ushort', possible loss of data
+  SceneManager.cpp
+  Generating Code...
   Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Debug\Fanta-C.exe

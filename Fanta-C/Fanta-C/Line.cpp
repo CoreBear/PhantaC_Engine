@@ -1,11 +1,11 @@
 #pragma region Dependencies
 // My Headers	
-#include "Projectile.h"			// Connection to headers
+#include "Line.h"			// Connection to headers
 #include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Initialization
-Projectile::Projectile() : RenderableObject(1, 0)
+Line::Line() : CollidableObject(1, 0, 0)
 {
 	// Start and end positions
 	for (iterators[0] = 0; iterators[0] < 2; ++iterators[0])

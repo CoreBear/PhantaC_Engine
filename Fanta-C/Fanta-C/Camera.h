@@ -13,7 +13,7 @@ class Camera : public ObjectTransform
 	
 public:
 	// Initialization
-	Camera(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Camera(ushort* clientDimensions, XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Accessors
 	const XMMATRIX& GetProjectionMatrix() const { return projectionMatrix; }

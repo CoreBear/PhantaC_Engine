@@ -2,23 +2,23 @@
 #define _GRID_H
 
 // My Headers
+#include "CollidableObject.h"
 #include "GlobalDirectX.h"
 #include "GlobalGeometry.h"
 #include "ProgramGlobals.h"
-#include "RenderableObject.h"
 
-class Grid : public RenderableObject
+class Grid : public CollidableObject
 {
-	constexpr static ushort				numberOfVertices = 500;
+	constexpr static ushort				numberOfVertices = 500;				// Make sure this number is a multiple of 4. Half the number of lines
 	SIMPLE_VERTEX						vertices[numberOfVertices];			// First 22 are horizontal
 
-	void Create();
+	void CreateShape();
 
 public:
 	// Initialization
-	Grid() : RenderableObject(0, 0) { Create(); }
-	Grid(XMVECTOR* position) : RenderableObject(position, 0, 0) { Create(); }
-	Grid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up) : RenderableObject(position, forward, up, 0, 0) { Create(); }
+	Grid() : CollidableObject(1, 0, 0, true) { CreateShape(); }
+	Grid(XMVECTOR* position) : CollidableObject(position, 1, 0, 0, true) { CreateShape(); }
+	Grid(XMVECTOR* position, XMVECTOR* forward, XMVECTOR* up) : CollidableObject(position, forward, up, 1, 0, 0, true) { CreateShape(); }
 
 	// Public Interface
 	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;

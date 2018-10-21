@@ -25,7 +25,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager& sceneManager)
+Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager* sceneManager, ushort* clientDimensions, ushort targetFPS)
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -172,7 +172,7 @@ Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager& sceneMa
 
 	#pragma region Consistant Pipeline Pieces (Will be changed in the future)
 	// Resources
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &static_cast<Camera*>(sceneManager.GetSceneObjectsPtr()->at(0))->GetProjectionMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &static_cast<Camera*>(sceneManager->GetSceneObjectsPtr()->at(0))->GetProjectionMatrix(), 0, 0);
 
 	// Input Assembler
 	deviceContext->IASetInputLayout(inputLayout[INPUT_LAYOUT::DEFAULT]);
