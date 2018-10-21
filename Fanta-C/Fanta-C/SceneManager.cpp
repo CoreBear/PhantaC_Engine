@@ -22,7 +22,7 @@ SceneManager::SceneManager(InputController* inputController, ushort* clientDimen
 	// Figure out a way to make things static another way
 	
 	// Add cene's main camera
-	AddObjectToScene(new Camera(clientDimensions, &XMVectorSet(0, 3, -20, 1), &XMVectorSet(0, 0, 1, 0), &XMVectorSet(0, 1, 0, 0), 0.0075f, 0.1f));
+	AddObjectToScene(new Camera(clientDimensions, &XMVectorSet(0, 3, -20, 1), &XMVectorSet(0, 0, 1, 0), &XMVectorSet(0, 1, 0, 0), 10, 100));// 0.0075f, 0.1f));
 	
 	// In scene objects, other than camera
 	// Additional arguements are for move and rotation speed

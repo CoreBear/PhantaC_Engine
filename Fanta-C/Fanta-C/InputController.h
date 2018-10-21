@@ -37,7 +37,7 @@ class InputController
 
 public:	
 	// Update
-	void Update();
+	void Update(float deltaTime);
 
 	// Public Interface
 	void KeyPressed(ushort keyPressed);

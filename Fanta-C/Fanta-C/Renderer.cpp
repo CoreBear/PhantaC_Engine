@@ -25,7 +25,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(HINSTANCE hInstance, HWND windowHandle, SceneManager* sceneManager, ushort* clientDimensions, ushort targetFPS)
+Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, ushort* clientDimensions, ushort targetFPS)
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;

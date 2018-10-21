@@ -1,7 +1,10 @@
 #ifndef _LINE_RENDERER_H
 #define _LINE_RENDERER_H
 
+// System Headers
 #include <array>
+
+// My Headers
 #include "GlobalDirectX.h"
 #include "GlobalGeometry.h"
 #include "Typedefs.h"

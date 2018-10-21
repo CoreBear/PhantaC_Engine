@@ -51,7 +51,7 @@ class Renderer
 
 public:
 	// Initialization
-	Renderer(HINSTANCE hInstance, HWND windowHandle, class SceneManager* sceneManager, ushort* clientDimensions, ushort targetFPS);
+	Renderer(HWND windowHandle, class SceneManager* sceneManager, ushort* clientDimensions, ushort targetFPS);
 
 	// Update
 	void Update(std::vector<class WorldObject*>* sceneObjects);

@@ -10,26 +10,26 @@
 #pragma endregion
 
 #pragma region Update
-void InputController::Update()
+void InputController::Update(float deltaTime)
 {
 	if (keysCurrentlyPressed[0])
-		playerPtr->ControllerInput(A);
+		playerPtr->ControllerInput(A, deltaTime);
 	if (keysCurrentlyPressed[1])
-		playerPtr->ControllerInput(D);
+		playerPtr->ControllerInput(D, deltaTime);
 	if (keysCurrentlyPressed[2])
-		playerPtr->ControllerInput(I);
+		playerPtr->ControllerInput(I, deltaTime);
 	if (keysCurrentlyPressed[3])
-		playerPtr->ControllerInput(J);
+		playerPtr->ControllerInput(J, deltaTime);
 	if (keysCurrentlyPressed[4])
-		playerPtr->ControllerInput(K);
+		playerPtr->ControllerInput(K, deltaTime);
 	if (keysCurrentlyPressed[5])
-		playerPtr->ControllerInput(L);
+		playerPtr->ControllerInput(L, deltaTime);
 	if (keysCurrentlyPressed[6])
-		playerPtr->ControllerInput(S);
+		playerPtr->ControllerInput(S, deltaTime);
 	if (keysCurrentlyPressed[7])
-		playerPtr->ControllerInput(W);
+		playerPtr->ControllerInput(W, deltaTime);
 	if (keysCurrentlyPressed[8])
-		playerPtr->ControllerInput(SPACE);
+		playerPtr->ControllerInput(SPACE, deltaTime);
 }
 #pragma endregion
 

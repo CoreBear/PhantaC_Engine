@@ -17,7 +17,7 @@ public:
 	Player(ObjectTransform* inCharacter, XMMATRIX* inMyWorldMatrixPtr) : characterPtr(inCharacter), myWorldMatrixPtr(inMyWorldMatrixPtr) { return; }
 
 	// Public Interface
-	void ControllerInput(ushort key);
+	void ControllerInput(ushort key, float deltaTime);
 };
 
 #endif
