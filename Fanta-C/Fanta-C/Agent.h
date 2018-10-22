@@ -6,6 +6,8 @@
 
 class Agent
 {
+	bool					isColliding;
+
 protected:
 	ObjectTransform*		physicalBodyPtr;
 
@@ -14,10 +16,14 @@ public:
 	Agent(ObjectTransform* physicalBodyPtr, float inMoveSpeed, float inRotationSpeed);
 
 	// Update
-	virtual void Update(float deltaTime) { return; }
+	virtual void Plan() { return; }
 
-	// Accessor
+	// Accessors
+	bool GetColliding() const { return isColliding; }
 	ObjectTransform* GetPhysicalBodyPtr() const { return physicalBodyPtr; }
+
+	// Mutators
+	void ToggleColliding() { isColliding = !isColliding; }
 };
 
 #endif

@@ -14,7 +14,7 @@ Line::Line() : CollidableObject(worldOrigin, 1)
 	{
 		vertices[iterators[0]].localPos.x = 0;
 		vertices[iterators[0]].localPos.y = 0;
-		vertices[iterators[0]].localPos.z = (iterators[0] == 0) ? -1 : 1;
+		vertices[iterators[0]].localPos.z = (iterators[0] == 0) ? float(-1) : float(1);
 		vertices[iterators[0]].color = Colors::Red;
 	}
 }

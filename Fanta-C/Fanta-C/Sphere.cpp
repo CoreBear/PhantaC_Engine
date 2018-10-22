@@ -20,7 +20,7 @@ void Sphere::AddMeToLineRenderer(LineRenderer& lineRenderer)
 #pragma region Private
 void Sphere::CreateShape(float scale)
 {
-	const ushort halfNumberOfVertices = numberOfVertices * 0.5f;
+	const ushort halfNumberOfVertices = ushort(numberOfVertices * 0.5f);
 
 	// Horizontal circle
 	for (iterators[0] = 0; iterators[0] < halfNumberOfVertices; ++iterators[0])

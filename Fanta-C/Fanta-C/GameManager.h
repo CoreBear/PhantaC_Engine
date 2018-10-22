@@ -1,5 +1,5 @@
-#ifndef _GAME_CONTROLLER_H
-#define _GAME_CONTROLLER_H
+#ifndef _GAME_MANAGER_H
+#define _GAME_MANAGER_H
 
 // System Headers
 #include <chrono>
@@ -11,7 +11,7 @@
 // Forward Declarations
 class GameState;
 
-class GameController
+class GameManager
 {
 	// Window Variables
 	HWND									windowHandle;							// Instance/Pointer to the program window
@@ -39,7 +39,7 @@ class GameController
 
 public:
 	// Initialization
-	GameController(HINSTANCE hInstance, int cmdShow);
+	GameManager(HINSTANCE hInstance, int cmdShow);
 	void InitializeWindow(HINSTANCE hInstance, int cmdShow);
 
 	// Update

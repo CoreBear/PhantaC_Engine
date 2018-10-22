@@ -3,9 +3,16 @@
 #include "EnemyBase.h"			// Connection to declarations
 #pragma endregion
 
-#pragma region Update
-void EnemyBase::Update(float deltaTime)
+#pragma region Planning
+void EnemyBase::Plan()
 {
-	physicalBodyPtr->Translate(0, physicalBodyPtr->GetMoveSpeed() * deltaTime, 0);
+
+}
+#pragma endregion
+
+#pragma region Actions
+void EnemyBase::Action(float deltaTime)
+{
+	physicalBodyPtr->Translate(physicalBodyPtr->GetMoveSpeed() * deltaTime, 0, 0);
 }
 #pragma endregion

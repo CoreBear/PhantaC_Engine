@@ -6,8 +6,8 @@
 void ObjectTransform::RotateOnWorldXAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
-	myTransformMatrix.r[1].m128_f32[1] =  cos(XMConvertToRadians(angle));
-	myTransformMatrix.r[1].m128_f32[2] =  sin(XMConvertToRadians(angle));
+	myTransformMatrix.r[1].m128_f32[1] =  float(cos(XMConvertToRadians(angle)));
+	myTransformMatrix.r[1].m128_f32[2] =  float(sin(XMConvertToRadians(angle)));
 	myTransformMatrix.r[2].m128_f32[1] = -myTransformMatrix.r[1].m128_f32[2];
 	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[1].m128_f32[1];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
@@ -15,8 +15,8 @@ void ObjectTransform::RotateOnWorldXAxis(float angle)
 void ObjectTransform::RotateOnWorldYAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
-	myTransformMatrix.r[0].m128_f32[0] =  cos(XMConvertToRadians(angle));
-	myTransformMatrix.r[0].m128_f32[2] =  sin(XMConvertToRadians(angle));
+	myTransformMatrix.r[0].m128_f32[0] =  float(cos(XMConvertToRadians(angle)));
+	myTransformMatrix.r[0].m128_f32[2] =  float(sin(XMConvertToRadians(angle)));
 	myTransformMatrix.r[2].m128_f32[0] = -myTransformMatrix.r[0].m128_f32[2];
 	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
@@ -24,8 +24,8 @@ void ObjectTransform::RotateOnWorldYAxis(float angle)
 void ObjectTransform::RotateOnWorldZAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
-	myTransformMatrix.r[0].m128_f32[0] =  cos(XMConvertToRadians(angle));
-	myTransformMatrix.r[0].m128_f32[1] =  sin(XMConvertToRadians(angle));
+	myTransformMatrix.r[0].m128_f32[0] =  float(cos(XMConvertToRadians(angle)));
+	myTransformMatrix.r[0].m128_f32[1] =  float(sin(XMConvertToRadians(angle)));
 	myTransformMatrix.r[1].m128_f32[0] = -myTransformMatrix.r[0].m128_f32[1];
 	myTransformMatrix.r[1].m128_f32[1] =  myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
@@ -33,8 +33,8 @@ void ObjectTransform::RotateOnWorldZAxis(float angle)
 void ObjectTransform::RotateOnXAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
-	myTransformMatrix.r[1].m128_f32[1] = cos(XMConvertToRadians(angle));
-	myTransformMatrix.r[1].m128_f32[2] = sin(XMConvertToRadians(angle));
+	myTransformMatrix.r[1].m128_f32[1] = float(cos(XMConvertToRadians(angle)));
+	myTransformMatrix.r[1].m128_f32[2] = float(sin(XMConvertToRadians(angle)));
 	myTransformMatrix.r[2].m128_f32[1] = -myTransformMatrix.r[1].m128_f32[2];
 	myTransformMatrix.r[2].m128_f32[2] = myTransformMatrix.r[1].m128_f32[1];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
@@ -42,8 +42,8 @@ void ObjectTransform::RotateOnXAxis(float angle)
 void ObjectTransform::RotateOnYAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
-	myTransformMatrix.r[0].m128_f32[0] = cos(XMConvertToRadians(angle));
-	myTransformMatrix.r[0].m128_f32[2] = sin(XMConvertToRadians(angle));
+	myTransformMatrix.r[0].m128_f32[0] = float(cos(XMConvertToRadians(angle)));
+	myTransformMatrix.r[0].m128_f32[2] = float(sin(XMConvertToRadians(angle)));
 	myTransformMatrix.r[2].m128_f32[0] = -myTransformMatrix.r[0].m128_f32[2];
 	myTransformMatrix.r[2].m128_f32[2] = myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
@@ -51,8 +51,8 @@ void ObjectTransform::RotateOnYAxis(float angle)
 void ObjectTransform::RotateOnZAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
-	myTransformMatrix.r[0].m128_f32[0] = cos(XMConvertToRadians(angle));
-	myTransformMatrix.r[0].m128_f32[1] = sin(XMConvertToRadians(angle));
+	myTransformMatrix.r[0].m128_f32[0] = float(cos(XMConvertToRadians(angle)));
+	myTransformMatrix.r[0].m128_f32[1] = float(sin(XMConvertToRadians(angle)));
 	myTransformMatrix.r[1].m128_f32[0] = -myTransformMatrix.r[0].m128_f32[1];
 	myTransformMatrix.r[1].m128_f32[1] = myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);

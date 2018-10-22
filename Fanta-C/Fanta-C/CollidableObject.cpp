@@ -12,5 +12,6 @@ void CollidableObject::CreateBounds(bool shapeIsFlat, float scale)
 	extents.m128_f32[0] = scale;
 	extents.m128_f32[1] = scale;
 	extents.m128_f32[2] = (shapeIsFlat) ? flatShapeWidth : scale;
+	extents.m128_f32[3] = 1;
 }
 #pragma endregion

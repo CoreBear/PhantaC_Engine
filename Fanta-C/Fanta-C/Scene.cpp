@@ -1,15 +1,14 @@
 #pragma region Dependencies
 // My Headers
 #include "Scene.h"			// Connection to declarations
-#include "Agent.h"
+#include "AutonomousAgent.h"
 #include "GlobalApplication.h"
 #pragma endregion
 
 #pragma region Update
-void Scene::Update(float deltaTime, std::vector<Agent*>* autonomousAgents)
+void Scene::Update(std::vector<AutonomousAgent*>* agents)
 {
-	// Skip zero, becuase it is reserved for the camera
-	for (iterators[0] = 1; iterators[0] < autonomousAgents->size(); ++iterators[0])
-		autonomousAgents->at(iterators[0])->Update(deltaTime);
+	for (iterators[0] = 0; iterators[0] < agents->size(); ++iterators[0])
+		agents->at(iterators[0])->Plan();
 }
 #pragma endregion

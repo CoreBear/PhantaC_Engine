@@ -21,12 +21,14 @@ void Grid::CreateShape()
 	uchar		lineDistanceApart = 1;
 	ushort		numberOfLinesTotal = ushort(numberOfVertices * 0.5f);				
 	ushort		numberOfLinesEachDirection = ushort(numberOfLinesTotal * 0.5f);		
-	ushort		integerHalfOfLinesEachDirection = numberOfLinesEachDirection * 0.5f;
-	float		endPoint = (numberOfLinesEachDirection % 2 == 0) ? integerHalfOfLinesEachDirection * lineDistanceApart - (0.5f * lineDistanceApart) : integerHalfOfLinesEachDirection * lineDistanceApart;
+	ushort		integerHalfOfLinesEachDirection = ushort(numberOfLinesEachDirection * 0.5f);
 	float		offset = (numberOfLinesEachDirection % 2 == 0) ? 0.5f : 0;
 	ushort		vertCount;														    
 	XMFLOAT3	tempVertex;
 
+	// This is a global variable, found in "GlobalGame.h". This is used to represent the distance from the world origin to the edge of the grid (X, Y)
+	edgeOfGridDistance = (numberOfLinesEachDirection % 2 == 0) ? integerHalfOfLinesEachDirection * lineDistanceApart - (0.5f * lineDistanceApart) : integerHalfOfLinesEachDirection * lineDistanceApart;
+	
 	// Horizontal & Vertical lines
 	for (vertCount = 0, iterators[0] = 0; iterators[0] < 2; ++iterators[0])
 	{
@@ -40,7 +42,7 @@ void Grid::CreateShape()
 				if (iterators[0] == 0)
 				{
 					// Left to right
-					tempVertex.x = (iterators[2]) ? -endPoint : endPoint;
+					tempVertex.x = (iterators[2]) ? -edgeOfGridDistance : edgeOfGridDistance;
 					tempVertex.y = 0;
 					tempVertex.z = (iterators[1] - integerHalfOfLinesEachDirection) * lineDistanceApart + (offset * lineDistanceApart);
 				}
@@ -51,7 +53,7 @@ void Grid::CreateShape()
 					// Top to bottom
 					tempVertex.x = (iterators[1] - integerHalfOfLinesEachDirection) * lineDistanceApart + (offset * lineDistanceApart);
 					tempVertex.y = 0;
-					tempVertex.z = (iterators[2]) ? -endPoint : endPoint;
+					tempVertex.z = (iterators[2]) ? -edgeOfGridDistance : edgeOfGridDistance;
 				}
 
 				// Add lines to drawable vertices and color them

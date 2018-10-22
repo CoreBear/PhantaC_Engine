@@ -2,7 +2,7 @@
 #define _GAME_STATE_H
 
 // My Headers
-#include "GameController.h"
+#include "GameManager.h"
 
 class GameState
 {
@@ -12,15 +12,15 @@ public:
 };
 class GameRunning : public GameState
 {
-	GameController*		gameControllerPtr;
+	GameManager*		gameManagerPtr;
 
 public:
 	// Initialization
 	GameRunning() { return; }
-	GameRunning(GameController* gameController) : gameControllerPtr(gameController) { return; }
+	GameRunning(GameManager* gameManager) : gameManagerPtr(gameManager) { return; }
 	
 	// Update
-	void UpdateState(float deltaTime) override { gameControllerPtr->MainGameUpdate(deltaTime); }
+	void UpdateState(float deltaTime) override { gameManagerPtr->MainGameUpdate(deltaTime); }
 };
 class GamePaused : public GameState
 {

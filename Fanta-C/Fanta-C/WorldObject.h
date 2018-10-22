@@ -19,6 +19,7 @@ public:
 	
 	// Accessors
 	XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }
+	XMVECTOR& GetPosition() { return myWorldMatrix.r[3]; }
 };
 
 #endif

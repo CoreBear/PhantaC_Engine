@@ -1,17 +1,17 @@
 #pragma region Dependencies
 // My Headers
-#include "GameController.h"			// Connection to declarations
+#include "GameManager.h"			// Connection to declarations
 #include "GameState.h"
-#include "InputController.h"
+#include "InputManager.h"
 #include "Renderer.h"
 #include "SceneManager.h"
 #pragma endregion
 
 // Do this better
-static InputController inputController;			// This has to be static, because wndProc is static
+static InputManager inputManager;			// This has to be static, because wndProc is static
 
 #pragma region Initialization
-GameController::GameController(HINSTANCE hInstance, int cmdShow)
+GameManager::GameManager(HINSTANCE hInstance, int cmdShow)
 {
 	// Creates main window instance
 	InitializeWindow(hInstance, cmdShow);
@@ -21,7 +21,7 @@ GameController::GameController(HINSTANCE hInstance, int cmdShow)
 	availableStates[1] = new GamePaused;
 
 	// Loads the scene manager
-	sceneManagerPtr = new SceneManager(&inputController, clientDimensions);
+	sceneManagerPtr = new SceneManager(&inputManager, clientDimensions);
 
 	// Loads the render
 	rendererPtr = new Renderer(windowHandle, sceneManagerPtr, clientDimensions, targetFPS);
@@ -29,7 +29,7 @@ GameController::GameController(HINSTANCE hInstance, int cmdShow)
 	// Starts the game loop
 	ApplicationLoop();
 }
-void GameController::InitializeWindow(HINSTANCE hInstance, int cmdShow)
+void GameManager::InitializeWindow(HINSTANCE hInstance, int cmdShow)
 {
 	WNDCLASSEX wndClass = { 0 };
 	wndClass.cbSize = sizeof(WNDCLASSEX);									// Size, in bytes, of this structure
@@ -56,7 +56,7 @@ void GameController::InitializeWindow(HINSTANCE hInstance, int cmdShow)
 #pragma endregion
 
 #pragma region Update
-void GameController::ApplicationLoop()
+void GameManager::ApplicationLoop()
 {
 	MSG							msg = { 0 };	// Container that stores system messages
 
@@ -88,7 +88,7 @@ void GameController::ApplicationLoop()
 			startTime = std::chrono::steady_clock::now();
 
 			// User input
-			inputController.Update(deltaTime);
+			inputManager.Update(deltaTime);
 
 			// Call game controller's state machine
 			currentState->UpdateState(deltaTime);
@@ -98,7 +98,7 @@ void GameController::ApplicationLoop()
 		}
 	}
 }
-void GameController::MainGameUpdate(float deltaTime)
+void GameManager::MainGameUpdate(float deltaTime)
 {
 	sceneManagerPtr->Update(deltaTime);
 	rendererPtr->Update(sceneManagerPtr->GetvisibleSceneObjects(), sceneManagerPtr->GetCamera());
@@ -106,7 +106,7 @@ void GameController::MainGameUpdate(float deltaTime)
 #pragma endregion
 
 #pragma region System Input
-LRESULT CALLBACK GameController::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK GameManager::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
@@ -115,21 +115,21 @@ LRESULT CALLBACK GameController::WndProc(HWND hwnd, UINT message, WPARAM wParam,
 		PostQuitMessage(0);
 		break;
 		case WM_KEYDOWN:
-		inputController.KeyPressed((ushort)wParam);
+		inputManager.KeyPressed((ushort)wParam);
 		break;
 		case WM_KEYUP:
-		inputController.KeyReleased((ushort)wParam);
+		inputManager.KeyReleased((ushort)wParam);
 		break;
 		/*case WM_MOUSEMOVE:
-		inputController.MouseMovement((ushort)lParam, (ushort)lParam);
+		inputManager.MouseMovement((ushort)lParam, (ushort)lParam);
 		break;
 		case WM_LBUTTONDOWN:
 		case WM_RBUTTONDOWN:
-		inputController.MouseButtonPressed((ushort)wParam);
+		inputManager.MouseButtonPressed((ushort)wParam);
 		break;
 		case WM_LBUTTONUP:
 		case WM_RBUTTONUP:
-		inputController.MouseButtonRelease((ushort)wParam);
+		inputManager.MouseButtonRelease((ushort)wParam);
 		break;*/
 	default:
 		return DefWindowProc(hwnd, message, wParam, lParam);

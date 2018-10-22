@@ -8,7 +8,7 @@ class Scene
 {
 public:
 	// Update
-	void Update(float deltaTime, class std::vector<class Agent*>* autonomousAgents);
+	void Update(std::vector<class AutonomousAgent*>* agents);
 };
 
 #endif

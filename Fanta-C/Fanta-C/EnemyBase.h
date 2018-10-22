@@ -2,16 +2,17 @@
 #define _ENEMY_BASE_H
 
 // My Headers
-#include "Agent.h"
+#include "AutonomousAgent.h"
 
-class EnemyBase : public Agent
+class EnemyBase : public AutonomousAgent
 {
 public:
 	// Initialization
-	EnemyBase(ObjectTransform* inPhysicalBodyPtr, float inMoveSpeed, float inRotationSpeed) : Agent(inPhysicalBodyPtr, inMoveSpeed, inRotationSpeed) { return; }
+	EnemyBase(ObjectTransform* inPhysicalBodyPtr, float inMoveSpeed, float inRotationSpeed) : AutonomousAgent(inPhysicalBodyPtr, inMoveSpeed, inRotationSpeed) { return; }
 
 	// Update
-	void Update(float deltaTime) override;
+	void Action(float deltaTime) override;
+	void Plan() override;
 };
 
 #endif

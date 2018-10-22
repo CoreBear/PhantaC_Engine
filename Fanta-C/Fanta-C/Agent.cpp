@@ -4,7 +4,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Agent::Agent(ObjectTransform* inPhysicalBodyPtr, float inMoveSpeed, float inRotationSpeed) : physicalBodyPtr(inPhysicalBodyPtr)
+Agent::Agent(ObjectTransform* inPhysicalBodyPtr, float inMoveSpeed, float inRotationSpeed) : isColliding(false), physicalBodyPtr(inPhysicalBodyPtr)
 {
 	physicalBodyPtr->SetMoveSpeed(inMoveSpeed);
 	physicalBodyPtr->SetRotationSpeed(inRotationSpeed);
