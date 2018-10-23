@@ -7,13 +7,13 @@
 #pragma endregion
 
 #pragma region Update
-void PhysicsMain::Update(float deltaTime, std::vector<Agent*>* agents)
+void PhysicsMain::Update(float deltaTime, std::vector<Agent*>* autonomousAgents, std::vector<Agent*>* staticAgents)
 {
-	// Run agent actions
-	/*for (iterators[0] = 0; iterators[0] < agents->size(); ++iterators[0])
-		static_cast<AutonomousAgent*>(agents->at(iterators[0]))->Action(deltaTime);*/
+	// Camera's index is 0, so skip
+	for (iterators[0] = 1; iterators[0] < autonomousAgents->size(); ++iterators[0])
+		static_cast<AutonomousAgent*>(autonomousAgents->at(iterators[0]))->Action(deltaTime);
 
 	// Check for collisions
-	collisionChecker.Update(agents, collisionManager.GetCurrentlyCollidingObjectContainerPtr());
+	collisionChecker.Update(autonomousAgents, staticAgents, collisionManager.GetCurrentlyCollidingObjectContainerPtr());
 }
 #pragma endregion

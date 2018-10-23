@@ -13,6 +13,6 @@ void EnemyBase::Plan()
 #pragma region Actions
 void EnemyBase::Action(float deltaTime)
 {
-	transformPtr->Translate(transformPtr->GetMoveSpeed() * deltaTime, 0, 0);
+	transformPtr->Translate(0, transformPtr->GetMoveSpeed() * deltaTime, 0);
 }
 #pragma endregion

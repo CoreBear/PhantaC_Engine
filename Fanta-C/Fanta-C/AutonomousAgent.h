@@ -11,7 +11,7 @@ public:
 	AutonomousAgent(ObjectTransform* intransformPtr, bool collider, bool renderer, float inMoveSpeed, float inRotationSpeed) : Agent(intransformPtr, collider, renderer, inMoveSpeed, inRotationSpeed) { return; }
 
 	// Update
-	virtual void Action(float deltaTime) { return; }
+	virtual void Action(float deltaTime) = 0;
 	virtual void Plan() { return; }
 };
 

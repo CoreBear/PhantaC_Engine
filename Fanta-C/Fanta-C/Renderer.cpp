@@ -197,14 +197,14 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* 
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(std::vector<Agent*>* agents, Camera* cameraPtr)
+void Renderer::Update(std::vector<Agent*>* staticAgents, std::vector<Agent*>* autonomousAgents)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
 	// Load view matrix (camera's world matrix) into vram
 	// If camera is not moving, we can set this during initialization
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &cameraPtr->GetWorldMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &autonomousAgents->at(0)->GetTransformPtr()->GetWorldMatrix(), 0, 0);
 
 	//											Add anything you want to draw here
 	// ------------------------------------------------------------------------------------------------------------------------------- 
@@ -213,13 +213,22 @@ void Renderer::Update(std::vector<Agent*>* agents, Camera* cameraPtr)
 	// Skip over index 0, because of camera (it doesn't get "rendered")
 	// Load objects into line renderer, then draw them
 
-	// Skip 0 for camera right now
-	for (renderIterator = 1; renderIterator < agents->size(); ++renderIterator)
+	#pragma region Draw Autonomous Agents
+	for (renderIterator = 0; renderIterator < staticAgents->size(); ++renderIterator)
 	{
-		agents->at(renderIterator)->GetRendererPtr()->AddMeToLineRenderer(lineRenderer);
-		DrawLineRenders(agents->at(renderIterator)->GetTransformPtr()->GetWorldMatrix());
-	}	
+		staticAgents->at(renderIterator)->GetRendererPtr()->AddMeToLineRenderer(lineRenderer);
+		DrawLineRenders(staticAgents->at(renderIterator)->GetTransformPtr()->GetWorldMatrix());
+	}
+	#pragma endregion	
 
+	#pragma region Draw Autonomous Agents
+	// Camera's index is 0, so skip
+	for (renderIterator = 1; renderIterator < autonomousAgents->size(); ++renderIterator)
+	{
+		autonomousAgents->at(renderIterator)->GetRendererPtr()->AddMeToLineRenderer(lineRenderer);
+		DrawLineRenders(autonomousAgents->at(renderIterator)->GetTransformPtr()->GetWorldMatrix());
+	}	
+	#pragma endregion
 
 	//											Don't add anything under here
 	// --------------------------------------------------------------------------------------------------------------------------------

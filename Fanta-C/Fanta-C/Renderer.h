@@ -10,6 +10,9 @@
 #include <d3d11.h>	
 #include <vector>
 
+// Forward Declarations
+class Agent;
+
 class Renderer
 {
 	uchar						renderIterator;									// Iterator for object rendering
@@ -51,7 +54,7 @@ public:
 	Renderer(HWND windowHandle, class SceneManager* sceneManager, const ushort* clientDimensions, ushort targetFPS);
 
 	// Update
-	void Update(std::vector<class Agent*>* agents, class Camera* cameraPtr);
+	void Update(std::vector<Agent*>* staticAgents, std::vector<Agent*>* autonomousAgents);
 
 	// Clean-up
 	~Renderer();

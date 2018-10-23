@@ -16,7 +16,7 @@ protected:
 
 public:
 	// Initialization
-	Agent(ObjectTransform* transformPtr, bool collider, bool renderer, float inMoveSpeed, float inRotationSpeed);
+	Agent(ObjectTransform* transformPtr, bool collider, bool renderer, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Accessors
 	CollidableObject* GetColliderPtr() const { return colliderPtr; }

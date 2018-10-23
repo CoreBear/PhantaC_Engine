@@ -7,10 +7,10 @@
 #pragma endregion
 
 #pragma region Update
-void Scene::Update(std::vector<Agent*>* agents)
+void Scene::Update(std::vector<Agent*>* autonomousAgents)
 {
-	// Skip 1 for the camera right now
-	/*for (iterators[0] = 1; iterators[0] < agents->size(); ++iterators[0])
-		static_cast<AutonomousAgent*>(agents->at(iterators[0]))->Plan();*/
+	// Camera's index is 0, so skip
+	for (iterators[0] = 1; iterators[0] < autonomousAgents->size(); ++iterators[0])
+		static_cast<AutonomousAgent*>(autonomousAgents->at(iterators[0]))->Plan();
 }
 #pragma endregion

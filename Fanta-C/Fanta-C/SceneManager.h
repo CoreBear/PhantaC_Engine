@@ -21,9 +21,9 @@ class SceneManager
 	Camera*							cameraPtr;
 	PhysicsMain						physicsMain;			
 	class Player*					playerPtr;
-	Scene							scene;					// The actual running of the scene (game update. i.e. scene agents)
-	std::vector<Agent*>				agents;					// Objects that can move. Contents of this container are not visible, but their physical bodies may be in the "visibleSceneObjects" container
-	//std::vector<RenderableObject*>	visibleSceneObjects;	// Objects that can be seen
+	Scene							scene;					// The actual running of the scene (game update. i.e. scene autonomousAgents)
+	std::vector<Agent*>				autonomousAgents;		// Objects that can move. Contents of this container are not visible, but their physical bodies may be in the "visibleSceneObjects" container
+	std::vector<Agent*>				staticAgents;			// Objects that can move. Contents of this container are not visible, but their physical bodies may be in the "visibleSceneObjects" container
 
 public:
 	// Initialization
@@ -34,7 +34,8 @@ public:
 
 	// Accessors
 	Camera* GetCamera() { return cameraPtr; }
-	std::vector<Agent*>* GetAgents() { return &agents; }
+	std::vector<Agent*>* GetAutonomousAgents() { return &autonomousAgents; }
+	std::vector<Agent*>* GetStaticAgents() { return &staticAgents; }
 };
 
 #endif

@@ -125,6 +125,7 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="AutonomousAgent.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
+    <ClCompile Include="FreeCamera.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -137,7 +138,6 @@
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sphere.cpp" />
@@ -155,6 +155,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="AutonomousAgent.h" />
     <ClInclude Include="EnemyBase.h" />
+    <ClInclude Include="FreeCamera.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GlobalDirectX.h" />
@@ -176,7 +177,6 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="GlobalStructures.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sphere.h" />

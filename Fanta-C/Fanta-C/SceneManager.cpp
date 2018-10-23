@@ -6,6 +6,7 @@
 #include "Circle.h"
 #include "Cube.h"
 #include "EnemyBase.h"
+#include "FreeCamera.h"
 #include "GlobalTools.h"
 #include "Grid.h"
 #include "InputManager.h"
@@ -21,35 +22,32 @@
 #pragma region Initialization
 SceneManager::SceneManager(InputManager* inputManager, ushort* clientDimensions)
 {	
-	#pragma region Create Camera
+	#pragma region Camera Setup
+	// Create camera
 	cameraPtr = new Camera(clientDimensions, XMVectorSet(0, 3, -20, 1), XMVectorSet(0, 0, 1, 0), XMVectorSet(0, 1, 0, 0));
-	AddObjectToContainer<Agent*>(&agents, new Agent(cameraPtr, false, false, 0, 0));
+
+	// Wrap camera in an agent and place it into the agent's container (FreeCamera will move on its own. Agent will be controlled by player)
+	AddObjectToContainer<Agent*>(&autonomousAgents, new Agent(cameraPtr, false, false));
+	//AddObjectToContainer<Agent*>(&autonomousAgents, new FreeCamera(cameraPtr, false, false));
 	#pragma endregion
 
-	#pragma region Add Renderable Objects (Visible)
-	AddObjectToContainer<Agent*>(&agents, new Agent(new Grid, false, true, 0, 0));
-	AddObjectToContainer<Agent*>(&agents, new Agent(new Quad(XMVectorSet(	-12.5f, 5, 0, 1), 1), false, true, 0, 0));
-	AddObjectToContainer<Agent*>(&agents, new Agent(new Cube(XMVectorSet(	 -7.5f, 5, 0, 1), 1), false, true, 0, 0));
-	AddObjectToContainer<Agent*>(&agents, new Agent(new Pyramid(XMVectorSet( -2.5f, 5, 0, 1), 1), false, true, 0, 0));
-	AddObjectToContainer<Agent*>(&agents, new Agent(new Circle(XMVectorSet(	  2.5f, 5, 0, 1), 1), false, true, 0, 0));
-	AddObjectToContainer<Agent*>(&agents, new Agent(new Sphere(XMVectorSet(	  7.5f, 5, 0, 1), 1), false, true, 0, 0));
-	AddObjectToContainer<Agent*>(&agents, new Agent(new Triangle(XMVectorSet(12.5f, 5, 0, 1), 1), false, true, 0, 0));
+	#pragma region Add Any Object in the Scene
+	// Create scene objects (Agents are static. Everything else is autonomous)
+	AddObjectToContainer<Agent*>(&staticAgents, new Agent(new Grid, false, true, 0, 0));
+	AddObjectToContainer<Agent*>(&autonomousAgents, new EnemyBase(new Quad(XMVectorSet(	  -12.5f, 5, 0, 1), 1), false, true, 0.25f, 0));
+	AddObjectToContainer<Agent*>(&autonomousAgents, new EnemyBase(new Cube(XMVectorSet(	   -7.5f, 5, 0, 1), 1), false, true, 0.25f, 0));
+	AddObjectToContainer<Agent*>(&autonomousAgents, new EnemyBase(new Pyramid(XMVectorSet( -2.5f, 5, 0, 1), 1), false, true, 0.25f, 0));
+	AddObjectToContainer<Agent*>(&autonomousAgents, new EnemyBase(new Circle(XMVectorSet(   2.5f, 5, 0, 1), 1), false, true, 0.25f, 0));
+	AddObjectToContainer<Agent*>(&autonomousAgents, new EnemyBase(new Sphere(XMVectorSet(	7.5f, 5, 0, 1), 1), false, true, 0.25f, 0));
+	AddObjectToContainer<Agent*>(&autonomousAgents, new EnemyBase(new Triangle(XMVectorSet(12.5f, 5, 0, 1), 1), false, true, 0.25f, 0));
 	#pragma endregion
 	
 	#pragma region Create Player (Right now, a new camera is attached, but it can be any object, exactly like the enemies below)
-	// Adds main camera to the scene and points player to it
+	// Creates player wrapper around whatever object we choose
 	playerPtr = new Player((ObjectTransform*)cameraPtr, false, false, 15, 150);
 
-	// Let the input controller know that there is a player
+	// Let the input controller know what the player is
 	inputManager->AssignPlayer(playerPtr);
-	#pragma endregion
-
-	#pragma region Create new enemies and point at physical/renderable bodies
-	// Grabs onto any renderable (visible) object
-	//AddObjectToContainer<AutonomousAgent*>(&agents, new EnemyBase(visibleSceneObjects[1], 1, 0));
-	//AddObjectToContainer<AutonomousAgent*>(&agents, new EnemyBase(visibleSceneObjects[2], 0, 0));
-	//AddObjectToContainer<AutonomousAgent*>(&agents, new EnemyBase(visibleSceneObjects[3], 0, 0));
-	//AddObjectToContainer<AutonomousAgent*>(&agents, new EnemyBase(visibleSceneObjects[4], 0, 0));
 	#pragma endregion
 }
 #pragma endregion
@@ -57,8 +55,8 @@ SceneManager::SceneManager(InputManager* inputManager, ushort* clientDimensions)
 #pragma region Update
 void SceneManager::Update(float deltaTime)
 {	
-	scene.Update(&agents);						// Updates the frame for the scene (Allows system to Plan about its movements, i.e. artificial intelligence)
-	physicsMain.Update(deltaTime, &agents);		// Movement and collision
+	scene.Update(&autonomousAgents);									// Updates the frame for the scene (Allows system to Plan its movements, i.e. artificial intelligence)
+	physicsMain.Update(deltaTime, &autonomousAgents, &staticAgents);	// Movement and collision
 	audio.Update();
 }
 #pragma endregion

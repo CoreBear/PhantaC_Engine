@@ -101,7 +101,7 @@ void GameManager::ApplicationLoop()
 void GameManager::MainGameUpdate(float deltaTime)
 {
 	sceneManagerPtr->Update(deltaTime);
-	rendererPtr->Update(sceneManagerPtr->GetAgents(), sceneManagerPtr->GetCamera());
+	rendererPtr->Update(sceneManagerPtr->GetStaticAgents(), sceneManagerPtr->GetAutonomousAgents());
 }
 #pragma endregion
 

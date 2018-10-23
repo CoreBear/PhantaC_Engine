@@ -11,7 +11,7 @@ class CollisionChecker
 
 public:
 	// Update
-	void Update(std::vector<class Agent*>* agents, std::vector<class Agent*>* currentlyCollidingObjects);
+	void Update(std::vector<class Agent*>* autonomousAgents, std::vector<class Agent*>* staticAgents, std::vector<class Agent*>* currentlyCollidingObjects);
 };
 
 #endif
