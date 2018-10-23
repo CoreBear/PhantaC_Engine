@@ -3,9 +3,11 @@
 
 // My Headers
 #include "GlobalTypedefs.h"
+#include "LineRenderer.h"
+#include "Mesh.h"
 #include "WorldObject.h"
 
-class ObjectTransform : public WorldObject
+class ObjectTransform : public WorldObject, public Mesh
 {
 protected:
 	float			moveSpeed;
@@ -19,6 +21,7 @@ public:
 	ObjectTransform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : WorldObject(camera, position, forward, up) { return; }
 
 	// Public Interface
+	virtual void DrawMe(LineRenderer& lineRenderer) { return; }
 	void RotateOnWorldXAxis(float angle);
 	void RotateOnWorldYAxis(float angle);
 	void RotateOnWorldZAxis(float angle);
@@ -30,8 +33,10 @@ public:
 	void WorldTranslate(uchar index, float speed);
 
 	// Accessors
+	virtual bool GetFlatness() const { return false; }
 	float GetMoveSpeed() const { return moveSpeed; }
 	float GetRotationSpeed() const { return rotationSpeed; }
+	virtual float GetScale() const { return false; }
 
 	// Mutators
 	void SetMoveSpeed(float inMoveSpeed) { moveSpeed = inMoveSpeed; }

@@ -4,17 +4,18 @@
 // My Headers
 #include "GlobalTypedefs.h"
 #include "LineRenderer.h"
-#include "ObjectTransform.h"
+#include "Mesh.h"
 
-class RenderableObject : public ObjectTransform
+class RenderableObject
 {
-public:
+	Mesh*		meshPtr;
+
+public:	
 	// Initialization
-	RenderableObject(const XMVECTOR& position) : ObjectTransform(position) { return; }
-	RenderableObject(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : ObjectTransform(false, position, forward, up) { return; }
+	RenderableObject(Mesh* inMeshPtr) : meshPtr(inMeshPtr) { return; }
 
 	// Public Interface
-	virtual void AddMeToLineRenderer(LineRenderer& lineRenderer) = 0;
+	void AddMeToLineRenderer(LineRenderer& lineRenderer) { meshPtr->DrawMe(lineRenderer); }
 };
 
 #endif

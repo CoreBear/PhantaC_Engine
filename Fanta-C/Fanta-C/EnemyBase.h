@@ -8,7 +8,7 @@ class EnemyBase : public AutonomousAgent
 {
 public:
 	// Initialization
-	EnemyBase(ObjectTransform* inPhysicalBodyPtr, float inMoveSpeed, float inRotationSpeed) : AutonomousAgent(inPhysicalBodyPtr, inMoveSpeed, inRotationSpeed) { return; }
+	EnemyBase(ObjectTransform* intransformPtr, bool collider, bool renderer, float inMoveSpeed, float inRotationSpeed) : AutonomousAgent(intransformPtr, collider, renderer, inMoveSpeed, inRotationSpeed) { return; }
 
 	// Update
 	void Action(float deltaTime) override;

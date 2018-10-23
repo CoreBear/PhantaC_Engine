@@ -1,6 +1,8 @@
 #ifndef _GLOBAL_GAME_H
 #define _GLOBAL_GAME_H
 
+#include "GlobalDirectX.h"
+
 static bool			gameIsPaused = false;
 static float		edgeOfGridDistance;																					// Will be assigned when grid is created
 const XMVECTOR		worldOrigin = { 0, 0, 0, 1 };

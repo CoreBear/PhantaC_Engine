@@ -5,7 +5,6 @@
 #include "Camera.h"
 #include "GlobalGeometry.h"
 #include "GlobalApplication.h"
-#include "RenderableObject.h"
 #include "SceneManager.h"
 
 // System Headers
@@ -198,7 +197,7 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* 
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(std::vector<RenderableObject*>* visibleSceneObjets, Camera* cameraPtr)
+void Renderer::Update(std::vector<Agent*>* agents, Camera* cameraPtr)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
@@ -214,11 +213,11 @@ void Renderer::Update(std::vector<RenderableObject*>* visibleSceneObjets, Camera
 	// Skip over index 0, because of camera (it doesn't get "rendered")
 	// Load objects into line renderer, then draw them
 
-
-	for (renderIterator = 0; renderIterator < visibleSceneObjets->size(); ++renderIterator)
+	// Skip 0 for camera right now
+	for (renderIterator = 1; renderIterator < agents->size(); ++renderIterator)
 	{
-		visibleSceneObjets->at(renderIterator)->AddMeToLineRenderer(lineRenderer);
-		DrawLineRenders(visibleSceneObjets->at(renderIterator)->GetWorldMatrix());
+		agents->at(renderIterator)->GetRendererPtr()->AddMeToLineRenderer(lineRenderer);
+		DrawLineRenders(agents->at(renderIterator)->GetTransformPtr()->GetWorldMatrix());
 	}	
 
 

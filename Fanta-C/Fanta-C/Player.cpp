@@ -11,28 +11,28 @@ void Player::ControllerInput(ushort key, float deltaTime)
 	switch (key)
 	{
 	case A:
-		physicalBodyPtr->RotateOnWorldYAxis(-physicalBodyPtr->GetRotationSpeed() * deltaTime);
+		transformPtr->RotateOnWorldYAxis(-transformPtr->GetRotationSpeed() * deltaTime);
 		break;
 	case D:
-		physicalBodyPtr->RotateOnWorldYAxis(physicalBodyPtr->GetRotationSpeed() * deltaTime);
+		transformPtr->RotateOnWorldYAxis(transformPtr->GetRotationSpeed() * deltaTime);
 		break;
 	case I:
-		physicalBodyPtr->RotateOnWorldXAxis(-physicalBodyPtr->GetRotationSpeed() * deltaTime);
+		transformPtr->RotateOnWorldXAxis(-transformPtr->GetRotationSpeed() * deltaTime);
 		break;
 	case J:
-		physicalBodyPtr->RotateOnWorldZAxis(-physicalBodyPtr->GetRotationSpeed() * deltaTime);
+		transformPtr->RotateOnWorldZAxis(-transformPtr->GetRotationSpeed() * deltaTime);
 		break;
 	case K:
-		physicalBodyPtr->RotateOnWorldXAxis(physicalBodyPtr->GetRotationSpeed() * deltaTime);
+		transformPtr->RotateOnWorldXAxis(transformPtr->GetRotationSpeed() * deltaTime);
 		break;
 	case L:
-		physicalBodyPtr->RotateOnWorldZAxis(physicalBodyPtr->GetRotationSpeed() * deltaTime);
+		transformPtr->RotateOnWorldZAxis(transformPtr->GetRotationSpeed() * deltaTime);
 		break;
 	case S:
-		physicalBodyPtr->Translate(0, 0, physicalBodyPtr->GetMoveSpeed() * deltaTime);
+		transformPtr->Translate(0, 0, transformPtr->GetMoveSpeed() * deltaTime);
 		break;
 	case W:
-		physicalBodyPtr->Translate(0, 0, -physicalBodyPtr->GetMoveSpeed() * deltaTime);
+		transformPtr->Translate(0, 0, -transformPtr->GetMoveSpeed() * deltaTime);
 		break;
 	case SPACE:
 		break;
@@ -45,28 +45,28 @@ void Player::ControllerInput(ushort key, float deltaTime)
 /*switch (key)
 {
 case A:
-physicalBodyPtr->RotateOnYAxis(physicalBodyPtr->GetRotationSpeed());
+transformPtr->RotateOnYAxis(transformPtr->GetRotationSpeed());
 break;
 case D:
-physicalBodyPtr->RotateOnYAxis(-physicalBodyPtr->GetRotationSpeed());
+transformPtr->RotateOnYAxis(-transformPtr->GetRotationSpeed());
 break;
 case I:
-physicalBodyPtr->RotateOnXAxis(physicalBodyPtr->GetRotationSpeed());
+transformPtr->RotateOnXAxis(transformPtr->GetRotationSpeed());
 break;
 case J:
-physicalBodyPtr->RotateOnZAxis(physicalBodyPtr->GetRotationSpeed());
+transformPtr->RotateOnZAxis(transformPtr->GetRotationSpeed());
 break;
 case K:
-physicalBodyPtr->RotateOnXAxis(-physicalBodyPtr->GetRotationSpeed());
+transformPtr->RotateOnXAxis(-transformPtr->GetRotationSpeed());
 break;
 case L:
-physicalBodyPtr->RotateOnZAxis(-physicalBodyPtr->GetRotationSpeed());
+transformPtr->RotateOnZAxis(-transformPtr->GetRotationSpeed());
 break;
 case S:
-physicalBodyPtr->WorldTranslate(2, -physicalBodyPtr->GetMoveSpeed());
+transformPtr->WorldTranslate(2, -transformPtr->GetMoveSpeed());
 break;
 case W:
-physicalBodyPtr->WorldTranslate(2, physicalBodyPtr->GetMoveSpeed());
+transformPtr->WorldTranslate(2, transformPtr->GetMoveSpeed());
 break;
 case SPACE:
 break;

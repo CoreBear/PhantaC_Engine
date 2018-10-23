@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{5f074ffd-8a30-4776-bd38-4bbca7313109}</UniqueIdentifier>
     </Filter>
@@ -125,9 +121,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="Line.cpp">
-      <Filter>Shapes</Filter>
-    </ClCompile>
     <ClCompile Include="LineRenderer.cpp">
       <Filter>Engine Modules\Renderer</Filter>
     </ClCompile>
@@ -238,9 +231,6 @@
     <ClInclude Include="Player.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="Line.h">
-      <Filter>Shapes</Filter>
-    </ClInclude>
     <ClInclude Include="LineRenderer.h">
       <Filter>Engine Modules\Renderer</Filter>
     </ClInclude>
@@ -259,6 +249,7 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="Mesh.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BasicVertexShader.hlsl">

@@ -7,7 +7,7 @@
 #pragma endregion
 
 #pragma region Public Interface
-void Sphere::AddMeToLineRenderer(LineRenderer& lineRenderer)
+void Sphere::DrawMe(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices - 1; ++iterators[0])
 	{

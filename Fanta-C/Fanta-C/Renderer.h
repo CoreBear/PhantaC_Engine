@@ -51,7 +51,7 @@ public:
 	Renderer(HWND windowHandle, class SceneManager* sceneManager, const ushort* clientDimensions, ushort targetFPS);
 
 	// Update
-	void Update(std::vector<class RenderableObject*>* visibleSceneObjets, class Camera* cameraPtr);
+	void Update(std::vector<class Agent*>* agents, class Camera* cameraPtr);
 
 	// Clean-up
 	~Renderer();

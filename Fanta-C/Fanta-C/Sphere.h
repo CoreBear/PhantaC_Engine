@@ -2,11 +2,14 @@
 #define _SPHERE_H
 
 // My Headers
-#include "CollidableObject.h"
 #include "GlobalGame.h"
+#include "GlobalGeometry.h"
+#include "ObjectTransform.h"
 
-class Sphere : public CollidableObject
+class Sphere : public ObjectTransform
 {
+	bool						shapeIsFlat = false;
+	float						scale;
 	constexpr static ushort		numberOfVertices = 720;
 	SIMPLE_VERTEX				vertices[numberOfVertices];
 
@@ -14,12 +17,16 @@ class Sphere : public CollidableObject
 
 public:
 	// Initialization
-	Sphere(float scale = 1) : CollidableObject(worldOrigin, scale, true) { CreateShape(scale); }
-	Sphere(const XMVECTOR& position, float scale = 1) : CollidableObject(position, scale, true) { CreateShape(scale); }
-	Sphere(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float scale = 1) : CollidableObject(position, forward, up, scale, true) { CreateShape(scale); }
+	Sphere(float inScale = 1) : scale(inScale), ObjectTransform(worldOrigin) { CreateShape(inScale); }
+	Sphere(const XMVECTOR& position, float inScale = 1) : scale(inScale), ObjectTransform(position) { CreateShape(inScale); }
+	Sphere(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : scale(inScale), ObjectTransform(false, position, forward, up) { CreateShape(inScale); }
 
 	// Public Interface
-	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;
+	void DrawMe(LineRenderer& lineRenderer) override;
+
+	// Accessors
+	bool GetFlatness() const override { return shapeIsFlat; }
+	float GetScale() const override { return scale; }
 };
 
 #endif

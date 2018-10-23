@@ -8,7 +8,7 @@ class Scene
 {
 public:
 	// Update
-	void Update(std::vector<class AutonomousAgent*>* agents);
+	void Update(std::vector<class Agent*>* agents);
 };
 
 #endif

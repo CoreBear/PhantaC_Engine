@@ -8,11 +8,11 @@ class AutonomousAgent : public Agent
 {
 public:
 	// Initialization
-	AutonomousAgent(ObjectTransform* inPhysicalBodyPtr, float inMoveSpeed, float inRotationSpeed) : Agent(inPhysicalBodyPtr, inMoveSpeed, inRotationSpeed) { return; }
+	AutonomousAgent(ObjectTransform* intransformPtr, bool collider, bool renderer, float inMoveSpeed, float inRotationSpeed) : Agent(intransformPtr, collider, renderer, inMoveSpeed, inRotationSpeed) { return; }
 
 	// Update
 	virtual void Action(float deltaTime) { return; }
-	void Plan() override { return; }
+	virtual void Plan() { return; }
 };
 
 #endif

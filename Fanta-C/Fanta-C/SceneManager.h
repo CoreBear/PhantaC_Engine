@@ -3,7 +3,6 @@
 
 // My Headers
 #include "Audio.h"
-#include "AutonomousAgent.h"
 #include "GlobalTypedefs.h"
 #include "PhysicsMain.h"
 #include "Scene.h"
@@ -23,8 +22,8 @@ class SceneManager
 	PhysicsMain						physicsMain;			
 	class Player*					playerPtr;
 	Scene							scene;					// The actual running of the scene (game update. i.e. scene agents)
-	std::vector<AutonomousAgent*>	agents;					// Objects that can move. Contents of this container are not visible, but their physical bodies may be in the "visibleSceneObjects" container
-	std::vector<RenderableObject*>	visibleSceneObjects;	// Objects that can be seen
+	std::vector<Agent*>				agents;					// Objects that can move. Contents of this container are not visible, but their physical bodies may be in the "visibleSceneObjects" container
+	//std::vector<RenderableObject*>	visibleSceneObjects;	// Objects that can be seen
 
 public:
 	// Initialization
@@ -35,7 +34,7 @@ public:
 
 	// Accessors
 	Camera* GetCamera() { return cameraPtr; }
-	std::vector<RenderableObject*>* GetvisibleSceneObjects() { return &visibleSceneObjects; }
+	std::vector<Agent*>* GetAgents() { return &agents; }
 };
 
 #endif

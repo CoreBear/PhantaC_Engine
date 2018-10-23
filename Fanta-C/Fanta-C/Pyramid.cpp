@@ -7,7 +7,7 @@
 #pragma endregion
 
 #pragma region Public Interface
-void Pyramid::AddMeToLineRenderer(LineRenderer& lineRenderer)
+void Pyramid::DrawMe(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfLineIndicesVertices[0]; ++iterators[0])
 	{

@@ -133,7 +133,6 @@
     <ClCompile Include="ObjectTransform.cpp" />
     <ClCompile Include="PhysicsMain.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Line.cpp" />
     <ClCompile Include="Pyramid.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -161,6 +160,7 @@
     <ClInclude Include="GlobalDirectX.h" />
     <ClInclude Include="GlobalGame.h" />
     <ClInclude Include="GlobalTools.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="ObjectTransform.h" />
     <ClInclude Include="PhysicsMain.h" />
     <ClInclude Include="RenderableObject.h" />
@@ -171,7 +171,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Pool.h" />
     <ClInclude Include="GlobalApplication.h" />
-    <ClInclude Include="Line.h" />
     <ClInclude Include="Pyramid.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Renderer.h" />

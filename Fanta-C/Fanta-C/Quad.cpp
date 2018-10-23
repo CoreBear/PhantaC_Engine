@@ -7,7 +7,7 @@
 #pragma endregion
 
 #pragma region Public Interface
-void Quad::AddMeToLineRenderer(LineRenderer& lineRenderer)
+void Quad::DrawMe(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{

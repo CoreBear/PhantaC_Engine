@@ -2,11 +2,14 @@
 #define _QUAD_H
 
 // My Headers
-#include "CollidableObject.h"
 #include "GlobalGame.h"
+#include "GlobalGeometry.h"
+#include "ObjectTransform.h"
 
-class Quad : public CollidableObject
+class Quad : public ObjectTransform
 {
+	bool					shapeIsFlat = true;
+	float					scale;
 	constexpr static uchar	numberOfVertices = 4;
 	SIMPLE_VERTEX			vertices[numberOfVertices];
 
@@ -14,12 +17,16 @@ class Quad : public CollidableObject
 
 public:
 	// Initialization
-	Quad(float scale = 1) : CollidableObject(worldOrigin, scale, true) { CreateShape(scale); }
-	Quad(const XMVECTOR& position, float scale = 1) : CollidableObject(position, scale, true) { CreateShape(scale); }
-	Quad(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float scale = 1) : CollidableObject(position, forward, up, scale, true) { CreateShape(scale); }
+	Quad(float inScale = 1) : scale(inScale), ObjectTransform(worldOrigin) { CreateShape(inScale); }
+	Quad(const XMVECTOR& position, float inScale = 1) : scale(inScale), ObjectTransform(position) { CreateShape(inScale); }
+	Quad(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : scale(inScale), ObjectTransform(false, position, forward, up) { CreateShape(inScale); }
 
 	// Public Interface
-	void AddMeToLineRenderer(class LineRenderer& lineRenderer) override;
+	void DrawMe(LineRenderer& lineRenderer) override;
+
+	// Accessors
+	bool GetFlatness() const override { return shapeIsFlat; }
+	float GetScale() const override { return scale; }
 };
 
 #endif

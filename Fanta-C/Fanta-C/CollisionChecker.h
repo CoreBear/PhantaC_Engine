@@ -7,11 +7,11 @@
 class CollisionChecker
 {
 	bool						noCollision;
-	class CollidableObject*		objectsBeingChecked[2];
+	class ObjectTransform*		objectsBeingChecked[2];
 
 public:
 	// Update
-	void Update(std::vector<class AutonomousAgent*>* agents, std::vector<class AutonomousAgent*>* currentlyCollidingObjects);
+	void Update(std::vector<class Agent*>* agents, std::vector<class Agent*>* currentlyCollidingObjects);
 };
 
 #endif

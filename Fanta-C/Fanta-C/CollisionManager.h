@@ -5,15 +5,15 @@
 #include <vector>
 
 // My Headers
-#include "AutonomousAgent.h"
+#include "Agent.h"
 
 class CollisionManager
 {
-	std::vector<AutonomousAgent*> currentlyCollidingObjects;
+	std::vector<Agent*> currentlyCollidingObjects;
 
 public:
 	// Accessors
-	std::vector<AutonomousAgent*>* GetCurrentlyCollidingObjectContainerPtr() { return &currentlyCollidingObjects; }
+	std::vector<Agent*>* GetCurrentlyCollidingObjectContainerPtr() { return &currentlyCollidingObjects; }
 };
 
 #endif

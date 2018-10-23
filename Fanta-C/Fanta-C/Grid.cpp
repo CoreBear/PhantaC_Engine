@@ -7,11 +7,13 @@
 #pragma endregion
 
 #pragma region Public Interface
-void Grid::AddMeToLineRenderer(LineRenderer& lineRenderer)
+void Grid::DrawMe(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; iterators[0] += 2)
+	{
 		lineRenderer.AddNewLine(vertices[iterators[0]].localPos, vertices[iterators[0] + 1].localPos,
 								vertices[iterators[0]].color, vertices[iterators[0] + 1].color);
+	}
 }
 #pragma endregion
 

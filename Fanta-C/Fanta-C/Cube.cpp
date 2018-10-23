@@ -7,7 +7,7 @@
 #pragma endregion
 
 #pragma region Public Interface
-void Cube::AddMeToLineRenderer(LineRenderer& lineRenderer)
+void Cube::DrawMe(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[1]; ++iterators[0])
 	{

@@ -8,7 +8,7 @@ class Player : public Agent
 {
 public:
 	// Initialization
-	Player(ObjectTransform* physicalBodyPtr, float inMoveSpeed, float inRotationSpeed) : Agent(physicalBodyPtr, inMoveSpeed, inRotationSpeed) { return; }
+	Player(ObjectTransform* transformPtr, bool collider, bool renderer, float inMoveSpeed, float inRotationSpeed) : Agent(transformPtr, collider, renderer, inMoveSpeed, inRotationSpeed) { return; }
 
 	// Public Interface
 	void ControllerInput(ushort key, float deltaTime);

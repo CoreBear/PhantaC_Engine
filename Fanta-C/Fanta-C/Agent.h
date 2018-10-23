@@ -2,28 +2,26 @@
 #define _AGENT_H
 
 // My Headers
+#include "CollidableObject.h"
 #include "ObjectTransform.h"
+#include "RenderableObject.h"
 
 class Agent
 {
-	bool					isColliding;
+	CollidableObject*		colliderPtr;
+	RenderableObject*		rendererPtr;
 
 protected:
-	ObjectTransform*		physicalBodyPtr;
+	ObjectTransform*		transformPtr;
 
 public:
 	// Initialization
-	Agent(ObjectTransform* physicalBodyPtr, float inMoveSpeed, float inRotationSpeed);
-
-	// Update
-	virtual void Plan() { return; }
+	Agent(ObjectTransform* transformPtr, bool collider, bool renderer, float inMoveSpeed, float inRotationSpeed);
 
 	// Accessors
-	bool GetColliding() const { return isColliding; }
-	ObjectTransform* GetPhysicalBodyPtr() const { return physicalBodyPtr; }
-
-	// Mutators
-	void ToggleColliding() { isColliding = !isColliding; }
+	CollidableObject* GetColliderPtr() const { return colliderPtr; }
+	RenderableObject* GetRendererPtr() const { return rendererPtr; }
+	ObjectTransform* GetTransformPtr() const { return transformPtr; }
 };
 
 #endif
