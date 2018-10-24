@@ -2,12 +2,11 @@
 // My Headers
 #include "Grid.h"				// Connection to declarations
 #include "GlobalApplication.h"
-#include "GlobalGeometry.h"
 #include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Public Interface
-void Grid::DrawMe(LineRenderer& lineRenderer)
+void Grid::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; iterators[0] += 2)
 	{
@@ -18,7 +17,7 @@ void Grid::DrawMe(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Grid::CreateShape()
+void Grid::CreateMesh()
 {
 	uchar		lineDistanceApart = 1;
 	ushort		numberOfLinesTotal = ushort(numberOfVertices * 0.5f);				

@@ -4,13 +4,13 @@
 #pragma endregion
 
 #pragma region Initialization
-Agent::Agent(ObjectTransform* transformPtr, bool collider, bool renderer, float inMoveSpeed, float inRotationSpeed) : transformPtr(transformPtr)
+Agent::Agent(ObjectTransform* transformPtr, bool collidable, bool renderable, float inMoveSpeed, float inRotationSpeed) : transformPtr(transformPtr)
 {
 	// If agent has a collider
-	if (collider) colliderPtr = new CollidableObject(transformPtr->GetFlatness(), transformPtr->GetScale());
+	if (collidable) colliderPtr = new CollidableObject(transformPtr->GetFlatness(), transformPtr->GetScale());
 
 	// If agent has a renderer
-	if (renderer) rendererPtr = new RenderableObject(transformPtr);
+	if (renderable) shapePtr = static_cast<Shape*>(transformPtr);
 
 	transformPtr->SetMoveSpeed(inMoveSpeed);
 	transformPtr->SetRotationSpeed(inRotationSpeed);

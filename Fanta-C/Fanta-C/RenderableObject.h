@@ -4,18 +4,18 @@
 // My Headers
 #include "GlobalTypedefs.h"
 #include "LineRenderer.h"
-#include "Mesh.h"
+#include "Shape.h"
 
 class RenderableObject
 {
-	Mesh*		meshPtr;
+	Shape*		meshPtr;
 
 public:	
 	// Initialization
-	RenderableObject(Mesh* inMeshPtr) : meshPtr(inMeshPtr) { return; }
+	RenderableObject(Shape* inShapePtr) : meshPtr(inShapePtr) { return; }
 
 	// Public Interface
-	void AddMeToLineRenderer(LineRenderer& lineRenderer) { meshPtr->DrawMe(lineRenderer); }
+	void AddMeToLineRenderer(LineRenderer& lineRenderer) { meshPtr->AddMyLinesToRenderer(lineRenderer); }
 };
 
 #endif

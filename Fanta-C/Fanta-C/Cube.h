@@ -2,33 +2,24 @@
 #define _CUBE_H
 
 // My Headers
-#include "GlobalGame.h"
-#include "GlobalGeometry.h"
-#include "ObjectTransform.h"
+#include "Shape.h"
 
-class Cube : public ObjectTransform
+class Cube : public Shape
 {
-	bool					shapeIsFlat = false;
-	float					scale;
 	constexpr static uchar	numberOfLinesTriIndicesVertices[3] = { 3, 4, 8 };
 	uchar					triIndices[numberOfLinesTriIndicesVertices[1]][numberOfLinesTriIndicesVertices[0]][2];
 	SIMPLE_VERTEX			vertices[numberOfLinesTriIndicesVertices[2]];
 
 	// Private
-	void CreateShape(float scale);
+	void CreateMesh();
 
 public:
 	// Initialization
-	Cube(float inScale = 1) : scale(inScale), ObjectTransform(worldOrigin) { CreateShape(inScale); }
-	Cube(const XMVECTOR& position, float inScale = 1) : scale(inScale), ObjectTransform(position) { CreateShape(inScale); }
-	Cube(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : scale(inScale), ObjectTransform(false, position, forward, up) { CreateShape(inScale); }
+	Cube(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Shape(position, false, inScale) { CreateMesh(); }
+	Cube(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Shape(position, forward, up, false, inScale) { CreateMesh(); }
 
 	// Public Interface
-	void DrawMe(LineRenderer& lineRenderer) override;
-
-	// Accessors
-	bool GetFlatness() const override { return shapeIsFlat; }
-	float GetScale() const override { return scale; }
+	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;
 };
 
 #endif

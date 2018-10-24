@@ -47,7 +47,7 @@ class Renderer
 
 	// Private
 	void ResetScreen();
-	void DrawLineRenders(const XMMATRIX& objectTransform);
+	void DrawLines(const Agent& agent);
 
 public:
 	// Initialization

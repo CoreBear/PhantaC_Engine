@@ -8,7 +8,7 @@ class AutonomousAgent : public Agent
 {
 public:
 	// Initialization
-	AutonomousAgent(ObjectTransform* intransformPtr, bool collider, bool renderer, float inMoveSpeed, float inRotationSpeed) : Agent(intransformPtr, collider, renderer, inMoveSpeed, inRotationSpeed) { return; }
+	AutonomousAgent(ObjectTransform* intransformPtr, bool collidable, bool renderable, float inMoveSpeed, float inRotationSpeed) : Agent(intransformPtr, collidable, renderable, inMoveSpeed, inRotationSpeed) { return; }
 
 	// Update
 	virtual void Action(float deltaTime) = 0;

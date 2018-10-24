@@ -2,25 +2,22 @@
 #define _GRID_H
 
 // My Headers
-#include "GlobalGame.h"
-#include "GlobalGeometry.h"
-#include "ObjectTransform.h"
+#include "Shape.h"
 
-class Grid : public ObjectTransform
+class Grid : public Shape
 {
 	constexpr static ushort		numberOfVertices = 500;				// Make sure this number is a multiple of 4. Half the number of lines
 	SIMPLE_VERTEX				vertices[numberOfVertices];			// First 22 are horizontal
 
-	void CreateShape();
+	void CreateMesh();
 
 public:
 	// Initialization
-	Grid() : ObjectTransform(worldOrigin) { CreateShape(); }
-	Grid(const XMVECTOR& position) : ObjectTransform(position) { CreateShape(); }
-	Grid(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : ObjectTransform(false, position, forward, up) { CreateShape(); }
+	Grid(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Shape(position, true, inScale) { CreateMesh(); }
+	Grid(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Shape(position, forward, up, true, inScale) { CreateMesh(); }
 
 	// Public Interface
-	void DrawMe(LineRenderer& lineRenderer) override;
+	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;
 };
 
 #endif

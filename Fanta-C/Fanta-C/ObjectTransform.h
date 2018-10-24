@@ -4,10 +4,9 @@
 // My Headers
 #include "GlobalTypedefs.h"
 #include "LineRenderer.h"
-#include "Mesh.h"
 #include "WorldObject.h"
 
-class ObjectTransform : public WorldObject, public Mesh
+class ObjectTransform : public WorldObject
 {
 protected:
 	float			moveSpeed;
@@ -21,7 +20,6 @@ public:
 	ObjectTransform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : WorldObject(camera, position, forward, up) { return; }
 
 	// Public Interface
-	virtual void DrawMe(LineRenderer& lineRenderer) { return; }
 	void RotateOnWorldXAxis(float angle);
 	void RotateOnWorldYAxis(float angle);
 	void RotateOnWorldZAxis(float angle);

@@ -160,7 +160,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GlobalDirectX.h" />
     <ClInclude Include="GlobalGame.h" />
-    <ClInclude Include="GlobalTools.h" />
+    <ClInclude Include="GlobalContainers.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="ObjectTransform.h" />
     <ClInclude Include="PhysicsMain.h" />
@@ -179,6 +179,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="WorldObject.h" />
     <ClInclude Include="Triangle.h" />

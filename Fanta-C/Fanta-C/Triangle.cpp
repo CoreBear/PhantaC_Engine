@@ -2,12 +2,11 @@
 // My Headers
 #include "Triangle.h"			// Connection to declarations
 #include "GlobalApplication.h"
-#include "GlobalGeometry.h"
 #include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Public Interface
-void Triangle::DrawMe(LineRenderer& lineRenderer)
+void Triangle::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
@@ -18,7 +17,7 @@ void Triangle::DrawMe(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Triangle::CreateShape(float scale)
+void Triangle::CreateMesh()
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{

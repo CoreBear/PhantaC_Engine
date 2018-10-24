@@ -7,7 +7,7 @@
 #include "Cube.h"
 #include "EnemyBase.h"
 #include "FreeCamera.h"
-#include "GlobalTools.h"
+#include "GlobalContainers.h"
 #include "Grid.h"
 #include "InputManager.h"
 #include "ObjectTransform.h"
@@ -26,9 +26,9 @@ SceneManager::SceneManager(InputManager* inputManager, ushort* clientDimensions)
 	// Create camera
 	cameraPtr = new Camera(clientDimensions, XMVectorSet(0, 3, -20, 1), XMVectorSet(0, 0, 1, 0), XMVectorSet(0, 1, 0, 0));
 
-	// Wrap camera in an agent and place it into the agent's container (FreeCamera will move on its own. Agent will be controlled by player)
-	AddObjectToContainer<Agent*>(&autonomousAgents, new Agent(cameraPtr, false, false));
-	//AddObjectToContainer<Agent*>(&autonomousAgents, new FreeCamera(cameraPtr, false, false));
+	// Wrap camera in an agent and place it into the agent's container
+	AddObjectToContainer<Agent*>(&autonomousAgents, new Agent(cameraPtr, false, false));			// Use for player control
+	//AddObjectToContainer<Agent*>(&autonomousAgents, new FreeCamera(cameraPtr, false, false));		// Use for autonomous control
 	#pragma endregion
 
 	#pragma region Add Any Object in the Scene

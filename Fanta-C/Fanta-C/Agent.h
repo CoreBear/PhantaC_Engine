@@ -3,24 +3,24 @@
 
 // My Headers
 #include "CollidableObject.h"
+#include "Shape.h"
 #include "ObjectTransform.h"
-#include "RenderableObject.h"
 
 class Agent
 {
 	CollidableObject*		colliderPtr;
-	RenderableObject*		rendererPtr;
+	Shape*					shapePtr;
 
 protected:
 	ObjectTransform*		transformPtr;
 
 public:
 	// Initialization
-	Agent(ObjectTransform* transformPtr, bool collider, bool renderer, float inMoveSpeed = 0, float inRotationSpeed = 0);
+	Agent(ObjectTransform* transformPtr, bool collidable, bool renderable, float inMoveSpeed = 0, float inRotationSpeed = 0);
 
 	// Accessors
 	CollidableObject* GetColliderPtr() const { return colliderPtr; }
-	RenderableObject* GetRendererPtr() const { return rendererPtr; }
+	Shape* GetShapePtr() const { return shapePtr; }
 	ObjectTransform* GetTransformPtr() const { return transformPtr; }
 };
 

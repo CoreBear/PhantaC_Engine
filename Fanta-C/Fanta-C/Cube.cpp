@@ -2,12 +2,11 @@
 // My Headers
 #include "Cube.h"		// Connection to declarations
 #include "GlobalApplication.h"
-#include "GlobalGeometry.h"
 #include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Public Interface
-void Cube::DrawMe(LineRenderer& lineRenderer)
+void Cube::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[1]; ++iterators[0])
 	{
@@ -21,7 +20,7 @@ void Cube::DrawMe(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Cube::CreateShape(float scale)
+void Cube::CreateMesh()
 {
 
 	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[2]; ++iterators[0])

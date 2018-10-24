@@ -213,21 +213,15 @@ void Renderer::Update(std::vector<Agent*>* staticAgents, std::vector<Agent*>* au
 	// Skip over index 0, because of camera (it doesn't get "rendered")
 	// Load objects into line renderer, then draw them
 
-	#pragma region Draw Autonomous Agents
+	#pragma region Draw Static Agents
 	for (renderIterator = 0; renderIterator < staticAgents->size(); ++renderIterator)
-	{
-		staticAgents->at(renderIterator)->GetRendererPtr()->AddMeToLineRenderer(lineRenderer);
-		DrawLineRenders(staticAgents->at(renderIterator)->GetTransformPtr()->GetWorldMatrix());
-	}
+		DrawLines(*staticAgents->at(renderIterator));
 	#pragma endregion	
 
 	#pragma region Draw Autonomous Agents
 	// Camera's index is 0, so skip
 	for (renderIterator = 1; renderIterator < autonomousAgents->size(); ++renderIterator)
-	{
-		autonomousAgents->at(renderIterator)->GetRendererPtr()->AddMeToLineRenderer(lineRenderer);
-		DrawLineRenders(autonomousAgents->at(renderIterator)->GetTransformPtr()->GetWorldMatrix());
-	}	
+		DrawLines(*autonomousAgents->at(renderIterator));
 	#pragma endregion
 
 	//											Don't add anything under here
@@ -244,10 +238,14 @@ void Renderer::ResetScreen()
 	deviceContext->ClearRenderTargetView(renderTargetView[RENDER_TARGET_VIEW::DEFAULT], DirectX::Colors::Black);
 	deviceContext->ClearDepthStencilView(depthStencilView[DEPTH_STENCIL_VIEW::DEFAULT], D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, maxZBufferDepth, 0);
 }
-void Renderer::DrawLineRenders(const XMMATRIX& objectTransform)
+void Renderer::DrawLines(const Agent& agent)
 {
+	// If object is renderable, add its lines to line renderer
+	if (agent.GetShapePtr() != nullptr)
+		static_cast<Shape*>(agent.GetShapePtr())->AddMyLinesToRenderer(lineRenderer);
+
 	// Upload object's world matrix into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, &objectTransform, 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, &agent.GetTransformPtr()->GetWorldMatrix(), 0, 0);
 
 	// Load lines into VRAM
 	ZeroMemory(&resourceForVertBuffer, sizeof(resourceForVertBuffer));

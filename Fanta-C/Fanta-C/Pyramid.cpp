@@ -2,12 +2,11 @@
 // My Headers	
 #include "Pyramid.h"		// Connection to declarations
 #include "GlobalApplication.h"
-#include "GlobalGeometry.h"
 #include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Public Interface
-void Pyramid::DrawMe(LineRenderer& lineRenderer)
+void Pyramid::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfLineIndicesVertices[0]; ++iterators[0])
 	{
@@ -18,7 +17,7 @@ void Pyramid::DrawMe(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Pyramid::CreateShape(float scale)
+void Pyramid::CreateMesh()
 {
 	// Create Vertices
 	for (iterators[0] = 0; iterators[0] < numberOfLineIndicesVertices[1]; ++iterators[0])

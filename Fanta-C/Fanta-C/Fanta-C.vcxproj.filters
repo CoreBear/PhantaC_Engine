@@ -7,9 +7,6 @@
     <Filter Include="Globals">
       <UniqueIdentifier>{1161c7c0-137c-4f19-ab74-a93238c77c71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shapes">
-      <UniqueIdentifier>{847561fd-312f-4e0e-a1e8-f680006554f7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine Modules">
       <UniqueIdentifier>{fd6d816e-c42a-494a-aabd-84a055829a74}</UniqueIdentifier>
     </Filter>
@@ -58,6 +55,9 @@
     </Filter>
     <Filter Include="Object Modules\Rendering">
       <UniqueIdentifier>{a7b0d333-0d12-489f-9411-44a379711748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shapes">
+      <UniqueIdentifier>{847561fd-312f-4e0e-a1e8-f680006554f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -228,9 +228,6 @@
     <ClInclude Include="CollisionChecker.h">
       <Filter>Engine Modules\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalTools.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -242,9 +239,6 @@
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="WorldObject.h">
       <Filter>Object Modules\Transform</Filter>
@@ -260,6 +254,15 @@
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Object Modules\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalContainers.h">
+      <Filter>Globals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
