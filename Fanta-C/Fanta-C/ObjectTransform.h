@@ -4,20 +4,20 @@
 // My Headers
 #include "GlobalTypedefs.h"
 #include "LineRenderer.h"
-#include "WorldObject.h"
 
-class ObjectTransform : public WorldObject
+class ObjectTransform
 {
 protected:
 	float			moveSpeed;
 	float			rotationSpeed;
 	XMMATRIX		myTransformMatrix;
+	XMMATRIX		myWorldMatrix;
 	XMVECTOR		myTranslationVector;
 
 public:
 	// Initialization
-	ObjectTransform(const XMVECTOR& position) : WorldObject(position) { return; }
-	ObjectTransform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : WorldObject(camera, position, forward, up) { return; }
+	ObjectTransform(const XMVECTOR& position) : myWorldMatrix(XMMatrixIdentity()) { myWorldMatrix.r[3] = position; }		// Instatiation at specific position
+	ObjectTransform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up);
 
 	// Public Interface
 	void RotateOnWorldXAxis(float angle);
@@ -35,6 +35,8 @@ public:
 	float GetMoveSpeed() const { return moveSpeed; }
 	float GetRotationSpeed() const { return rotationSpeed; }
 	virtual float GetScale() const { return false; }
+	XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }
+	XMVECTOR& GetPosition() { return myWorldMatrix.r[3]; }
 
 	// Mutators
 	void SetMoveSpeed(float inMoveSpeed) { moveSpeed = inMoveSpeed; }

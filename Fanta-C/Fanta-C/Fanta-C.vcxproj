@@ -141,7 +141,6 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sphere.cpp" />
-    <ClCompile Include="WorldObject.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -181,7 +180,6 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Sphere.h" />
-    <ClInclude Include="WorldObject.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="GlobalTypedefs.h" />
   </ItemGroup>

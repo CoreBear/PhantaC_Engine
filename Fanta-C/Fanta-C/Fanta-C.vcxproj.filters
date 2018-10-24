@@ -136,9 +136,6 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="WorldObject.cpp">
-      <Filter>Object Modules\Transform</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectTransform.cpp">
       <Filter>Object Modules\Transform</Filter>
     </ClCompile>
@@ -239,9 +236,6 @@
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldObject.h">
-      <Filter>Object Modules\Transform</Filter>
     </ClInclude>
     <ClInclude Include="ObjectTransform.h">
       <Filter>Object Modules\Transform</Filter>
