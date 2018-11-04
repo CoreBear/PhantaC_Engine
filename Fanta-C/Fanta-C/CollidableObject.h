@@ -8,11 +8,11 @@ class CollidableObject
 	bool		isColliding;
 	XMVECTOR	extents;			// Also the max
 
-	void CreateBounds(bool shapeIsFlat, float scale);
+	void CreateBounds(bool meshIsFlat, float scale);
 
 public:
 	// Initialization
-	CollidableObject(bool inShapeIsFlat, float inScale) { CreateBounds(inShapeIsFlat, inScale); }
+	CollidableObject(bool inMeshIsFlat, float inScale) { CreateBounds(inMeshIsFlat, inScale); }
 
 	// Accessors
 	XMVECTOR GetExtents() const { return extents; }

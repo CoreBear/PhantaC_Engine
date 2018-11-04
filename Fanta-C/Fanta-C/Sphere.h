@@ -2,9 +2,9 @@
 #define _SPHERE_H
 
 // My Headers
-#include "Shape.h"
+#include "Mesh.h"
 
-class Sphere : public Shape
+class Sphere : public Mesh
 {
 	constexpr static ushort		numberOfVertices = 720;
 	SIMPLE_VERTEX				vertices[numberOfVertices];
@@ -13,8 +13,8 @@ class Sphere : public Shape
 
 public:
 	// Initialization
-	Sphere(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Shape(position, false, inScale) { CreateMesh(); }
-	Sphere(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Shape(position, forward, up, false, inScale) { CreateMesh(); }
+	Sphere(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Mesh(position, false, inScale) { CreateMesh(); }
+	Sphere(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Mesh(position, forward, up, false, inScale) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

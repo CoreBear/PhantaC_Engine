@@ -3,17 +3,17 @@
 
 // My Headers
 #include "CollidableObject.h"
-#include "Shape.h"
+#include "Mesh.h"
 #include "ObjectTransform.h"
 
 class CollidableObject;
 class ObjectTransform;
-class Shape;
+class Mesh;
 
 class Agent
 {
 	CollidableObject*		colliderPtr;
-	Shape*					shapePtr;
+	Mesh*					meshPtr;
 
 protected:
 	ObjectTransform*		transformPtr;
@@ -24,7 +24,7 @@ public:
 
 	// Accessors
 	CollidableObject* GetColliderPtr() const { return colliderPtr; }
-	Shape* GetShapePtr() const { return shapePtr; }
+	Mesh* GetMeshPtr() const { return meshPtr; }
 	ObjectTransform* GetTransformPtr() const { return transformPtr; }
 
 	// Clean Up

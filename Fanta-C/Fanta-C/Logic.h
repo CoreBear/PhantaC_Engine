@@ -8,7 +8,7 @@ class Logic
 {
 public:
 	// Update
-	void Update(std::vector<class Agent*>* autonomousAgents);
+	void Update(std::vector<class AutonomousAgent*>* autonomousAgents);
 };
 
 #endif

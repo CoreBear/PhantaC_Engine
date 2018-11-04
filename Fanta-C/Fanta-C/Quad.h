@@ -2,9 +2,9 @@
 #define _QUAD_H
 
 // My Headers
-#include "Shape.h"
+#include "Mesh.h"
 
-class Quad : public Shape
+class Quad : public Mesh
 {
 	constexpr static uchar	numberOfVertices = 4;
 	SIMPLE_VERTEX			vertices[numberOfVertices];
@@ -13,8 +13,8 @@ class Quad : public Shape
 
 public:
 	// Initialization
-	Quad(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Shape(position, true, inScale) { CreateMesh(); }
-	Quad(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Shape(position, forward, up, true, inScale) { CreateMesh(); }
+	Quad(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Mesh(position, true, inScale) { CreateMesh(); }
+	Quad(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Mesh(position, forward, up, true, inScale) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

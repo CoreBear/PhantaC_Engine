@@ -9,6 +9,7 @@
 #include <vector>
 
 // Forward Declaration
+class AutonomousAgent;
 class Camera;
 class ObjectTransform;
 class RenderableObject;
@@ -21,7 +22,7 @@ class SceneManager
 	class PhysicsMain*				physicsMain;			
 	class Player*					playerPtr;
 	Renderer*						renderer;
-	std::vector<Agent*>				autonomousAgents;		// Objects that can move. Contents of this container are not necessarily visible
+	std::vector<AutonomousAgent*>	autonomousAgents;		// Objects that can move. Contents of this container are not necessarily visible
 	std::vector<Agent*>				renderableAgents;		// Objects that can be seen in the game world
 	std::vector<Agent*>				staticAgents;			// Objects that do not move. Contents of this container are not necessarily visible
 
@@ -35,7 +36,7 @@ public:
 	void Update(float deltaTime);
 
 	// Accessors
-	std::vector<Agent*>* GetAutonomousAgents() { return &autonomousAgents; }
+	std::vector<AutonomousAgent*>* GetAutonomousAgents() { return &autonomousAgents; }
 	std::vector<Agent*>* GetStaticAgents() { return &staticAgents; }
 
 	// Clean up

@@ -2,9 +2,9 @@
 #define _TRIANGLE_H
 
 // My Headers
-#include "Shape.h"
+#include "Mesh.h"
 
-class Triangle : public Shape
+class Triangle : public Mesh
 {
 	constexpr static uchar	numberOfVertices = 3;
 	SIMPLE_VERTEX			vertices[numberOfVertices];
@@ -14,8 +14,8 @@ class Triangle : public Shape
 
 public:
 	// Initialization
-	Triangle(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Shape(position, true, inScale) { CreateMesh(); }
-	Triangle(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Shape(position, forward, up, true, inScale) { CreateMesh(); }
+	Triangle(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Mesh(position, true, inScale) { CreateMesh(); }
+	Triangle(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Mesh(position, forward, up, true, inScale) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

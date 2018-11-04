@@ -2,13 +2,14 @@
 // My Headers
 #include "CollisionChecker.h"			// Connection to declarations
 #include "Agent.h"
+#include "AutonomousAgent.h"
 #include "ObjectTransform.h"
 #include "GlobalApplication.h"
 #include "GlobalContainers.h"
 #pragma endregion
 
 #pragma region Update
-void CollisionChecker::Update(std::vector<Agent*>* autonomousAgents, std::vector<Agent*>* staticAgents, std::vector<Agent*>* currentlyCollidingObjects)
+void CollisionChecker::Update(std::vector<AutonomousAgent*>* autonomousAgents, std::vector<Agent*>* staticAgents, std::vector<Agent*>* currentlyCollidingObjects)
 {
 	//// Check each agent's collision (Collider)
 	//for (iterators[0] = 0; iterators[0] < autonomousAgents->size(); ++iterators[0])

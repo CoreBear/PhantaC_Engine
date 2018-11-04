@@ -233,8 +233,8 @@ void Renderer::ResetScreen()
 void Renderer::DrawLines(const Agent& agent)
 {
 	// If object is renderable, add its lines to line renderer
-	if (agent.GetShapePtr() != nullptr)
-		static_cast<Shape*>(agent.GetShapePtr())->AddMyLinesToRenderer(lineRenderer);
+	if (agent.GetMeshPtr() != nullptr)
+		static_cast<Mesh*>(agent.GetMeshPtr())->AddMyLinesToRenderer(lineRenderer);
 
 	// Upload object's world matrix into vram
 	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, &agent.GetTransformPtr()->GetWorldMatrix(), 0, 0);

@@ -23,9 +23,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Logic">
-      <UniqueIdentifier>{452a062f-e7c3-4f19-b95d-ad32ca579adf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{622967f1-4b53-45e3-bd8e-9de4acf8cdf5}</UniqueIdentifier>
     </Filter>
@@ -67,6 +64,9 @@
     </Filter>
     <Filter Include="Mesh">
       <UniqueIdentifier>{847561fd-312f-4e0e-a1e8-f680006554f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Engine Modules\Logic">
+      <UniqueIdentifier>{452a062f-e7c3-4f19-b95d-ad32ca579adf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -146,7 +146,7 @@
       <Filter>Modules\Object Modules\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Logic.cpp">
-      <Filter>Logic</Filter>
+      <Filter>Modules\Engine Modules\Logic</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Managers\SceneManager</Filter>
@@ -249,9 +249,6 @@
     <ClInclude Include="RenderableObject.h">
       <Filter>Modules\Object Modules\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Player</Filter>
     </ClInclude>
@@ -259,7 +256,7 @@
       <Filter>Globals</Filter>
     </ClInclude>
     <ClInclude Include="Logic.h">
-      <Filter>Logic</Filter>
+      <Filter>Modules\Engine Modules\Logic</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Managers\SceneManager</Filter>

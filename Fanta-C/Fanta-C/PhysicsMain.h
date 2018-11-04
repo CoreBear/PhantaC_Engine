@@ -15,7 +15,7 @@ class PhysicsMain
 
 public:
 	// Update
-	void Update(float deltaTime, std::vector<class Agent*>* autonomousAgents, std::vector<class Agent*>* staticAgents);
+	void Update(float deltaTime, std::vector<class AutonomousAgent*>* autonomousAgents, std::vector<class Agent*>* staticAgents);
 };
 
 #endif

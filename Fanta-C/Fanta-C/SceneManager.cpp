@@ -2,6 +2,7 @@
 // My Headers
 #include "SceneManager.h"		// Connection to declarations
 #include "Agent.h"
+#include "AutonomousAgent.h"
 #include "Audio.h"
 #include "Camera.h"
 #include "Circle.h"
@@ -29,10 +30,6 @@ SceneManager::SceneManager(InputManager* inputManager, ushort* clientDimensions,
 	#pragma region Camera Setup
 	// Create camera
 	cameraPtr = new Camera(clientDimensions, XMVectorSet(0, 3, -20, 1), XMVectorSet(0, 0, 1, 0), XMVectorSet(0, 1, 0, 0));
-
-	// Wrap camera in an agent and place it into the agent's container
-	AddObjectToContainer<Agent*>(&autonomousAgents, new Agent(cameraPtr, false, false));			// Use for player control
-	//AddObjectToContainer<Agent*>(&autonomousAgents, new FreeCamera(cameraPtr, false, false));		// Use for autonomous control
 	#pragma endregion
 	
 	#pragma region Modules
@@ -52,12 +49,12 @@ SceneManager::SceneManager(InputManager* inputManager, ushort* clientDimensions,
 	#pragma region Add Any Object in the Scene
 	// Create scene objects (Agents are static. Everything else is autonomous)
 	CreateObjectAndStore(new Agent(new Grid, false, true, 0, 0), false, true);
-	//CreateObjectAndStore(new EnemyBase(new Quad(XMVectorSet(-12.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
-	//CreateObjectAndStore(new EnemyBase(new Cube(XMVectorSet(-7.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
-	//CreateObjectAndStore(new EnemyBase(new Pyramid(XMVectorSet(-2.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
-	//CreateObjectAndStore(new EnemyBase(new Circle(XMVectorSet(2.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
-	//CreateObjectAndStore(new EnemyBase(new Sphere(XMVectorSet(7.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
-	//CreateObjectAndStore(new EnemyBase(new Triangle(XMVectorSet(12.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
+	CreateObjectAndStore(new EnemyBase(new Quad(XMVectorSet(-12.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
+	CreateObjectAndStore(new EnemyBase(new Cube(XMVectorSet(-7.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
+	CreateObjectAndStore(new EnemyBase(new Pyramid(XMVectorSet(-2.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
+	CreateObjectAndStore(new EnemyBase(new Circle(XMVectorSet(2.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
+	CreateObjectAndStore(new EnemyBase(new Sphere(XMVectorSet(7.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
+	CreateObjectAndStore(new EnemyBase(new Triangle(XMVectorSet(12.5f, 5, 0, 1), 1), false, true, 0.25f, 0), true, true);
 	#pragma endregion
 	
 	#pragma region Create Player (Right now, a new camera is attached, but it can be any object, exactly like the enemies below)
@@ -85,7 +82,7 @@ void SceneManager::CreateObjectAndStore(Agent* object, bool autonomous, bool ren
 {
 	// Send to moving or non-moving containers
 	if (autonomous)
-		AddObjectToContainer<Agent*>(&autonomousAgents, object);
+		AddObjectToContainer<AutonomousAgent*>(&autonomousAgents, static_cast<AutonomousAgent*>(object));
 	else
 		AddObjectToContainer<Agent*>(&staticAgents, object);
 
@@ -105,37 +102,18 @@ SceneManager::~SceneManager()
 	delete	playerPtr;
 	delete	renderer;
 
-	size_t containerSize = autonomousAgents.size();
+	unsigned short size = autonomousAgents.size();
 
-	for (iterators[0] = 0; iterators[0] < containerSize; ++iterators[0])
-	{
-		if (autonomousAgents.at(iterators[0]))
-		{
-			delete autonomousAgents.at(iterators[0]);
-			autonomousAgents.at(iterators[0]) = nullptr;
-		}
-	}
-	
-	containerSize = renderableAgents.size();
+	for (iterators[0] = 0; iterators[0] < size; ++iterators[0])
+		delete autonomousAgents.at(iterators[0]);
 
-	for (iterators[0] = 0; iterators[0] < containerSize; ++iterators[0])
-	{
-		if (renderableAgents.at(iterators[0]))
-		{
-			delete renderableAgents.at(iterators[0]);
-			renderableAgents.at(iterators[0]) = nullptr;
-		}
-	}
+	autonomousAgents.clear();
 
-	//containerSize = staticAgents.size();
-	//
-	//for (iterators[0] = 0; iterators[0] < containerSize; ++iterators[0])
-	//{
-	//	if (staticAgents.at(iterators[0]))
-	//	{
-	//		delete staticAgents.at(iterators[0]);
-	//		staticAgents.at(iterators[0]) = nullptr;
-	//	}
-	//}
+	size = staticAgents.size();
+
+	for (iterators[0] = 0; iterators[0] < size; ++iterators[0])
+		delete staticAgents.at(iterators[0]);
+
+	staticAgents.clear();
 }
 #pragma endregion
