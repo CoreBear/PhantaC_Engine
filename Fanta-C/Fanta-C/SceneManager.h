@@ -2,10 +2,8 @@
 #define _SCENE_MANAGER_H
 
 // My Headers
-#include "Audio.h"
 #include "GlobalTypedefs.h"
-#include "PhysicsMain.h"
-#include "Scene.h"
+#include "Renderer.h"
 
 // System Headers
 #include <vector>
@@ -17,25 +15,31 @@ class RenderableObject;
 
 class SceneManager
 {
-	Audio							audio;					
+	class Audio*					audio;					
 	Camera*							cameraPtr;
-	PhysicsMain						physicsMain;			
+	class Logic*					logic;					// The actual running of the scene (game update. i.e. scene autonomousAgents)
+	class PhysicsMain*				physicsMain;			
 	class Player*					playerPtr;
-	Scene							scene;					// The actual running of the scene (game update. i.e. scene autonomousAgents)
-	std::vector<Agent*>				autonomousAgents;		// Objects that can move. Contents of this container are not visible, but their physical bodies may be in the "visibleSceneObjects" container
-	std::vector<Agent*>				staticAgents;			// Objects that can move. Contents of this container are not visible, but their physical bodies may be in the "visibleSceneObjects" container
+	Renderer*						renderer;
+	std::vector<Agent*>				autonomousAgents;		// Objects that can move. Contents of this container are not necessarily visible
+	std::vector<Agent*>				renderableAgents;		// Objects that can be seen in the game world
+	std::vector<Agent*>				staticAgents;			// Objects that do not move. Contents of this container are not necessarily visible
+
+	void CreateObjectAndStore(Agent* object, bool autonomous, bool renderable);
 
 public:
 	// Initialization
-	SceneManager(class InputManager* inputManager, ushort* clientDimensions);
+	SceneManager(class InputManager* inputManager, ushort* clientDimensions, HWND* windowHandle, uchar targetFPS);
 
 	// Update
 	void Update(float deltaTime);
 
 	// Accessors
-	Camera* GetCamera() { return cameraPtr; }
 	std::vector<Agent*>* GetAutonomousAgents() { return &autonomousAgents; }
 	std::vector<Agent*>* GetStaticAgents() { return &staticAgents; }
+
+	// Clean up
+	~SceneManager();
 };
 
 #endif

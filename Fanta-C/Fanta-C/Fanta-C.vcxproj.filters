@@ -7,26 +7,8 @@
     <Filter Include="Globals">
       <UniqueIdentifier>{1161c7c0-137c-4f19-ab74-a93238c77c71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine Modules">
-      <UniqueIdentifier>{fd6d816e-c42a-494a-aabd-84a055829a74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine Modules\Physics">
-      <UniqueIdentifier>{be81b75a-3fa0-4a0d-9466-5ce74b199a1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object Modules">
-      <UniqueIdentifier>{84094815-1f7c-4d0c-99e2-e292bc5742c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Agent Modules">
-      <UniqueIdentifier>{4982577d-f467-4c7e-b7c7-78ba99c549f9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Camera">
       <UniqueIdentifier>{8ab6d898-497e-4c62-bf0d-d39e3a939cec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine Modules\Audio">
-      <UniqueIdentifier>{9e484f12-5048-4d95-a11b-3b3acf9abbb3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine Modules\Renderer">
-      <UniqueIdentifier>{96377b70-1f8a-4e78-a6b6-4c01bdca06d0}</UniqueIdentifier>
     </Filter>
     <Filter Include="State Machines">
       <UniqueIdentifier>{537b3f8c-4d45-428b-897f-dee513ad385f}</UniqueIdentifier>
@@ -41,22 +23,49 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Scene">
+    <Filter Include="Logic">
       <UniqueIdentifier>{452a062f-e7c3-4f19-b95d-ad32ca579adf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game Management">
+    <Filter Include="Managers">
+      <UniqueIdentifier>{622967f1-4b53-45e3-bd8e-9de4acf8cdf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers\Game Management">
       <UniqueIdentifier>{c6efe496-58b1-45b1-9218-b308ae4df4d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object Modules\Transform">
+    <Filter Include="Managers\SceneManager">
+      <UniqueIdentifier>{b4526aab-75a0-4870-9a06-af348f003557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{4819e502-d637-4a1e-a380-30f63963da01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Engine Modules">
+      <UniqueIdentifier>{fd6d816e-c42a-494a-aabd-84a055829a74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Engine Modules\Physics">
+      <UniqueIdentifier>{be81b75a-3fa0-4a0d-9466-5ce74b199a1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Engine Modules\Audio">
+      <UniqueIdentifier>{9e484f12-5048-4d95-a11b-3b3acf9abbb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Engine Modules\Renderer">
+      <UniqueIdentifier>{96377b70-1f8a-4e78-a6b6-4c01bdca06d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Agent Modules">
+      <UniqueIdentifier>{4982577d-f467-4c7e-b7c7-78ba99c549f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Object Modules">
+      <UniqueIdentifier>{84094815-1f7c-4d0c-99e2-e292bc5742c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Object Modules\Transform">
       <UniqueIdentifier>{6baef527-b5a3-4934-8b9e-bbb70d654728}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object Modules\Collision">
+    <Filter Include="Modules\Object Modules\Collision">
       <UniqueIdentifier>{43d46425-fcc9-4a4b-8535-d40d6a8d1195}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object Modules\Rendering">
+    <Filter Include="Modules\Object Modules\Rendering">
       <UniqueIdentifier>{a7b0d333-0d12-489f-9411-44a379711748}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shapes">
+    <Filter Include="Mesh">
       <UniqueIdentifier>{847561fd-312f-4e0e-a1e8-f680006554f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -68,46 +77,46 @@
       <Filter>Camera</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsMain.cpp">
-      <Filter>Engine Modules\Physics</Filter>
+      <Filter>Modules\Engine Modules\Physics</Filter>
     </ClCompile>
     <ClCompile Include="Audio.cpp">
-      <Filter>Engine Modules\Audio</Filter>
+      <Filter>Modules\Engine Modules\Audio</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Engine Modules\Renderer</Filter>
+      <Filter>Modules\Engine Modules\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
-      <Filter>Game Management</Filter>
+      <Filter>Managers\Game Management</Filter>
     </ClCompile>
     <ClCompile Include="Circle.cpp">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Grid.cpp">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Pyramid.cpp">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Quad.cpp">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Triangle.cpp">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Agent.cpp">
-      <Filter>Agent Modules</Filter>
+      <Filter>Modules\Agent Modules</Filter>
     </ClCompile>
     <ClCompile Include="EnemyBase.cpp">
-      <Filter>Agent Modules</Filter>
+      <Filter>Modules\Agent Modules</Filter>
     </ClCompile>
     <ClCompile Include="AutonomousAgent.cpp">
-      <Filter>Agent Modules</Filter>
+      <Filter>Modules\Agent Modules</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp">
       <Filter>State Machines</Filter>
@@ -116,31 +125,31 @@
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="LineRenderer.cpp">
-      <Filter>Engine Modules\Renderer</Filter>
+      <Filter>Modules\Engine Modules\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="CollisionChecker.cpp">
-      <Filter>Engine Modules\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Scene</Filter>
+      <Filter>Modules\Engine Modules\Physics</Filter>
     </ClCompile>
     <ClCompile Include="FreeCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
-      <Filter>Engine Modules\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Scene</Filter>
+      <Filter>Modules\Engine Modules\Physics</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="ObjectTransform.cpp">
-      <Filter>Object Modules\Transform</Filter>
+      <Filter>Modules\Object Modules\Transform</Filter>
     </ClCompile>
     <ClCompile Include="CollidableObject.cpp">
-      <Filter>Object Modules\Collision</Filter>
+      <Filter>Modules\Object Modules\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Managers\SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,49 +175,49 @@
       <Filter>Globals</Filter>
     </ClInclude>
     <ClInclude Include="Triangle.h">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Sphere.h">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Quad.h">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Circle.h">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsMain.h">
-      <Filter>Engine Modules\Physics</Filter>
+      <Filter>Modules\Engine Modules\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Pyramid.h">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Agent.h">
-      <Filter>Agent Modules</Filter>
+      <Filter>Modules\Agent Modules</Filter>
     </ClInclude>
     <ClInclude Include="AutonomousAgent.h">
-      <Filter>Agent Modules</Filter>
+      <Filter>Modules\Agent Modules</Filter>
     </ClInclude>
     <ClInclude Include="EnemyBase.h">
-      <Filter>Agent Modules</Filter>
+      <Filter>Modules\Agent Modules</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
-      <Filter>Game Management</Filter>
+      <Filter>Managers\Game Management</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="Audio.h">
-      <Filter>Engine Modules\Audio</Filter>
+      <Filter>Modules\Engine Modules\Audio</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Engine Modules\Renderer</Filter>
+      <Filter>Modules\Engine Modules\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>State Machines</Filter>
@@ -220,43 +229,43 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="LineRenderer.h">
-      <Filter>Engine Modules\Renderer</Filter>
+      <Filter>Modules\Engine Modules\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="CollisionChecker.h">
-      <Filter>Engine Modules\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Scene</Filter>
+      <Filter>Modules\Engine Modules\Physics</Filter>
     </ClInclude>
     <ClInclude Include="FreeCamera.h">
       <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
-      <Filter>Engine Modules\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Scene</Filter>
+      <Filter>Modules\Engine Modules\Physics</Filter>
     </ClInclude>
     <ClInclude Include="ObjectTransform.h">
-      <Filter>Object Modules\Transform</Filter>
+      <Filter>Modules\Object Modules\Transform</Filter>
     </ClInclude>
     <ClInclude Include="CollidableObject.h">
-      <Filter>Object Modules\Collision</Filter>
+      <Filter>Modules\Object Modules\Collision</Filter>
     </ClInclude>
     <ClInclude Include="RenderableObject.h">
-      <Filter>Object Modules\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Object Modules\Rendering</Filter>
+      <Filter>Modules\Object Modules\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
-      <Filter>Shapes</Filter>
+      <Filter>Mesh</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="GlobalContainers.h">
       <Filter>Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="Logic.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Managers\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

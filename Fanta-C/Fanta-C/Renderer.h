@@ -12,13 +12,14 @@
 
 // Forward Declarations
 class Agent;
+class Camera;
 
 class Renderer
 {
-	uchar						renderIterator;									// Iterator for object rendering
+	uchar							renderIterator;									// Iterator for object rendering
 
 	// Line Renderer Variables
-	LineRenderer				lineRenderer;									// Object that renders lines on screen
+	LineRenderer					lineRenderer;									// Object that renders lines on screen
 
 	// Pipeline Variables
 	const float						maxZBufferDepth = 1.0f;							// Self-explanatory
@@ -51,10 +52,10 @@ class Renderer
 
 public:
 	// Initialization
-	Renderer(HWND windowHandle, class SceneManager* sceneManager, const ushort* clientDimensions, ushort targetFPS);
+	Renderer(HWND windowHandle, class SceneManager* sceneManager, const ushort* clientDimensions, ushort targetFPS, Camera* cameraPtr);
 
 	// Update
-	void Update(std::vector<Agent*>* staticAgents, std::vector<Agent*>* autonomousAgents);
+	void Update(std::vector<Agent*>* renderableAgents, Camera* cameraPtr);
 
 	// Clean-up
 	~Renderer();

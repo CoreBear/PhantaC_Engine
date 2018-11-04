@@ -6,6 +6,10 @@
 #include "Shape.h"
 #include "ObjectTransform.h"
 
+class CollidableObject;
+class ObjectTransform;
+class Shape;
+
 class Agent
 {
 	CollidableObject*		colliderPtr;
@@ -22,6 +26,9 @@ public:
 	CollidableObject* GetColliderPtr() const { return colliderPtr; }
 	Shape* GetShapePtr() const { return shapePtr; }
 	ObjectTransform* GetTransformPtr() const { return transformPtr; }
+
+	// Clean Up
+	~Agent();
 };
 
 #endif

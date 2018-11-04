@@ -139,7 +139,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Logic.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
@@ -177,7 +177,7 @@
     <ClInclude Include="GlobalStructures.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Logic.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Triangle.h" />

@@ -25,7 +25,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* clientDimensions, ushort targetFPS)
+Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* clientDimensions, ushort targetFPS, Camera* cameraPtr)
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -172,7 +172,7 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* 
 
 	#pragma region Consistant Pipeline Pieces (Will be changed in the future)
 	// Resources
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &sceneManager->GetCamera()->GetProjectionMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &cameraPtr->GetProjectionMatrix(), 0, 0);
 
 	// Input Assembler
 	deviceContext->IASetInputLayout(inputLayout[INPUT_LAYOUT::DEFAULT]);
@@ -197,14 +197,14 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* 
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(std::vector<Agent*>* staticAgents, std::vector<Agent*>* autonomousAgents)
+void Renderer::Update(std::vector<Agent*>* renderableAgents, Camera* cameraPtr)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
 	// Load view matrix (camera's world matrix) into vram
 	// If camera is not moving, we can set this during initialization
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &autonomousAgents->at(0)->GetTransformPtr()->GetWorldMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &cameraPtr->GetWorldMatrix(), 0, 0);
 
 	//											Add anything you want to draw here
 	// ------------------------------------------------------------------------------------------------------------------------------- 
@@ -212,17 +212,9 @@ void Renderer::Update(std::vector<Agent*>* staticAgents, std::vector<Agent*>* au
 	// Look into multi-threading this
 	// Skip over index 0, because of camera (it doesn't get "rendered")
 	// Load objects into line renderer, then draw them
-
-	#pragma region Draw Static Agents
-	for (renderIterator = 0; renderIterator < staticAgents->size(); ++renderIterator)
-		DrawLines(*staticAgents->at(renderIterator));
-	#pragma endregion	
-
-	#pragma region Draw Autonomous Agents
-	// Camera's index is 0, so skip
-	for (renderIterator = 1; renderIterator < autonomousAgents->size(); ++renderIterator)
-		DrawLines(*autonomousAgents->at(renderIterator));
-	#pragma endregion
+	
+	for (renderIterator = 0; renderIterator < renderableAgents->size(); ++renderIterator)
+		DrawLines(*renderableAgents->at(renderIterator));
 
 	//											Don't add anything under here
 	// --------------------------------------------------------------------------------------------------------------------------------

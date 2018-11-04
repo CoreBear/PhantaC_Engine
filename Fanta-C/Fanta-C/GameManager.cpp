@@ -3,7 +3,6 @@
 #include "GameManager.h"			// Connection to declarations
 #include "GameState.h"
 #include "InputManager.h"
-#include "Renderer.h"
 #include "SceneManager.h"
 #pragma endregion
 
@@ -21,11 +20,8 @@ GameManager::GameManager(HINSTANCE hInstance, int cmdShow)
 	availableStates[1] = new GamePaused;
 
 	// Loads the scene manager
-	sceneManagerPtr = new SceneManager(&inputManager, clientDimensions);
-
-	// Loads the render
-	rendererPtr = new Renderer(windowHandle, sceneManagerPtr, clientDimensions, targetFPS);
-
+	sceneManagerPtr = new SceneManager(&inputManager, clientDimensions, &windowHandle, targetFPS);
+	
 	// Starts the game loop
 	ApplicationLoop();
 }
@@ -101,7 +97,6 @@ void GameManager::ApplicationLoop()
 void GameManager::MainGameUpdate(float deltaTime)
 {
 	sceneManagerPtr->Update(deltaTime);
-	rendererPtr->Update(sceneManagerPtr->GetStaticAgents(), sceneManagerPtr->GetAutonomousAgents());
 }
 #pragma endregion
 
@@ -136,5 +131,14 @@ LRESULT CALLBACK GameManager::WndProc(HWND hwnd, UINT message, WPARAM wParam, LP
 	}
 
 	return 0;
+}
+#pragma endregion
+
+#pragma region Clean Up
+GameManager::~GameManager()
+{
+	delete availableStates[0];
+	delete availableStates[1];
+	delete sceneManagerPtr;
 }
 #pragma endregion

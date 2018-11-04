@@ -1,26 +1,2 @@
-﻿  Agent.cpp
-  AutonomousAgent.cpp
-  Camera.cpp
-  Circle.cpp
-  CollisionChecker.cpp
-  CollisionManager.cpp
-  Cube.cpp
-  EnemyBase.cpp
-  FreeCamera.cpp
-  GameManager.cpp
-  Grid.cpp
-  InputManager.cpp
-  ObjectTransform.cpp
-  PhysicsMain.cpp
-  Player.cpp
-  Pyramid.cpp
-  Quad.cpp
-  Renderer.cpp
-  Scene.cpp
-  SceneManager.cpp
-  Generating Code...
-  Compiling...
-  Sphere.cpp
-  Triangle.cpp
-  Generating Code...
+﻿  Main.cpp
   Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Debug\Fanta-C.exe

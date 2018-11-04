@@ -24,7 +24,6 @@ class GameManager
 	float									deltaTime = 0;
 	GameState*								availableStates[2];
 	GameState*								currentState;
-	class Renderer*							rendererPtr;
 	class SceneManager*						sceneManagerPtr;
 	std::chrono::duration<float>			chronoDelta;
 	std::chrono::steady_clock::time_point	startTime;
@@ -48,6 +47,9 @@ public:
 	// Public Interface
 	// If game is paused, unpause, and vice versa
 	void PauseUnpause() { currentState = (currentState == availableStates[0]) ? availableStates[1] : availableStates[0]; }
+	
+	// Clean Up
+	~GameManager();
 };
 
 #endif
