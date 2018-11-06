@@ -3,7 +3,7 @@
 #include "CollisionManager.h"			// Connection to declarations
 #include "Agent.h"
 #include "GlobalIterators.h"
-#include "GlobalContainers.h"
+#include "GlobalContainerManipulation.h"
 #pragma endregion
 
 #pragma region Update

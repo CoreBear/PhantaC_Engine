@@ -73,9 +73,6 @@
     <Filter Include="Environment\Physics\Collision">
       <UniqueIdentifier>{f2126942-9a11-48b2-bd62-329b9b3526c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Rendering\Debug Line">
-      <UniqueIdentifier>{4c524b32-16b0-4914-a692-3cd3a8c18151}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment\Rendering\Shaders\Pixel">
       <UniqueIdentifier>{f110a768-79eb-414b-80f8-69c15f653424}</UniqueIdentifier>
     </Filter>
@@ -127,6 +124,9 @@
     <Filter Include="Environment\Scene\Game Object\Transform">
       <UniqueIdentifier>{6baef527-b5a3-4934-8b9e-bbb70d654728}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Environment\Rendering\Simpe Line">
+      <UniqueIdentifier>{4c524b32-16b0-4914-a692-3cd3a8c18151}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -175,7 +175,7 @@
       <Filter>Environment\Physics\Collision</Filter>
     </ClCompile>
     <ClCompile Include="LineRenderer.cpp">
-      <Filter>Environment\Rendering\Debug Line</Filter>
+      <Filter>Environment\Rendering\Simpe Line</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Environment\Scene\Game Object\Collision</Filter>
@@ -227,9 +227,6 @@
     <ClInclude Include="ObjectTransform.h">
       <Filter>Environment\Scene\Game Object\Transform</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalContainers.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Environment\Scene\Game Object\Render\Mesh</Filter>
     </ClInclude>
@@ -261,7 +258,7 @@
       <Filter>Environment\Physics\Collision</Filter>
     </ClInclude>
     <ClInclude Include="LineRenderer.h">
-      <Filter>Environment\Rendering\Debug Line</Filter>
+      <Filter>Environment\Rendering\Simpe Line</Filter>
     </ClInclude>
     <ClInclude Include="GlobalIterators.h">
       <Filter>Globals</Filter>
@@ -301,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="Triangle.h">
       <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalContainerManipulation.h">
+      <Filter>Globals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

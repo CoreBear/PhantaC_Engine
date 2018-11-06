@@ -152,7 +152,7 @@
     <ClInclude Include="EnvironmentManager.h" />
     <ClInclude Include="GlobalDirectX.h" />
     <ClInclude Include="GlobalWorldInfo.h" />
-    <ClInclude Include="GlobalContainers.h" />
+    <ClInclude Include="GlobalContainerManipulation.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="ObjectTransform.h" />

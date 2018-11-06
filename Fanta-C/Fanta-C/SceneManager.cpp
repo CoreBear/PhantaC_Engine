@@ -5,12 +5,16 @@
 #include "Agent.h"
 #include "AudioManager.h"
 #include "Camera.h"
-#include "Cube.h"
-#include "GlobalContainers.h"
 #include "IntelligenceManager.h"
 #include "PhysicsManager.h"
 #include "RenderableObject.h"
 #include "Renderer.h"
+
+// Just here to demonstrate adding and removing to and from containers
+#include "Cube.h"
+#include "GlobalContainerManipulation.h"
+#include "GlobalIterators.h"
+#include "Pyramid.h"
 #pragma endregion
 
 #pragma region Initialization
@@ -31,14 +35,11 @@ SceneManager::SceneManager(ushort* clientDimensions, HWND* windowHandle, uchar t
 	rendererPtr = new Renderer(*windowHandle, this, clientDimensions, targetFPS, cameraPtr);
 	#pragma endregion
 
-	// Delete this when a solution to object creation is implemented
-	#pragma region Temporary. Example of how to create a new gameobject. Will create a memory leak.
-	// Create cube, make it non-collidable & renderable
-	Agent* agent = new Agent(new Cube, false, true);
-
-	// Add object to renderable container that is eventually passed to the renderer
-	AddObjectToContainer<Mesh*>(&renderableObjects, agent->GetMeshPtr());
-	#pragma endregion
+	// Temporary example of how to create a renderable game object.
+	// Look in destructor for deletion, or leak will be created
+	// Look into object pooling to counteract the "new" call
+	AddObjectToContainer<Mesh*>(&renderableObjects, new Cube);
+	AddObjectToContainer<Mesh*>(&renderableObjects, new Pyramid);
 }
 #pragma endregion
 
@@ -60,5 +61,9 @@ SceneManager::~SceneManager()
 	delete intelligenceManagerPtr;
 	delete physicsManagerPtr;
 	delete rendererPtr;
+	
+	// Temporary example of how to create a renderable game object.
+	for (iterators[0] = 0; iterators[0] < renderableObjects.size(); ++iterators[0])
+		delete renderableObjects.at(iterators[0]);
 }
 #pragma endregion
