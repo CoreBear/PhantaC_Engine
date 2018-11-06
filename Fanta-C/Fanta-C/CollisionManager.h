@@ -5,15 +5,21 @@
 #include <vector>
 
 // My Headers
-#include "Agent.h"
+#include "GlobalTypedefs.h"
+
+// Forward Declarations
+class Agent;
 
 class CollisionManager
 {
-	std::vector<Agent*> currentlyCollidingObjects;
+	Agent*				agentBeingChecked[2];
+	uchar				checkSize;
+	float				collisionValues[4];
+	std::vector<bool>	isColliding;
 
 public:
-	// Accessors
-	std::vector<Agent*>* GetCurrentlyCollidingObjectContainerPtr() { return &currentlyCollidingObjects; }
+	// Update
+	void Update(std::vector<Agent*>* collidableObjects);
 };
 
 #endif

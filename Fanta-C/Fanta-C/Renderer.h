@@ -2,9 +2,10 @@
 #define _RENDERER_H
 
 // My Headers
-#include "GlobalStructures.h"
+#include "GlobalRendererStructures.h"
 #include "GlobalTypedefs.h"
 #include "LineRenderer.h"
+#include "MeshLoader.h"
 
 // System Headers
 #include <d3d11.h>	
@@ -13,19 +14,20 @@
 // Forward Declarations
 class Agent;
 class Camera;
+class Mesh;
 
 class Renderer
 {
-	uchar							renderIterator;									// Iterator for object rendering
-
-	// Line Renderer Variables
+	// Misc Variables
 	LineRenderer					lineRenderer;									// Object that renders lines on screen
+	MeshLoader						meshLoader;										// Adds mesh lines to the line renderer
+	uchar							renderIterator;									// Iterator for object rendering
 
 	// Pipeline Variables
 	const float						maxZBufferDepth = 1.0f;							// Self-explanatory
 	const uchar						vSync = 0;										// 0 - vSync off. 1 - On
 	const UINT						offset = 0;										// Offset of bytes between first element of vert buffer and first element that will be used
-	const UINT						vertexStride = sizeof(SIMPLE_VERTEX);			// Size (in bytes) of the elements that are to be used from that vertex buffer
+	const UINT						simpleVertexStride = sizeof(SIMPLE_VERTEX);		// Size (in bytes) of the elements that are to be used from that vertex buffer
 	
 	D3D11_MAPPED_SUBRESOURCE		resourceForVertBuffer;							// Resource for transferring information into vertex buffer
 	D3D11_VIEWPORT					viewPort[VIEWPORT::COUNT];						// Index 0 - Main Camera. 1 - Rear View. Tells D3D11 what portion of the screen/surface to draw to (normally all of it)
@@ -42,20 +44,20 @@ class Renderer
 	ID3D11VertexShader*				vertexShader[VERTEX_SHADER::COUNT];				// Stores a reference to the vertex shader
 	IDXGISwapChain*					swapChain = nullptr;							// Communicates with windows and manages drawing area (2 buffers)
 	
+	// Private
+	void ResetScreen();
+	void DrawLines(Mesh* agent);
+
 	// Clean Up
 	template<typename Generic>
 	inline void ReleaseResource(Generic& ptr);
 
-	// Private
-	void ResetScreen();
-	void DrawLines(const Agent& agent);
-
 public:
 	// Initialization
-	Renderer(HWND windowHandle, class SceneManager* sceneManager, const ushort* clientDimensions, ushort targetFPS, Camera* cameraPtr);
+	Renderer(HWND windowHandle, class SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, Camera* cameraPtr);
 
 	// Update
-	void Update(std::vector<Agent*>* renderableAgents, Camera* cameraPtr);
+	void Update(std::vector<Mesh*>* renderableObjects, Camera* cameraPtr);
 
 	// Clean-up
 	~Renderer();

@@ -10,8 +10,8 @@ class Player;
 
 class InputManager
 {
-	bool		keysCurrentlyPressed[9] = { false };
-	Player*		playerPtr;									
+	bool	keysCurrentlyPressed[9] = { false };
+	Player*	playerPtr;									
 
 public:	
 	// Update

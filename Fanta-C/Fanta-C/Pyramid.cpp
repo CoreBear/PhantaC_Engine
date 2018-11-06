@@ -1,7 +1,7 @@
 #pragma region Dependencies
 // My Headers	
 #include "Pyramid.h"		// Connection to declarations
-#include "GlobalApplication.h"
+#include "GlobalIterators.h"
 #include "LineRenderer.h"
 #pragma endregion
 
@@ -9,10 +9,7 @@
 void Pyramid::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfLineIndicesVertices[0]; ++iterators[0])
-	{
-		lineRenderer.AddNewLine(vertices[lineIndices[iterators[0]][0]].localPos, vertices[lineIndices[iterators[0]][1]].localPos,
-								vertices[lineIndices[iterators[0]][0]].color, vertices[lineIndices[iterators[0]][1]].color);
-	}
+		lineRenderer.AddNewLine(vertices[lineIndices[iterators[0]][0]].localPos, vertices[lineIndices[iterators[0]][1]].localPos, color, color);
 }
 #pragma endregion
 
@@ -35,7 +32,6 @@ void Pyramid::CreateMesh()
 			vertices[iterators[0]].localPos.z = 0;
 		}
 
-		vertices[iterators[0]].color = Colors::Green;
 	}
 
 	// Create Indices

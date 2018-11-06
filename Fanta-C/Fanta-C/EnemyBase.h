@@ -11,8 +11,7 @@ public:
 	EnemyBase(ObjectTransform* intransformPtr, bool collidable, bool renderable, float inMoveSpeed, float inRotationSpeed) : AutonomousAgent(intransformPtr, collidable, renderable, inMoveSpeed, inRotationSpeed) { return; }
 
 	// Update
-	void Action(float deltaTime) override;
-	void Plan() override;
+	void Action() override { return; }
 };
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "GlobalDirectX.h"
 
-class CollidableObject
+class Collider
 {
 	bool		isColliding;
 	XMVECTOR	extents;			// Also the max
@@ -12,11 +12,12 @@ class CollidableObject
 
 public:
 	// Initialization
-	CollidableObject(bool inMeshIsFlat, float inScale) { CreateBounds(inMeshIsFlat, inScale); }
+	Collider(bool inMeshIsFlat, float inScale) : isColliding(false) { CreateBounds(inMeshIsFlat, inScale); }
 
 	// Accessors
-	XMVECTOR GetExtents() const { return extents; }
-
+	bool GetColliding() { return isColliding; }
+	XMVECTOR& GetExtents() { return extents; }
+	
 	// Mutators
 	void ToggleColliding() { isColliding = !isColliding; }
 };

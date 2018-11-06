@@ -1,7 +1,7 @@
 #pragma region Dependencies
 // My Headers
 #include "Grid.h"				// Connection to declarations
-#include "GlobalApplication.h"
+#include "GlobalIterators.h"
 #include "LineRenderer.h"
 #pragma endregion
 
@@ -9,10 +9,7 @@
 void Grid::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; iterators[0] += 2)
-	{
-		lineRenderer.AddNewLine(vertices[iterators[0]].localPos, vertices[iterators[0] + 1].localPos,
-								vertices[iterators[0]].color, vertices[iterators[0] + 1].color);
-	}
+		lineRenderer.AddNewLine(vertices[iterators[0]].localPos, vertices[iterators[0] + 1].localPos, color, color);
 }
 #pragma endregion
 
@@ -27,7 +24,7 @@ void Grid::CreateMesh()
 	ushort		vertCount;														    
 	XMFLOAT3	tempVertex;
 
-	// This is a global variable, found in "GlobalGame.h". This is used to represent the distance from the world origin to the edge of the grid (X, Y)
+	// This is a global variable, found in "GlobalWorldInfo.h". This is used to represent the distance from the world origin to the edge of the grid (X, Y)
 	edgeOfGridDistance = (numberOfLinesEachDirection % 2 == 0) ? integerHalfOfLinesEachDirection * lineDistanceApart - (0.5f * lineDistanceApart) : integerHalfOfLinesEachDirection * lineDistanceApart;
 	
 	// Horizontal & Vertical lines
@@ -58,8 +55,7 @@ void Grid::CreateMesh()
 				}
 
 				// Add lines to drawable vertices and color them
-				vertices[vertCount].localPos = tempVertex;
-				vertices[vertCount++].color = Colors::White;
+				vertices[vertCount++].localPos = tempVertex;
 			}
 		}
 	}

@@ -5,7 +5,7 @@
 #include <array>
 
 // My Headers
-#include "GlobalGeometry.h"
+#include "GlobalVramStructures.h"
 #include "GlobalTypedefs.h"
 
 class LineRenderer
@@ -24,8 +24,4 @@ public:
 	const ushort GetCurrentVertexCount() const { return currentCount; }
 	const SIMPLE_VERTEX* GetAllVertices() const { return lineVertices.data(); }
 };
-
-// This maybe goes in clear lines
-		/*for (iterators[0] = 0; iterators[0] < containerCapacity; ++iterators[0])
-			lineVertices[iterators[0]].localPos = { 0 };*/
 #endif

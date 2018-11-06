@@ -1,5 +1,5 @@
-#ifndef _GLOBAL_APPLICATION_H
-#define _GLOBAL_APPLICATION_H
+#ifndef _GLOBAL_ITERATORS_H
+#define _GLOBAL_ITERATORS_H
 
 #include "GlobalTypedefs.h"
 

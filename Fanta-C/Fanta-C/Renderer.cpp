@@ -3,8 +3,9 @@
 #include "Renderer.h"				// Connection to declarations
 #include "Agent.h"
 #include "Camera.h"
-#include "GlobalGeometry.h"
-#include "GlobalApplication.h"
+#include "GlobalVramStructures.h"
+#include "GlobalIterators.h"
+#include "Mesh.h"
 #include "SceneManager.h"
 
 // System Headers
@@ -25,7 +26,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* clientDimensions, ushort targetFPS, Camera* cameraPtr)
+Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, Camera* cameraPtr)
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -124,7 +125,7 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* 
 	#pragma endregion
 	
 	#pragma region Stencil
-	// create depth-stencil buffer/state/view
+	// Create depth-stencil buffer/state/view
 	D3D11_TEXTURE2D_DESC depthStencilBufferDesc;
 	D3D11_DEPTH_STENCIL_DESC depthStencilStateDesc;
 	ZeroMemory(&depthStencilBufferDesc, sizeof(D3D11_TEXTURE2D_DESC));
@@ -177,7 +178,7 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* 
 	// Input Assembler
 	deviceContext->IASetInputLayout(inputLayout[INPUT_LAYOUT::DEFAULT]);
 	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
-	deviceContext->IASetVertexBuffers(0, 1, &vertexBuffers[VERTEX_BUFFER::DEFAULT], &vertexStride, &offset);
+	deviceContext->IASetVertexBuffers(0, 1, &vertexBuffers[VERTEX_BUFFER::DEFAULT], &simpleVertexStride, &offset);
 
 	// Vertex Shader
 	deviceContext->VSSetShader(vertexShader[VERTEX_SHADER::DEFAULT], nullptr, 0);
@@ -197,27 +198,32 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManager, const ushort* 
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(std::vector<Agent*>* renderableAgents, Camera* cameraPtr)
+void Renderer::Update(std::vector<Mesh*>* renderableObjects, Camera* cameraPtr)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
 	// Load view matrix (camera's world matrix) into vram
-	// If camera is not moving, we can set this during initialization
 	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &cameraPtr->GetWorldMatrix(), 0, 0);
 
-	//											Add anything you want to draw here
+	//
+	//											Do not add anything above this line
 	// ------------------------------------------------------------------------------------------------------------------------------- 
+	//											Add anything you want to draw below this line
+	//
 	//
 	// Look into multi-threading this
 	// Skip over index 0, because of camera (it doesn't get "rendered")
-	// Load objects into line renderer, then draw them
+	// Load objects into line rendererPtr, then draw them
 	
-	for (renderIterator = 0; renderIterator < renderableAgents->size(); ++renderIterator)
-		DrawLines(*renderableAgents->at(renderIterator));
-
-	//											Don't add anything under here
+	for (renderIterator = 0; renderIterator < renderableObjects->size(); ++renderIterator)
+		DrawLines(renderableObjects->at(renderIterator));
+	
+	//
+	//											Add anything you want to draw above this line
 	// --------------------------------------------------------------------------------------------------------------------------------
+	//											Do not add anything below this line
+	//
 	//
 	// Show frame to user
 	swapChain->Present(vSync, 0);
@@ -230,14 +236,13 @@ void Renderer::ResetScreen()
 	deviceContext->ClearRenderTargetView(renderTargetView[RENDER_TARGET_VIEW::DEFAULT], DirectX::Colors::Black);
 	deviceContext->ClearDepthStencilView(depthStencilView[DEPTH_STENCIL_VIEW::DEFAULT], D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, maxZBufferDepth, 0);
 }
-void Renderer::DrawLines(const Agent& agent)
+void Renderer::DrawLines(Mesh* agent)
 {
-	// If object is renderable, add its lines to line renderer
-	if (agent.GetMeshPtr() != nullptr)
-		static_cast<Mesh*>(agent.GetMeshPtr())->AddMyLinesToRenderer(lineRenderer);
+	meshLoader.AddLinesToLineRenderer(lineRenderer, agent);
 
+	// Is this line necessary???-----------------------------------------------------------------------------------------------------------------------------
 	// Upload object's world matrix into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, &agent.GetTransformPtr()->GetWorldMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, &agent->GetWorldMatrix(), 0, 0);
 
 	// Load lines into VRAM
 	ZeroMemory(&resourceForVertBuffer, sizeof(resourceForVertBuffer));
@@ -248,7 +253,7 @@ void Renderer::DrawLines(const Agent& agent)
 	// Render
 	deviceContext->Draw(lineRenderer.GetCurrentVertexCount(), 0);
 
-	// Remove all lines made by line renderer
+	// Remove all lines made by line rendererPtr
 	lineRenderer.ClearLines();
 }
 #pragma endregion
@@ -278,8 +283,6 @@ Renderer::~Renderer()
 	ReleaseResource(renderTargetView[RENDER_TARGET_VIEW::COUNT]);
 	ReleaseResource(depthStencilBuffer[TEXTURE2D::COUNT]);
 	ReleaseResource(swapChain);
-
-	// How do vectors delete? Becase objectsTo... may need to be deleted
 	#pragma endregion
 }
 template<typename Generic>

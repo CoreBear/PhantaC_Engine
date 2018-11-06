@@ -11,22 +11,22 @@ void Player::ControllerInput(ushort key, float deltaTime)
 	switch (key)
 	{
 	case A:
-		transformPtr->RotateOnWorldYAxis(-transformPtr->GetRotationSpeed() * deltaTime);
+		transformPtr->Translate(transformPtr->GetMoveSpeed() * deltaTime, 0, 0);
 		break;
 	case D:
-		transformPtr->RotateOnWorldYAxis(transformPtr->GetRotationSpeed() * deltaTime);
+		transformPtr->Translate(-transformPtr->GetMoveSpeed() * deltaTime, 0, 0);
 		break;
 	case I:
-		transformPtr->RotateOnWorldXAxis(-transformPtr->GetRotationSpeed() * deltaTime);
-		break;
-	case J:
-		transformPtr->RotateOnWorldZAxis(-transformPtr->GetRotationSpeed() * deltaTime);
-		break;
-	case K:
 		transformPtr->RotateOnWorldXAxis(transformPtr->GetRotationSpeed() * deltaTime);
 		break;
+	case J:
+		transformPtr->RotateOnWorldYAxis(-transformPtr->GetRotationSpeed() * deltaTime);
+		break;
+	case K:
+		transformPtr->RotateOnWorldXAxis(-transformPtr->GetRotationSpeed() * deltaTime);
+		break;
 	case L:
-		transformPtr->RotateOnWorldZAxis(transformPtr->GetRotationSpeed() * deltaTime);
+		transformPtr->RotateOnWorldYAxis(transformPtr->GetRotationSpeed() * deltaTime);
 		break;
 	case S:
 		transformPtr->Translate(0, 0, transformPtr->GetMoveSpeed() * deltaTime);

@@ -1,276 +1,314 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{5f074ffd-8a30-4776-bd38-4bbca7313109}</UniqueIdentifier>
+    <Filter Include="Application">
+      <UniqueIdentifier>{5cc144ab-8d73-4241-83eb-eda3e58fd7e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Initialization">
+      <UniqueIdentifier>{a091c51a-ee2a-4291-b2f6-53bca9a2689d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Globals">
       <UniqueIdentifier>{1161c7c0-137c-4f19-ab74-a93238c77c71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Camera">
-      <UniqueIdentifier>{8ab6d898-497e-4c62-bf0d-d39e3a939cec}</UniqueIdentifier>
+    <Filter Include="Application\System Events">
+      <UniqueIdentifier>{c7f4cba4-6e9f-4ae8-a6b8-7e4f996c9fa9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="State Machines">
-      <UniqueIdentifier>{537b3f8c-4d45-428b-897f-dee513ad385f}</UniqueIdentifier>
+    <Filter Include="Application\System Events\Input">
+      <UniqueIdentifier>{97093535-8501-42b3-a558-44b18acc5f12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Templates">
-      <UniqueIdentifier>{3527f716-c88f-41a4-bfa7-e07604306a7c}</UniqueIdentifier>
+    <Filter Include="Application\System Events\Events">
+      <UniqueIdentifier>{8def0c0c-c73a-4e04-a66e-ee10bda3e156}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{e181bfd2-1187-4ca0-aad6-0a63ae5e00a4}</UniqueIdentifier>
+    <Filter Include="Application\Initialization\Window">
+      <UniqueIdentifier>{0fe76f8e-5a31-4fcd-b4ec-7b4d9d0dc69c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Main">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Environment">
+      <UniqueIdentifier>{f500e83a-f30a-4c87-b10d-52355087d3fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Managers">
-      <UniqueIdentifier>{622967f1-4b53-45e3-bd8e-9de4acf8cdf5}</UniqueIdentifier>
+    <Filter Include="Environment\Audio">
+      <UniqueIdentifier>{c2fc6c6d-fc58-4a38-a04c-faeff694a439}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Managers\Game Management">
-      <UniqueIdentifier>{c6efe496-58b1-45b1-9218-b308ae4df4d1}</UniqueIdentifier>
+    <Filter Include="Environment\Memory">
+      <UniqueIdentifier>{eebb6460-1287-4db0-9489-7db2b4bbcd0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Managers\SceneManager">
-      <UniqueIdentifier>{b4526aab-75a0-4870-9a06-af348f003557}</UniqueIdentifier>
+    <Filter Include="Environment\Rendering">
+      <UniqueIdentifier>{706f53c4-08d9-410f-8fc1-9abfd10cdbee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules">
-      <UniqueIdentifier>{4819e502-d637-4a1e-a380-30f63963da01}</UniqueIdentifier>
+    <Filter Include="Environment\Rendering\Shaders">
+      <UniqueIdentifier>{5f074ffd-8a30-4776-bd38-4bbca7313109}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Engine Modules">
-      <UniqueIdentifier>{fd6d816e-c42a-494a-aabd-84a055829a74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Modules\Engine Modules\Physics">
-      <UniqueIdentifier>{be81b75a-3fa0-4a0d-9466-5ce74b199a1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Modules\Engine Modules\Audio">
-      <UniqueIdentifier>{9e484f12-5048-4d95-a11b-3b3acf9abbb3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Modules\Engine Modules\Renderer">
+    <Filter Include="Environment\Rendering\Renderer">
       <UniqueIdentifier>{96377b70-1f8a-4e78-a6b6-4c01bdca06d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Agent Modules">
+    <Filter Include="Environment\Scene">
+      <UniqueIdentifier>{f99806c0-ad0a-4be7-9633-8e3c4843a7a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object">
+      <UniqueIdentifier>{a949469f-77eb-485f-a954-b407f94f87d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scripting">
+      <UniqueIdentifier>{262e2646-921e-4f18-8ce8-8fb63b04c59b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scripting\Player">
+      <UniqueIdentifier>{e181bfd2-1187-4ca0-aad6-0a63ae5e00a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scripting\Camera">
+      <UniqueIdentifier>{8ab6d898-497e-4c62-bf0d-d39e3a939cec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics">
+      <UniqueIdentifier>{a5a8be92-9283-40eb-b527-f5af4f3658f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Manager">
+      <UniqueIdentifier>{622967f1-4b53-45e3-bd8e-9de4acf8cdf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\AI">
+      <UniqueIdentifier>{71a8d186-387b-4a82-8cf5-f99ca7d3a5d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Manager">
+      <UniqueIdentifier>{b697fc9a-571e-4b57-81dc-308a62ab23fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Manager">
+      <UniqueIdentifier>{6aa80baa-23da-43b6-a35d-c8e1368ced93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision">
+      <UniqueIdentifier>{f2126942-9a11-48b2-bd62-329b9b3526c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Rendering\Debug Line">
+      <UniqueIdentifier>{4c524b32-16b0-4914-a692-3cd3a8c18151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Rendering\Shaders\Pixel">
+      <UniqueIdentifier>{f110a768-79eb-414b-80f8-69c15f653424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Rendering\Shaders\Vertex">
+      <UniqueIdentifier>{ec2e0ff2-fdd0-4705-b332-ea540bca8e00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scripting\Agents">
       <UniqueIdentifier>{4982577d-f467-4c7e-b7c7-78ba99c549f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Object Modules">
-      <UniqueIdentifier>{84094815-1f7c-4d0c-99e2-e292bc5742c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Modules\Object Modules\Transform">
-      <UniqueIdentifier>{6baef527-b5a3-4934-8b9e-bbb70d654728}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Modules\Object Modules\Collision">
+    <Filter Include="Environment\Scene\Game Object\Collision">
       <UniqueIdentifier>{43d46425-fcc9-4a4b-8535-d40d6a8d1195}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Object Modules\Rendering">
-      <UniqueIdentifier>{a7b0d333-0d12-489f-9411-44a379711748}</UniqueIdentifier>
+    <Filter Include="Environment\Scene\Game Object\Render">
+      <UniqueIdentifier>{a04f61ff-1b32-4d3b-80a0-b4c58282b3a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mesh">
+    <Filter Include="Environment\Scene\Game Object\Render\Mesh">
       <UniqueIdentifier>{847561fd-312f-4e0e-a1e8-f680006554f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Modules\Engine Modules\Logic">
-      <UniqueIdentifier>{452a062f-e7c3-4f19-b95d-ad32ca579adf}</UniqueIdentifier>
+    <Filter Include="Environment\Scene\Game Object\Render\Shapes">
+      <UniqueIdentifier>{4b13d81f-26dc-42ca-a7a7-480e2fa6e1ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object\Render\Shapes\2D">
+      <UniqueIdentifier>{e03774ff-38e4-4809-97ac-b71fb04c2ee8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object\Render\Shapes\2D\Circle">
+      <UniqueIdentifier>{e8e5a441-8fec-49f0-a31d-bb4d9baae095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object\Render\Shapes\2D\Grid">
+      <UniqueIdentifier>{c229c6b4-cc28-43af-9102-579f8b1e7112}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object\Render\Shapes\2D\Quad">
+      <UniqueIdentifier>{f70c6c90-4b14-479e-a84c-7441a96fbce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object\Render\Shapes\2D\Triangle">
+      <UniqueIdentifier>{12c8e802-a17f-48f8-804c-cdb63cbc01ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object\Render\Shapes\3D">
+      <UniqueIdentifier>{bbabceac-d9fa-429e-97ed-09d19b067d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object\Render\Shapes\3D\Sphere">
+      <UniqueIdentifier>{dd9a0b6c-25c7-4767-9fcc-22ae2d5fcd47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object\Render\Shapes\3D\Pyramid">
+      <UniqueIdentifier>{bf7a76c5-ca5c-4324-8710-5ad5cb5914f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object\Render\Shapes\3D\Cube">
+      <UniqueIdentifier>{5af4eff3-a0a9-44f9-b178-fde220769452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Game Object\Transform">
+      <UniqueIdentifier>{6baef527-b5a3-4934-8b9e-bbb70d654728}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsMain.cpp">
-      <Filter>Modules\Engine Modules\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Audio.cpp">
-      <Filter>Modules\Engine Modules\Audio</Filter>
+      <Filter>Environment\Scripting\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Modules\Engine Modules\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>Managers\Game Management</Filter>
-    </ClCompile>
-    <ClCompile Include="Circle.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Grid.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Pyramid.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Quad.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Sphere.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Triangle.cpp">
-      <Filter>Mesh</Filter>
+      <Filter>Environment\Rendering\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Agent.cpp">
-      <Filter>Modules\Agent Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyBase.cpp">
-      <Filter>Modules\Agent Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="AutonomousAgent.cpp">
-      <Filter>Modules\Agent Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>State Machines</Filter>
+      <Filter>Environment\Scripting\Agents</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="LineRenderer.cpp">
-      <Filter>Modules\Engine Modules\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionChecker.cpp">
-      <Filter>Modules\Engine Modules\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="FreeCamera.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionManager.cpp">
-      <Filter>Modules\Engine Modules\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Player</Filter>
+      <Filter>Environment\Scripting\Player</Filter>
     </ClCompile>
     <ClCompile Include="ObjectTransform.cpp">
-      <Filter>Modules\Object Modules\Transform</Filter>
+      <Filter>Environment\Scene\Game Object\Transform</Filter>
     </ClCompile>
-    <ClCompile Include="CollidableObject.cpp">
-      <Filter>Modules\Object Modules\Collision</Filter>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Application\System Events\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Logic.cpp">
-      <Filter>Modules\Engine Modules\Logic</Filter>
+    <ClCompile Include="Entry.cpp">
+      <Filter>Application\Initialization</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Application\System Events\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowCreator.cpp">
+      <Filter>Application\Initialization\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="EnvironmentManager.cpp">
+      <Filter>Environment\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Environment\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="IntelligenceManager.cpp">
+      <Filter>Environment\AI</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Managers\SceneManager</Filter>
+      <Filter>Environment\Scene\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>Environment\Physics\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Environment\Physics\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="LineRenderer.cpp">
+      <Filter>Environment\Rendering\Debug Line</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Environment\Scene\Game Object\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Circle</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Pyramid.cpp">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Pyramid</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Quad</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Triangle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GlobalApplication.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalDirectX.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalGame.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalGeometry.h">
       <Filter>Globals</Filter>
     </ClInclude>
     <ClInclude Include="GlobalInput.h">
       <Filter>Globals</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalStructures.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalTypedefs.h">
       <Filter>Globals</Filter>
     </ClInclude>
-    <ClInclude Include="Triangle.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Sphere.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Quad.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Grid.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Circle.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsMain.h">
-      <Filter>Modules\Engine Modules\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Pyramid.h">
-      <Filter>Mesh</Filter>
-    </ClInclude>
     <ClInclude Include="Agent.h">
-      <Filter>Modules\Agent Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="AutonomousAgent.h">
-      <Filter>Modules\Agent Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyBase.h">
-      <Filter>Modules\Agent Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>Managers\Game Management</Filter>
+      <Filter>Environment\Scripting\Agents</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Audio.h">
-      <Filter>Modules\Engine Modules\Audio</Filter>
+      <Filter>Environment\Scripting\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Modules\Engine Modules\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>State Machines</Filter>
-    </ClInclude>
-    <ClInclude Include="Pool.h">
-      <Filter>Templates</Filter>
+      <Filter>Environment\Rendering\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="LineRenderer.h">
-      <Filter>Modules\Engine Modules\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionChecker.h">
-      <Filter>Modules\Engine Modules\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="FreeCamera.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionManager.h">
-      <Filter>Modules\Engine Modules\Physics</Filter>
+      <Filter>Environment\Scripting\Player</Filter>
     </ClInclude>
     <ClInclude Include="ObjectTransform.h">
-      <Filter>Modules\Object Modules\Transform</Filter>
-    </ClInclude>
-    <ClInclude Include="CollidableObject.h">
-      <Filter>Modules\Object Modules\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderableObject.h">
-      <Filter>Modules\Object Modules\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Player</Filter>
+      <Filter>Environment\Scene\Game Object\Transform</Filter>
     </ClInclude>
     <ClInclude Include="GlobalContainers.h">
       <Filter>Globals</Filter>
     </ClInclude>
-    <ClInclude Include="Logic.h">
-      <Filter>Modules\Engine Modules\Logic</Filter>
+    <ClInclude Include="Mesh.h">
+      <Filter>Environment\Scene\Game Object\Render\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Application\System Events\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Application\System Events\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowCreator.h">
+      <Filter>Application\Initialization\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="EnvironmentManager.h">
+      <Filter>Environment\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Environment\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="IntelligenceManager.h">
+      <Filter>Environment\AI</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>Managers\SceneManager</Filter>
+      <Filter>Environment\Scene\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Mesh</Filter>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>Environment\Physics\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Environment\Physics\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="LineRenderer.h">
+      <Filter>Environment\Rendering\Debug Line</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalIterators.h">
+      <Filter>Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalRendererStructures.h">
+      <Filter>Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalVramStructures.h">
+      <Filter>Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalWorldInfo.h">
+      <Filter>Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshLoader.h">
+      <Filter>Environment\Scene\Game Object\Render\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Environment\Scene\Game Object\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Circle</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Pyramid.h">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Pyramid</Filter>
+    </ClInclude>
+    <ClInclude Include="Quad.h">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Quad</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Triangle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="BasicVertexShader.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
     <FxCompile Include="BasicPixelShader.hlsl">
-      <Filter>Shaders</Filter>
+      <Filter>Environment\Rendering\Shaders\Pixel</Filter>
+    </FxCompile>
+    <FxCompile Include="BasicVertexShader.hlsl">
+      <Filter>Environment\Rendering\Shaders\Vertex</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

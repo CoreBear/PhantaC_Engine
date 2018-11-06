@@ -16,7 +16,7 @@ protected:
 
 public:
 	// Initialization
-	ObjectTransform(const XMVECTOR& position) : myWorldMatrix(XMMatrixIdentity()) { myWorldMatrix.r[3] = position; }		// Instatiation at specific position
+	ObjectTransform(const XMVECTOR& position) : myWorldMatrix(XMMatrixIdentity()) { myWorldMatrix.r[3] = position; }		
 	ObjectTransform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up);
 
 	// Public Interface
@@ -35,6 +35,7 @@ public:
 	float GetMoveSpeed() const { return moveSpeed; }
 	float GetRotationSpeed() const { return rotationSpeed; }
 	virtual float GetScale() const { return false; }
+	XMMATRIX& GetTransformMatrix() { return myTransformMatrix; }
 	XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }
 	XMVECTOR& GetPosition() { return myWorldMatrix.r[3]; }
 

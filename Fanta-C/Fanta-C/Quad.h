@@ -13,8 +13,8 @@ class Quad : public Mesh
 
 public:
 	// Initialization
-	Quad(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Mesh(position, true, inScale) { CreateMesh(); }
-	Quad(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Mesh(position, forward, up, true, inScale) { CreateMesh(); }
+	Quad(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Mesh(position, true, inScale, Colors::Purple) { CreateMesh(); }
+	Quad(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Mesh(position, forward, up, true, inScale, Colors::Purple) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

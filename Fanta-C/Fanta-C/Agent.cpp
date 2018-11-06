@@ -7,9 +7,9 @@
 Agent::Agent(ObjectTransform* transformPtr, bool collidable, bool renderable, float inMoveSpeed, float inRotationSpeed) : transformPtr(transformPtr)
 {
 	// If agent has a collider
-	colliderPtr = (collidable) ? new CollidableObject(transformPtr->GetFlatness(), transformPtr->GetScale()) : nullptr;
+	colliderPtr = (collidable) ? new Collider(transformPtr->GetFlatness(), transformPtr->GetScale()) : nullptr;
 
-	// If agent has a renderer
+	// If agent has a rendererPtr
 	meshPtr = (renderable) ? static_cast<Mesh*>(transformPtr) : nullptr;
 
 	transformPtr->SetMoveSpeed(inMoveSpeed);
@@ -29,6 +29,11 @@ Agent::~Agent()
 	{
 		delete meshPtr;
 		meshPtr = nullptr;
+	}
+	if (transformPtr)
+	{
+		delete transformPtr;
+		transformPtr = nullptr;
 	}
 }
 #pragma endregion

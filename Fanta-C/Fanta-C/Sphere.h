@@ -13,8 +13,8 @@ class Sphere : public Mesh
 
 public:
 	// Initialization
-	Sphere(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Mesh(position, false, inScale) { CreateMesh(); }
-	Sphere(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Mesh(position, forward, up, false, inScale) { CreateMesh(); }
+	Sphere(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Mesh(position, false, inScale, Colors::Green) { CreateMesh(); }
+	Sphere(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Mesh(position, forward, up, false, inScale, Colors::Green) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

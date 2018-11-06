@@ -1,7 +1,7 @@
 #pragma region Dependencies
 // My Headers
 #include "Cube.h"		// Connection to declarations
-#include "GlobalApplication.h"
+#include "GlobalIterators.h"
 #include "LineRenderer.h"
 #pragma endregion
 
@@ -11,10 +11,7 @@ void Cube::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[1]; ++iterators[0])
 	{
 		for (iterators[1] = 0; iterators[1] < numberOfLinesTriIndicesVertices[0]; ++iterators[1])
-		{
-			lineRenderer.AddNewLine(vertices[triIndices[iterators[0]][iterators[1]][0]].localPos, vertices[triIndices[iterators[0]][iterators[1]][1]].localPos,
-									vertices[triIndices[iterators[0]][iterators[1]][0]].color, vertices[triIndices[iterators[0]][iterators[1]][1]].color);
-		}
+			lineRenderer.AddNewLine(vertices[triIndices[iterators[0]][iterators[1]][0]].localPos, vertices[triIndices[iterators[0]][iterators[1]][1]].localPos, color, color);
 	}
 }
 #pragma endregion
@@ -28,7 +25,6 @@ void Cube::CreateMesh()
 		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
 		vertices[iterators[0]].localPos.y = (iterators[0] % 4 < 2) ? scale : -scale;
 		vertices[iterators[0]].localPos.z = (iterators[0] < 4) ? -scale : scale;
-		vertices[iterators[0]].color = Colors::Red;
 	}
 
 	char tempIndices[] =

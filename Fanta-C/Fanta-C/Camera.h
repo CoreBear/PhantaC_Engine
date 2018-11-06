@@ -6,7 +6,7 @@
 
 class Camera : public ObjectTransform
 {
-	XMMATRIX		projectionMatrix;
+	XMMATRIX projectionMatrix;
 	
 public:
 	// Initialization

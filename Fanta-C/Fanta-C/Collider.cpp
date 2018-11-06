@@ -1,10 +1,10 @@
 #pragma region Dependencies
 // My Headers
-#include "CollidableObject.h"		// Connection to declarations
+#include "Collider.h"		// Connection to declarations
 #pragma endregion
 
 #pragma region Private
-void CollidableObject::CreateBounds(bool meshIsFlat, float scale)
+void Collider::CreateBounds(bool meshIsFlat, float scale)
 {	
 	const float flatMeshWidth = 0.05f;
 

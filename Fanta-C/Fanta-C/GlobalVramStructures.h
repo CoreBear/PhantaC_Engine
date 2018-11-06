@@ -1,5 +1,5 @@
-#ifndef _GLOBAL_GEOMETRY_H
-#define _GLOBAL_GEOMETRY_H
+#ifndef _GLOBAL_VRAM_STRUCTURES_H
+#define _GLOBAL_VRAM_STRUCTURES_H
 
 #include "GlobalDirectX.h"
 

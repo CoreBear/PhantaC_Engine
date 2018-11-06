@@ -15,8 +15,8 @@ class Cube : public Mesh
 
 public:
 	// Initialization
-	Cube(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Mesh(position, false, inScale) { CreateMesh(); }
-	Cube(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Mesh(position, forward, up, false, inScale) { CreateMesh(); }
+	Cube(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Mesh(position, false, inScale, Colors::Orange) { CreateMesh(); }
+	Cube(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Mesh(position, forward, up, false, inScale, Colors::Orange) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;
