@@ -4,7 +4,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Camera::Camera(const ushort* clientDimensions, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : ObjectTransform(true, position, forward, up)
+Camera::Camera(const ushort* clientDimensions, float inScale) : Mesh(true, inScale)
 {
 	const float	nearFarPlaneDistances[2] = { 1.0f, 100.0f };	// 0 - NearZ. 1 - FarZ
 	const float	verticalFOV = XMConvertToRadians(45.0f);

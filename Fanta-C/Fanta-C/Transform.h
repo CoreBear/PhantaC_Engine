@@ -1,11 +1,11 @@
-#ifndef __OBJECT_TRANSFORM_H
-#define __OBJECT_TRANSFORM_H
+#ifndef _TRANSFORM_H
+#define _TRANSFORM_H
 
 // My Headers
 #include "GlobalTypedefs.h"
 #include "LineRenderer.h"
 
-class ObjectTransform
+class Transform
 {
 protected:
 	float			moveSpeed;
@@ -16,8 +16,8 @@ protected:
 
 public:
 	// Initialization
-	ObjectTransform(const XMVECTOR& position) : myWorldMatrix(XMMatrixIdentity()) { myWorldMatrix.r[3] = position; }		
-	ObjectTransform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up);
+	Transform(const XMVECTOR& position) : myWorldMatrix(XMMatrixIdentity()) { myWorldMatrix.r[3] = position; }		
+	Transform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up);
 
 	// Public Interface
 	void RotateOnWorldXAxis(float angle);

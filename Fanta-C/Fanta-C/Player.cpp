@@ -1,43 +1,42 @@
 #pragma region Dependencies
 // My Headers
 #include "Player.h"			// Connection to declarations
-#include "GlobalInput.h"
 #pragma endregion
 
 #pragma region Public Interface
-void Player::ControllerInput(ushort key, float deltaTime)
-{
-	// For camera
-	switch (key)
-	{
-	case A:
-		transformPtr->Translate(transformPtr->GetMoveSpeed() * deltaTime, 0, 0);
-		break;
-	case D:
-		transformPtr->Translate(-transformPtr->GetMoveSpeed() * deltaTime, 0, 0);
-		break;
-	case I:
-		transformPtr->RotateOnWorldXAxis(transformPtr->GetRotationSpeed() * deltaTime);
-		break;
-	case J:
-		transformPtr->RotateOnWorldYAxis(-transformPtr->GetRotationSpeed() * deltaTime);
-		break;
-	case K:
-		transformPtr->RotateOnWorldXAxis(-transformPtr->GetRotationSpeed() * deltaTime);
-		break;
-	case L:
-		transformPtr->RotateOnWorldYAxis(transformPtr->GetRotationSpeed() * deltaTime);
-		break;
-	case S:
-		transformPtr->Translate(0, 0, transformPtr->GetMoveSpeed() * deltaTime);
-		break;
-	case W:
-		transformPtr->Translate(0, 0, -transformPtr->GetMoveSpeed() * deltaTime);
-		break;
-	case SPACE:
-		break;
-	}
-}
+//void Player::ControllerInput(ushort key, float deltaTime)
+//{
+//	// For camera
+//	switch (key)
+//	{
+//	case A:
+//		transformPtr->Translate(transformPtr->GetMoveSpeed() * deltaTime, 0, 0);
+//		break;
+//	case D:
+//		transformPtr->Translate(-transformPtr->GetMoveSpeed() * deltaTime, 0, 0);
+//		break;
+//	case I:
+//		transformPtr->RotateOnWorldXAxis(transformPtr->GetRotationSpeed() * deltaTime);
+//		break;
+//	case J:
+//		transformPtr->RotateOnWorldYAxis(-transformPtr->GetRotationSpeed() * deltaTime);
+//		break;
+//	case K:
+//		transformPtr->RotateOnWorldXAxis(-transformPtr->GetRotationSpeed() * deltaTime);
+//		break;
+//	case L:
+//		transformPtr->RotateOnWorldYAxis(transformPtr->GetRotationSpeed() * deltaTime);
+//		break;
+//	case S:
+//		transformPtr->Translate(0, 0, transformPtr->GetMoveSpeed() * deltaTime);
+//		break;
+//	case W:
+//		transformPtr->Translate(0, 0, -transformPtr->GetMoveSpeed() * deltaTime);
+//		break;
+//	case SPACE:
+//		break;
+//	}
+//}
 #pragma endregion
 
 #pragma region Use this code if the player is a world object other than the camera

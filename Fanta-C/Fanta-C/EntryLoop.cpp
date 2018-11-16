@@ -5,6 +5,7 @@
 // My Headers
 #include "EventHandler.h"
 #include "EnvironmentManager.h"
+#include "InputManager.h"
 #include "GlobalTypedefs.h"
 #include "WindowCreator.h"
 
@@ -14,12 +15,8 @@
 #include <crtdbg.h>
 #pragma endregion
 
-#pragma region Global Variables
-static EventHandler eventHandler;
-#pragma endregion
-
 #pragma region Forward Declarations
-void RunLoop(EnvironmentManager* environmentManager);
+void RunLoop(EnvironmentManager* environmentManager, EventHandler* events);
 #pragma endregion
 
 #pragma region Application Entry Function
@@ -32,17 +29,20 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	//_CrtSetBreakAlloc(244);
 	#pragma endregion
 
-	// Handles all input
-	EventHandler events;
+	// Handles all player input
+	InputManager inputManager;
+
+	// Handles all application events
+	EventHandler events(&inputManager);
 
 	// Creates the window
 	WindowCreator window(hInstance, cmdShow, events.GetWndProc());
 
 	// Creates the game instance
 	EnvironmentManager environmentManager(window.GetWindowHandle(), window.GetClientDimensions());
-
+	
 	// Will run until quit message is posted
-	RunLoop(&environmentManager);
+	RunLoop(&environmentManager, &events);
 
 	// Make this return any errors that may occur. Have runloop return a value
 	return 0;
@@ -50,7 +50,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 #pragma endregion
 
 #pragma region Application Loop
-void RunLoop(EnvironmentManager* environmentManager)
+void RunLoop(EnvironmentManager* environmentManager, EventHandler* events)
 {
 	MSG msg = { 0 };	// Container that stores system messages
 
@@ -75,7 +75,13 @@ void RunLoop(EnvironmentManager* environmentManager)
 
 		// Main game update
 		else
+		{
+			// Runs input manager
+			events->Update();
+
+			// Runs environment
 			environmentManager->Update();
+		}
 	}
 }
 #pragma endregion

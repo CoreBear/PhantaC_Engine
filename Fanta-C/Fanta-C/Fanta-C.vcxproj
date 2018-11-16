@@ -126,8 +126,10 @@
     <ClCompile Include="EnvironmentManager.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="LineRenderer.cpp" />
-    <ClCompile Include="Entry.cpp" />
-    <ClCompile Include="ObjectTransform.cpp" />
+    <ClCompile Include="EntryLoop.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Pyramid.cpp" />
@@ -152,10 +154,11 @@
     <ClInclude Include="EnvironmentManager.h" />
     <ClInclude Include="GlobalDirectX.h" />
     <ClInclude Include="GlobalWorldInfo.h" />
-    <ClInclude Include="GlobalContainerManipulation.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshLoader.h" />
-    <ClInclude Include="ObjectTransform.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="SceneGraph.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="GlobalVramStructures.h" />
     <ClInclude Include="Grid.h" />

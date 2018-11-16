@@ -1,11 +1,10 @@
 #pragma region Dependencies
 // My Headers
 #include "Renderer.h"				// Connection to declarations
-#include "Agent.h"
 #include "Camera.h"
 #include "GlobalVramStructures.h"
 #include "GlobalIterators.h"
-#include "Mesh.h"
+#include "ObjectManager.h"
 #include "SceneManager.h"
 
 // System Headers
@@ -26,7 +25,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, Camera* cameraPtr)
+Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, ObjectManager* cameraPtr)
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -173,7 +172,7 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushor
 
 	#pragma region Consistant Pipeline Pieces (Will be changed in the future)
 	// Resources
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &cameraPtr->GetProjectionMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &static_cast<Camera*>(cameraPtr->GetMesh())->GetProjectionMatrix(), 0, 0);
 
 	// Input Assembler
 	deviceContext->IASetInputLayout(inputLayout[INPUT_LAYOUT::DEFAULT]);
@@ -198,13 +197,13 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushor
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(std::vector<Mesh*>* renderableObjects, Camera* cameraPtr)
+void Renderer::Update(std::vector<ObjectManager*>* renderableObjects, ObjectManager* cameraPtr)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
 	// Load view matrix (camera's world matrix) into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &cameraPtr->GetWorldMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &cameraPtr->GetTransform()->GetWorldMatrix(), 0, 0);
 
 	//
 	//											Do not add anything above this line
@@ -236,13 +235,13 @@ void Renderer::ResetScreen()
 	deviceContext->ClearRenderTargetView(renderTargetView[RENDER_TARGET_VIEW::DEFAULT], DirectX::Colors::Black);
 	deviceContext->ClearDepthStencilView(depthStencilView[DEPTH_STENCIL_VIEW::DEFAULT], D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, maxZBufferDepth, 0);
 }
-void Renderer::DrawLines(Mesh* agent)
+void Renderer::DrawLines(ObjectManager* object)
 {
-	meshLoader.AddLinesToLineRenderer(lineRenderer, agent);
+	meshLoader.AddLinesToLineRenderer(lineRenderer, object->GetMesh());
 
 	// Is this line necessary???-----------------------------------------------------------------------------------------------------------------------------
 	// Upload object's world matrix into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, &agent->GetWorldMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, &object->GetTransform()->GetWorldMatrix(), 0, 0);
 
 	// Load lines into VRAM
 	ZeroMemory(&resourceForVertBuffer, sizeof(resourceForVertBuffer));
@@ -262,26 +261,41 @@ void Renderer::DrawLines(Mesh* agent)
 Renderer::~Renderer()
 {
 	#pragma region Buffers
-	ReleaseResource(constantBuffers[CONSTANT_BUFFER_TYPE::COUNT]);
-	ReleaseResource(vertexBuffers[VERTEX_BUFFER::COUNT]);
+	for(iterators[0] = 0; iterators[0] < CONSTANT_BUFFER_TYPE::COUNT; ++iterators[0])
+		ReleaseResource(constantBuffers[iterators[0]]);
+
+	for (iterators[0] = 0; iterators[0] < VERTEX_BUFFER::COUNT; ++iterators[0])
+		ReleaseResource(vertexBuffers[iterators[0]]);
 	#pragma endregion
 
 	#pragma region Layouts
-	ReleaseResource(inputLayout[INPUT_LAYOUT::COUNT]);
+	for (iterators[0] = 0; iterators[0] < INPUT_LAYOUT::COUNT; ++iterators[0])
+		ReleaseResource(inputLayout[iterators[0]]);
 	#pragma endregion
 
 	#pragma region Shaders
-	ReleaseResource(pixelShader[PIXEL_SHADER::COUNT]);
-	ReleaseResource(vertexShader[VERTEX_SHADER::COUNT]);
+	for (iterators[0] = 0; iterators[0] < PIXEL_SHADER::COUNT; ++iterators[0])
+		ReleaseResource(pixelShader[iterators[0]]);
+
+	for (iterators[0] = 0; iterators[0] < VERTEX_SHADER::COUNT; ++iterators[0])
+		ReleaseResource(vertexShader[iterators[0]]);
 	#pragma endregion
 
 	#pragma region Misc
-	ReleaseResource(depthStencilState[DEPTH_STENCIL_STATE::COUNT]);
-	ReleaseResource(depthStencilView[DEPTH_STENCIL_VIEW::COUNT]);
+	for (iterators[0] = 0; iterators[0] < DEPTH_STENCIL_STATE::COUNT; ++iterators[0])
+		ReleaseResource(depthStencilState[iterators[0]]);
+
+	for (iterators[0] = 0; iterators[0] < DEPTH_STENCIL_VIEW::COUNT; ++iterators[0])
+		ReleaseResource(depthStencilView[iterators[0]]);
+
+	for (iterators[0] = 0; iterators[0] < RENDER_TARGET_VIEW::COUNT; ++iterators[0])
+		ReleaseResource(renderTargetView[iterators[0]]);
+
+	for (iterators[0] = 0; iterators[0] < TEXTURE2D::COUNT; ++iterators[0])
+		ReleaseResource(depthStencilBuffer[iterators[0]]);
+	
 	ReleaseResource(device);
 	ReleaseResource(deviceContext);
-	ReleaseResource(renderTargetView[RENDER_TARGET_VIEW::COUNT]);
-	ReleaseResource(depthStencilBuffer[TEXTURE2D::COUNT]);
 	ReleaseResource(swapChain);
 	#pragma endregion
 }

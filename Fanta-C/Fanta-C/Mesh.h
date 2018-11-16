@@ -2,11 +2,14 @@
 #define _MESH_H
 
 // My Headers
+#include "GlobalDirectX.h"
+#include "GlobalIterators.h"
 #include "GlobalWorldInfo.h"
 #include "GlobalVramStructures.h"
-#include "ObjectTransform.h"
+#include "GlobalTypedefs.h"
+#include "LineRenderer.h"
 
-class Mesh : public ObjectTransform
+class Mesh
 {
 protected:
 	bool			meshIsFlat;
@@ -15,15 +18,14 @@ protected:
 
 public:
 	// Initialization
-	Mesh(const XMVECTOR& position, bool isFlat, float inScale, XMVECTORF32 inColor) : meshIsFlat(isFlat), scale(inScale), color(inColor), ObjectTransform(position) { return; }
-	Mesh(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, bool isFlat, float inScale, XMVECTORF32 inColor) : meshIsFlat(isFlat), scale(inScale), color(inColor), ObjectTransform(false, position, forward, up) { return; }
+	Mesh(bool isFlat, float inScale, XMVECTORF32 inColor = Colors::White) : meshIsFlat(isFlat), scale(inScale), color(inColor) { return; }
 
 	// Public Interface
 	virtual void AddMyLinesToRenderer(LineRenderer& lineRenderer) { return; }
 
 	// Accessors
-	bool GetFlatness() const override { return meshIsFlat; }
-	float GetScale() const override { return scale; }
+	bool GetFlatness() const { return meshIsFlat; }
+	float GetScale() const { return scale; }
 };
 
 #endif

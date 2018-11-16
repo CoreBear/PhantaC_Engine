@@ -15,8 +15,7 @@ class Pyramid : public Mesh
 
 public:
 	// Initialization
-	Pyramid(const XMVECTOR& position = { 0, 0, 0, 1 }, float inScale = 1) : Mesh(position, false, inScale, Colors::Blue) { CreateMesh(); }
-	Pyramid(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up, float inScale = 1) : Mesh(position, forward, up, false, inScale, Colors::Blue) { CreateMesh(); }
+	Pyramid(float inScale = 1) : Mesh(false, inScale) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

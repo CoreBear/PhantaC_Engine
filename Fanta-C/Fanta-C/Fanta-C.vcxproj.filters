@@ -4,9 +4,6 @@
     <Filter Include="Application">
       <UniqueIdentifier>{5cc144ab-8d73-4241-83eb-eda3e58fd7e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Initialization">
-      <UniqueIdentifier>{a091c51a-ee2a-4291-b2f6-53bca9a2689d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Globals">
       <UniqueIdentifier>{1161c7c0-137c-4f19-ab74-a93238c77c71}</UniqueIdentifier>
     </Filter>
@@ -18,9 +15,6 @@
     </Filter>
     <Filter Include="Application\System Events\Events">
       <UniqueIdentifier>{8def0c0c-c73a-4e04-a66e-ee10bda3e156}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Initialization\Window">
-      <UniqueIdentifier>{0fe76f8e-5a31-4fcd-b4ec-7b4d9d0dc69c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Environment">
       <UniqueIdentifier>{f500e83a-f30a-4c87-b10d-52355087d3fe}</UniqueIdentifier>
@@ -42,9 +36,6 @@
     </Filter>
     <Filter Include="Environment\Scene">
       <UniqueIdentifier>{f99806c0-ad0a-4be7-9633-8e3c4843a7a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Game Object">
-      <UniqueIdentifier>{a949469f-77eb-485f-a954-b407f94f87d0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Environment\Scripting">
       <UniqueIdentifier>{262e2646-921e-4f18-8ce8-8fb63b04c59b}</UniqueIdentifier>
@@ -82,50 +73,68 @@
     <Filter Include="Environment\Scripting\Agents">
       <UniqueIdentifier>{4982577d-f467-4c7e-b7c7-78ba99c549f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Collision">
+    <Filter Include="Environment\Rendering\Debug">
+      <UniqueIdentifier>{4c524b32-16b0-4914-a692-3cd3a8c18151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object">
+      <UniqueIdentifier>{a949469f-77eb-485f-a954-b407f94f87d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Collision">
       <UniqueIdentifier>{43d46425-fcc9-4a4b-8535-d40d6a8d1195}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render">
+    <Filter Include="Environment\Scene\Object\Render">
       <UniqueIdentifier>{a04f61ff-1b32-4d3b-80a0-b4c58282b3a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Mesh">
+    <Filter Include="Environment\Scene\Object\Render\Mesh">
       <UniqueIdentifier>{847561fd-312f-4e0e-a1e8-f680006554f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Shapes">
+    <Filter Include="Environment\Scene\Object\Render\Shapes">
       <UniqueIdentifier>{4b13d81f-26dc-42ca-a7a7-480e2fa6e1ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Shapes\2D">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\2D">
       <UniqueIdentifier>{e03774ff-38e4-4809-97ac-b71fb04c2ee8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Shapes\2D\Circle">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\2D\Circle">
       <UniqueIdentifier>{e8e5a441-8fec-49f0-a31d-bb4d9baae095}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Shapes\2D\Grid">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\2D\Grid">
       <UniqueIdentifier>{c229c6b4-cc28-43af-9102-579f8b1e7112}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Shapes\2D\Quad">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\2D\Quad">
       <UniqueIdentifier>{f70c6c90-4b14-479e-a84c-7441a96fbce7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Shapes\2D\Triangle">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\2D\Triangle">
       <UniqueIdentifier>{12c8e802-a17f-48f8-804c-cdb63cbc01ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Shapes\3D">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\3D">
       <UniqueIdentifier>{bbabceac-d9fa-429e-97ed-09d19b067d82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Shapes\3D\Sphere">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\3D\Sphere">
       <UniqueIdentifier>{dd9a0b6c-25c7-4767-9fcc-22ae2d5fcd47}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Shapes\3D\Pyramid">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\3D\Pyramid">
       <UniqueIdentifier>{bf7a76c5-ca5c-4324-8710-5ad5cb5914f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Render\Shapes\3D\Cube">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\3D\Cube">
       <UniqueIdentifier>{5af4eff3-a0a9-44f9-b178-fde220769452}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Game Object\Transform">
+    <Filter Include="Environment\Scene\Object\Transform">
       <UniqueIdentifier>{6baef527-b5a3-4934-8b9e-bbb70d654728}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Rendering\Simpe Line">
-      <UniqueIdentifier>{4c524b32-16b0-4914-a692-3cd3a8c18151}</UniqueIdentifier>
+    <Filter Include="Environment\Scene\Object\Manager">
+      <UniqueIdentifier>{433a438c-9466-484f-a345-a20e7c733ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\Manager">
+      <UniqueIdentifier>{8de48af1-c053-405a-bc26-22b98de72237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Graph">
+      <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Initialization &amp; Update">
+      <UniqueIdentifier>{a091c51a-ee2a-4291-b2f6-53bca9a2689d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Initialization &amp; Update\Window">
+      <UniqueIdentifier>{0fe76f8e-5a31-4fcd-b4ec-7b4d9d0dc69c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -141,20 +150,14 @@
     <ClCompile Include="Player.cpp">
       <Filter>Environment\Scripting\Player</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectTransform.cpp">
-      <Filter>Environment\Scene\Game Object\Transform</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Application\System Events\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Entry.cpp">
-      <Filter>Application\Initialization</Filter>
     </ClCompile>
     <ClCompile Include="EventHandler.cpp">
       <Filter>Application\System Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="WindowCreator.cpp">
-      <Filter>Application\Initialization\Window</Filter>
+      <Filter>Application\Initialization &amp; Update\Window</Filter>
     </ClCompile>
     <ClCompile Include="EnvironmentManager.cpp">
       <Filter>Environment\Manager</Filter>
@@ -171,35 +174,47 @@
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>Environment\Physics\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionManager.cpp">
-      <Filter>Environment\Physics\Collision</Filter>
-    </ClCompile>
     <ClCompile Include="LineRenderer.cpp">
-      <Filter>Environment\Rendering\Simpe Line</Filter>
+      <Filter>Environment\Rendering\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
-      <Filter>Environment\Scene\Game Object\Collision</Filter>
+      <Filter>Environment\Scene\Object\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Circle.cpp">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Circle</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\2D\Circle</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Cube</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\3D\Cube</Filter>
     </ClCompile>
     <ClCompile Include="Grid.cpp">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Grid</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\2D\Grid</Filter>
     </ClCompile>
     <ClCompile Include="Pyramid.cpp">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Pyramid</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\3D\Pyramid</Filter>
     </ClCompile>
     <ClCompile Include="Quad.cpp">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Quad</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\2D\Quad</Filter>
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Sphere</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\3D\Sphere</Filter>
     </ClCompile>
     <ClCompile Include="Triangle.cpp">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Triangle</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\2D\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Environment\Scene\Object\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Environment\Scene\Object\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Environment\Physics\Collision\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGraph.cpp">
+      <Filter>Environment\Scene\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="EntryLoop.cpp">
+      <Filter>Application\Initialization &amp; Update</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,11 +239,8 @@
     <ClInclude Include="Player.h">
       <Filter>Environment\Scripting\Player</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectTransform.h">
-      <Filter>Environment\Scene\Game Object\Transform</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Environment\Scene\Game Object\Render\Mesh</Filter>
+      <Filter>Environment\Scene\Object\Render\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Application\System Events\Input</Filter>
@@ -237,7 +249,7 @@
       <Filter>Application\System Events\Events</Filter>
     </ClInclude>
     <ClInclude Include="WindowCreator.h">
-      <Filter>Application\Initialization\Window</Filter>
+      <Filter>Application\Initialization &amp; Update\Window</Filter>
     </ClInclude>
     <ClInclude Include="EnvironmentManager.h">
       <Filter>Environment\Manager</Filter>
@@ -254,11 +266,8 @@
     <ClInclude Include="PhysicsManager.h">
       <Filter>Environment\Physics\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionManager.h">
-      <Filter>Environment\Physics\Collision</Filter>
-    </ClInclude>
     <ClInclude Include="LineRenderer.h">
-      <Filter>Environment\Rendering\Simpe Line</Filter>
+      <Filter>Environment\Rendering\Debug</Filter>
     </ClInclude>
     <ClInclude Include="GlobalIterators.h">
       <Filter>Globals</Filter>
@@ -273,34 +282,43 @@
       <Filter>Globals</Filter>
     </ClInclude>
     <ClInclude Include="MeshLoader.h">
-      <Filter>Environment\Scene\Game Object\Render\Mesh</Filter>
+      <Filter>Environment\Scene\Object\Render\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
-      <Filter>Environment\Scene\Game Object\Collision</Filter>
+      <Filter>Environment\Scene\Object\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Circle.h">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Circle</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\2D\Circle</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Cube</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\3D\Cube</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Grid</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\2D\Grid</Filter>
     </ClInclude>
     <ClInclude Include="Pyramid.h">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Pyramid</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\3D\Pyramid</Filter>
     </ClInclude>
     <ClInclude Include="Quad.h">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Quad</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\2D\Quad</Filter>
     </ClInclude>
     <ClInclude Include="Sphere.h">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\3D\Sphere</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\3D\Sphere</Filter>
     </ClInclude>
     <ClInclude Include="Triangle.h">
-      <Filter>Environment\Scene\Game Object\Render\Shapes\2D\Triangle</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\2D\Triangle</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalContainerManipulation.h">
-      <Filter>Globals</Filter>
+    <ClInclude Include="Transform.h">
+      <Filter>Environment\Scene\Object\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Environment\Scene\Object\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Environment\Physics\Collision\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGraph.h">
+      <Filter>Environment\Scene\Graph</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

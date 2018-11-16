@@ -2,15 +2,16 @@
 #define _CAMERA_H
 
 // My Headers
-#include "ObjectTransform.h"
+#include "GlobalTypedefs.h"
+#include "Mesh.h"
 
-class Camera : public ObjectTransform
+class Camera : public Mesh
 {
 	XMMATRIX projectionMatrix;
 	
 public:
 	// Initialization
-	Camera(const ushort* clientDimensions, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up);
+	Camera(const ushort* clientDimensions, float inScale = 1);
 
 	// Accessors
 	const XMMATRIX& GetProjectionMatrix() const { return projectionMatrix; }

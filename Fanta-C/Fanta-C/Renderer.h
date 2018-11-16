@@ -12,9 +12,8 @@
 #include <vector>
 
 // Forward Declarations
-class Agent;
-class Camera;
-class Mesh;
+class Object;
+class ObjectManager;
 
 class Renderer
 {
@@ -46,7 +45,7 @@ class Renderer
 	
 	// Private
 	void ResetScreen();
-	void DrawLines(Mesh* agent);
+	void DrawLines(ObjectManager* object);
 
 	// Clean Up
 	template<typename Generic>
@@ -54,10 +53,10 @@ class Renderer
 
 public:
 	// Initialization
-	Renderer(HWND windowHandle, class SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, Camera* cameraPtr);
+	Renderer(HWND windowHandle, class SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, class ObjectManager* cameraPtr);
 
 	// Update
-	void Update(std::vector<Mesh*>* renderableObjects, Camera* cameraPtr);
+	void Update(std::vector<ObjectManager*>* renderableObjects, ObjectManager* cameraPtr);
 
 	// Clean-up
 	~Renderer();

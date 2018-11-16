@@ -2,6 +2,7 @@
 // My Headers
 #include "EnvironmentManager.h"			// Connection to declarations
 
+#include "InputManager.h"
 #include "SceneManager.h"
 #pragma endregion
 

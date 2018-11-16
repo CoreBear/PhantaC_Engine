@@ -1,9 +1,9 @@
 #pragma region Dependencies
-#include "ObjectTransform.h"
+#include "Transform.h"
 #pragma endregion
 
 #pragma region Initialization
-ObjectTransform::ObjectTransform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up)
+Transform::Transform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up)
 {
 	if (!camera)
 	{
@@ -28,7 +28,7 @@ ObjectTransform::ObjectTransform(bool camera, const XMVECTOR& position, const XM
 #pragma endregion
 
 #pragma region Public Interface
-void ObjectTransform::RotateOnWorldXAxis(float angle)
+void Transform::RotateOnWorldXAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[1].m128_f32[1] =  float(cos(XMConvertToRadians(angle)));
@@ -37,7 +37,7 @@ void ObjectTransform::RotateOnWorldXAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[1].m128_f32[1];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void ObjectTransform::RotateOnWorldYAxis(float angle)
+void Transform::RotateOnWorldYAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] =  float(cos(XMConvertToRadians(angle)));
@@ -46,7 +46,7 @@ void ObjectTransform::RotateOnWorldYAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] =  myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void ObjectTransform::RotateOnWorldZAxis(float angle)
+void Transform::RotateOnWorldZAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] =  float(cos(XMConvertToRadians(angle)));
@@ -55,7 +55,7 @@ void ObjectTransform::RotateOnWorldZAxis(float angle)
 	myTransformMatrix.r[1].m128_f32[1] =  myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void ObjectTransform::RotateOnXAxis(float angle)
+void Transform::RotateOnXAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[1].m128_f32[1] = float(cos(XMConvertToRadians(angle)));
@@ -64,7 +64,7 @@ void ObjectTransform::RotateOnXAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] = myTransformMatrix.r[1].m128_f32[1];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
 }
-void ObjectTransform::RotateOnYAxis(float angle)
+void Transform::RotateOnYAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] = float(cos(XMConvertToRadians(angle)));
@@ -73,7 +73,7 @@ void ObjectTransform::RotateOnYAxis(float angle)
 	myTransformMatrix.r[2].m128_f32[2] = myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
 }
-void ObjectTransform::RotateOnZAxis(float angle)
+void Transform::RotateOnZAxis(float angle)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[0].m128_f32[0] = float(cos(XMConvertToRadians(angle)));
@@ -82,7 +82,7 @@ void ObjectTransform::RotateOnZAxis(float angle)
 	myTransformMatrix.r[1].m128_f32[1] = myTransformMatrix.r[0].m128_f32[0];
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
 }
-void ObjectTransform::Scale(float x, float y, float z)
+void Transform::Scale(float x, float y, float z)
 {
 	// This isn't fully correct
 	myTransformMatrix = XMMatrixIdentity();
@@ -91,7 +91,7 @@ void ObjectTransform::Scale(float x, float y, float z)
 	myTransformMatrix.r[2] *= z;
 	myWorldMatrix = XMMatrixMultiply(myTransformMatrix, myWorldMatrix);
 }
-void ObjectTransform::Translate(float x, float y, float z)
+void Transform::Translate(float x, float y, float z)
 {
 	myTransformMatrix = XMMatrixIdentity();
 	myTransformMatrix.r[3].m128_f32[0] = x;
@@ -99,7 +99,7 @@ void ObjectTransform::Translate(float x, float y, float z)
 	myTransformMatrix.r[3].m128_f32[2] = z;
 	myWorldMatrix = XMMatrixMultiply(myWorldMatrix, myTransformMatrix);
 }
-void ObjectTransform::WorldTranslate(uchar index, float speed)
+void Transform::WorldTranslate(uchar index, float speed)
 {
 	// index 0 - horizontal, 1 - vertical, 2 - for/back
 	// Store object direction
