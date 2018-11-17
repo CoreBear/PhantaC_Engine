@@ -1,2 +1,23 @@
-﻿  EntryLoop.cpp
+﻿  Camera.cpp
+  Circle.cpp
+  Cube.cpp
+  EntryLoop.cpp
+  EnvironmentManager.cpp
+  Grid.cpp
+  InputManager.cpp
+  ObjectManager.cpp
+  PlayerManager.cpp
+  Pyramid.cpp
+  Quad.cpp
+  Renderer.cpp
+  SceneGraph.cpp
+  SceneManager.cpp
+  Sphere.cpp
+  Test.cpp
+  TestScene.cpp
+  TestScene2.cpp
+  Generating Code...
+  Compiling...
+  Triangle.cpp
+  Generating Code...
   Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Debug\Fanta-C.exe

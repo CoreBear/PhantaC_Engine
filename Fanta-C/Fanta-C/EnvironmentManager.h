@@ -7,12 +7,13 @@
 
 // My Headers
 #include "GlobalTypedefs.h"
+#include "SceneManager.h"
 
 class EnvironmentManager
 {	
 	// Game Variables
-	float									deltaTime;
-	class SceneManager*						sceneManagerPtr;
+	float									deltaTime = 0;
+	SceneManager*							sceneManagerPtr;
 	std::chrono::duration<float>			chronoDelta;
 	std::chrono::steady_clock::time_point	startTime;
 	std::chrono::steady_clock::time_point	endTime;
@@ -20,13 +21,13 @@ class EnvironmentManager
 
 public:
 	// Initialization
-	EnvironmentManager(HWND windowHandle, ushort* clientDimensions);
+	EnvironmentManager(HWND windowHandle, ushort* clientDimensions, class InputManager* input);
 
 	// Update
 	void Update();
 
 	// Clean Up
-	~EnvironmentManager();
+	~EnvironmentManager() {	if (sceneManagerPtr) delete sceneManagerPtr; }
 };
 
 #endif

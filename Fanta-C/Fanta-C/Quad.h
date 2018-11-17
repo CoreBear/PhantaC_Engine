@@ -13,7 +13,7 @@ class Quad : public Mesh
 
 public:
 	// Initialization
-	Quad(float inScale = 1) : Mesh(true, inScale) { CreateMesh(); }
+	Quad(float inScale = 1) : Mesh(true, inScale, Colors::Orange) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

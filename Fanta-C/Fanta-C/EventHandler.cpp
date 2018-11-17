@@ -9,7 +9,7 @@
 #pragma endregion
 
 #pragma region Global Variables
-static bool	keysCurrentlyPressed[9];
+static bool	keysCurrentlyPressed[11];
 #pragma endregion
 
 #pragma region Update
@@ -80,6 +80,12 @@ void EventHandler::KeyPressed(ushort keyPressed)
 	case SPACE:
 		keysCurrentlyPressed[8] = true;
 		break;
+	case Key1:
+		keysCurrentlyPressed[9] = true;
+		break;
+	case Key2:
+		keysCurrentlyPressed[10] = true;
+		break;
 	default:
 		break;
 	}
@@ -115,6 +121,12 @@ void EventHandler::KeyReleased(ushort keyReleased)
 		break;
 	case SPACE:
 		keysCurrentlyPressed[8] = false;
+		break;
+	case Key1:
+		keysCurrentlyPressed[9] = false;
+		break;
+	case Key2:
+		keysCurrentlyPressed[10] = false;
 		break;
 	default:
 		break;

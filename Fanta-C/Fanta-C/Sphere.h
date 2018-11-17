@@ -13,7 +13,7 @@ class Sphere : public Mesh
 
 public:
 	// Initialization
-	Sphere(float inScale = 1) : Mesh(false, inScale) { CreateMesh(); }
+	Sphere(float inScale = 1) : Mesh(false, inScale, Colors::Purple) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

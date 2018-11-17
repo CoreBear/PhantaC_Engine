@@ -14,7 +14,7 @@ class Triangle : public Mesh
 
 public:
 	// Initialization
-	Triangle(float inScale = 1) : Mesh(true, inScale) { CreateMesh(); }
+	Triangle(float inScale = 1) : Mesh(true, inScale, Colors::Yellow) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

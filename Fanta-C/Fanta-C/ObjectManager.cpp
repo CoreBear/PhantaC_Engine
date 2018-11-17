@@ -4,9 +4,8 @@
 #pragma endregion
 
 #pragma region Initialization
-ObjectManager::ObjectManager(Mesh* inMesh, bool camera, bool collidable, bool transformable, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up)
+ObjectManager::ObjectManager(Mesh* inMesh, bool camera, bool collidable, bool inRenderable, bool transformable, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : renderable(inRenderable), meshPtr(inMesh)
 {
-	meshPtr = inMesh;
 	if (collidable) colliderPtr = new Collider(meshPtr->GetFlatness(), meshPtr->GetScale());
 	if (transformable) transformPtr = (!camera) ? new Transform(position) : new Transform(true, position, forward, up);
 }

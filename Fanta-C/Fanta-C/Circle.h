@@ -13,7 +13,7 @@ class Circle : public Mesh
 
 public:
 	// Initialization
-	Circle(float inScale = 1) : Mesh(true, inScale) { CreateMesh(); }
+	Circle(float inScale = 1) : Mesh(true, inScale, Colors::Red) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

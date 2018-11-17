@@ -4,7 +4,7 @@
 #pragma endregion
 
 #pragma region Update
-void PhysicsManager::Update(float deltaTime)
+void PhysicsManager::Update()
 {
 }
 #pragma endregion

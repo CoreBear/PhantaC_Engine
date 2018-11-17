@@ -26,7 +26,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	// this function call will set a breakpoint at the location of a leaked block
 	// set the parameter to the identifier for a leaked block
-	//_CrtSetBreakAlloc(244);
+	// _CrtSetBreakAlloc(287);
 	#pragma endregion
 
 	// Handles all player input
@@ -39,7 +39,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	WindowCreator window(hInstance, cmdShow, events.GetWndProc());
 
 	// Creates the game instance
-	EnvironmentManager environmentManager(window.GetWindowHandle(), window.GetClientDimensions());
+	EnvironmentManager environmentManager(window.GetWindowHandle(), window.GetClientDimensions(), &inputManager);
 	
 	// Will run until quit message is posted
 	RunLoop(&environmentManager, &events);

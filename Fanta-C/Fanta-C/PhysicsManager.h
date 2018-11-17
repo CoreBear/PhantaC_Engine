@@ -5,7 +5,7 @@ class PhysicsManager
 {
 public:
 	// Update
-	void Update(float deltaTime);
+	void Update();
 };
 
 #endif

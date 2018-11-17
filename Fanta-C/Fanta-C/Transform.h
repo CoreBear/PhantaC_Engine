@@ -8,11 +8,11 @@
 class Transform
 {
 protected:
-	float			moveSpeed;
-	float			rotationSpeed;
-	XMMATRIX		myTransformMatrix;
-	XMMATRIX		myWorldMatrix;
-	XMVECTOR		myTranslationVector;
+	float		moveSpeed;
+	float		rotationSpeed;
+	XMMATRIX	myTransformMatrix;
+	XMMATRIX	myWorldMatrix;
+	XMVECTOR	myTranslationVector;
 
 public:
 	// Initialization

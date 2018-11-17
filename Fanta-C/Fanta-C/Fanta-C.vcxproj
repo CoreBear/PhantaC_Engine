@@ -115,7 +115,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Agent.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Circle.cpp" />
@@ -128,22 +127,24 @@
     <ClCompile Include="LineRenderer.cpp" />
     <ClCompile Include="EntryLoop.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="TestScene2.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Pyramid.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="IntelligenceManager.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="UiManager.cpp" />
     <ClCompile Include="WindowCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Agent.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Circle.h" />
@@ -157,14 +158,18 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="SceneGraph.h" />
+    <ClInclude Include="ScriptManager.h" />
+    <ClInclude Include="Test.h" />
+    <ClInclude Include="TestScene.h" />
+    <ClInclude Include="TestScene2.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="GlobalVramStructures.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GlobalInput.h" />
     <ClInclude Include="LineRenderer.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="GlobalIterators.h" />
     <ClInclude Include="Pyramid.h" />
     <ClInclude Include="Quad.h" />
@@ -172,10 +177,10 @@
     <ClInclude Include="GlobalRendererStructures.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="IntelligenceManager.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="GlobalTypedefs.h" />
+    <ClInclude Include="UiManager.h" />
     <ClInclude Include="WindowCreator.h" />
   </ItemGroup>
   <ItemGroup>

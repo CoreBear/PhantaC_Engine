@@ -37,23 +37,11 @@
     <Filter Include="Environment\Scene">
       <UniqueIdentifier>{f99806c0-ad0a-4be7-9633-8e3c4843a7a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scripting">
-      <UniqueIdentifier>{262e2646-921e-4f18-8ce8-8fb63b04c59b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scripting\Player">
-      <UniqueIdentifier>{e181bfd2-1187-4ca0-aad6-0a63ae5e00a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scripting\Camera">
-      <UniqueIdentifier>{8ab6d898-497e-4c62-bf0d-d39e3a939cec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment\Physics">
       <UniqueIdentifier>{a5a8be92-9283-40eb-b527-f5af4f3658f7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Environment\Manager">
       <UniqueIdentifier>{622967f1-4b53-45e3-bd8e-9de4acf8cdf5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\AI">
-      <UniqueIdentifier>{71a8d186-387b-4a82-8cf5-f99ca7d3a5d3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Environment\Scene\Manager">
       <UniqueIdentifier>{b697fc9a-571e-4b57-81dc-308a62ab23fe}</UniqueIdentifier>
@@ -69,9 +57,6 @@
     </Filter>
     <Filter Include="Environment\Rendering\Shaders\Vertex">
       <UniqueIdentifier>{ec2e0ff2-fdd0-4705-b332-ea540bca8e00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scripting\Agents">
-      <UniqueIdentifier>{4982577d-f467-4c7e-b7c7-78ba99c549f9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Environment\Rendering\Debug">
       <UniqueIdentifier>{4c524b32-16b0-4914-a692-3cd3a8c18151}</UniqueIdentifier>
@@ -127,28 +112,55 @@
     <Filter Include="Environment\Physics\Collision\Manager">
       <UniqueIdentifier>{8de48af1-c053-405a-bc26-22b98de72237}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Graph">
-      <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\Initialization &amp; Update">
       <UniqueIdentifier>{a091c51a-ee2a-4291-b2f6-53bca9a2689d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application\Initialization &amp; Update\Window">
       <UniqueIdentifier>{0fe76f8e-5a31-4fcd-b4ec-7b4d9d0dc69c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Environment\Scripting">
+      <UniqueIdentifier>{262e2646-921e-4f18-8ce8-8fb63b04c59b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scripting\Manager">
+      <UniqueIdentifier>{fd61d9f9-86ab-4a62-b4ff-29d275ac0ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Camera">
+      <UniqueIdentifier>{8ab6d898-497e-4c62-bf0d-d39e3a939cec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Scenes">
+      <UniqueIdentifier>{6b83248a-5af9-488e-8e58-d87c92e21459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Scenes\Test">
+      <UniqueIdentifier>{177e5e3f-c86e-4446-8175-92ab26c300a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Scenes\Test2">
+      <UniqueIdentifier>{7abf44e5-8c02-41b8-a0b4-91024611e470}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\UI">
+      <UniqueIdentifier>{52f62444-0786-4b04-99b0-24344ab9b377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\UI\Manager">
+      <UniqueIdentifier>{7a838632-4c6b-44df-8b0b-57e40f49a35b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Scenes\Graph">
+      <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scripting\GameObject">
+      <UniqueIdentifier>{95029cd5-3ad6-44f4-9aea-6e30de088613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scripting\GameObject\Test">
+      <UniqueIdentifier>{deb338a1-e6f5-4f31-9909-88600177392d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scripting\GameObject\Player">
+      <UniqueIdentifier>{799824f9-4d40-4069-a9e7-a62479b450c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
-      <Filter>Environment\Scripting\Camera</Filter>
+      <Filter>Environment\Scene\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Environment\Rendering\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Agent.cpp">
-      <Filter>Environment\Scripting\Agents</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Environment\Scripting\Player</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Application\System Events\Input</Filter>
@@ -164,9 +176,6 @@
     </ClCompile>
     <ClCompile Include="AudioManager.cpp">
       <Filter>Environment\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="IntelligenceManager.cpp">
-      <Filter>Environment\AI</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Environment\Scene\Manager</Filter>
@@ -211,10 +220,25 @@
       <Filter>Environment\Physics\Collision\Manager</Filter>
     </ClCompile>
     <ClCompile Include="SceneGraph.cpp">
-      <Filter>Environment\Scene\Graph</Filter>
+      <Filter>Environment\Scene\Scenes\Graph</Filter>
     </ClCompile>
     <ClCompile Include="EntryLoop.cpp">
       <Filter>Application\Initialization &amp; Update</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Environment\Scripting\GameObject\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>Environment\Scripting\GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>Environment\Scene\Scenes\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene2.cpp">
+      <Filter>Environment\Scene\Scenes\Test2</Filter>
+    </ClCompile>
+    <ClCompile Include="UiManager.cpp">
+      <Filter>Environment\UI\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,17 +251,11 @@
     <ClInclude Include="GlobalTypedefs.h">
       <Filter>Globals</Filter>
     </ClInclude>
-    <ClInclude Include="Agent.h">
-      <Filter>Environment\Scripting\Agents</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Environment\Scripting\Camera</Filter>
+      <Filter>Environment\Scene\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Environment\Rendering\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Environment\Scripting\Player</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Environment\Scene\Object\Render\Mesh</Filter>
@@ -256,9 +274,6 @@
     </ClInclude>
     <ClInclude Include="AudioManager.h">
       <Filter>Environment\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="IntelligenceManager.h">
-      <Filter>Environment\AI</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Environment\Scene\Manager</Filter>
@@ -318,7 +333,25 @@
       <Filter>Environment\Physics\Collision\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SceneGraph.h">
-      <Filter>Environment\Scene\Graph</Filter>
+      <Filter>Environment\Scene\Scenes\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptManager.h">
+      <Filter>Environment\Scripting\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.h">
+      <Filter>Environment\Scripting\GameObject\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>Environment\Scripting\GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>Environment\Scene\Scenes\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene2.h">
+      <Filter>Environment\Scene\Scenes\Test2</Filter>
+    </ClInclude>
+    <ClInclude Include="UiManager.h">
+      <Filter>Environment\UI\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@ class Cube : public Mesh
 
 public:
 	// Initialization
-	Cube(float inScale = 1) : Mesh(false, inScale) { CreateMesh(); }
+	Cube(float inScale = 1) : Mesh(false, inScale, Colors::Green) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;
