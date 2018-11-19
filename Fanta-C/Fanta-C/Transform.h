@@ -17,7 +17,7 @@ protected:
 public:
 	// Initialization
 	Transform(const XMVECTOR& position) : myWorldMatrix(XMMatrixIdentity()) { myWorldMatrix.r[3] = position; }		
-	Transform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up);
+	Transform(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up){ myWorldMatrix = XMMatrixLookAtLH(position, forward, up); }
 
 	// Public Interface
 	void RotateOnWorldXAxis(float angle);

@@ -3,7 +3,6 @@
 #include "SceneGraph.h"			// Connection to declarations
 
 #include "Camera.h"
-#include "PlayerManager.h"
 #include "ScriptManager.h"
 #include "TestScene.h"
 #pragma endregion
@@ -11,33 +10,10 @@
 #pragma region Initialization
 SceneGraph::SceneGraph(ushort* clientDimensions)
 {
-	#pragma region Dont Touch (Creates scene camera and assigns scene player)
+	// DON'T TOUCH! 
+	// Every scene needs a camera
 	// Create Camera - Camera needs to always be first
-	AddObjectToSceneAsParent(new ObjectManager(new Camera(clientDimensions), true, false, true, true, XMVectorSet(0, 3, -20, 1), XMVectorSet(0, 0, 1, 0), XMVectorSet(0, 1, 0, 0)), nullptr);
-	
-	// Add player script to camera scene object and and camera to player script
-	AddScript(sceneObjects.at(0), new PlayerManager(sceneObjects.at(0)->object));
-
-	// Assign scene's player
-	playerPtr = (PlayerManager*)sceneObjects.at(0)->myScripts.at(0);
-	#pragma endregion
-
-	//// Examples------------------------------------------------------------------------------------
-	//// Creating visible game objects
-	//AddObjectToSceneAsParent(new ObjectManager(new Pyramid, false, false, true, true), nullptr);
-	//AddObjectToSceneAsParent(new ObjectManager(new Grid, false, false, true, true), nullptr);
-	//AddObjectToSceneAsParent(new ObjectManager(new Cube, false, false, true, true), nullptr);
-	//
-	//// Creating non visible game objects
-	//AddObjectToSceneAsParent(new ObjectManager(new Sphere, false, false, false, true), nullptr);
-	//AddObjectToSceneAsParent(new ObjectManager(new Cube, false, false, false, true), nullptr);
-	//
-	//// Removing the grid
-	////RemoveObjectFromScene(sceneObjects.at(2));
-	//
-	//// Adding a script to the object
-	//AddScript(sceneObjects.at(1), new Test(sceneObjects.at(1)->object));
-	//// End Examples--------------------------------------------------------------------------------
+	AddObjectToSceneAsParent(new ObjectManager(new Camera(clientDimensions), true, false, true, XMVectorSet(0, 3, -20, 1), XMVectorSet(0, 0, 1, 0), XMVectorSet(0, 1, 0, 0)), nullptr);
 }
 #pragma endregion
 
@@ -71,44 +47,11 @@ void SceneGraph::AddObjectToSceneAsParent(ObjectManager* object, SceneObject* sc
 	{
 		// Add object as scene object
 		sceneObjects.push_back(sceneObject);
-
-		// Remove child from previous parent
-		if (sceneObject->parent)
-			sceneObject->parent->children.erase(std::remove(sceneObject->parent->children.begin(), sceneObject->parent->children.end(), sceneObject), sceneObject->parent->children.end());
-
-		// Assign child's parent
-		sceneObject->parent = nullptr;
 	}
 }
 void SceneGraph::AddScript(SceneObject* object, ScriptManager* script)
 {
 	object->myScripts.push_back(script);
-}
-void SceneGraph::ChildObjectToParent(SceneObject* parent, ObjectManager* object, SceneObject* childObject)
-{
-	if (object)
-	{
-		// Create new child scene object
-		SceneObject* newChild = new SceneObject(object);
-
-		// Add child to new parent
-		parent->children.push_back(newChild);
-
-		// Assign child's parent
-		newChild->parent = parent;
-	}
-	else
-	{
-		// Add child to new parent
-		parent->children.push_back(childObject);
-
-		// Remove child from previous parent
-		if (childObject->parent)
-			childObject->parent->children.erase(std::remove(childObject->parent->children.begin(), childObject->parent->children.end(), childObject), childObject->parent->children.end());
-
-		// Assign child's parent
-		childObject->parent = parent;
-	}
 }
 void SceneGraph::RemoveObjectFromCollide(ObjectManager* object)
 {
@@ -140,6 +83,11 @@ void SceneGraph::RemoveObjectFromScene(SceneObject * object)
 
 	delete object;
 }
+void SceneGraph::RemoveScript(SceneObject* object, ScriptManager* script)
+{
+	// Remove script
+	object->myScripts.erase(std::remove(object->myScripts.begin(), object->myScripts.end(), script), object->myScripts.end());
+}
 #pragma endregion
 
 #pragma region Clean Up
@@ -151,12 +99,8 @@ SceneGraph::~SceneGraph()
 SceneGraph::SceneObject::~SceneObject()
 {
 	if (object) delete object;
-	if (parent) delete parent;
 
 	for (objectIterator[1] = 0; objectIterator[1] < myScripts.size(); ++objectIterator[1])
 		if (myScripts.at(objectIterator[1])) delete myScripts.at(objectIterator[1]);
-
-	for (objectIterator[1] = 0; objectIterator[1] < children.size(); ++objectIterator[1])
-		if (children.at(objectIterator[1])) delete children.at(objectIterator[1]);
 }
 #pragma endregion

@@ -14,13 +14,13 @@ TestScene2::TestScene2(ushort* clientDimensions) : SceneGraph(clientDimensions)
 {
 	// Examples------------------------------------------------------------------------------------
 	// Creating visible game objects
-	AddObjectToSceneAsParent(new ObjectManager(new Sphere, false, false, true, true), nullptr);
-	AddObjectToSceneAsParent(new ObjectManager(new Grid, false, false, true, true), nullptr);
-	AddObjectToSceneAsParent(new ObjectManager(new Cube, false, false, true, true), nullptr);
+	AddObjectToSceneAsParent(new ObjectManager(new Sphere, false, false, true), nullptr);
+	AddObjectToSceneAsParent(new ObjectManager(new Grid, false, false, true), nullptr);
+	AddObjectToSceneAsParent(new ObjectManager(new Cube, false, false, true), nullptr);
 
 	// Creating non visible game objects
-	AddObjectToSceneAsParent(new ObjectManager(new Pyramid, false, false, false, true), nullptr);
-	AddObjectToSceneAsParent(new ObjectManager(new Cube, false, false, false, true), nullptr);
+	AddObjectToSceneAsParent(new ObjectManager(new Pyramid, false, false, false), nullptr);
+	AddObjectToSceneAsParent(new ObjectManager(new Cube, false, false, false), nullptr);
 
 	// Removing the grid
 	//RemoveObjectFromScene(sceneObjects.at(2));

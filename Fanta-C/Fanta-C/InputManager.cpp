@@ -28,8 +28,8 @@ void InputManager::Update(bool* keysCurrentlyPressed)
 	if (keysCurrentlyPressed[8])
 		return;
 	if (keysCurrentlyPressed[9])
-		sceneManagerPtr->ChangeScene(0);
-	if (keysCurrentlyPressed[10])		
-		sceneManagerPtr->ChangeScene(1);
+		return;
+	if (keysCurrentlyPressed[10])
+		return;
 }
 #pragma endregion

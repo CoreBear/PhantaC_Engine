@@ -18,19 +18,15 @@ SceneManager::SceneManager(ushort* clientDimensions, HWND* windowHandle, uchar t
 	
 	physicsManagerPtr = new PhysicsManager;
 
-	// Creating multiple scenes
-	sceneGraphsPtr.push_back(new TestScene(clientDimensions));
-	sceneGraphsPtr.push_back(new TestScene2(clientDimensions));
-
-	// Manager will run this assigned scene
-	currentScenePtr = sceneGraphsPtr.at(0);
+	// Assign whatever scene you want to run
+	scenePtr = new TestScene(clientDimensions);
 	
-	rendererPtr = new Renderer(*windowHandle, this, clientDimensions, targetFPS, currentScenePtr->GetCamera());
+	rendererPtr = new Renderer(*windowHandle, this, clientDimensions, targetFPS, scenePtr->GetCamera());
 	#pragma endregion
 
 	#pragma region Assign 1st Player
 	// First player to navigate menus or whatever
-	inputManagerPtr->AssignPlayer(currentScenePtr->GetPlayer());	
+	inputManagerPtr->AssignPlayer(scenePtr->GetPlayer());
 	#pragma endregion
 
 	#pragma region Assign SceneManager to InputManager
@@ -39,24 +35,13 @@ SceneManager::SceneManager(ushort* clientDimensions, HWND* windowHandle, uchar t
 }
 #pragma endregion
 
-#pragma region Public Interface
-void SceneManager::ChangeScene(uchar index)
-{
-	// Change seen to update
-	currentScenePtr = sceneGraphsPtr.at(index);
-
-	// Change player to control
-	inputManagerPtr->AssignPlayer(currentScenePtr->GetPlayer());
-}
-#pragma endregion
-
 #pragma region Update
 void SceneManager::Update(float deltaTime)
 {	
-	currentScenePtr->Update(deltaTime);															// Runs scripts
-	audioManagerPtr->Update();																	// Game audio
-	physicsManagerPtr->Update();																// Collision
-	rendererPtr->Update(currentScenePtr->GetRenderableObjects(), currentScenePtr->GetCamera());	// Renders scene
+	scenePtr->Update(deltaTime);													// Runs scripts
+	audioManagerPtr->Update();														// Game audio
+	physicsManagerPtr->Update(scenePtr->GetCollidableObjects());					// Collision
+	rendererPtr->Update(scenePtr->GetRenderableObjects(), scenePtr->GetCamera());	// Renders scene
 }
 #pragma endregion
 
@@ -66,8 +51,6 @@ SceneManager::~SceneManager()
 	if (audioManagerPtr) delete audioManagerPtr;
 	if (physicsManagerPtr) delete physicsManagerPtr;
 	if (rendererPtr) delete rendererPtr;
-
-	for (iterators[0] = 0; iterators[0] < sceneGraphsPtr.size(); ++iterators[0])
-		 if (sceneGraphsPtr.at(iterators[0])) delete sceneGraphsPtr.at(iterators[0]);
+	if (scenePtr) delete scenePtr;
 }
 #pragma endregion

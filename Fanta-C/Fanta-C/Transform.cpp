@@ -2,31 +2,6 @@
 #include "Transform.h"
 #pragma endregion
 
-#pragma region Initialization
-Transform::Transform(bool camera, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up)
-{
-	if (!camera)
-	{
-		// Position
-		myWorldMatrix.r[3] = position;
-
-		// Forward
-		myWorldMatrix.r[2] = (forward + position) - position;
-		myWorldMatrix.r[2] = XMVector3Normalize(myWorldMatrix.r[2]);
-
-		// Right
-		myWorldMatrix.r[0] = XMVector3Cross(up, myWorldMatrix.r[2]);
-		myWorldMatrix.r[0] = XMVector3Normalize(myWorldMatrix.r[0]);
-
-		// Up
-		myWorldMatrix.r[1] = XMVector3Cross(myWorldMatrix.r[2], myWorldMatrix.r[0]);
-		myWorldMatrix.r[1] = XMVector3Normalize(myWorldMatrix.r[1]);
-	}
-	else
-		myWorldMatrix = XMMatrixLookAtLH(position, forward, up);
-}
-#pragma endregion
-
 #pragma region Public Interface
 void Transform::RotateOnWorldXAxis(float angle)
 {

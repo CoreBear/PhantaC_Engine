@@ -22,6 +22,7 @@ public:
 
 	// Public Interface
 	virtual void AddMyLinesToRenderer(LineRenderer& lineRenderer) { return; }
+	void ChangeColor(XMVECTORF32 inColor) { color = inColor; }
 
 	// Accessors
 	bool GetFlatness() const { return meshIsFlat; }

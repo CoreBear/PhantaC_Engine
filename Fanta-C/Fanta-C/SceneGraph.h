@@ -9,7 +9,6 @@
 #include "ObjectManager.h"
 
 // Forward Declarations
-class ObjectManager;
 class PlayerManager;
 
 class SceneGraph
@@ -17,30 +16,28 @@ class SceneGraph
 protected:
 	struct SceneObject
 	{
-		ushort objectIterator[3];
 
 		// Variables
 		std::vector<class ScriptManager*>	myScripts;
 		ObjectManager*						object = nullptr;
-		SceneObject*						parent = nullptr;
-		std::vector<SceneObject*>			children;
-
-		// Update
-		void Update(float delteTime);
+		ushort								objectIterator[3];
 
 		// Initialization
 		SceneObject(ObjectManager* inObject) { object = inObject; }
+
+		// Update
+		void Update(float delteTime);
 
 		// Clean Up
 		~SceneObject();
 	};
 
-	PlayerManager*				playerPtr;
 	// Camera will always be the first object in the scene
+	PlayerManager*				playerPtr;
 	std::vector<ObjectManager*> collidableObjects;
 	std::vector<ObjectManager*> renderableObjects;
 	std::vector<SceneObject*>	sceneObjects;
-	ushort graphIterator[3];
+	ushort						graphIterator[3];
 
 public:
 	// Initialization
@@ -54,10 +51,10 @@ public:
 	void AddObjectToRender(ObjectManager* object) { renderableObjects.push_back(object); }
 	void AddObjectToSceneAsParent(ObjectManager* object, SceneObject* sceneObject);
 	void AddScript(SceneObject* object, ScriptManager* script);
-	void ChildObjectToParent(SceneObject* parent, ObjectManager* object, SceneObject* childObject);
 	void RemoveObjectFromCollide(ObjectManager* object);
 	void RemoveObjectFromRender(ObjectManager* object);
 	void RemoveObjectFromScene(SceneObject* object);
+	void RemoveScript(SceneObject* object, ScriptManager* script);
 
 	// Clean Up
 	~SceneGraph();
@@ -65,6 +62,7 @@ public:
 	// Accessors
 	ObjectManager* GetCamera() { return sceneObjects.at(0)->object; }
 	PlayerManager* GetPlayer() { return playerPtr; }
+	std::vector<ObjectManager*>* GetCollidableObjects() { return &collidableObjects; }
 	std::vector<ObjectManager*>* GetRenderableObjects() { return &renderableObjects; }
 };
 
