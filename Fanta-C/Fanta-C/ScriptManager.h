@@ -2,6 +2,7 @@
 #define _SCRIPT_MANAGER_H
 
 // My Headers
+#include "GlobalTime.h"
 #include "ObjectManager.h"
 
 class ScriptManager
@@ -14,7 +15,7 @@ public:
 	ScriptManager(ObjectManager* inObject) { myObject = inObject; }
 
 	// Update
-	virtual void Update(float delteTime) { return; }
+	virtual void Update() { return; }
 };
 
 #endif

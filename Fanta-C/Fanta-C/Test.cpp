@@ -1,8 +1,9 @@
 #include "Test.h"
 
+#include "GlobalTransform.h"
 #include "ObjectManager.h"
 
-void Test::Update(float deltaTime)
+void Test::Update()
 {
-	myObject->GetTransform()->Translate(1 * deltaTime, 0, 0);
+	GlobalTransform::Translate(GlobalTime::deltaTime, 0, 0, myObject->GetTransform()->GetWorldMatrix());
 }

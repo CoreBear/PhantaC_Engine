@@ -2,26 +2,33 @@
 #define _PLAYER_MANAGER_H
 
 // My Headers
+#include "GlobalTransform.h"
 #include "ScriptManager.h"
 
 class PlayerManager : public ScriptManager
 {
-	char moveSpeed = 15;		// Abstract out...temp
-	uchar rotateSpeed = 175;	// Abstract out...temp
-	float myDeltaTime;			// Temporary patch
+	// Release
+	//float moveSpeed = 0.005;	// Abstract out...temp
+	//float rotateSpeed = 0.03;	// Abstract out...temp
+
+	// Debug
+	float moveSpeed = 0.5f;		// Abstract out...temp
+	float rotateSpeed = 3;		// Abstract out...temp
+
+	void PlayerInput();
 
 public:
 	// Initialization
 	PlayerManager(ObjectManager* inObject) : ScriptManager(inObject) { return; }
 
 	// Update
-	void Update(float delteTime) override { myDeltaTime = delteTime; }
+	void Update() override;
 
 	// Public Interface
-	void Move(char x, char y, char z) { myObject->GetTransform()->Translate(x * myDeltaTime * moveSpeed, y * myDeltaTime * moveSpeed, z * myDeltaTime * moveSpeed); }
-	void Pitch(char angle) { myObject->GetTransform()->RotateOnXAxis(angle * myDeltaTime * rotateSpeed); }
-	void Roll(char angle) { myObject->GetTransform()->RotateOnZAxis(angle * myDeltaTime * rotateSpeed); }
-	void Yaw(char angle) { myObject->GetTransform()->RotateOnYAxis(angle * myDeltaTime * rotateSpeed); }
+	void Move(char x, char y, char z) { GlobalTransform::Translate(x * GlobalTime::deltaTime * moveSpeed, y * GlobalTime::deltaTime * moveSpeed, z * GlobalTime::deltaTime * moveSpeed, myObject->GetTransform()->GetWorldMatrix()); }
+	void Pitch(char angle) { GlobalTransform::RotateOnXAxis(angle * GlobalTime::deltaTime * rotateSpeed, myObject->GetTransform()->GetWorldMatrix()); }
+	void Roll(char angle) { GlobalTransform::RotateOnZAxis(angle * GlobalTime::deltaTime * rotateSpeed, myObject->GetTransform()->GetWorldMatrix()); }
+	void Yaw(char angle) { GlobalTransform::RotateOnYAxis(angle * GlobalTime::deltaTime * rotateSpeed, myObject->GetTransform()->GetWorldMatrix()); }
 };
 
 #endif

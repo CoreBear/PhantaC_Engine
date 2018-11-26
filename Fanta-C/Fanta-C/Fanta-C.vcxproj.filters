@@ -7,15 +7,6 @@
     <Filter Include="Globals">
       <UniqueIdentifier>{1161c7c0-137c-4f19-ab74-a93238c77c71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\System Events">
-      <UniqueIdentifier>{c7f4cba4-6e9f-4ae8-a6b8-7e4f996c9fa9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\System Events\Input">
-      <UniqueIdentifier>{97093535-8501-42b3-a558-44b18acc5f12}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\System Events\Events">
-      <UniqueIdentifier>{8def0c0c-c73a-4e04-a66e-ee10bda3e156}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment">
       <UniqueIdentifier>{f500e83a-f30a-4c87-b10d-52355087d3fe}</UniqueIdentifier>
     </Filter>
@@ -118,12 +109,6 @@
     <Filter Include="Application\Initialization &amp; Update\Window">
       <UniqueIdentifier>{0fe76f8e-5a31-4fcd-b4ec-7b4d9d0dc69c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scripting">
-      <UniqueIdentifier>{262e2646-921e-4f18-8ce8-8fb63b04c59b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scripting\Manager">
-      <UniqueIdentifier>{fd61d9f9-86ab-4a62-b4ff-29d275ac0ca0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment\Scene\Camera">
       <UniqueIdentifier>{8ab6d898-497e-4c62-bf0d-d39e3a939cec}</UniqueIdentifier>
     </Filter>
@@ -132,9 +117,6 @@
     </Filter>
     <Filter Include="Environment\Scene\Scenes\Test">
       <UniqueIdentifier>{177e5e3f-c86e-4446-8175-92ab26c300a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Scenes\Test2">
-      <UniqueIdentifier>{7abf44e5-8c02-41b8-a0b4-91024611e470}</UniqueIdentifier>
     </Filter>
     <Filter Include="Environment\UI">
       <UniqueIdentifier>{52f62444-0786-4b04-99b0-24344ab9b377}</UniqueIdentifier>
@@ -145,14 +127,38 @@
     <Filter Include="Environment\Scene\Scenes\Graph">
       <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scripting\GameObject">
+    <Filter Include="Game">
+      <UniqueIdentifier>{69f23921-366e-4368-9038-ca2416937e37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripting">
+      <UniqueIdentifier>{262e2646-921e-4f18-8ce8-8fb63b04c59b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripting\Manager">
+      <UniqueIdentifier>{fd61d9f9-86ab-4a62-b4ff-29d275ac0ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripting\GameObject">
       <UniqueIdentifier>{95029cd5-3ad6-44f4-9aea-6e30de088613}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scripting\GameObject\Test">
+    <Filter Include="Game\Scripting\GameObject\Test">
       <UniqueIdentifier>{deb338a1-e6f5-4f31-9909-88600177392d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scripting\GameObject\Player">
+    <Filter Include="Game\Scripting\GameObject\Player">
       <UniqueIdentifier>{799824f9-4d40-4069-a9e7-a62479b450c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Input">
+      <UniqueIdentifier>{97093535-8501-42b3-a558-44b18acc5f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Input\Manager">
+      <UniqueIdentifier>{6fc1a6bb-8b95-406a-ab0f-d4eed022c275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Input\Controller">
+      <UniqueIdentifier>{b3926534-50d1-4b5b-ae6e-492d9b850e66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Input\Controller\Manager">
+      <UniqueIdentifier>{5173ecdb-4c7a-46f9-9863-5ea1cdb4139b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Globals\Transform">
+      <UniqueIdentifier>{a9309e83-215e-4000-8b04-1bfd2be5e837}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -161,12 +167,6 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Environment\Rendering\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Application\System Events\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="EventHandler.cpp">
-      <Filter>Application\System Events\Events</Filter>
     </ClCompile>
     <ClCompile Include="WindowCreator.cpp">
       <Filter>Application\Initialization &amp; Update\Window</Filter>
@@ -210,9 +210,6 @@
     <ClCompile Include="Triangle.cpp">
       <Filter>Environment\Scene\Object\Render\Shapes\2D\Triangle</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Environment\Scene\Object\Transform</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Environment\Scene\Object\Manager</Filter>
     </ClCompile>
@@ -222,30 +219,33 @@
     <ClCompile Include="SceneGraph.cpp">
       <Filter>Environment\Scene\Scenes\Graph</Filter>
     </ClCompile>
-    <ClCompile Include="EntryLoop.cpp">
-      <Filter>Application\Initialization &amp; Update</Filter>
-    </ClCompile>
     <ClCompile Include="Test.cpp">
-      <Filter>Environment\Scripting\GameObject\Test</Filter>
+      <Filter>Game\Scripting\GameObject\Test</Filter>
     </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
-      <Filter>Environment\Scripting\GameObject\Player</Filter>
+      <Filter>Game\Scripting\GameObject\Player</Filter>
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
       <Filter>Environment\Scene\Scenes\Test</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene2.cpp">
-      <Filter>Environment\Scene\Scenes\Test2</Filter>
-    </ClCompile>
     <ClCompile Include="UiManager.cpp">
       <Filter>Environment\UI\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Environment\Input\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerManager.cpp">
+      <Filter>Environment\Input\Controller\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="EntryEventLoop.cpp">
+      <Filter>Application\Initialization &amp; Update</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalTransform.cpp">
+      <Filter>Globals\Transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GlobalDirectX.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalInput.h">
       <Filter>Globals</Filter>
     </ClInclude>
     <ClInclude Include="GlobalTypedefs.h">
@@ -259,12 +259,6 @@
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Environment\Scene\Object\Render\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Application\System Events\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="EventHandler.h">
-      <Filter>Application\System Events\Events</Filter>
     </ClInclude>
     <ClInclude Include="WindowCreator.h">
       <Filter>Application\Initialization &amp; Update\Window</Filter>
@@ -336,22 +330,34 @@
       <Filter>Environment\Scene\Scenes\Graph</Filter>
     </ClInclude>
     <ClInclude Include="ScriptManager.h">
-      <Filter>Environment\Scripting\Manager</Filter>
+      <Filter>Game\Scripting\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Test.h">
-      <Filter>Environment\Scripting\GameObject\Test</Filter>
+      <Filter>Game\Scripting\GameObject\Test</Filter>
     </ClInclude>
     <ClInclude Include="PlayerManager.h">
-      <Filter>Environment\Scripting\GameObject\Player</Filter>
+      <Filter>Game\Scripting\GameObject\Player</Filter>
     </ClInclude>
     <ClInclude Include="TestScene.h">
       <Filter>Environment\Scene\Scenes\Test</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene2.h">
-      <Filter>Environment\Scene\Scenes\Test2</Filter>
-    </ClInclude>
     <ClInclude Include="UiManager.h">
       <Filter>Environment\UI\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalTime.h">
+      <Filter>Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Environment\Input\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerManager.h">
+      <Filter>Environment\Input\Controller\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalInput.h">
+      <Filter>Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalTransform.h">
+      <Filter>Globals\Transform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

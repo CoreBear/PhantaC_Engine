@@ -7,6 +7,5 @@ public:
 	Test(ObjectManager* inObject) : ScriptManager(inObject) { return; }
 
 	// Update
-	void Update(float delteTime) override;
+	void Update() override;
 };
-

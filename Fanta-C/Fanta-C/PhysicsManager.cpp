@@ -8,6 +8,6 @@
 #pragma region Update
 void PhysicsManager::Update(std::vector<ObjectManager*>* collidableObjects)
 {
-	collisionManager.Update(collidableObjects);
+	collisionManager->Update(collidableObjects);
 }
 #pragma endregion

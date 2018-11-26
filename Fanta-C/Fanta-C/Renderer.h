@@ -48,8 +48,7 @@ class Renderer
 	void DrawLines(ObjectManager* object);
 
 	// Clean Up
-	template<typename Generic>
-	inline void ReleaseResource(Generic& ptr);
+	template<typename Generic> void ReleaseResource(Generic& ptr);
 
 public:
 	// Initialization

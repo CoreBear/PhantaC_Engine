@@ -37,3 +37,12 @@ void Collider::CreateBounds(bool meshIsFlat, float scale)
 	extents.m128_f32[3] = scale;
 }
 #pragma endregion
+
+#pragma region Mutators
+void Collider::SetExtents(float x, float y, float z)
+{
+	extents.m128_f32[0] = x;
+	extents.m128_f32[1] = y;
+	extents.m128_f32[2] = z;
+}
+#pragma endregion

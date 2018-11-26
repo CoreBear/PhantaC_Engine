@@ -1,25 +1,23 @@
-#ifndef _INPUT_CONTROLLER_H
-#define _INPUT_CONTROLLER_H
+#ifndef _INPUT_MANAGER_H
+#define _INPUT_MANAGER_H
 
 // My Headers
-#include "GlobalInput.h"
-
-// Forward Declarations
-class PlayerManager;
-class SceneManager;
+#include "ControllerManager.h"
 
 class InputManager
 {
-	PlayerManager*	playerPtr;			// Update to take multiple players
-	SceneManager*	sceneManagerPtr;	// Temporary
+	ControllerManager*	controllerManagerPtr;
 
-public:	
+public:
+	// Initialization
+	InputManager() { controllerManagerPtr = new ControllerManager; }
+
 	// Update
-	void Update(bool* keysCurrentlyPressed);
+	void Update();
 
-	// Public Interface
-	void AssignPlayer(PlayerManager* inPlayer) { playerPtr = inPlayer; }
-	void AssignSceneManager(SceneManager* inSceneManager) { sceneManagerPtr = inSceneManager; }
+	// Clean Up
+	~InputManager() { if (controllerManagerPtr) delete controllerManagerPtr; }
+
 };
 
 #endif

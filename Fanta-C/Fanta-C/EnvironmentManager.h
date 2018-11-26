@@ -4,30 +4,52 @@
 // System Headers
 #include <Windows.h>
 #include <chrono>
+#include <thread>
 
 // My Headers
 #include "GlobalTypedefs.h"
-#include "SceneManager.h"
+#include "GlobalTime.h"
+
+// Forward Declarations
+class AudioManager;
+class InputManager;
+class PhysicsManager;
+class Renderer;
+class SceneManager;
 
 class EnvironmentManager
 {	
 	// Game Variables
-	float									deltaTime = 0;
+	AudioManager*							audioManagerPtr;
+	bool									cycleCompleted[5];
+	bool									resetTimes[5];
+	float									cumulativeDeltas[5];
+	InputManager*							inputManagerPtr;
+	PhysicsManager*							physicsManagerPtr;
+	Renderer*								rendererPtr;
 	SceneManager*							sceneManagerPtr;
-	std::chrono::duration<float>			chronoDelta;
-	std::chrono::steady_clock::time_point	startTime;
-	std::chrono::steady_clock::time_point	endTime;
+	std::chrono::duration<float>			chronoDelta[5];
+	std::chrono::steady_clock::time_point	startTime[5];
+	std::chrono::steady_clock::time_point	endTime[5];
+	const static uchar						numberOfThreads = 5;
+	uchar									threadIterator;
 	const uchar								targetFPS = 100;
-
+	std::thread*							threads[numberOfThreads];
+	
 public:
 	// Initialization
-	EnvironmentManager(HWND windowHandle, ushort* clientDimensions, class InputManager* input);
+	EnvironmentManager(HWND windowHandle, ushort* clientDimensions);
+	void ThreadMaintenance(MSG* msg);
 
-	// Update
-	void Update();
+	// Thread Functions
+	void RunAudio(MSG* msg);
+	void RunInput(MSG* msg);
+	void RunPhysics(MSG* msg);
+	void RunRenderer(MSG* msg);
+	void RunScene(MSG* msg);
 
 	// Clean Up
-	~EnvironmentManager() {	if (sceneManagerPtr) delete sceneManagerPtr; }
+	~EnvironmentManager();
 };
 
 #endif

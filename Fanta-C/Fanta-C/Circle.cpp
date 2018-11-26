@@ -1,6 +1,7 @@
 #pragma region Dependencies
 // My Headers
 #include "Circle.h"		// Connection to declarations
+
 #include "GlobalIterators.h"
 #include "LineRenderer.h"
 #pragma endregion

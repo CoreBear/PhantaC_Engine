@@ -13,27 +13,27 @@ SceneGraph::SceneGraph(ushort* clientDimensions)
 	// DON'T TOUCH! 
 	// Every scene needs a camera
 	// Create Camera - Camera needs to always be first
-	AddObjectToSceneAsParent(new ObjectManager(new Camera(clientDimensions), true, false, true, XMVectorSet(0, 3, -20, 1), XMVectorSet(0, 0, 1, 0), XMVectorSet(0, 1, 0, 0)), nullptr);
+	AddObjectToScene(new ObjectManager(new Camera(clientDimensions), true, false, true, XMVectorSet(0, 3, -20, 1), XMVectorSet(0, 0, 1, 0), XMVectorSet(0, 1, 0, 0)), nullptr);
 }
 #pragma endregion
 
 #pragma region Update
-void SceneGraph::Update(float delteTime)
+void SceneGraph::Update()
 {
 	// Update every object in the scene
 	for (graphIterator[0] = 0; graphIterator[0] < sceneObjects.size(); ++graphIterator[0])
-		sceneObjects.at(graphIterator[0])->Update(delteTime);
+		sceneObjects.at(graphIterator[0])->Update();
 }
-void SceneGraph::SceneObject::Update(float delteTime)
+void SceneGraph::SceneObject::Update()
 {
 	// Run every script for object
 	for (objectIterator[0] = 0; objectIterator[0] < myScripts.size(); ++objectIterator[0])
-		myScripts.at(objectIterator[0])->Update(delteTime);
+		myScripts.at(objectIterator[0])->Update();
 }
 #pragma endregion
 
 #pragma region Public Interface
-void SceneGraph::AddObjectToSceneAsParent(ObjectManager* object, SceneObject* sceneObject)
+void SceneGraph::AddObjectToScene(ObjectManager* object, SceneObject* sceneObject)
 {
 	if (object)
 	{
@@ -94,13 +94,13 @@ void SceneGraph::RemoveScript(SceneObject* object, ScriptManager* script)
 SceneGraph::~SceneGraph()
 {
 	for (graphIterator[2] = 0; graphIterator[2] < sceneObjects.size(); ++graphIterator[2])
-		if (sceneObjects.at(graphIterator[2])) delete sceneObjects.at(graphIterator[2]);
+		if (sceneObjects.at(graphIterator[2])) { delete sceneObjects.at(graphIterator[2]); }
 }
 SceneGraph::SceneObject::~SceneObject()
 {
 	if (object) delete object;
 
 	for (objectIterator[1] = 0; objectIterator[1] < myScripts.size(); ++objectIterator[1])
-		if (myScripts.at(objectIterator[1])) delete myScripts.at(objectIterator[1]);
+		if (myScripts.at(objectIterator[1])) { delete myScripts.at(objectIterator[1]); }
 }
 #pragma endregion

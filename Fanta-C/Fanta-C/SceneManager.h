@@ -1,24 +1,25 @@
 #ifndef _SCENE_MANAGER_H
 #define _SCENE_MANAGER_H
 
+// System Headers
+#include <Windows.h>
+
 // My Headers
 #include "GlobalTypedefs.h"
-#include "Renderer.h"
 
 class SceneManager
-{
-	class AudioManager*			audioManagerPtr;	
-	class InputManager*			inputManagerPtr;
-	class PhysicsManager*		physicsManagerPtr;			
-	class Renderer*				rendererPtr;
-	class SceneGraph*			scenePtr;
+{			
+	class SceneGraph*		scenePtr;
 
 public:
 	// Initialization
-	SceneManager(ushort* clientDimensions, HWND* windowHandle, uchar targetFPS, class InputManager* input);
+	SceneManager(ushort* clientDimensions, HWND* windowHandle, uchar targetFPS);
 
 	// Update
-	void Update(float delteTime);
+	void Update();
+
+	// Accessors
+	SceneGraph* GetScenePtr() { return scenePtr; }
 
 	// Clean up
 	~SceneManager();

@@ -1,0 +1,12 @@
+﻿  PlayerManager.cpp
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\playermanager.h(11): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\playermanager.h(12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  TestScene.cpp
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\playermanager.h(11): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\playermanager.h(12): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating code
+  2 of 520 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Release\Fanta-C.exe

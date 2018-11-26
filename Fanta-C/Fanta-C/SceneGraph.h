@@ -5,6 +5,7 @@
 #include <vector>
 
 // My Headers
+#include "GlobalTransform.h"
 #include "GlobalTypedefs.h"
 #include "ObjectManager.h"
 
@@ -26,7 +27,7 @@ protected:
 		SceneObject(ObjectManager* inObject) { object = inObject; }
 
 		// Update
-		void Update(float delteTime);
+		void Update();
 
 		// Clean Up
 		~SceneObject();
@@ -44,12 +45,12 @@ public:
 	SceneGraph(ushort* clientDimensions);
 
 	// Update
-	void Update(float delteTime);
+	void Update();
 
 	// Public Interface
 	void AddObjectToCollide(ObjectManager* object) { collidableObjects.push_back(object); }
 	void AddObjectToRender(ObjectManager* object) { renderableObjects.push_back(object); }
-	void AddObjectToSceneAsParent(ObjectManager* object, SceneObject* sceneObject);
+	void AddObjectToScene(ObjectManager* object, SceneObject* sceneObject);
 	void AddScript(SceneObject* object, ScriptManager* script);
 	void RemoveObjectFromCollide(ObjectManager* object);
 	void RemoveObjectFromRender(ObjectManager* object);

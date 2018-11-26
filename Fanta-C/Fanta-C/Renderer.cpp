@@ -8,7 +8,6 @@
 #include "SceneManager.h"
 
 // System Headers
-// DirectX Includes
 #include <d3dcompiler.h>			// Required for loading and compiling HLSL shaders
 
 // Link Library Dependencies	
@@ -299,8 +298,8 @@ Renderer::~Renderer()
 	ReleaseResource(swapChain);
 	#pragma endregion
 }
-template<typename Generic>
-inline void Renderer::ReleaseResource(Generic& ptr)
+template<typename Generic> 
+void Renderer::ReleaseResource(Generic& ptr)
 {
 	if (ptr != NULL)
 	{

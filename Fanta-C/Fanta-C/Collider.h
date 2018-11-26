@@ -27,7 +27,7 @@ public:
 	// Public Interface
 	void AddCollidingObject(ObjectManager* collidingObject) { collidingObjects.push_back(collidingObject); }
 	bool CheckIfObjectInContainer(ObjectManager* collidingObject);
-	bool ContainerEmpty() const { return (collidingObjects.size() > 0) ? false : true; }
+	bool ContainerEmpty() { return (collidingObjects.size() > 0) ? false : true; }
 	void RemoveCollidingObject(ObjectManager* removeObject);
 
 	// Accessors
@@ -35,6 +35,7 @@ public:
 	XMVECTOR& GetExtents() { return extents; }
 	
 	// Mutators
+	void SetExtents(float x, float y, float z);
 	void ToggleColliding() { isColliding = !isColliding; }
 };
 
