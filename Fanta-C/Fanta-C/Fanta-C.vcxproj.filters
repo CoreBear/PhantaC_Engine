@@ -55,9 +55,6 @@
     <Filter Include="Environment\Scene\Object">
       <UniqueIdentifier>{a949469f-77eb-485f-a954-b407f94f87d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Object\Collision">
-      <UniqueIdentifier>{43d46425-fcc9-4a4b-8535-d40d6a8d1195}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment\Scene\Object\Render">
       <UniqueIdentifier>{a04f61ff-1b32-4d3b-80a0-b4c58282b3a5}</UniqueIdentifier>
     </Filter>
@@ -124,9 +121,6 @@
     <Filter Include="Environment\UI\Manager">
       <UniqueIdentifier>{7a838632-4c6b-44df-8b0b-57e40f49a35b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Scenes\Graph">
-      <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{69f23921-366e-4368-9038-ca2416937e37}</UniqueIdentifier>
     </Filter>
@@ -160,6 +154,27 @@
     <Filter Include="Globals\Transform">
       <UniqueIdentifier>{a9309e83-215e-4000-8b04-1bfd2be5e837}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scripting\GameObject\MovingObject">
+      <UniqueIdentifier>{fa28bc45-9f84-4232-925f-749263d93c74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Collider">
+      <UniqueIdentifier>{43d46425-fcc9-4a4b-8535-d40d6a8d1195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Collider\Manager">
+      <UniqueIdentifier>{ba5322c4-b732-4102-ac8f-49737eb054a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Collider\BoundingBox">
+      <UniqueIdentifier>{b5c01800-34c1-427e-bea6-a0683e556d9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Globals\Rendering">
+      <UniqueIdentifier>{3e412773-a761-4a8c-b4cf-6278a6fd5010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Globals\Misc">
+      <UniqueIdentifier>{b7bc81af-938c-4bef-bfde-2d48a3a1c901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Scenes\Graph">
+      <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -185,9 +200,6 @@
     </ClCompile>
     <ClCompile Include="LineRenderer.cpp">
       <Filter>Environment\Rendering\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Environment\Scene\Object\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Circle.cpp">
       <Filter>Environment\Scene\Object\Render\Shapes\2D\Circle</Filter>
@@ -243,14 +255,11 @@
     <ClCompile Include="GlobalTransform.cpp">
       <Filter>Globals\Transform</Filter>
     </ClCompile>
+    <ClCompile Include="BoundingBox.cpp">
+      <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GlobalDirectX.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalTypedefs.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Environment\Scene\Camera</Filter>
     </ClInclude>
@@ -278,23 +287,8 @@
     <ClInclude Include="LineRenderer.h">
       <Filter>Environment\Rendering\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalIterators.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalRendererStructures.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalVramStructures.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalWorldInfo.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
     <ClInclude Include="MeshLoader.h">
       <Filter>Environment\Scene\Object\Render\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>Environment\Scene\Object\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Circle.h">
       <Filter>Environment\Scene\Object\Render\Shapes\2D\Circle</Filter>
@@ -344,20 +338,47 @@
     <ClInclude Include="UiManager.h">
       <Filter>Environment\UI\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalTime.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Environment\Input\Manager</Filter>
     </ClInclude>
     <ClInclude Include="ControllerManager.h">
       <Filter>Environment\Input\Controller\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalInput.h">
-      <Filter>Globals</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalTransform.h">
       <Filter>Globals\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingObject.h">
+      <Filter>Game\Scripting\GameObject\MovingObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderManager.h">
+      <Filter>Environment\Scene\Object\Collider\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundingBox.h">
+      <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalRendererStructures.h">
+      <Filter>Globals\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalVramStructures.h">
+      <Filter>Globals\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalDirectX.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalInput.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalIterators.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalTime.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalTypedefs.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalWorldInfo.h">
+      <Filter>Globals\Misc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

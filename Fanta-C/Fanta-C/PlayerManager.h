@@ -3,32 +3,34 @@
 
 // My Headers
 #include "GlobalTransform.h"
-#include "ScriptManager.h"
+#include "MovingObject.h"
 
-class PlayerManager : public ScriptManager
+class PlayerManager : public MovingObject
 {
+	// Use these speeds in the constructor
+
 	// Release
-	//float moveSpeed = 0.005;	// Abstract out...temp
-	//float rotateSpeed = 0.03;	// Abstract out...temp
+	//velocity = 0.005;
+	//rotateSpeed = 0.03;	
 
 	// Debug
-	float moveSpeed = 0.5f;		// Abstract out...temp
-	float rotateSpeed = 3;		// Abstract out...temp
+	//velocity = 0.5f;		
+	//rotateSpeed = 3;		
 
 	void PlayerInput();
 
 public:
 	// Initialization
-	PlayerManager(ObjectManager* inObject) : ScriptManager(inObject) { return; }
+	PlayerManager(ObjectManager* inObject) : MovingObject(inObject, 20, 100) { return; }
 
 	// Update
 	void Update() override;
 
 	// Public Interface
-	void Move(char x, char y, char z) { GlobalTransform::Translate(x * GlobalTime::deltaTime * moveSpeed, y * GlobalTime::deltaTime * moveSpeed, z * GlobalTime::deltaTime * moveSpeed, myObject->GetTransform()->GetWorldMatrix()); }
-	void Pitch(char angle) { GlobalTransform::RotateOnXAxis(angle * GlobalTime::deltaTime * rotateSpeed, myObject->GetTransform()->GetWorldMatrix()); }
-	void Roll(char angle) { GlobalTransform::RotateOnZAxis(angle * GlobalTime::deltaTime * rotateSpeed, myObject->GetTransform()->GetWorldMatrix()); }
-	void Yaw(char angle) { GlobalTransform::RotateOnYAxis(angle * GlobalTime::deltaTime * rotateSpeed, myObject->GetTransform()->GetWorldMatrix()); }
+	void Move(char x, char y, char z) { GlobalTransform::Translate(x * GlobalTime::deltaTime * velocity, y * GlobalTime::deltaTime * velocity, z * GlobalTime::deltaTime * velocity, myObject->GetTransform()->GetWorldMatrix()); }
+	void Pitch(char angle) { GlobalTransform::RotateOnXAxis(angle * GlobalTime::deltaTime * angularVelocity, myObject->GetTransform()->GetWorldMatrix()); }
+	void Roll(char angle) { GlobalTransform::RotateOnZAxis(angle * GlobalTime::deltaTime * angularVelocity, myObject->GetTransform()->GetWorldMatrix()); }
+	void Yaw(char angle) { GlobalTransform::RotateOnYAxis(angle * GlobalTime::deltaTime * angularVelocity, myObject->GetTransform()->GetWorldMatrix()); }
 };
 
 #endif

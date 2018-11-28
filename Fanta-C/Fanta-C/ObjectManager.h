@@ -2,17 +2,17 @@
 #define _OBJECT_MANAGER_H
 
 // My Headers
-#include "Collider.h"
+#include "ColliderManager.h"
 #include "GlobalTypedefs.h"
 #include "Mesh.h"
 #include "Transform.h"
 
 class ObjectManager
 {
-	bool		renderable;
-	Collider*	colliderPtr = nullptr;			
-	Mesh*		meshPtr = nullptr;				// Renderable shape
-	Transform*	transformPtr = nullptr;
+	bool				renderable;
+	ColliderManager*	colliderManagerPtr = nullptr;			
+	Mesh*				meshPtr = nullptr;				// Renderable shape
+	Transform*			transformPtr = nullptr;
 
 public:
 	// Initialization
@@ -23,7 +23,7 @@ public:
 
 	// Accessors
 	bool GetRenderable() { return renderable; }
-	Collider* GetCollider() { return colliderPtr; }
+	ColliderManager* GetColliderManager() { return colliderManagerPtr; }
 	Mesh* GetMesh() { return meshPtr; }
 	Transform* GetTransform() { return transformPtr; }
 };

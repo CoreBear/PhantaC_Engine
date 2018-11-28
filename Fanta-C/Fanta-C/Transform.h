@@ -6,7 +6,7 @@
 #include "LineRenderer.h"
 
 // Forward Declarations
-class Collider;
+class colliderManager;
 
 class Transform
 {

@@ -17,7 +17,6 @@ class SceneGraph
 protected:
 	struct SceneObject
 	{
-
 		// Variables
 		std::vector<class ScriptManager*>	myScripts;
 		ObjectManager*						object = nullptr;

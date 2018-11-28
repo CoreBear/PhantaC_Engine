@@ -40,7 +40,7 @@ void SceneGraph::AddObjectToScene(ObjectManager* object, SceneObject* sceneObjec
 		sceneObjects.push_back(new SceneObject(object));
 
 		// Put into containers to run collisions and rendering on it
-		if (object->GetCollider()) collidableObjects.push_back(object);
+		if (object->GetColliderManager()) collidableObjects.push_back(object);
 		if (object->GetRenderable()) renderableObjects.push_back(object);
 	}
 	else

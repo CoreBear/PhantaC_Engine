@@ -2,7 +2,7 @@
 // My Headers
 #include "GlobalTransform.h"		// Connection to declarations
 
-#include "Collider.h"
+#include "ColliderManager.h"
 #pragma endregion
 
 #pragma region Global Variables
@@ -68,10 +68,10 @@ void GlobalTransform::RotateOnZAxis(float angle, XMMATRIX& inWorldMatrix)
 	transformMatrix.r[1].m128_f32[1] = transformMatrix.r[0].m128_f32[0];
 	inWorldMatrix = XMMatrixMultiply(inWorldMatrix, transformMatrix);
 }
-void GlobalTransform::Scale(float x, float y, float z, Collider* collider, XMMATRIX& inWorldMatrix)
+void GlobalTransform::Scale(float x, float y, float z, ColliderManager* colliderManager, XMMATRIX& inWorldMatrix)
 {
-	// Update collider extents
-	collider->SetExtents(x, y, z);
+	// Update colliderManager extents
+	//colliderManager->SetExtents(x, y, z);
 
 	// Update mesh vertices
 	transformMatrix = XMMatrixIdentity();
@@ -82,16 +82,14 @@ void GlobalTransform::Scale(float x, float y, float z, Collider* collider, XMMAT
 }
 void GlobalTransform::Translate(float x, float y, float z, XMMATRIX& inWorldMatrix)
 {
-	transformMatrix = XMMatrixIdentity();
-	transformMatrix.r[3].m128_f32[0] = x;
-	transformMatrix.r[3].m128_f32[1] = y;
-	transformMatrix.r[3].m128_f32[2] = z;
-	inWorldMatrix = XMMatrixMultiply(inWorldMatrix, transformMatrix);
+	inWorldMatrix.r[3].m128_f32[0] += x;
+	inWorldMatrix.r[3].m128_f32[1] += y;
+	inWorldMatrix.r[3].m128_f32[2] += z;
 }
-void GlobalTransform::UniformScale(float value, Collider* collider, XMMATRIX& inWorldMatrix)
+void GlobalTransform::UniformScale(float value, ColliderManager* colliderManager, XMMATRIX& inWorldMatrix)
 {
-	// Update collider extents
-	collider->SetExtents(value, value, value);
+	// Update colliderManager extents
+	//colliderManager->SetExtents(value, value, value);
 
 	// Update mesh vertices
 	transformMatrix = XMMatrixIdentity();

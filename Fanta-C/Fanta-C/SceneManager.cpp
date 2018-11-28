@@ -17,7 +17,7 @@ SceneManager::SceneManager(ushort* clientDimensions, HWND* windowHandle, uchar t
 #pragma region Update
 void SceneManager::Update()
 {	
-	scenePtr->Update();																// Runs scripts
+	scenePtr->Update();
 }
 #pragma endregion
 
