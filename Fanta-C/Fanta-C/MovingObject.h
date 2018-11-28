@@ -12,7 +12,7 @@ protected:
 
 public:
 	// Initialization
-	MovingObject(ObjectManager* inObject, float inVelocity = 1, float inAngularVelocity = 1) : velocity(inVelocity), angularVelocity(inAngularVelocity), ScriptManager(inObject) { return; }
+	MovingObject(ObjectManager* inObject, float inVelocity, float inAngularVelocity) : velocity(inVelocity), angularVelocity(inAngularVelocity), ScriptManager(inObject) { return; }
 };
 
 #endif

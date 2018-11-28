@@ -7,21 +7,11 @@
 
 class PlayerManager : public MovingObject
 {
-	// Use these speeds in the constructor
-
-	// Release
-	//velocity = 0.005;
-	//rotateSpeed = 0.03;	
-
-	// Debug
-	//velocity = 0.5f;		
-	//rotateSpeed = 3;		
-
 	void PlayerInput();
 
 public:
 	// Initialization
-	PlayerManager(ObjectManager* inObject) : MovingObject(inObject, 20, 100) { return; }
+	PlayerManager(ObjectManager* inObject, float inVelocity = 1, float inAngularVelocity = 1) : MovingObject(inObject, inVelocity, inAngularVelocity) { return; }
 
 	// Update
 	void Update() override;

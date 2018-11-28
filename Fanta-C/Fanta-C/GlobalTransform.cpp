@@ -98,15 +98,4 @@ void GlobalTransform::UniformScale(float value, ColliderManager* colliderManager
 	transformMatrix.r[2] *= value;
 	inWorldMatrix = XMMatrixMultiply(transformMatrix, inWorldMatrix);
 }
-void GlobalTransform::WorldTranslate(uchar index, float speed, XMMATRIX& inWorldMatrix)
-{
-	// index 0 - horizontal, 1 - vertical, 2 - for/back
-	// Store object direction
-	translationVector = (inWorldMatrix.r[index] + inWorldMatrix.r[3]) - inWorldMatrix.r[3];
-	translationVector = XMVector3Normalize(translationVector);
-
-	inWorldMatrix.r[3].m128_f32[0] += translationVector.m128_f32[0] * speed;
-	inWorldMatrix.r[3].m128_f32[1] += translationVector.m128_f32[1] * speed;
-	inWorldMatrix.r[3].m128_f32[2] += translationVector.m128_f32[2] * speed;
-}
 #pragma endregion

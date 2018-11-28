@@ -49,10 +49,10 @@ TestScene::TestScene(ushort* clientDimensions) : SceneGraph(clientDimensions)
 
 	// Adding scripts to objects - Make sure this number is within the range of cube numbers
 	for (x = 2; x < 60; x += 2)
-		AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x)->object));
+		AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x)->object, 5));
 
 	// Add player script to camera scene object and and camera to player script
-	AddScript(sceneObjects.at(0), new PlayerManager(sceneObjects.at(0)->object));
+	AddScript(sceneObjects.at(0), new PlayerManager(sceneObjects.at(0)->object, 20, 100));
 
 	// Assign scene's player (This is currently the player)
 	playerPtr = (PlayerManager*)sceneObjects.at(0)->myScripts.at(0);
