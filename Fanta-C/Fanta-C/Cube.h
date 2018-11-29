@@ -11,11 +11,11 @@ class Cube : public Mesh
 	SIMPLE_VERTEX			vertices[numberOfLinesTriIndicesVertices[2]];
 
 	// Private
-	void CreateMesh();
+	void CreateMesh(float inWidth, float inHeight, float inDepth, float inScale);
 
 public:
 	// Initialization
-	Cube(float inScale = 1) : Mesh(false, inScale, Colors::Green) { CreateMesh(); }
+	Cube(float inWidth, float inHeight, float inDepth, float inScale = 1) : Mesh(inWidth, inHeight, inDepth, inScale, Colors::Green) { CreateMesh(inWidth, inHeight, inDepth, inScale); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

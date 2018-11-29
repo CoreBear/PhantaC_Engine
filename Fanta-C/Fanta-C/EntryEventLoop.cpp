@@ -7,6 +7,7 @@
 #include "EventHandler.h"
 #include "EnvironmentManager.h"
 #include "GlobalInput.h"
+#include "GlobalThreading.h"
 #include "GlobalTypedefs.h"
 #include "WindowCreator.h"
 
@@ -21,6 +22,7 @@ bool GlobalInput::keysPressed[9];
 #pragma endregion
 
 #pragma region Forward Declarations
+// Application Loop
 void RunEnviornmentAndEventLoop(EnvironmentManager* environmentManager);
 
 // Event Handler
@@ -40,30 +42,31 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	#pragma endregion
 
 	// Creates the window
-	WindowCreator window(hInstance, cmdShow, &WndProc);
+	WindowCreator* window = new WindowCreator(hInstance, cmdShow, &WndProc);
 
 	// Creates the game instance
-	EnvironmentManager environmentManager(window.GetWindowHandle(), window.GetClientDimensions());
+	EnvironmentManager* environmentManager = new EnvironmentManager(window->GetWindowHandle(), window->GetClientDimensions());
 	
 	// Will run until quit message is posted
-	RunEnviornmentAndEventLoop(&environmentManager);
+	RunEnviornmentAndEventLoop(environmentManager);
+
+	// Clean Up
+	delete environmentManager;
+	delete window;
 
 	// Make this return any errors that may occur. Have runloop return a value
 	return 0;
 }
 #pragma endregion
+
 #pragma region Application Loop
-void RunEnvironment(EnvironmentManager* environmentManager, MSG* msg)
-{
-	environmentManager->ThreadMaintenance(msg);
-}
 void RunEnviornmentAndEventLoop(EnvironmentManager* environmentManager)
 {
 	// Container that stores system messages
 	MSG msg = { 0 };
 
 	// Launch environment thread
-	std::thread eventThread(RunEnvironment, environmentManager, &msg);
+	std::thread eventThread(GlobalThreading::RunEnvironmentThread, environmentManager, &msg);
 
 	// Event handler loop
 	while (true)

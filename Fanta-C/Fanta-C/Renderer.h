@@ -20,7 +20,7 @@ class Renderer
 	// Misc Variables
 	LineRenderer					lineRenderer;									// Object that renders lines on screen
 	MeshLoader						meshLoader;										// Adds mesh lines to the line renderer
-	uchar							renderIterator;									// Iterator for object rendering
+	ushort							renderIterator;									// Iterator for object rendering
 
 	// Pipeline Variables
 	const float						maxZBufferDepth = 1.0f;							// Self-explanatory

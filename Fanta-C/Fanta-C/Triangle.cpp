@@ -14,24 +14,50 @@ void Triangle::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Triangle::CreateMesh()
+void Triangle::CreateMesh(float inWidth, float inHeight, float inDepth, float inScale)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
-		switch (iterators[0])
-		{
-		case 0:
-			vertices[iterators[0]].localPos.x = -scale;
-			break;
-		case 1:
+		// X
+		if (inWidth == 0)
 			vertices[iterators[0]].localPos.x = 0;
-			break;
-		case 2:
-			vertices[iterators[0]].localPos.x = scale;
-			break;
+		else
+		{
+			switch (iterators[0])
+			{
+			case 0:
+				vertices[iterators[0]].localPos.x = -inWidth * inScale;
+				break;
+			case 1:
+				vertices[iterators[0]].localPos.x = 0;
+				break;
+			case 2:
+				vertices[iterators[0]].localPos.x = inWidth * inScale;
+				break;
+			}
 		}
-		vertices[iterators[0]].localPos.y = (iterators[0] != 1) ? -scale : scale;
-		vertices[iterators[0]].localPos.z = 0;
+
+		// Y
+		vertices[iterators[0]].localPos.y = (iterators[0] != 1) ? -inHeight * inScale : inHeight * inScale;
+
+		// Z
+		if (inDepth == 0)
+			vertices[iterators[0]].localPos.z = 0;
+		else
+		{
+			switch (iterators[0])
+			{
+			case 0:
+				vertices[iterators[0]].localPos.z = -inDepth * inScale;
+				break;
+			case 1:
+				vertices[iterators[0]].localPos.z = 0;
+				break;
+			case 2:
+				vertices[iterators[0]].localPos.z = inDepth * inScale;
+				break;
+			}
+		}
 	}
 }
 #pragma endregion

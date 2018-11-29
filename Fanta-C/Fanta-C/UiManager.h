@@ -3,6 +3,9 @@
 
 class UiManager
 {
+public:
+	// Update
+	void Update() { return; }
 };
 
 #endif

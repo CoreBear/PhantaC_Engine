@@ -10,11 +10,11 @@ class Triangle : public Mesh
 	SIMPLE_VERTEX			vertices[numberOfVertices];
 
 	// Private
-	void CreateMesh();
+	void CreateMesh(float inWidth, float inHeight, float inDepth, float inScale);
 
 public:
 	// Initialization
-	Triangle(float inScale = 1) : Mesh(true, inScale, Colors::Yellow) { CreateMesh(); }
+	Triangle(float inWidth, float inHeight, float inDepth, float inScale = 1) : Mesh(inWidth, inHeight, inDepth, inScale, Colors::Yellow) { CreateMesh(inWidth, inHeight, inDepth, inScale); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

@@ -14,13 +14,24 @@ void Quad::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Quad::CreateMesh()
+void Quad::CreateMesh(float inWidth, float inHeight, float inDepth, float inScale)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
-		vertices[iterators[0]].localPos.x = (iterators[0] % numberOfVertices == 0 || iterators[0] % numberOfVertices == numberOfVertices - 1) ? -scale : scale;
-		vertices[iterators[0]].localPos.y = (iterators[0] % numberOfVertices < numberOfVertices * 0.5f) ? scale : -scale;
-		vertices[iterators[0]].localPos.z = 0;
+		// X
+		if (inWidth == 0)
+			vertices[iterators[0]].localPos.x = 0;
+		else
+			vertices[iterators[0]].localPos.x = (iterators[0] % numberOfVertices == 0 || iterators[0] % numberOfVertices == numberOfVertices - 1) ? -inWidth * inScale : inWidth * inScale;
+		
+		// Y
+		vertices[iterators[0]].localPos.y = (iterators[0] % numberOfVertices < numberOfVertices * 0.5f) ? inHeight * inScale : -inHeight * inScale;
+		
+		// Z
+		if (inDepth == 0)
+			vertices[iterators[0]].localPos.z = 0;
+		else
+			vertices[iterators[0]].localPos.z = (iterators[0] % numberOfVertices == 0 || iterators[0] % numberOfVertices == numberOfVertices - 1) ? -inDepth * inScale : inDepth * inScale;
 	}
 }
 #pragma endregion

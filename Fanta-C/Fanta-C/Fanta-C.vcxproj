@@ -130,6 +130,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="SplashManager.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="EnvironmentManager.h" />
     <ClInclude Include="GlobalDirectX.h" />
     <ClInclude Include="GlobalInput.h" />
+    <ClInclude Include="GlobalThreading.h" />
     <ClInclude Include="GlobalTime.h" />
     <ClInclude Include="GlobalTransform.h" />
     <ClInclude Include="GlobalWorldInfo.h" />
@@ -165,6 +167,7 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="ScriptManager.h" />
+    <ClInclude Include="SplashManager.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Transform.h" />

@@ -11,11 +11,11 @@ class Pyramid : public Mesh
 	SIMPLE_VERTEX			vertices[numberOfLineIndicesVertices[1]];
 
 	// Private
-	void CreateMesh();
+	void CreateMesh(float inWidth, float inHeight, float inDepth, float inScale);
 
 public:
 	// Initialization
-	Pyramid(float inScale = 1) : Mesh(false, inScale, Colors::Blue) { CreateMesh(); }
+	Pyramid(float inWidth, float inHeight, float inDepth, float inScale = 1) : Mesh(inWidth, inHeight, inDepth, inScale, Colors::Blue) { CreateMesh(inWidth, inHeight, inDepth, inScale); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

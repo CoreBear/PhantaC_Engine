@@ -18,11 +18,11 @@ class BoundingBox
 	uchar						boundingIterator;
 	XMVECTOR					extents;						// Also the max
 
-	void CreateBounds(bool meshIsFlat, float scale);
+	void CreateBounds(float inWidth, float inHeight, float inDepth, float inScale);
 
 public:
 	// Initialization
-	BoundingBox(bool inMeshIsFlat, float inScale) : isColliding(false) { CreateBounds(inMeshIsFlat, inScale); }
+	BoundingBox(float inWidth, float inHeight, float inDepth, float inScale) : isColliding(false) { CreateBounds(inWidth, inHeight, inDepth, inScale); }
 
 	// Public Interface
 	void AddCollidingObject(ObjectManager* collidingObject) { collidingObjects.push_back(collidingObject);}

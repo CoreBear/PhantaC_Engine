@@ -14,21 +14,21 @@ void Pyramid::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Pyramid::CreateMesh()
+void Pyramid::CreateMesh(float inWidth, float inHeight, float inDepth, float inScale)
 {
 	// Create Vertices
 	for (iterators[0] = 0; iterators[0] < numberOfLineIndicesVertices[1]; ++iterators[0])
 	{
 		if (iterators[0] < 4)
 		{
-			vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
-			vertices[iterators[0]].localPos.y = -scale;
-			vertices[iterators[0]].localPos.z = (iterators[0] < 2) ? -scale : scale;
+			vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -inWidth * inScale : inWidth * inScale;
+			vertices[iterators[0]].localPos.y = -inHeight * inScale;
+			vertices[iterators[0]].localPos.z = (iterators[0] < 2) ? -inDepth * inScale : inDepth * inScale;
 		}
 		else
 		{
 			vertices[iterators[0]].localPos.x = 0;
-			vertices[iterators[0]].localPos.y = scale;
+			vertices[iterators[0]].localPos.y = inHeight * inScale;
 			vertices[iterators[0]].localPos.z = 0;
 		}
 

@@ -17,14 +17,13 @@ void Cube::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Cube::CreateMesh()
+void Cube::CreateMesh(float inWidth, float inHeight, float inDepth, float inScale)
 {
-
 	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[2]; ++iterators[0])
 	{
-		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -scale : scale;
-		vertices[iterators[0]].localPos.y = (iterators[0] % 4 < 2) ? scale : -scale;
-		vertices[iterators[0]].localPos.z = (iterators[0] < 4) ? -scale : scale;
+		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -inWidth * inScale : inWidth * inScale;
+		vertices[iterators[0]].localPos.y = (iterators[0] % 4 < 2) ? inHeight * inScale : -inHeight * inScale;
+		vertices[iterators[0]].localPos.z = (iterators[0] < 4) ? -inDepth * inScale : inDepth * inScale;
 	}
 
 	char tempIndices[] =
@@ -38,7 +37,7 @@ void Cube::CreateMesh()
 	uchar index = 0;
 
 	// Create triple Indices (backwards C)
-	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[1]; ++iterators[0]) 
+	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[1]; ++iterators[0])
 	{
 		// Number of lines
 		for (iterators[1] = 0; iterators[1] < numberOfLinesTriIndicesVertices[0]; ++iterators[1])

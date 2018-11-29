@@ -25,15 +25,15 @@ void BoundingBox::RemoveCollidingObject(ObjectManager* removeObject)
 }
 
 #pragma region Private
-void BoundingBox::CreateBounds(bool meshIsFlat, float scale)
+void BoundingBox::CreateBounds(float inDepth, float inHeight, float inWidth, float inScale)
 {
 	const float flatMeshWidth = 0.05f;
 
 	// Creates cube or square (if flat)
-	extents.m128_f32[0] = scale;
-	extents.m128_f32[1] = scale;
-	extents.m128_f32[2] = (meshIsFlat) ? flatMeshWidth : scale;
-	extents.m128_f32[3] = scale;
+	extents.m128_f32[0] = (inWidth == 0) ? flatMeshWidth : inWidth * inScale;
+	extents.m128_f32[1] = (inHeight == 0) ? flatMeshWidth : inHeight * inScale;
+	extents.m128_f32[2] = (inDepth == 0) ? flatMeshWidth : inDepth * inScale;
+	extents.m128_f32[3] = 1;
 }
 #pragma endregion
 

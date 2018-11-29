@@ -9,11 +9,12 @@ class Circle : public Mesh
 	constexpr static ushort		numberOfVertices = 360;
 	SIMPLE_VERTEX				vertices[numberOfVertices];
 
-	void CreateMesh();
+	// Private
+	void CreateMesh(float inWidth, float inHeight, float inDepth, float inScale);
 
 public:
 	// Initialization
-	Circle(float inScale = 1) : Mesh(true, inScale, Colors::Red) { CreateMesh(); }
+	Circle(float inWidth, float inHeight, float inDepth, float inScale = 1) : Mesh(inWidth, inHeight, inDepth, inScale, Colors::Red) { CreateMesh(inWidth, inHeight, inDepth, inScale); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

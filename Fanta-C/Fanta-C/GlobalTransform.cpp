@@ -71,7 +71,7 @@ void GlobalTransform::RotateOnZAxis(float angle, XMMATRIX& inWorldMatrix)
 void GlobalTransform::Scale(float x, float y, float z, ColliderManager* colliderManager, XMMATRIX& inWorldMatrix)
 {
 	// Update colliderManager extents
-	//colliderManager->SetExtents(x, y, z);
+	colliderManager->GetBoundingBox()->SetExtents(x, y, z);
 
 	// Update mesh vertices
 	transformMatrix = XMMatrixIdentity();
@@ -89,7 +89,7 @@ void GlobalTransform::Translate(float x, float y, float z, XMMATRIX& inWorldMatr
 void GlobalTransform::UniformScale(float value, ColliderManager* colliderManager, XMMATRIX& inWorldMatrix)
 {
 	// Update colliderManager extents
-	//colliderManager->SetExtents(value, value, value);
+	colliderManager->GetBoundingBox()->SetExtents(value, value, value);
 
 	// Update mesh vertices
 	transformMatrix = XMMatrixIdentity();

@@ -15,13 +15,13 @@ void Circle::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 #pragma endregion
 
 #pragma region Private
-void Circle::CreateMesh()
+void Circle::CreateMesh(float inWidth, float inHeight, float inDepth, float inScale)
 {
 	for (iterators[0] = 0; iterators[0] < numberOfVertices; ++iterators[0])
 	{
-		vertices[iterators[0]].localPos.x = cos(XMConvertToRadians(iterators[0])) * scale;	   // Why does cos(iterators[0]); do something weird?
-		vertices[iterators[0]].localPos.y = sin(XMConvertToRadians(iterators[0])) * scale;	   // Why does cos(iterators[0]); do something weird?
-		vertices[iterators[0]].localPos.z = 0;
+		vertices[iterators[0]].localPos.x = (inWidth == 0) ? 0 : cos(XMConvertToRadians(iterators[0])) * inWidth * inScale;
+		vertices[iterators[0]].localPos.y = sin(XMConvertToRadians(iterators[0])) * inHeight * inScale;
+		vertices[iterators[0]].localPos.z = (inDepth == 0) ? 0 : cos(XMConvertToRadians(iterators[0])) * inWidth * inScale;
 	}
 }
 #pragma endregion

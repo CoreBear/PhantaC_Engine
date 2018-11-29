@@ -3,14 +3,11 @@
 
 // System Headers
 #include <Windows.h>
-#include <chrono>
-#include <condition_variable>
-#include <mutex>
+//#include <chrono>
 #include <thread>
 
 // My Headers
 #include "GlobalTypedefs.h"
-#include "GlobalTime.h"
 
 class EnvironmentManager
 {	
@@ -24,18 +21,15 @@ class EnvironmentManager
 	const static uchar						numberOfThreads = 2;
 	std::thread*							threads[numberOfThreads];
 	const uchar								targetFPS = 60;
+	class UiManager*						uiManagerPtr;
 
 public:
-	// Variables
-	std::chrono::duration<float>			chronoDelta;
-	std::chrono::steady_clock::time_point	frameEndTime;
-	std::chrono::steady_clock::time_point	frameStartTime;
 
 	// Initialization
 	EnvironmentManager(HWND windowHandle, ushort* clientDimensions);
 
 	// Public Interface
-	void ThreadMaintenance(MSG* msg);
+	void ThreadManager(MSG* msg);
 
 	// Thread Functions
 	void RunAudio();
@@ -43,6 +37,7 @@ public:
 	void RunPhysics();
 	void RunRenderer();
 	void RunScene();
+	void RunUI();
 
 	// Clean Up
 	~EnvironmentManager();

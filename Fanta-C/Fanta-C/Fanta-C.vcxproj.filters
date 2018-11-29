@@ -112,15 +112,6 @@
     <Filter Include="Environment\Scene\Scenes">
       <UniqueIdentifier>{6b83248a-5af9-488e-8e58-d87c92e21459}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Scenes\Test">
-      <UniqueIdentifier>{177e5e3f-c86e-4446-8175-92ab26c300a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\UI">
-      <UniqueIdentifier>{52f62444-0786-4b04-99b0-24344ab9b377}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\UI\Manager">
-      <UniqueIdentifier>{7a838632-4c6b-44df-8b0b-57e40f49a35b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{69f23921-366e-4368-9038-ca2416937e37}</UniqueIdentifier>
     </Filter>
@@ -174,6 +165,21 @@
     </Filter>
     <Filter Include="Environment\Scene\Scenes\Graph">
       <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Rendering\UI">
+      <UniqueIdentifier>{52f62444-0786-4b04-99b0-24344ab9b377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Rendering\UI\Manager">
+      <UniqueIdentifier>{7a838632-4c6b-44df-8b0b-57e40f49a35b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene">
+      <UniqueIdentifier>{99f706ed-88ec-4974-ae4e-7d4cc44f1c23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Test">
+      <UniqueIdentifier>{177e5e3f-c86e-4446-8175-92ab26c300a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Initialization &amp; Update\Splash">
+      <UniqueIdentifier>{6d3eb8bc-aa8b-4fd5-9da6-d44abe359d94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -238,10 +244,10 @@
       <Filter>Game\Scripting\GameObject\Player</Filter>
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
-      <Filter>Environment\Scene\Scenes\Test</Filter>
+      <Filter>Game\Scene\Test</Filter>
     </ClCompile>
     <ClCompile Include="UiManager.cpp">
-      <Filter>Environment\UI\Manager</Filter>
+      <Filter>Environment\Rendering\UI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Environment\Input\Manager</Filter>
@@ -257,6 +263,9 @@
     </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
       <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
+    </ClCompile>
+    <ClCompile Include="SplashManager.cpp">
+      <Filter>Application\Initialization &amp; Update\Splash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -333,10 +342,10 @@
       <Filter>Game\Scripting\GameObject\Player</Filter>
     </ClInclude>
     <ClInclude Include="TestScene.h">
-      <Filter>Environment\Scene\Scenes\Test</Filter>
+      <Filter>Game\Scene\Test</Filter>
     </ClInclude>
     <ClInclude Include="UiManager.h">
-      <Filter>Environment\UI\Manager</Filter>
+      <Filter>Environment\Rendering\UI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Environment\Input\Manager</Filter>
@@ -379,6 +388,12 @@
     </ClInclude>
     <ClInclude Include="GlobalWorldInfo.h">
       <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalThreading.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashManager.h">
+      <Filter>Application\Initialization &amp; Update\Splash</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
