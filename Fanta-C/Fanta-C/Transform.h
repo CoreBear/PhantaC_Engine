@@ -21,8 +21,8 @@ public:
 	// Accessors
 	virtual bool GetFlatness() const { return false; }
 	virtual float GetScale() const { return false; }
-	XMMATRIX& GetWorldMatrix() { return myWorldMatrix; }
-	XMVECTOR& GetPosition() { return myWorldMatrix.r[3]; }
+	XMMATRIX* GetWorldMatrix() { return &myWorldMatrix; }
+	XMVECTOR* GetPosition() { return &myWorldMatrix.r[3]; }
 };
 
-#endif
+#endif&

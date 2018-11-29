@@ -31,12 +31,12 @@ void CollisionManager::Update(std::vector<ObjectManager*>* collidableObject)
 					{
 						// Assign the colliderManager and collidee minimums
 						min[collisionIterators[2]].m128_f32[collisionIterators[3]] = 
-						objectsBeingChecked[collisionIterators[2]]->GetTransform()->GetPosition().m128_f32[collisionIterators[3]] -
+						objectsBeingChecked[collisionIterators[2]]->GetTransform()->GetPosition()->m128_f32[collisionIterators[3]] -
 						objectsBeingChecked[collisionIterators[2]]->GetColliderManager()->GetBoundingBox()->GetExtents().m128_f32[collisionIterators[3]];
 
 						// Assign the colliderManager and collidee maximums
 						max[collisionIterators[2]].m128_f32[collisionIterators[3]] = 
-						objectsBeingChecked[collisionIterators[2]]->GetTransform()->GetPosition().m128_f32[collisionIterators[3]] +
+						objectsBeingChecked[collisionIterators[2]]->GetTransform()->GetPosition()->m128_f32[collisionIterators[3]] +
 						objectsBeingChecked[collisionIterators[2]]->GetColliderManager()->GetBoundingBox()->GetExtents().m128_f32[collisionIterators[3]];
 					}
 				}

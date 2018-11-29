@@ -15,7 +15,11 @@ public:
 	ScriptManager(ObjectManager* inObject) { myObject = inObject; }
 
 	// Update
-	virtual void Update() { return; }
+	virtual void Update() = 0;
+	virtual void AssignTarget(XMVECTOR* inTargetPosition) { return; }
+
+	// Accessors
+	ObjectManager* GetMyObject() { return myObject; }
 };
 
 #endif

@@ -2,8 +2,12 @@
 
 #include "GlobalTransform.h"
 #include "ObjectManager.h"
+#include "GlobalAutonomy.h"
 
 void Test::Update()
 {
-	GlobalTransform::Translate(velocity * GlobalTime::deltaTime, 0, 0, myObject->GetTransform()->GetWorldMatrix());
+	//GlobalTransform::Translate(0, 0, velocity * GlobalTime::deltaTime, *myObject->GetTransform()->GetWorldMatrix());
+	if (targetPosition)
+		//GlobalAutonomy::LookAt(myObject->GetTransform()->GetWorldMatrix(), targetPosition);
+		GlobalAutonomy::TurnTo(this, targetPosition);
 }

@@ -64,33 +64,6 @@
     <Filter Include="Environment\Scene\Object\Render\Shapes">
       <UniqueIdentifier>{4b13d81f-26dc-42ca-a7a7-480e2fa6e1ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\2D">
-      <UniqueIdentifier>{e03774ff-38e4-4809-97ac-b71fb04c2ee8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\2D\Circle">
-      <UniqueIdentifier>{e8e5a441-8fec-49f0-a31d-bb4d9baae095}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\2D\Grid">
-      <UniqueIdentifier>{c229c6b4-cc28-43af-9102-579f8b1e7112}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\2D\Quad">
-      <UniqueIdentifier>{f70c6c90-4b14-479e-a84c-7441a96fbce7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\2D\Triangle">
-      <UniqueIdentifier>{12c8e802-a17f-48f8-804c-cdb63cbc01ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\3D">
-      <UniqueIdentifier>{bbabceac-d9fa-429e-97ed-09d19b067d82}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\3D\Sphere">
-      <UniqueIdentifier>{dd9a0b6c-25c7-4767-9fcc-22ae2d5fcd47}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\3D\Pyramid">
-      <UniqueIdentifier>{bf7a76c5-ca5c-4324-8710-5ad5cb5914f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\3D\Cube">
-      <UniqueIdentifier>{5af4eff3-a0a9-44f9-b178-fde220769452}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment\Scene\Object\Transform">
       <UniqueIdentifier>{6baef527-b5a3-4934-8b9e-bbb70d654728}</UniqueIdentifier>
     </Filter>
@@ -142,9 +115,6 @@
     <Filter Include="Environment\Input\Controller\Manager">
       <UniqueIdentifier>{5173ecdb-4c7a-46f9-9863-5ea1cdb4139b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Globals\Transform">
-      <UniqueIdentifier>{a9309e83-215e-4000-8b04-1bfd2be5e837}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scripting\GameObject\MovingObject">
       <UniqueIdentifier>{fa28bc45-9f84-4232-925f-749263d93c74}</UniqueIdentifier>
     </Filter>
@@ -172,14 +142,38 @@
     <Filter Include="Environment\Rendering\UI\Manager">
       <UniqueIdentifier>{7a838632-4c6b-44df-8b0b-57e40f49a35b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scene">
-      <UniqueIdentifier>{99f706ed-88ec-4974-ae4e-7d4cc44f1c23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Scene\Test">
-      <UniqueIdentifier>{177e5e3f-c86e-4446-8175-92ab26c300a4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\Initialization &amp; Update\Splash">
       <UniqueIdentifier>{6d3eb8bc-aa8b-4fd5-9da6-d44abe359d94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes">
+      <UniqueIdentifier>{99f706ed-88ec-4974-ae4e-7d4cc44f1c23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes\Test">
+      <UniqueIdentifier>{177e5e3f-c86e-4446-8175-92ab26c300a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Cube">
+      <UniqueIdentifier>{5af4eff3-a0a9-44f9-b178-fde220769452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Pyramid">
+      <UniqueIdentifier>{bf7a76c5-ca5c-4324-8710-5ad5cb5914f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Sphere">
+      <UniqueIdentifier>{dd9a0b6c-25c7-4767-9fcc-22ae2d5fcd47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Grid">
+      <UniqueIdentifier>{e14757a9-bde9-48de-8c18-0cae91b6e2c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Globals\Movement">
+      <UniqueIdentifier>{672b02a7-19e6-4bed-ba54-eebd120ddee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Globals\Movement\Transform">
+      <UniqueIdentifier>{a9309e83-215e-4000-8b04-1bfd2be5e837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Globals\Movement\Autonomy">
+      <UniqueIdentifier>{2e8652b1-898d-40c4-bd57-ce4193b32032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Globals\Math">
+      <UniqueIdentifier>{b52233d6-985e-4a4c-8b9d-dd7f15c6743d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -207,26 +201,14 @@
     <ClCompile Include="LineRenderer.cpp">
       <Filter>Environment\Rendering\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Circle.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\2D\Circle</Filter>
-    </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\3D\Cube</Filter>
-    </ClCompile>
-    <ClCompile Include="Grid.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\2D\Grid</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Cube</Filter>
     </ClCompile>
     <ClCompile Include="Pyramid.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\3D\Pyramid</Filter>
-    </ClCompile>
-    <ClCompile Include="Quad.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\2D\Quad</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Pyramid</Filter>
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\3D\Sphere</Filter>
-    </ClCompile>
-    <ClCompile Include="Triangle.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\2D\Triangle</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Sphere</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Environment\Scene\Object\Manager</Filter>
@@ -244,7 +226,7 @@
       <Filter>Game\Scripting\GameObject\Player</Filter>
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
-      <Filter>Game\Scene\Test</Filter>
+      <Filter>Game\Scenes\Test</Filter>
     </ClCompile>
     <ClCompile Include="UiManager.cpp">
       <Filter>Environment\Rendering\UI\Manager</Filter>
@@ -259,13 +241,22 @@
       <Filter>Application\Initialization &amp; Update</Filter>
     </ClCompile>
     <ClCompile Include="GlobalTransform.cpp">
-      <Filter>Globals\Transform</Filter>
+      <Filter>Globals\Movement\Transform</Filter>
     </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
       <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
     </ClCompile>
     <ClCompile Include="SplashManager.cpp">
       <Filter>Application\Initialization &amp; Update\Splash</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalAutonomy.cpp">
+      <Filter>Globals\Movement\Autonomy</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalMath.cpp">
+      <Filter>Globals\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -299,26 +290,14 @@
     <ClInclude Include="MeshLoader.h">
       <Filter>Environment\Scene\Object\Render\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Circle.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\2D\Circle</Filter>
-    </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\3D\Cube</Filter>
-    </ClInclude>
-    <ClInclude Include="Grid.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\2D\Grid</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Cube</Filter>
     </ClInclude>
     <ClInclude Include="Pyramid.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\3D\Pyramid</Filter>
-    </ClInclude>
-    <ClInclude Include="Quad.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\2D\Quad</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Pyramid</Filter>
     </ClInclude>
     <ClInclude Include="Sphere.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\3D\Sphere</Filter>
-    </ClInclude>
-    <ClInclude Include="Triangle.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\2D\Triangle</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Sphere</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Environment\Scene\Object\Transform</Filter>
@@ -342,7 +321,7 @@
       <Filter>Game\Scripting\GameObject\Player</Filter>
     </ClInclude>
     <ClInclude Include="TestScene.h">
-      <Filter>Game\Scene\Test</Filter>
+      <Filter>Game\Scenes\Test</Filter>
     </ClInclude>
     <ClInclude Include="UiManager.h">
       <Filter>Environment\Rendering\UI\Manager</Filter>
@@ -354,7 +333,7 @@
       <Filter>Environment\Input\Controller\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GlobalTransform.h">
-      <Filter>Globals\Transform</Filter>
+      <Filter>Globals\Movement\Transform</Filter>
     </ClInclude>
     <ClInclude Include="MovingObject.h">
       <Filter>Game\Scripting\GameObject\MovingObject</Filter>
@@ -394,6 +373,15 @@
     </ClInclude>
     <ClInclude Include="SplashManager.h">
       <Filter>Application\Initialization &amp; Update\Splash</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalAutonomy.h">
+      <Filter>Globals\Movement\Autonomy</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalMath.h">
+      <Filter>Globals\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

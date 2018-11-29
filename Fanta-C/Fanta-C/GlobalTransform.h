@@ -23,7 +23,7 @@ public:
 	static void Scale(float x, float y, float z, ColliderManager* colliderManager, XMMATRIX& inWorldMatrix);
 	static void Translate(float x, float y, float z, XMMATRIX& inWorldMatrix);
 	static void UniformScale(float value, ColliderManager* colliderManager, XMMATRIX& inWorldMatrix);
-	//static void WorldTranslate(uchar index, float speed, XMMATRIX& inWorldMatrix);
+	//static void WorldTranslate(uchar index, float speed, XMMATRIX* inWorldMatrix);
 };
 
 #endif

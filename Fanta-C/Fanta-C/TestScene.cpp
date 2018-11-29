@@ -2,7 +2,6 @@
 // My Headers
 #include "TestScene.h"			// Connection to declarations
 
-#include "Circle.h"
 #include "Cube.h"
 #include "Grid.h"
 #include "ObjectManager.h"
@@ -10,8 +9,6 @@
 #include "Pyramid.h"
 #include "Sphere.h"
 #include "Test.h"
-#include "Triangle.h"
-#include "Quad.h"
 #pragma endregion
 
 #pragma region Initialization
@@ -48,22 +45,23 @@ TestScene::TestScene(ushort* clientDimensions) : SceneGraph(clientDimensions)
 	//			AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), false, true, true, XMVectorSet(x, y, z, 1)), nullptr);
 	
 	// This is just 1 object
+	//AddObjectToScene(new ObjectManager(new Sphere(1, 1, 1), false, true, true, XMVectorSet(0, 0, 0, 1)), nullptr);
 	AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), false, true, true, XMVectorSet(0, 0, 0, 1)), nullptr);
-	AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), false, true, true, XMVectorSet(50, 0, 0, 1)), nullptr);
 
 	// Adding scripts to objects - Make sure this number is within the range of cube numbers
 	//for (x = 2; x < 40; x += 2)
 	//	AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x)->object, 3));
-	AddScript(sceneObjects.at(2), new Test(sceneObjects.at(2)->object, 3));
+	AddScript(sceneObjects.at(2), new Test(sceneObjects.at(2)->object, 3, .5f));
 
 	// Add player script to camera scene object and and camera to player script
-	AddScript(sceneObjects.at(0), new PlayerManager(sceneObjects.at(0)->object, 20, 100));
+	AddScript(sceneObjects.at(0), new PlayerManager(sceneObjects.at(0)->object, 20, 5));
 
 	// Assign scene's player (This is currently the player)
 	playerPtr = (PlayerManager*)sceneObjects.at(0)->myScripts.at(0);
 
+	sceneObjects.at(2)->myScripts.at(0)->AssignTarget(sceneObjects.at(0)->object->GetTransform()->GetPosition());
 	// Rescaling objects - Will resize from current size, not 1
-	//GlobalTransform::Scale(5, 5, 5, sceneObjects.at(2)->object->GetColliderManager(), sceneObjects.at(2)->object->GetTransform()->GetWorldMatrix());
+	//GlobalTransform::Scale(.5f, .5f, .5f, sceneObjects.at(2)->object->GetColliderManager(), sceneObjects.at(2)->object->GetTransform()->GetWorldMatrix());
 	// End Examples--------------------------------------------------------------------------------
 }
 #pragma endregion

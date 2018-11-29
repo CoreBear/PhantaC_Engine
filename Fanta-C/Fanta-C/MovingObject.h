@@ -13,6 +13,9 @@ protected:
 public:
 	// Initialization
 	MovingObject(ObjectManager* inObject, float inVelocity, float inAngularVelocity) : velocity(inVelocity), angularVelocity(inAngularVelocity), ScriptManager(inObject) { return; }
+
+	// Accessors
+	float GetAngularVelocity() { return angularVelocity; }
 };
 
 #endif

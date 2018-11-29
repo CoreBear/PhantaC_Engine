@@ -22,7 +22,7 @@ void Sphere::CreateMesh(float inWidth, float inHeight, float inDepth, float inSc
 	for (iterators[0] = 0; iterators[0] < halfNumberOfVertices; ++iterators[0])
 	{
 		vertices[iterators[0]].localPos.x = cos(XMConvertToRadians(iterators[0])) * inWidth * inScale;
-		vertices[iterators[0]].localPos.y = 0;												   
+		vertices[iterators[0]].localPos.y = 0;
 		vertices[iterators[0]].localPos.z = sin(XMConvertToRadians(iterators[0])) * inDepth * inScale;
 	}
 

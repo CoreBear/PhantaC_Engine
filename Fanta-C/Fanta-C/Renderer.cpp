@@ -202,7 +202,7 @@ void Renderer::Update(std::vector<ObjectManager*>* renderableObjects, ObjectMana
 	ResetScreen();
 
 	// Load view matrix (camera's world matrix) into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &cameraPtr->GetTransform()->GetWorldMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, cameraPtr->GetTransform()->GetWorldMatrix(), 0, 0);
 
 	//
 	//											Do not add anything above this line
@@ -240,7 +240,7 @@ void Renderer::DrawLines(ObjectManager* object)
 
 	// Is this line necessary???-----------------------------------------------------------------------------------------------------------------------------
 	// Upload object's world matrix into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, &object->GetTransform()->GetWorldMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, object->GetTransform()->GetWorldMatrix(), 0, 0);
 
 	// Load lines into VRAM
 	ZeroMemory(&resourceForVertBuffer, sizeof(resourceForVertBuffer));
