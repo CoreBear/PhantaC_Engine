@@ -19,7 +19,7 @@ public:
 	WindowCreator(HINSTANCE hInstance, int cmdShow, WNDPROC wndProc);
 
 	// Accessors
-	HWND GetWindowHandle() { return windowHandle; }
+	HWND* GetWindowHandle() { return &windowHandle; }
 	ushort* GetClientDimensions() { return clientDimensions; }
 };
 

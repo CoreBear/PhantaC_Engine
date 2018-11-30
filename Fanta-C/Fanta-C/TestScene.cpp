@@ -28,10 +28,10 @@ TestScene::TestScene(ushort* clientDimensions) : SceneGraph(clientDimensions)
 
 
 	// This is 1000 objects - Runs alright in release, not useable in debug
-	for (x = -10; x < 36; x += 5)
-		for (y = -10; y < 36; y += 5)
-			for (z = -10; z < 36; z += 5)
-				AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(x, y, z, 1)), nullptr);
+	//for (x = -10; x < 36; x += 5)
+	//	for (y = -10; y < 36; y += 5)
+	//		for (z = -10; z < 36; z += 5)
+	//			AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(x, y, z, 1)), nullptr);
 
 
 	// This is 729 objects - Runs well in release, not useable in debug
@@ -50,16 +50,17 @@ TestScene::TestScene(ushort* clientDimensions) : SceneGraph(clientDimensions)
 	//for (x = -7; x < 9; x += 5)
 	//	for (y = -7; y < 9; y += 5)
 	//		for (z = -7; z < 9; z += 5)
-	//			AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), false, true, true, XMVectorSet(x, y, z, 1)), nullptr);
+	//			AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(x, y, z, 1)), nullptr);
 	
 	// This is just 1 object
 	//AddObjectToScene(new ObjectManager(new Sphere(1, 1, 1), false, true, true, XMVectorSet(0, 0, 0, 1)), nullptr);
-	//AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(5, 0, 0, 1)), nullptr);
+	AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(5, 0, 0, 1)), nullptr);
 
 	// Adding scripts to objects - Make sure this number is within the range of cube numbers
-	for (x = 2; x < 900; ++x)
-	//	AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x)->object, 3));
-	AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x)->object, 3, 50));
+	//for (x = 2; x < 50; ++x)
+	////	AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x)->object, 3));
+	//AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x)->object, 3, 50));
+	AddScript(sceneObjects.at(2), new Test(sceneObjects.at(2)->object, 3, 50));
 
 	// Add player script to camera scene object and and camera to player script
 	AddScript(sceneObjects.at(0), new PlayerManager(sceneObjects.at(0)->object, 20, 50));

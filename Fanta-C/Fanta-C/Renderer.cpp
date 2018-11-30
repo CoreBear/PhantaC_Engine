@@ -24,7 +24,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, ObjectManager* cameraObject)
+Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, ObjectManager* cameraObject)
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -36,7 +36,7 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushor
 	swapChainDesc.BufferDesc.RefreshRate.Numerator = targetFPS;
 	swapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;		// Describes surface usage and CPU access options for back buffer
-	swapChainDesc.OutputWindow = windowHandle;
+	swapChainDesc.OutputWindow = *windowHandle;
 	swapChainDesc.SampleDesc.Count = 1;									// Number of multisamples per pixel
 	swapChainDesc.SampleDesc.Quality = 0;								// Image quality level
 	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;				// Discards the back buffer info when swapped

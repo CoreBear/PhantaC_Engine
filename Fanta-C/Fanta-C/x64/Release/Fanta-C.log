@@ -1,6 +1,9 @@
 ﻿  TestScene.cpp
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\testscene.cpp(21): warning C4101: 'z': unreferenced local variable
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\testscene.cpp(21): warning C4101: 'y': unreferenced local variable
+c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\testscene.cpp(21): warning C4101: 'x': unreferenced local variable
   Generating code
-  1 of 513 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  7 of 611 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

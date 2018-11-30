@@ -13,6 +13,7 @@ class EnvironmentManager
 {	
 	// Game Variables
 	class AudioManager*						audioManagerPtr;
+	HWND*									windowHandle;				// Will be used to manually update the window
 	class InputManager*						inputManagerPtr;
 	MSG*									msg;
 	class PhysicsManager*					physicsManagerPtr;
@@ -26,7 +27,7 @@ class EnvironmentManager
 public:
 
 	// Initialization
-	EnvironmentManager(HWND windowHandle, ushort* clientDimensions);
+	EnvironmentManager(HWND* inWindowHandle, ushort* clientDimensions);
 
 	// Public Interface
 	/// Summary
@@ -37,6 +38,12 @@ public:
 	/// msg - The container that holds events and will signal to the
 	/// threads, when the quit conditions is met
 	void ThreadLauncher(MSG* msg);
+	/// Summary
+	/// Updates the fps in the window's title bar
+	///
+	/// Parameters
+	/// fps - The text that will be used for the udpate
+	void UpdateFPSIndicator(const char* fps) { SetWindowText(*windowHandle, fps); }
 
 	// Thread Functions
 	void RunAudio();

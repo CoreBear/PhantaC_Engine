@@ -17,8 +17,10 @@ float GlobalTime::deltaTime = 0;
 #pragma endregion
 
 #pragma region Initialization
-EnvironmentManager::EnvironmentManager(HWND windowHandle, ushort* clientDimensions)
+EnvironmentManager::EnvironmentManager(HWND* inWindowHandle, ushort* clientDimensions)
 {
+	windowHandle = inWindowHandle;
+
 	#pragma region Module Creation
 	audioManagerPtr = new AudioManager;
 
@@ -26,9 +28,9 @@ EnvironmentManager::EnvironmentManager(HWND windowHandle, ushort* clientDimensio
 
 	physicsManagerPtr = new PhysicsManager;
 
-	sceneManagerPtr = new SceneManager(clientDimensions, &windowHandle, targetFPS);
+	sceneManagerPtr = new SceneManager(clientDimensions, inWindowHandle, targetFPS);
 	
-	rendererPtr = new Renderer(windowHandle, sceneManagerPtr, clientDimensions, targetFPS, sceneManagerPtr->GetScenePtr()->GetCamera());
+	rendererPtr = new Renderer(inWindowHandle, sceneManagerPtr, clientDimensions, targetFPS, sceneManagerPtr->GetScenePtr()->GetCamera());
 	
 	uiManagerPtr = new UiManager;
 	#pragma endregion
@@ -54,7 +56,7 @@ void EnvironmentManager::ThreadLauncher(MSG* inMsg)
 #pragma region Thread Functions
 void EnvironmentManager::RunAudio() { audioManagerPtr->Update(); }
 void EnvironmentManager::RunInput() { inputManagerPtr->Update(); }
-void EnvironmentManager::RunPhysics() {} //physicsManagerPtr->Update(sceneManagerPtr->GetScenePtr()->GetCollidableObjects()); }
+void EnvironmentManager::RunPhysics() { physicsManagerPtr->Update(sceneManagerPtr->GetScenePtr()->GetCollidableObjects()); }
 void EnvironmentManager::RunRenderer() { rendererPtr->Update(sceneManagerPtr->GetScenePtr()->GetRenderableObjects(), sceneManagerPtr->GetScenePtr()->GetCamera()); }
 void EnvironmentManager::RunScene() { sceneManagerPtr->Update(); }
 void EnvironmentManager::RunUI() { uiManagerPtr->Update(); }
