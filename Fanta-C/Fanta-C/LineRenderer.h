@@ -16,7 +16,17 @@ class LineRenderer
 
 public:
 	// Public Interface
+	/// Summary
+	/// Creates lines that will later be added to the renderer module to represent the simple geometry
+	///
+	/// Parameters
+	/// lineStart - Point of start for the line
+	///	lineEnd - Point of end for the line
+	///	startColor - Starting color of the line
+	/// endColor - Ending color of the line (Can be different from starting. Color lerp will take place.)
 	void AddNewLine(XMFLOAT3 lineStart, XMFLOAT3 lineEnd, XMVECTORF32 startColor, XMVECTORF32 endColor);
+	/// Summary
+	/// After lines have been drawn, the counter will be reset so new lines can overwrite the old lines
 	void ClearLines() { currentCount = 0; }
 
 	// Accessors

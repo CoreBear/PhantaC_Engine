@@ -12,7 +12,6 @@
 class Mesh
 {
 protected:
-	bool		meshIsFlat;
 	float		depth;
 	float		height;
 	float		scale;
@@ -20,16 +19,25 @@ protected:
 	XMVECTORF32	color;
 
 public:
-	// Initialization (Camera uses the first constructor and shapes use the second)
-	Mesh(bool isFlat, XMVECTORF32 inColor = Colors::White) : depth(0), height(0), scale(1), width(0), color(inColor) { return; }
-	Mesh(float inWidth, float inHeight, float inDepth, float inScale, XMVECTORF32 inColor) : depth(inDepth), height(inHeight), scale(inScale), width(inWidth), color(inColor) { meshIsFlat = (inWidth == 0 || inHeight == 0 || inDepth == 0) ? true : false; }
+	// Initialization
+	Mesh() { return; }
+	Mesh(float inWidth, float inHeight, float inDepth, float inScale, XMVECTORF32 inColor) : depth(inDepth), height(inHeight), scale(inScale), width(inWidth), color(inColor) { return; }
 
 	// Public Interface
+	/// Summary
+	/// This is how each line is uploaded into the renderer's lineRender
+	///
+	/// Parameters
+	/// lineRenderer - The container that stores the lines that will be uploaded into vram
 	virtual void AddMyLinesToRenderer(LineRenderer& lineRenderer) { return; }
+	/// Summary
+	/// Changes the mesh's color at runtime
+	///
+	/// Parameters
+	/// inColor - The color that the mesh will be changed to
 	void ChangeColor(XMVECTORF32 inColor) { color = inColor; }
 
 	// Accessors
-	bool GetFlatness() const { return meshIsFlat; }
 	float GetDepth() const { return depth; }
 	float GetHeight() const { return height; }
 	float GetScale() const { return scale; }

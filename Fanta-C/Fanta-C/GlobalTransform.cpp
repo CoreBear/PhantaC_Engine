@@ -11,64 +11,61 @@ XMVECTOR GlobalTransform::translationVector;
 #pragma endregion
 
 #pragma region Public Interface
-void GlobalTransform::RotateOnWorldXAxis(float angle, XMMATRIX& inWorldMatrix)
-{
-	// Set the transform matrix to whatever's space we are trying to step into
-	transformMatrix = XMMatrixIdentity();
-	transformMatrix.r[1].m128_f32[1] = float(cos(XMConvertToRadians(angle)));
-	transformMatrix.r[1].m128_f32[2] = float(sin(XMConvertToRadians(angle)));
-	transformMatrix.r[2].m128_f32[1] = -transformMatrix.r[1].m128_f32[2];
-	transformMatrix.r[2].m128_f32[2] = transformMatrix.r[1].m128_f32[1];
-	inWorldMatrix = XMMatrixMultiply(transformMatrix, inWorldMatrix);
-}
-void GlobalTransform::RotateOnWorldYAxis(float angle, XMMATRIX& inWorldMatrix)
-{
-	// Set the transform matrix to whatever's space we are trying to step into
-	transformMatrix = XMMatrixIdentity();
-	transformMatrix.r[0].m128_f32[0] = float(cos(XMConvertToRadians(angle)));
-	transformMatrix.r[0].m128_f32[2] = float(sin(XMConvertToRadians(angle)));
-	transformMatrix.r[2].m128_f32[0] = -transformMatrix.r[0].m128_f32[2];
-	transformMatrix.r[2].m128_f32[2] = transformMatrix.r[0].m128_f32[0];
-	inWorldMatrix = XMMatrixMultiply(transformMatrix, inWorldMatrix);
-}
-void GlobalTransform::RotateOnWorldZAxis(float angle, XMMATRIX& inWorldMatrix)
-{
-	// Set the transform matrix to whatever's space we are trying to step into
-	transformMatrix = XMMatrixIdentity();
-	transformMatrix.r[0].m128_f32[0] = float(cos(XMConvertToRadians(angle)));
-	transformMatrix.r[0].m128_f32[1] = float(sin(XMConvertToRadians(angle)));
-	transformMatrix.r[1].m128_f32[0] = -transformMatrix.r[0].m128_f32[1];
-	transformMatrix.r[1].m128_f32[1] = transformMatrix.r[0].m128_f32[0];
-	inWorldMatrix = XMMatrixMultiply(transformMatrix, inWorldMatrix);
-}
-void GlobalTransform::RotateOnXAxis(float angle, XMMATRIX& inWorldMatrix)
+void GlobalTransform::RotateOnWorldXAxis(float angle, XMMATRIX& inLocalMatrix)
 {
 	transformMatrix = XMMatrixIdentity();
 	transformMatrix.r[1].m128_f32[1] = float(cos(XMConvertToRadians(angle)));
 	transformMatrix.r[1].m128_f32[2] = float(sin(XMConvertToRadians(angle)));
 	transformMatrix.r[2].m128_f32[1] = -transformMatrix.r[1].m128_f32[2];
 	transformMatrix.r[2].m128_f32[2] = transformMatrix.r[1].m128_f32[1];
-	inWorldMatrix = XMMatrixMultiply(inWorldMatrix, transformMatrix);
+	inLocalMatrix = XMMatrixMultiply(inLocalMatrix, transformMatrix);
 }
-void GlobalTransform::RotateOnYAxis(float angle, XMMATRIX& inWorldMatrix)
+void GlobalTransform::RotateOnWorldYAxis(float angle, XMMATRIX& inLocalMatrix)
 {
 	transformMatrix = XMMatrixIdentity();
 	transformMatrix.r[0].m128_f32[0] = float(cos(XMConvertToRadians(angle)));
 	transformMatrix.r[0].m128_f32[2] = float(sin(XMConvertToRadians(angle)));
 	transformMatrix.r[2].m128_f32[0] = -transformMatrix.r[0].m128_f32[2];
 	transformMatrix.r[2].m128_f32[2] = transformMatrix.r[0].m128_f32[0];
-	inWorldMatrix = XMMatrixMultiply(inWorldMatrix, transformMatrix);
+	inLocalMatrix = XMMatrixMultiply(inLocalMatrix, transformMatrix);
 }
-void GlobalTransform::RotateOnZAxis(float angle, XMMATRIX& inWorldMatrix)
+void GlobalTransform::RotateOnWorldZAxis(float angle, XMMATRIX& inLocalMatrix)
 {
 	transformMatrix = XMMatrixIdentity();
 	transformMatrix.r[0].m128_f32[0] = float(cos(XMConvertToRadians(angle)));
 	transformMatrix.r[0].m128_f32[1] = float(sin(XMConvertToRadians(angle)));
 	transformMatrix.r[1].m128_f32[0] = -transformMatrix.r[0].m128_f32[1];
 	transformMatrix.r[1].m128_f32[1] = transformMatrix.r[0].m128_f32[0];
-	inWorldMatrix = XMMatrixMultiply(inWorldMatrix, transformMatrix);
+	inLocalMatrix = XMMatrixMultiply(inLocalMatrix, transformMatrix);
 }
-void GlobalTransform::Scale(float x, float y, float z, ColliderManager* colliderManager, XMMATRIX& inWorldMatrix)
+void GlobalTransform::RotateOnXAxis(float angle, XMMATRIX& inLocalMatrix)
+{
+	transformMatrix = XMMatrixIdentity();
+	transformMatrix.r[1].m128_f32[1] = float(cos(XMConvertToRadians(angle)));
+	transformMatrix.r[1].m128_f32[2] = float(sin(XMConvertToRadians(angle)));
+	transformMatrix.r[2].m128_f32[1] = -transformMatrix.r[1].m128_f32[2];
+	transformMatrix.r[2].m128_f32[2] = transformMatrix.r[1].m128_f32[1];
+	inLocalMatrix = XMMatrixMultiply(transformMatrix, inLocalMatrix);
+}
+void GlobalTransform::RotateOnYAxis(float angle, XMMATRIX& inLocalMatrix)
+{
+	transformMatrix = XMMatrixIdentity();
+	transformMatrix.r[0].m128_f32[0] = float(cos(XMConvertToRadians(angle)));
+	transformMatrix.r[0].m128_f32[2] = float(sin(XMConvertToRadians(angle)));
+	transformMatrix.r[2].m128_f32[0] = -transformMatrix.r[0].m128_f32[2];
+	transformMatrix.r[2].m128_f32[2] = transformMatrix.r[0].m128_f32[0];
+	inLocalMatrix = XMMatrixMultiply(transformMatrix, inLocalMatrix);
+}
+void GlobalTransform::RotateOnZAxis(float angle, XMMATRIX& inLocalMatrix)
+{
+	transformMatrix = XMMatrixIdentity();
+	transformMatrix.r[0].m128_f32[0] = float(cos(XMConvertToRadians(angle)));
+	transformMatrix.r[0].m128_f32[1] = float(sin(XMConvertToRadians(angle)));
+	transformMatrix.r[1].m128_f32[0] = -transformMatrix.r[0].m128_f32[1];
+	transformMatrix.r[1].m128_f32[1] = transformMatrix.r[0].m128_f32[0];
+	inLocalMatrix = XMMatrixMultiply(transformMatrix, inLocalMatrix);
+}
+void GlobalTransform::Scale(float x, float y, float z, ColliderManager* colliderManager, XMMATRIX& inLocalMatrix)
 {
 	// Update colliderManager extents
 	colliderManager->GetBoundingBox()->SetExtents(x, y, z);
@@ -78,15 +75,15 @@ void GlobalTransform::Scale(float x, float y, float z, ColliderManager* collider
 	transformMatrix.r[0] *= x;
 	transformMatrix.r[1] *= y;
 	transformMatrix.r[2] *= z;
-	inWorldMatrix = XMMatrixMultiply(transformMatrix, inWorldMatrix);
+	inLocalMatrix = XMMatrixMultiply(transformMatrix, inLocalMatrix);
 }
-void GlobalTransform::Translate(float x, float y, float z, XMMATRIX& inWorldMatrix)
+void GlobalTransform::Translate(float x, float y, float z, XMMATRIX& inLocalMatrix)
 {
-	inWorldMatrix.r[3].m128_f32[0] += x;
-	inWorldMatrix.r[3].m128_f32[1] += y;
-	inWorldMatrix.r[3].m128_f32[2] += z;
+	inLocalMatrix.r[3].m128_f32[0] += x;
+	inLocalMatrix.r[3].m128_f32[1] += y;
+	inLocalMatrix.r[3].m128_f32[2] += z;
 }
-void GlobalTransform::UniformScale(float value, ColliderManager* colliderManager, XMMATRIX& inWorldMatrix)
+void GlobalTransform::UniformScale(float value, ColliderManager* colliderManager, XMMATRIX& inLocalMatrix)
 {
 	// Update colliderManager extents
 	colliderManager->GetBoundingBox()->SetExtents(value, value, value);
@@ -96,6 +93,6 @@ void GlobalTransform::UniformScale(float value, ColliderManager* colliderManager
 	transformMatrix.r[0] *= value;
 	transformMatrix.r[1] *= value;
 	transformMatrix.r[2] *= value;
-	inWorldMatrix = XMMatrixMultiply(transformMatrix, inWorldMatrix);
+	inLocalMatrix = XMMatrixMultiply(transformMatrix, inLocalMatrix);
 }
 #pragma endregion

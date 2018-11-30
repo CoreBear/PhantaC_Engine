@@ -24,7 +24,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, ObjectManager* cameraPtr)
+Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, ObjectManager* cameraObject)
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -171,7 +171,7 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushor
 
 	#pragma region Consistant Pipeline Pieces (Will be changed in the future)
 	// Resources
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, &static_cast<Camera*>(cameraPtr->GetMesh())->GetProjectionMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, static_cast<Camera*>(cameraObject->GetMesh())->GetProjectionMatrix(), 0, 0);
 
 	// Input Assembler
 	deviceContext->IASetInputLayout(inputLayout[INPUT_LAYOUT::DEFAULT]);
@@ -196,24 +196,19 @@ Renderer::Renderer(HWND windowHandle, SceneManager* sceneManagerPtr, const ushor
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(std::vector<ObjectManager*>* renderableObjects, ObjectManager* cameraPtr)
+void Renderer::Update(std::vector<ObjectManager*>* renderableObjects, ObjectManager* cameraObject)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
 	// Load view matrix (camera's world matrix) into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, cameraPtr->GetTransform()->GetWorldMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, cameraObject->GetTransform()->GetLocalMatrix(), 0, 0);
 
 	//
 	//											Do not add anything above this line
 	// ------------------------------------------------------------------------------------------------------------------------------- 
 	//											Add anything you want to draw below this line
-	//
-	//
-	// Look into multi-threading this
-	// Skip over index 0, because of camera (it doesn't get "rendered")
-	// Load objects into line rendererPtr, then draw them
-	
+	//	
 	for (renderIterator = 0; renderIterator < renderableObjects->size(); ++renderIterator)
 		DrawLines(renderableObjects->at(renderIterator));
 	
@@ -222,7 +217,7 @@ void Renderer::Update(std::vector<ObjectManager*>* renderableObjects, ObjectMana
 	// --------------------------------------------------------------------------------------------------------------------------------
 	//											Do not add anything below this line
 	//
-	//
+
 	// Show frame to user
 	swapChain->Present(vSync, 0);
 }
@@ -238,9 +233,8 @@ void Renderer::DrawLines(ObjectManager* object)
 {
 	meshLoader.AddLinesToLineRenderer(lineRenderer, object->GetMesh());
 
-	// Is this line necessary???-----------------------------------------------------------------------------------------------------------------------------
 	// Upload object's world matrix into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, object->GetTransform()->GetWorldMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::OBJECT], 0, nullptr, object->GetTransform()->GetLocalMatrix(), 0, 0);
 
 	// Load lines into VRAM
 	ZeroMemory(&resourceForVertBuffer, sizeof(resourceForVertBuffer));

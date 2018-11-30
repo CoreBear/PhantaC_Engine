@@ -23,11 +23,37 @@ bool GlobalInput::keysPressed[9];
 
 #pragma region Forward Declarations
 // Application Loop
-void RunEnviornmentAndEventLoop(EnvironmentManager* environmentManager);
+/// Summary
+/// Launches the thread that runs environment level of the application
+///
+/// Parameters
+/// environmentManager - Runs everything, except window creation and events 
+void RunEnvironment(EnvironmentManager* environmentManager);
 
 // Event Handler
+/// Summary
+/// Receives system events
+///
+/// Parameters
+/// hwnd - Unique window handle
+/// message - The message that the window received
+/// wParam - Additional information about/with the message
+/// lParam - Additional information about/with the message
+/// 
+/// Return
+/// LRESULT - The result of event processing (Returns 0 if everything is fine)
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+/// Summary
+/// Processes key pressed events
+///
+/// Parameters
+/// wParam - The value of the key being pressed
 void KeyPressed(WPARAM wParam);
+/// Summary
+/// Processes key relesed events
+///
+/// Parameters
+/// wParam - The value of the key being released
 void KeyNotPressed(WPARAM wParam);
 #pragma endregion
 
@@ -38,7 +64,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	// this function call will set a breakpoint at the location of a leaked block
 	// set the parameter to the identifier for a leaked block
-	// _CrtSetBreakAlloc(476);
+	// _CrtSetBreakAlloc(245);
 	#pragma endregion
 
 	// Creates the window
@@ -48,7 +74,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	EnvironmentManager* environmentManager = new EnvironmentManager(window->GetWindowHandle(), window->GetClientDimensions());
 	
 	// Will run until quit message is posted
-	RunEnviornmentAndEventLoop(environmentManager);
+	RunEnvironment(environmentManager);
 
 	// Clean Up
 	delete environmentManager;
@@ -60,7 +86,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 #pragma endregion
 
 #pragma region Application Loop
-void RunEnviornmentAndEventLoop(EnvironmentManager* environmentManager)
+void RunEnvironment(EnvironmentManager* environmentManager)
 {
 	// Container that stores system messages
 	MSG msg = { 0 };

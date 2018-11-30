@@ -29,7 +29,14 @@ public:
 	EnvironmentManager(HWND windowHandle, ushort* clientDimensions);
 
 	// Public Interface
-	void ThreadManager(MSG* msg);
+	/// Summary
+	/// Starts the threads that will run player input and update all
+	/// components of the frame
+	///
+	/// Parameters
+	/// msg - The container that holds events and will signal to the
+	/// threads, when the quit conditions is met
+	void ThreadLauncher(MSG* msg);
 
 	// Thread Functions
 	void RunAudio();

@@ -8,13 +8,15 @@
 class Camera : public Mesh
 {
 	XMMATRIX projectionMatrix;
-	
+	XMMATRIX viewMatrix;
+
 public:
 	// Initialization
 	Camera(const ushort* clientDimensions);
 
 	// Accessors
-	const XMMATRIX& GetProjectionMatrix() const { return projectionMatrix; }
+	XMMATRIX* GetProjectionMatrix() { return &projectionMatrix; }
+	XMMATRIX* GetViewMatrix() { return &viewMatrix; }
 };
 
 #endif

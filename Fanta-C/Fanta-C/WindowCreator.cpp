@@ -18,11 +18,13 @@ WindowCreator::WindowCreator(HINSTANCE hInstance, int cmdShow, WNDPROC wndProc)
 
 	RegisterClassEx(&wndClass);												// Registers window class in system
 
-	RECT windowRect = { 0, 0, clientDimensions[1], clientDimensions[0] };	// Creates a rectcubeAngle that will be passed into the window setup
+	RECT windowRect = { 0, 0, clientDimensions[1], clientDimensions[0] };	// Creates a rectangle for the window that will be passed into the window setup
 
+	// Creates and assigns the window handlw
 	windowHandle = CreateWindowA(windowClassName, windowName, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
 		windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, hInstance, nullptr);
 
+	// Shows the window
 	ShowWindow(windowHandle, cmdShow);
 
 	// Forces client area of the window to be painted

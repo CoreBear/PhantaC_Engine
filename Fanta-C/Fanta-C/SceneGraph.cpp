@@ -13,7 +13,7 @@ SceneGraph::SceneGraph(ushort* clientDimensions)
 	// DON'T TOUCH! 
 	// Every scene needs a camera
 	// Create Camera - Camera needs to always be first
-	AddObjectToScene(new ObjectManager(new Camera(clientDimensions), true, false, true, XMVectorSet(0, 3, -20, 1), XMVectorSet(0, 0, 1, 0), XMVectorSet(0, 1, 0, 0)), nullptr);
+	AddObjectToScene(new ObjectManager(new Camera(clientDimensions)), nullptr);
 }
 #pragma endregion
 

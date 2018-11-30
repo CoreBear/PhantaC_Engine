@@ -25,9 +25,29 @@ public:
 	BoundingBox(float inWidth, float inHeight, float inDepth, float inScale) : isColliding(false) { CreateBounds(inWidth, inHeight, inDepth, inScale); }
 
 	// Public Interface
+	/// Summary
+	/// When object collides with invoking object, the other object gets added to this container
+	///
+	/// Parameters
+	/// collidingObject - The object that is colliding with the invoking object
 	void AddCollidingObject(ObjectManager* collidingObject) { collidingObjects.push_back(collidingObject);}
+	/// Summary
+	/// A check to see if the parametered object is colliding with the invoking object
+	///
+	/// Parameters
+	/// collidingObject - The object that is being checked for collision with the invoking object
 	bool CheckIfObjectInContainer(ObjectManager* collidingObject);
+	/// Summary
+	/// Checks if the invoking object is colliding with any other object
+	///
+	/// Return
+	/// True if there is no collision with invoking object. False if not
 	bool ContainerEmpty() { return (collidingObjects.size() > 0) ? false : true; }
+	/// Summary
+	/// If separation occurs this frame, the parametered object is removed from collision
+	///
+	/// Parameters
+	/// removeObject - The object that will be removed from invoking object's collision container
 	void RemoveCollidingObject(ObjectManager* removeObject);
 
 	// Accessors

@@ -36,7 +36,7 @@ EnvironmentManager::EnvironmentManager(HWND windowHandle, ushort* clientDimensio
 #pragma endregion
 
 #pragma region Public Interface
-void EnvironmentManager::ThreadManager(MSG* inMsg)
+void EnvironmentManager::ThreadLauncher(MSG* inMsg)
 {	
 	// Assigns the messaging system we will be checking against
 	msg = inMsg;
@@ -54,7 +54,7 @@ void EnvironmentManager::ThreadManager(MSG* inMsg)
 #pragma region Thread Functions
 void EnvironmentManager::RunAudio() { audioManagerPtr->Update(); }
 void EnvironmentManager::RunInput() { inputManagerPtr->Update(); }
-void EnvironmentManager::RunPhysics() { physicsManagerPtr->Update(sceneManagerPtr->GetScenePtr()->GetCollidableObjects()); }
+void EnvironmentManager::RunPhysics() {} //physicsManagerPtr->Update(sceneManagerPtr->GetScenePtr()->GetCollidableObjects()); }
 void EnvironmentManager::RunRenderer() { rendererPtr->Update(sceneManagerPtr->GetScenePtr()->GetRenderableObjects(), sceneManagerPtr->GetScenePtr()->GetCamera()); }
 void EnvironmentManager::RunScene() { sceneManagerPtr->Update(); }
 void EnvironmentManager::RunUI() { uiManagerPtr->Update(); }

@@ -28,7 +28,7 @@ void GlobalAutonomy::LookAt(XMMATRIX* myMatrix, XMVECTOR* targetPosition)
 }
 void GlobalAutonomy::TurnTo(MovingObject* myMovingScript, XMVECTOR* targetPosition)
 {
-	myMatrix = myMovingScript->GetMyObject()->GetTransform()->GetWorldMatrix();
+	myMatrix = myMovingScript->GetMyObject()->GetTransform()->GetLocalMatrix();
 
 	// Direction to target
 	targetVector = XMVectorSubtract(*targetPosition, myMatrix->r[3]);

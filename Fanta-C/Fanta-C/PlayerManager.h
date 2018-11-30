@@ -17,10 +17,10 @@ public:
 	void Update() override;
 
 	// Public Interface
-	void Move(char x, char y, char z) { GlobalTransform::Translate(x * GlobalTime::deltaTime * velocity, y * GlobalTime::deltaTime * velocity, z * GlobalTime::deltaTime * velocity, *myObject->GetTransform()->GetWorldMatrix()); }
-	void Pitch(char angle) { GlobalTransform::RotateOnXAxis(angle * GlobalTime::deltaTime * angularVelocity, *myObject->GetTransform()->GetWorldMatrix()); }
-	void Roll(char angle) { GlobalTransform::RotateOnZAxis(angle * GlobalTime::deltaTime * angularVelocity, *myObject->GetTransform()->GetWorldMatrix()); }
-	void Yaw(char angle) { GlobalTransform::RotateOnYAxis(angle * GlobalTime::deltaTime * angularVelocity, *myObject->GetTransform()->GetWorldMatrix()); }
+	void Move(char x, char y, char z) { GlobalTransform::Translate(x * GlobalTime::deltaTime * velocity, y * GlobalTime::deltaTime * velocity, z * GlobalTime::deltaTime * velocity, *myObject->GetTransform()->GetLocalMatrix()); }
+	void Pitch(char angle) { GlobalTransform::RotateOnWorldXAxis(angle * GlobalTime::deltaTime * angularVelocity, *myObject->GetTransform()->GetLocalMatrix()); }
+	void Roll(char angle) { GlobalTransform::RotateOnWorldZAxis(angle * GlobalTime::deltaTime * angularVelocity, *myObject->GetTransform()->GetLocalMatrix()); }
+	void Yaw(char angle) { GlobalTransform::RotateOnWorldYAxis(angle * GlobalTime::deltaTime * angularVelocity, *myObject->GetTransform()->GetLocalMatrix()); }
 };
 
 #endif

@@ -13,6 +13,7 @@ class PhysicsManager
 public:
 	// Initialization
 	PhysicsManager() { collisionManager = new CollisionManager; }
+
 	// Update
 	void Update(std::vector<class ObjectManager*>* collidableObjects);
 

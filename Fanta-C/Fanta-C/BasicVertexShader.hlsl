@@ -10,7 +10,7 @@ cbuffer PerFrame : register(b1)
 
 cbuffer PerObject : register(b2)
 {
-	matrix worldMatrix;
+	matrix localMatrix;
 }
 
 struct Input
@@ -27,7 +27,7 @@ Output main(Input input)
 {
 	Output output;
 
-	matrix viewProjMat = mul(projectionMatrix, mul(viewMatrix, worldMatrix));
+	matrix viewProjMat = mul(projectionMatrix, mul(viewMatrix, localMatrix));
 	output.localPosHomo = mul(viewProjMat, float4(input.localPos, 1.0f));
 	output.color = input.color;
 

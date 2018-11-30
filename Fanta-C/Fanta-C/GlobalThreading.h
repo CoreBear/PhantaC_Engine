@@ -16,7 +16,7 @@ class GlobalThreading
 {
 public:
 	// Used by EntryEventLoop.cpp
-	static void RunEnvironmentThread(EnvironmentManager* environmentManager, MSG* msg) { environmentManager->ThreadManager(msg); }
+	static void RunEnvironmentThread(EnvironmentManager* environmentManager, MSG* msg) { environmentManager->ThreadLauncher(msg); }
 	
 	// Used by EnvironmentManager.cpp
 	static void RunEnvironmentManagerThreads(uchar typeOfThread, EnvironmentManager* environmentManager, MSG* inMsg)
