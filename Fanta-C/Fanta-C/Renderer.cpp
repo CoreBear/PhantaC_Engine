@@ -3,7 +3,6 @@
 #include "Renderer.h"				// Connection to declarations
 #include "Camera.h"
 #include "GlobalVramStructures.h"
-#include "GlobalIterators.h"
 #include "ObjectManager.h"
 #include "SceneManager.h"
 
@@ -88,7 +87,7 @@ Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const usho
 	ReleaseResource(backBuffer);
 
 	// Constant Buffers
-	for (iterators[0] = 0; iterators[0]  < CONSTANT_BUFFER_TYPE::COUNT; ++iterators[0])
+	for (uchar i = 0; i < CONSTANT_BUFFER_TYPE::COUNT; ++i)
 	{
 		D3D11_BUFFER_DESC constantBufferDesc;
 		ZeroMemory(&constantBufferDesc, sizeof(D3D11_BUFFER_DESC));
@@ -98,7 +97,7 @@ Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const usho
 		constantBufferDesc.CPUAccessFlags = 0;
 		constantBufferDesc.Usage = D3D11_USAGE_DEFAULT;
 
-		device->CreateBuffer(&constantBufferDesc, nullptr, &constantBuffers[iterators[0]]);
+		device->CreateBuffer(&constantBufferDesc, nullptr, &constantBuffers[i]);
 	}
 
 	// Vertex Buffer
@@ -253,39 +252,42 @@ void Renderer::DrawLines(ObjectManager* object)
 #pragma region Clean Up
 Renderer::~Renderer()
 {
-	#pragma region Buffers
-	for(iterators[0] = 0; iterators[0] < CONSTANT_BUFFER_TYPE::COUNT; ++iterators[0])
-		ReleaseResource(constantBuffers[iterators[0]]);
+	// Reusable for iteration
+	uchar i;
 
-	for (iterators[0] = 0; iterators[0] < VERTEX_BUFFER::COUNT; ++iterators[0])
-		ReleaseResource(vertexBuffers[iterators[0]]);
+	#pragma region Buffers
+	for(i = 0; i < CONSTANT_BUFFER_TYPE::COUNT; ++i)
+		ReleaseResource(constantBuffers[i]);
+
+	for (i = 0; i < VERTEX_BUFFER::COUNT; ++i)
+		ReleaseResource(vertexBuffers[i]);
 	#pragma endregion
 
 	#pragma region Layouts
-	for (iterators[0] = 0; iterators[0] < INPUT_LAYOUT::COUNT; ++iterators[0])
-		ReleaseResource(inputLayout[iterators[0]]);
+	for (i = 0; i < INPUT_LAYOUT::COUNT; ++i)
+		ReleaseResource(inputLayout[i]);
 	#pragma endregion
 
 	#pragma region Shaders
-	for (iterators[0] = 0; iterators[0] < PIXEL_SHADER::COUNT; ++iterators[0])
-		ReleaseResource(pixelShader[iterators[0]]);
+	for (i = 0; i < PIXEL_SHADER::COUNT; ++i)
+		ReleaseResource(pixelShader[i]);
 
-	for (iterators[0] = 0; iterators[0] < VERTEX_SHADER::COUNT; ++iterators[0])
-		ReleaseResource(vertexShader[iterators[0]]);
+	for (i = 0; i < VERTEX_SHADER::COUNT; ++i)
+		ReleaseResource(vertexShader[i]);
 	#pragma endregion
 
 	#pragma region Misc
-	for (iterators[0] = 0; iterators[0] < DEPTH_STENCIL_STATE::COUNT; ++iterators[0])
-		ReleaseResource(depthStencilState[iterators[0]]);
+	for (i = 0; i < DEPTH_STENCIL_STATE::COUNT; ++i)
+		ReleaseResource(depthStencilState[i]);
 
-	for (iterators[0] = 0; iterators[0] < DEPTH_STENCIL_VIEW::COUNT; ++iterators[0])
-		ReleaseResource(depthStencilView[iterators[0]]);
+	for (i = 0; i < DEPTH_STENCIL_VIEW::COUNT; ++i)
+		ReleaseResource(depthStencilView[i]);
 
-	for (iterators[0] = 0; iterators[0] < RENDER_TARGET_VIEW::COUNT; ++iterators[0])
-		ReleaseResource(renderTargetView[iterators[0]]);
+	for (i = 0; i < RENDER_TARGET_VIEW::COUNT; ++i)
+		ReleaseResource(renderTargetView[i]);
 
-	for (iterators[0] = 0; iterators[0] < TEXTURE2D::COUNT; ++iterators[0])
-		ReleaseResource(depthStencilBuffer[iterators[0]]);
+	for (i = 0; i < TEXTURE2D::COUNT; ++i)
+		ReleaseResource(depthStencilBuffer[i]);
 	
 	ReleaseResource(device);
 	ReleaseResource(deviceContext);

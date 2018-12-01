@@ -136,15 +136,6 @@
     <Filter Include="Environment\Scene\Scenes\Graph">
       <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Rendering\UI">
-      <UniqueIdentifier>{52f62444-0786-4b04-99b0-24344ab9b377}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Rendering\UI\Manager">
-      <UniqueIdentifier>{7a838632-4c6b-44df-8b0b-57e40f49a35b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Initialization &amp; Update\Splash">
-      <UniqueIdentifier>{6d3eb8bc-aa8b-4fd5-9da6-d44abe359d94}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scenes">
       <UniqueIdentifier>{99f706ed-88ec-4974-ae4e-7d4cc44f1c23}</UniqueIdentifier>
     </Filter>
@@ -174,6 +165,18 @@
     </Filter>
     <Filter Include="Globals\Math">
       <UniqueIdentifier>{b52233d6-985e-4a4c-8b9d-dd7f15c6743d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\FrontEnd">
+      <UniqueIdentifier>{9bf5b288-5c70-48d3-ba2f-5b6eea660f50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\FrontEnd\UI">
+      <UniqueIdentifier>{52f62444-0786-4b04-99b0-24344ab9b377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\FrontEnd\UI\Manager">
+      <UniqueIdentifier>{7a838632-4c6b-44df-8b0b-57e40f49a35b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\FrontEnd\Splash">
+      <UniqueIdentifier>{6d3eb8bc-aa8b-4fd5-9da6-d44abe359d94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +232,7 @@
       <Filter>Game\Scenes\Test</Filter>
     </ClCompile>
     <ClCompile Include="UiManager.cpp">
-      <Filter>Environment\Rendering\UI\Manager</Filter>
+      <Filter>Environment\FrontEnd\UI\Manager</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Environment\Input\Manager</Filter>
@@ -247,7 +250,7 @@
       <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
     </ClCompile>
     <ClCompile Include="SplashManager.cpp">
-      <Filter>Application\Initialization &amp; Update\Splash</Filter>
+      <Filter>Environment\FrontEnd\Splash</Filter>
     </ClCompile>
     <ClCompile Include="Grid.cpp">
       <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
@@ -324,7 +327,7 @@
       <Filter>Game\Scenes\Test</Filter>
     </ClInclude>
     <ClInclude Include="UiManager.h">
-      <Filter>Environment\Rendering\UI\Manager</Filter>
+      <Filter>Environment\FrontEnd\UI\Manager</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Environment\Input\Manager</Filter>
@@ -372,7 +375,7 @@
       <Filter>Globals\Misc</Filter>
     </ClInclude>
     <ClInclude Include="SplashManager.h">
-      <Filter>Application\Initialization &amp; Update\Splash</Filter>
+      <Filter>Environment\FrontEnd\Splash</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
       <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>

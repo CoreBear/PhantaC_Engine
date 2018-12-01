@@ -7,6 +7,7 @@
 class Cube : public Mesh
 {
 	constexpr static uchar	numberOfLinesTriIndicesVertices[3] = { 3, 4, 8 };
+	uchar					secondIterator;
 	uchar					triIndices[numberOfLinesTriIndicesVertices[1]][numberOfLinesTriIndicesVertices[0]][2];
 	SIMPLE_VERTEX			vertices[numberOfLinesTriIndicesVertices[2]];
 

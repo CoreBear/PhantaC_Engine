@@ -3,9 +3,6 @@
 
 // My Headers
 #include "GlobalDirectX.h"
-#include "GlobalIterators.h"
-#include "GlobalWorldInfo.h"
-#include "GlobalVramStructures.h"
 #include "GlobalTypedefs.h"
 #include "LineRenderer.h"
 
@@ -16,6 +13,7 @@ protected:
 	float		height;
 	float		scale;
 	float		width;
+	ushort		reusableIterator;
 	XMVECTORF32	color;
 
 public:

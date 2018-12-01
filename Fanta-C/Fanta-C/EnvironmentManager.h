@@ -19,7 +19,7 @@ class EnvironmentManager
 	class PhysicsManager*					physicsManagerPtr;
 	class Renderer*							rendererPtr;
 	class SceneManager*						sceneManagerPtr;
-	const static uchar						numberOfThreads = 2;
+	const static uchar						numberOfThreads = 3;
 	std::thread*							threads[numberOfThreads];
 	const uchar								targetFPS = 60;
 	class UiManager*						uiManagerPtr;
@@ -39,6 +39,7 @@ public:
 	/// threads, when the quit conditions is met
 	void ThreadLauncher(MSG* msg);
 	/// Summary
+	/// Hacked. Delete later
 	/// Updates the fps in the window's title bar
 	///
 	/// Parameters

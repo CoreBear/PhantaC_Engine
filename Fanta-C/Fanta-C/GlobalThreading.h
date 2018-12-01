@@ -20,7 +20,6 @@ static ushort									frameCounter;
 
 class GlobalThreading
 {
-
 public:
 	// Used by EntryEventLoop.cpp
 	static void RunEnvironmentThread(EnvironmentManager* environmentManager, MSG* msg) { environmentManager->ThreadLauncher(msg); }
@@ -28,34 +27,36 @@ public:
 	// Used by EnvironmentManager.cpp
 	static void RunEnvironmentManagerThreads(uchar typeOfThread, EnvironmentManager* environmentManager, MSG* inMsg)
 	{
+		switch (typeOfThread)
+		{
 		// Input Thread
-		if (typeOfThread == 0)
+		case 0:
 		{
 			// Run everything function until quit is received
 			while (inMsg->message != WM_QUIT)
 				environmentManager->RunInput();
 		}
+			break;
 
 		// Frame Thread
-		else
+		case 1:
 		{
 			#pragma region FPS
 			// Variable Initialization
 			const ushort thousandMilliseconds = 1000;	// Milliseconds
 			frameCounter = 0;
-			fpsTimeElapsed = 0;			
+			fpsTimeElapsed = 0;
 			#pragma endregion
-			
+
 			// Run everything function until quit is received
 			while (inMsg->message != WM_QUIT)
 			{
 				// Assign the start time for the frame
 				frameStartTime = std::chrono::steady_clock::now();
-				
+
 				// Run modules
-				environmentManager->RunScene();		
-				environmentManager->RunPhysics();	
-				environmentManager->RunUI();		
+				environmentManager->RunScene();
+				environmentManager->RunPhysics();
 				environmentManager->RunRenderer();
 				environmentManager->RunAudio();
 
@@ -87,15 +88,26 @@ public:
 
 					// Convert number to string
 					fpsString = std::to_string(actualFpsCount).c_str();
-					
+
 					// Convert string to char*
 					charString = fpsString.c_str();
 
 					// Hack to show FPS. Remove later
 					environmentManager->UpdateFPSIndicator(charString);
-				}				
-				#pragma endregion
+				}
+			#pragma endregion
 			}
+		}
+			break;
+
+		// UI Thread
+		case 2:
+		{
+			// Run everything function until quit is received
+			while (inMsg->message != WM_QUIT)
+				environmentManager->RunUI();
+		}
+			break;
 		}
 	}
 };

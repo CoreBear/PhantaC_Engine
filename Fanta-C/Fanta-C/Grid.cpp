@@ -1,15 +1,15 @@
 #pragma region Dependencies
 // My Headers
 #include "Grid.h"				// Connection to declarations
-#include "GlobalIterators.h"
+#include "GlobalWorldInfo.h"
 #include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Public Interface
 void Grid::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 {
-	for (iterators[0] = 0; iterators[0] < numberOfVertices; iterators[0] += 2)
-		lineRenderer.AddNewLine(vertices[iterators[0]].localPos, vertices[iterators[0] + 1].localPos, color, color);
+	for (reusableIterator = 0; reusableIterator < numberOfVertices; reusableIterator += 2)
+		lineRenderer.AddNewLine(vertices[reusableIterator].localPos, vertices[reusableIterator + 1].localPos, color, color);
 }
 #pragma endregion
 
@@ -21,37 +21,38 @@ void Grid::CreateMesh()
 	ushort		numberOfLinesEachDirection = ushort(numberOfLinesTotal * 0.5f);		
 	ushort		integerHalfOfLinesEachDirection = ushort(numberOfLinesEachDirection * 0.5f);
 	float		offset = (numberOfLinesEachDirection % 2 == 0) ? 0.5f : 0;
-	ushort		vertCount;														    
+	ushort		iterators[2];
+	ushort		vertCount;		
 	XMFLOAT3	tempVertex;
 
 	// This is a global variable, found in "GlobalWorldInfo.h". This is used to represent the distance from the world origin to the edge of the grid (X, Y)
 	edgeOfGridDistance = (numberOfLinesEachDirection % 2 == 0) ? integerHalfOfLinesEachDirection * lineDistanceApart - (0.5f * lineDistanceApart) : integerHalfOfLinesEachDirection * lineDistanceApart;
 	
 	// Horizontal & Vertical lines
-	for (vertCount = 0, iterators[0] = 0; iterators[0] < 2; ++iterators[0])
+	for (vertCount = 0, reusableIterator = 0; reusableIterator < 2; ++reusableIterator)
 	{
 		// Number of gridlines per direction
-		for (iterators[1] = 0; iterators[1] < numberOfLinesEachDirection; ++iterators[1])
+		for (iterators[0] = 0; iterators[0] < numberOfLinesEachDirection; ++iterators[0])
 		{
 			// Start and end points
-			for (iterators[2] = 0; iterators[2] < 2; ++iterators[2])
+			for (iterators[1] = 0; iterators[1] < 2; ++iterators[1])
 			{
 				// Horizontal lines first
-				if (iterators[0] == 0)
+				if (reusableIterator == 0)
 				{
 					// Left to right
-					tempVertex.x = (iterators[2]) ? -edgeOfGridDistance : edgeOfGridDistance;
+					tempVertex.x = (iterators[1]) ? -edgeOfGridDistance : edgeOfGridDistance;
 					tempVertex.y = 0;
-					tempVertex.z = (iterators[1] - integerHalfOfLinesEachDirection) * lineDistanceApart + (offset * lineDistanceApart);
+					tempVertex.z = (iterators[0] - integerHalfOfLinesEachDirection) * lineDistanceApart + (offset * lineDistanceApart);
 				}
 
 				// Vertical lines
 				else
 				{
 					// Top to bottom
-					tempVertex.x = (iterators[1] - integerHalfOfLinesEachDirection) * lineDistanceApart + (offset * lineDistanceApart);
+					tempVertex.x = (iterators[0] - integerHalfOfLinesEachDirection) * lineDistanceApart + (offset * lineDistanceApart);
 					tempVertex.y = 0;
-					tempVertex.z = (iterators[2]) ? -edgeOfGridDistance : edgeOfGridDistance;
+					tempVertex.z = (iterators[1]) ? -edgeOfGridDistance : edgeOfGridDistance;
 				}
 
 				// Add lines to drawable vertices and color them

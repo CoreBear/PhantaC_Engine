@@ -43,9 +43,9 @@ void EnvironmentManager::ThreadLauncher(MSG* inMsg)
 	// Assigns the messaging system we will be checking against
 	msg = inMsg;
 	
-	// Launch and run 2 new threads
-	threads[0] = new std::thread(GlobalThreading::RunEnvironmentManagerThreads, 0, this, inMsg);
-	threads[1] = new std::thread(GlobalThreading::RunEnvironmentManagerThreads, 1, this, inMsg);
+	// Launch and run 3 new threads
+	for (uchar i = 0; i < numberOfThreads; ++i)
+		threads[i] = new std::thread(GlobalThreading::RunEnvironmentManagerThreads, i, this, inMsg);
 
 	// Loose thread comes here to wait. Fix this later
 	// Join threads before destroying them
@@ -73,7 +73,7 @@ EnvironmentManager::~EnvironmentManager()
 	if (uiManagerPtr) delete uiManagerPtr;
 
 	// Delete all threads
-	for (iterators[0] = 0; iterators[0] < numberOfThreads; ++iterators[0])
-		delete threads[iterators[0]];
+	for (uchar i = 0; i < numberOfThreads; ++i)
+		delete threads[i];
 }
 #pragma endregion

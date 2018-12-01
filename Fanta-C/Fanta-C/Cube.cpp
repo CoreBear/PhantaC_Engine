@@ -1,17 +1,16 @@
 #pragma region Dependencies
 // My Headers
 #include "Cube.h"		// Connection to declarations
-#include "GlobalIterators.h"
 #include "LineRenderer.h"
 #pragma endregion
 
 #pragma region Public Interface
 void Cube::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 {
-	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[1]; ++iterators[0])
+	for (reusableIterator = 0; reusableIterator < numberOfLinesTriIndicesVertices[1]; ++reusableIterator)
 	{
-		for (iterators[1] = 0; iterators[1] < numberOfLinesTriIndicesVertices[0]; ++iterators[1])
-			lineRenderer.AddNewLine(vertices[triIndices[iterators[0]][iterators[1]][0]].localPos, vertices[triIndices[iterators[0]][iterators[1]][1]].localPos, color, color);
+		for (secondIterator = 0; secondIterator < numberOfLinesTriIndicesVertices[0]; ++secondIterator)
+			lineRenderer.AddNewLine(vertices[triIndices[reusableIterator][secondIterator][0]].localPos, vertices[triIndices[reusableIterator][secondIterator][1]].localPos, color, color);
 	}
 }
 #pragma endregion
@@ -19,11 +18,11 @@ void Cube::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 #pragma region Private
 void Cube::CreateMesh(float inWidth, float inHeight, float inDepth, float inScale)
 {
-	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[2]; ++iterators[0])
+	for (reusableIterator = 0; reusableIterator < numberOfLinesTriIndicesVertices[2]; ++reusableIterator)
 	{
-		vertices[iterators[0]].localPos.x = (iterators[0] % 4 == 0 || iterators[0] % 4 == 3) ? -inWidth * inScale : inWidth * inScale;
-		vertices[iterators[0]].localPos.y = (iterators[0] % 4 < 2) ? inHeight * inScale : -inHeight * inScale;
-		vertices[iterators[0]].localPos.z = (iterators[0] < 4) ? -inDepth * inScale : inDepth * inScale;
+		vertices[reusableIterator].localPos.x = (reusableIterator % 4 == 0 || reusableIterator % 4 == 3) ? -inWidth * inScale : inWidth * inScale;
+		vertices[reusableIterator].localPos.y = (reusableIterator % 4 < 2) ? inHeight * inScale : -inHeight * inScale;
+		vertices[reusableIterator].localPos.z = (reusableIterator < 4) ? -inDepth * inScale : inDepth * inScale;
 	}
 
 	char tempIndices[] =
@@ -35,18 +34,19 @@ void Cube::CreateMesh(float inWidth, float inHeight, float inDepth, float inScal
 	};
 
 	uchar index = 0;
+	uchar iterators[2];
 
 	// Create triple Indices (backwards C)
-	for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[1]; ++iterators[0])
+	for (reusableIterator = 0; reusableIterator < numberOfLinesTriIndicesVertices[1]; ++reusableIterator)
 	{
 		// Number of lines
-		for (iterators[1] = 0; iterators[1] < numberOfLinesTriIndicesVertices[0]; ++iterators[1])
+		for (iterators[0] = 0; iterators[0] < numberOfLinesTriIndicesVertices[0]; ++iterators[0])
 		{
 			// Start vert & end vert
-			for (iterators[2] = 0; iterators[2] < 2; ++iterators[2])
-				triIndices[iterators[0]][iterators[1]][iterators[2]] = tempIndices[index++];
+			for (secondIterator = 0; secondIterator < 2; ++secondIterator)
+				triIndices[reusableIterator][iterators[0]][secondIterator] = tempIndices[index++];
 
-			if (iterators[1] != numberOfLinesTriIndicesVertices[0] - 1) --index;
+			if (iterators[0] != numberOfLinesTriIndicesVertices[0] - 1) --index;
 		}
 	}
 }
