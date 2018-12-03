@@ -73,12 +73,6 @@
     <Filter Include="Environment\Physics\Collision\Manager">
       <UniqueIdentifier>{8de48af1-c053-405a-bc26-22b98de72237}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Initialization &amp; Update">
-      <UniqueIdentifier>{a091c51a-ee2a-4291-b2f6-53bca9a2689d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Initialization &amp; Update\Window">
-      <UniqueIdentifier>{0fe76f8e-5a31-4fcd-b4ec-7b4d9d0dc69c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment\Scene\Camera">
       <UniqueIdentifier>{8ab6d898-497e-4c62-bf0d-d39e3a939cec}</UniqueIdentifier>
     </Filter>
@@ -178,6 +172,36 @@
     <Filter Include="Environment\FrontEnd\Splash">
       <UniqueIdentifier>{6d3eb8bc-aa8b-4fd5-9da6-d44abe359d94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Environment\Physics\Collision\BoundingBox">
+      <UniqueIdentifier>{df3a748a-b032-4441-97f5-a7640c649d5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\FrontEnd\Splash\Manager">
+      <UniqueIdentifier>{f5011952-1e5a-4d6e-b3a9-883236faab00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Initialization &amp; Events">
+      <UniqueIdentifier>{a091c51a-ee2a-4291-b2f6-53bca9a2689d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Initialization &amp; Events\Window">
+      <UniqueIdentifier>{0fe76f8e-5a31-4fcd-b4ec-7b4d9d0dc69c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\SpatialPartitioning">
+      <UniqueIdentifier>{b560505b-da2f-473b-a50b-70d237617da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Manager">
+      <UniqueIdentifier>{e8360d65-032b-43f3-a6c7-8eea73844400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Physical">
+      <UniqueIdentifier>{b55ed7bb-4674-4cd9-ab1b-ffbae62e4605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Physical\Cell">
+      <UniqueIdentifier>{2176a6e2-f675-4651-8768-d9d2c56dc72c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Physical\Grid">
+      <UniqueIdentifier>{2d3b03d2-0f43-410f-ac7a-cea8a15f4b51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Seperation">
+      <UniqueIdentifier>{05767df9-c1d3-494c-bc37-8e6fdecb34e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -187,7 +211,7 @@
       <Filter>Environment\Rendering\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="WindowCreator.cpp">
-      <Filter>Application\Initialization &amp; Update\Window</Filter>
+      <Filter>Application\Initialization &amp; Events\Window</Filter>
     </ClCompile>
     <ClCompile Include="EnvironmentManager.cpp">
       <Filter>Environment\Manager</Filter>
@@ -241,16 +265,13 @@
       <Filter>Environment\Input\Controller\Manager</Filter>
     </ClCompile>
     <ClCompile Include="EntryEventLoop.cpp">
-      <Filter>Application\Initialization &amp; Update</Filter>
+      <Filter>Application\Initialization &amp; Events</Filter>
     </ClCompile>
     <ClCompile Include="GlobalTransform.cpp">
       <Filter>Globals\Movement\Transform</Filter>
     </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
       <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
-    </ClCompile>
-    <ClCompile Include="SplashManager.cpp">
-      <Filter>Environment\FrontEnd\Splash</Filter>
     </ClCompile>
     <ClCompile Include="Grid.cpp">
       <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
@@ -260,6 +281,24 @@
     </ClCompile>
     <ClCompile Include="GlobalMath.cpp">
       <Filter>Globals\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundingBoxCollision.cpp">
+      <Filter>Environment\Physics\Collision\BoundingBox</Filter>
+    </ClCompile>
+    <ClCompile Include="SplashManager.cpp">
+      <Filter>Environment\FrontEnd\Splash\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PartitioningManager.cpp">
+      <Filter>Environment\Physics\Collision\SpatialPartitioning\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PartitionCell.cpp">
+      <Filter>Environment\Physics\Collision\SpatialPartitioning\Physical\Cell</Filter>
+    </ClCompile>
+    <ClCompile Include="PartitionGrid.cpp">
+      <Filter>Environment\Physics\Collision\SpatialPartitioning\Physical\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Partitioner.cpp">
+      <Filter>Environment\Physics\Collision\SpatialPartitioning\Seperation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,7 +312,7 @@
       <Filter>Environment\Scene\Object\Render\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="WindowCreator.h">
-      <Filter>Application\Initialization &amp; Update\Window</Filter>
+      <Filter>Application\Initialization &amp; Events\Window</Filter>
     </ClInclude>
     <ClInclude Include="EnvironmentManager.h">
       <Filter>Environment\Manager</Filter>
@@ -359,23 +398,14 @@
     <ClInclude Include="GlobalInput.h">
       <Filter>Globals\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalIterators.h">
-      <Filter>Globals\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalTime.h">
       <Filter>Globals\Misc</Filter>
     </ClInclude>
     <ClInclude Include="GlobalTypedefs.h">
       <Filter>Globals\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalWorldInfo.h">
-      <Filter>Globals\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalThreading.h">
       <Filter>Globals\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="SplashManager.h">
-      <Filter>Environment\FrontEnd\Splash</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
       <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
@@ -385,6 +415,24 @@
     </ClInclude>
     <ClInclude Include="GlobalMath.h">
       <Filter>Globals\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundingBoxCollision.h">
+      <Filter>Environment\Physics\Collision\BoundingBox</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashManager.h">
+      <Filter>Environment\FrontEnd\Splash\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PartitioningManager.h">
+      <Filter>Environment\Physics\Collision\SpatialPartitioning\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PartitionCell.h">
+      <Filter>Environment\Physics\Collision\SpatialPartitioning\Physical\Cell</Filter>
+    </ClInclude>
+    <ClInclude Include="PartitionGrid.h">
+      <Filter>Environment\Physics\Collision\SpatialPartitioning\Physical\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Partitioner.h">
+      <Filter>Environment\Physics\Collision\SpatialPartitioning\Seperation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

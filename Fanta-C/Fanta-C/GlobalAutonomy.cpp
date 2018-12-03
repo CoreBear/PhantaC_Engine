@@ -4,7 +4,6 @@
 
 #include "GlobalMath.h"
 #include "GlobalTransform.h"
-#include "GlobalWorldInfo.h"
 #include "MovingObject.h"
 #pragma endregion
 
@@ -16,7 +15,7 @@ void GlobalAutonomy::LookAt(XMMATRIX* myMatrix, XMVECTOR* targetPosition)
 	myMatrix->r[2] = XMVector3Normalize(myMatrix->r[2]);
 
 	// Temp up for generating X (right)
-	myMatrix->r[1] = worldVectors[1];
+	myMatrix->r[1] = worldUp;
 
 	// Generate and normalize X (right)
 	myMatrix->r[0] = XMVector3Cross(myMatrix->r[1], myMatrix->r[2]);

@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BoundingBox.cpp" />
+    <ClCompile Include="BoundingBoxCollision.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="ControllerManager.cpp" />
@@ -129,8 +130,12 @@
     <ClCompile Include="EntryEventLoop.cpp" />
     <ClCompile Include="GlobalMath.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="PartitionGrid.cpp" />
+    <ClCompile Include="PartitionCell.cpp" />
+    <ClCompile Include="PartitioningManager.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="Partitioner.cpp" />
     <ClCompile Include="SplashManager.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TestScene.cpp" />
@@ -146,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BoundingBox.h" />
+    <ClInclude Include="BoundingBoxCollision.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="CollisionManager.h" />
@@ -159,15 +165,18 @@
     <ClInclude Include="GlobalThreading.h" />
     <ClInclude Include="GlobalTime.h" />
     <ClInclude Include="GlobalTransform.h" />
-    <ClInclude Include="GlobalWorldInfo.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="PartitionGrid.h" />
+    <ClInclude Include="PartitionCell.h" />
+    <ClInclude Include="PartitioningManager.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="ScriptManager.h" />
+    <ClInclude Include="Partitioner.h" />
     <ClInclude Include="SplashManager.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TestScene.h" />
@@ -175,7 +184,6 @@
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="GlobalVramStructures.h" />
     <ClInclude Include="LineRenderer.h" />
-    <ClInclude Include="GlobalIterators.h" />
     <ClInclude Include="Pyramid.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="GlobalRendererStructures.h" />

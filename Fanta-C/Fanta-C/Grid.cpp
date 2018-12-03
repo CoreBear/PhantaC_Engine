@@ -1,7 +1,6 @@
 #pragma region Dependencies
 // My Headers
 #include "Grid.h"				// Connection to declarations
-#include "GlobalWorldInfo.h"
 #include "LineRenderer.h"
 #pragma endregion
 
@@ -24,8 +23,7 @@ void Grid::CreateMesh()
 	ushort		iterators[2];
 	ushort		vertCount;		
 	XMFLOAT3	tempVertex;
-
-	// This is a global variable, found in "GlobalWorldInfo.h". This is used to represent the distance from the world origin to the edge of the grid (X, Y)
+	
 	edgeOfGridDistance = (numberOfLinesEachDirection % 2 == 0) ? integerHalfOfLinesEachDirection * lineDistanceApart - (0.5f * lineDistanceApart) : integerHalfOfLinesEachDirection * lineDistanceApart;
 	
 	// Horizontal & Vertical lines

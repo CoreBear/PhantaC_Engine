@@ -4,8 +4,10 @@
 class SplashManager
 {
 public:
-	// Update
-	void Update() { return; }
+	// Run
+	/// Summary
+	/// Runs opening splash intro
+	SplashManager();
 };
 
 #endif

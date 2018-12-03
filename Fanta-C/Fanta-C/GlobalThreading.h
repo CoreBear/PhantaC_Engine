@@ -8,24 +8,15 @@
 // My Headers
 #include "GlobalTime.h"
 
-// Forward Declarations (Can I do this better?)
-static const char*								charString;
-static float									fpsTimeElapsed;
-static std::chrono::duration<float>				chronoDelta;
-static std::chrono::steady_clock::time_point	frameEndTime;
-static std::chrono::steady_clock::time_point	frameStartTime;
-static std::string								fpsString;
-static ushort									actualFpsCount;
-static ushort									frameCounter;
-
+// Pushes out as many frames as possible
 class GlobalThreading
 {
 public:
 	// Used by EntryEventLoop.cpp
-	static void RunEnvironmentThread(EnvironmentManager* environmentManager, MSG* msg) { environmentManager->ThreadLauncher(msg); }
+	static void RunEnvironmentThread(EnvironmentManager* environmentManager, MSG* msg) { environmentManager->InitializeEnvironment(msg); }
 	
 	// Used by EnvironmentManager.cpp
-	static void RunEnvironmentManagerThreads(uchar typeOfThread, EnvironmentManager* environmentManager, MSG* inMsg)
+	static void RunEnvironmentManagerThreads(ushort typeOfThread, EnvironmentManager* environmentManager, MSG* inMsg)
 	{
 		switch (typeOfThread)
 		{
@@ -36,17 +27,20 @@ public:
 			while (inMsg->message != WM_QUIT)
 				environmentManager->RunInput();
 		}
-			break;
+		break;
 
 		// Frame Thread
 		case 1:
 		{
-			#pragma region FPS
-			// Variable Initialization
-			const ushort thousandMilliseconds = 1000;	// Milliseconds
-			frameCounter = 0;
-			fpsTimeElapsed = 0;
-			#pragma endregion
+			const char*								charString;
+			float									fpsTimeElapsed = 0;
+			std::chrono::duration<float>			chronoDelta;
+			std::chrono::steady_clock::time_point	frameEndTime;
+			std::chrono::steady_clock::time_point	frameStartTime;
+			std::string								fpsString;
+			ushort									actualFpsCount;
+			ushort									frameCounter = 0;
+			const ushort							thousandMilliseconds = 1000;	// Milliseconds
 
 			// Run everything function until quit is received
 			while (inMsg->message != WM_QUIT)
@@ -67,7 +61,7 @@ public:
 				chronoDelta = frameEndTime - frameStartTime;
 				GlobalTime::deltaTime = chronoDelta.count();
 
-				#pragma region FPS
+				#pragma region FPS Counter
 				// Update the time for fps update
 				fpsTimeElapsed += GlobalTime::deltaTime * thousandMilliseconds;
 
@@ -89,7 +83,7 @@ public:
 					// Convert number to string
 					fpsString = std::to_string(actualFpsCount).c_str();
 
-					// Convert string to char*
+					// Convert string to short*
 					charString = fpsString.c_str();
 
 					// Hack to show FPS. Remove later
@@ -98,7 +92,7 @@ public:
 			#pragma endregion
 			}
 		}
-			break;
+		break;
 
 		// UI Thread
 		case 2:

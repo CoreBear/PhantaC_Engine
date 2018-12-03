@@ -3,6 +3,7 @@
 
 // System Headers
 #include <vector>
+#include <unordered_map>
 
 // My Headers
 #include "GlobalDirectX.h"
@@ -14,9 +15,11 @@ class ObjectManager;
 class BoundingBox
 {
 	bool						isColliding;
-	std::vector<ObjectManager*>	collidingObjects;
-	uchar						boundingIterator;
-	XMVECTOR					extents;						// Also the max
+	//std::vector<ObjectManager*>	collidingObjects;
+	std::unordered_map<ushort, ObjectManager*>	collidingObjects;
+	uchar						boundingIterators[2];
+	XMVECTOR					extents;			// Also the max
+	XMVECTOR					minMax[2];			// Index 0 - Min. Index 1 - Max
 
 	void CreateBounds(float inWidth, float inHeight, float inDepth, float inScale);
 
@@ -30,13 +33,14 @@ public:
 	///
 	/// Parameters
 	/// collidingObject - The object that is colliding with the invoking object
-	void AddCollidingObject(ObjectManager* collidingObject) { collidingObjects.push_back(collidingObject);}
+	void AddCollidingObject(ObjectManager* collidingObject);
 	/// Summary
 	/// A check to see if the parametered object is colliding with the invoking object
 	///
 	/// Parameters
 	/// collidingObject - The object that is being checked for collision with the invoking object
 	bool CheckIfObjectInContainer(ObjectManager* collidingObject);
+	void CalculateMinMax(XMVECTOR* myPosition);
 	/// Summary
 	/// Checks if the invoking object is colliding with any other object
 	///
@@ -53,6 +57,7 @@ public:
 	// Accessors
 	bool GetColliding() { return isColliding; }
 	XMVECTOR& GetExtents() { return extents; }
+	XMVECTOR& GetMinMax(ushort index) { return minMax[index]; }
 
 	// Mutators
 	void SetExtents(float x, float y, float z);

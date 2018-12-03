@@ -3,7 +3,6 @@
 
 // System Headers
 #include <Windows.h>
-//#include <chrono>
 #include <thread>
 
 // My Headers
@@ -19,9 +18,9 @@ class EnvironmentManager
 	class PhysicsManager*					physicsManagerPtr;
 	class Renderer*							rendererPtr;
 	class SceneManager*						sceneManagerPtr;
-	const static uchar						numberOfThreads = 3;
+	const static char						numberOfThreads = 3;
 	std::thread*							threads[numberOfThreads];
-	const uchar								targetFPS = 60;
+	const char								targetFPS = 60;
 	class UiManager*						uiManagerPtr;
 
 public:
@@ -37,7 +36,7 @@ public:
 	/// Parameters
 	/// msg - The container that holds events and will signal to the
 	/// threads, when the quit conditions is met
-	void ThreadLauncher(MSG* msg);
+	void InitializeEnvironment(MSG* msg);
 	/// Summary
 	/// Hacked. Delete later
 	/// Updates the fps in the window's title bar

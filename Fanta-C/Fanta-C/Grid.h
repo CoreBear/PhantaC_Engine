@@ -6,6 +6,7 @@
 
 class Grid : public Mesh
 {
+	float						edgeOfGridDistance;					
 	constexpr static ushort		numberOfVertices = 500;				// Make sure this number is a multiple of 4. Half the number of lines
 	SIMPLE_VERTEX				vertices[numberOfVertices];			// First 22 are horizontal
 
@@ -18,6 +19,9 @@ public:
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;
+
+	// Accessors
+	float GetEdgeOfGridDistance() { return edgeOfGridDistance; }
 };
 
 #endif

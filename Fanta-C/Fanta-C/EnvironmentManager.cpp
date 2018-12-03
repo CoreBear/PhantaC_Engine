@@ -9,6 +9,7 @@
 #include "Renderer.h"
 #include "SceneGraph.h"
 #include "SceneManager.h"
+#include "SplashManager.h"
 #include "UiManager.h"
 #pragma endregion
 
@@ -19,6 +20,7 @@ float GlobalTime::deltaTime = 0;
 #pragma region Initialization
 EnvironmentManager::EnvironmentManager(HWND* inWindowHandle, ushort* clientDimensions)
 {
+	// Hacked together for FPS update. Remove later
 	windowHandle = inWindowHandle;
 
 	#pragma region Module Creation
@@ -26,19 +28,22 @@ EnvironmentManager::EnvironmentManager(HWND* inWindowHandle, ushort* clientDimen
 
 	inputManagerPtr = new InputManager;
 
-	physicsManagerPtr = new PhysicsManager;
-
 	sceneManagerPtr = new SceneManager(clientDimensions, inWindowHandle, targetFPS);
+
+	physicsManagerPtr = new PhysicsManager(sceneManagerPtr->GetScenePtr()->GetGrid());
 	
 	rendererPtr = new Renderer(inWindowHandle, sceneManagerPtr, clientDimensions, targetFPS, sceneManagerPtr->GetScenePtr()->GetCamera());
 	
 	uiManagerPtr = new UiManager;
 	#pragma endregion
+
+	// Runs splash screen(s)
+	SplashManager splashManager;
 }
 #pragma endregion
 
 #pragma region Public Interface
-void EnvironmentManager::ThreadLauncher(MSG* inMsg)
+void EnvironmentManager::InitializeEnvironment(MSG* inMsg)
 {	
 	// Assigns the messaging system we will be checking against
 	msg = inMsg;
@@ -48,7 +53,7 @@ void EnvironmentManager::ThreadLauncher(MSG* inMsg)
 		threads[i] = new std::thread(GlobalThreading::RunEnvironmentManagerThreads, i, this, inMsg);
 
 	// Loose thread comes here to wait. Fix this later
-	// Join threads before destroying them
+	// Join threads before returning control over to the application level
 	for (auto& thread : threads) thread->join();	
 }
 #pragma endregion

@@ -9,7 +9,7 @@
 
 class SceneManager
 {			
-	class SceneGraph*		scenePtr;
+	class SceneGraph* scenePtr;
 
 public:
 	// Initialization

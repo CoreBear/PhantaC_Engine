@@ -19,7 +19,6 @@ public:
 	Transform(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) { myLocalMatrix = XMMatrixLookToRH(position, forward, up); }
 	
 	// Accessors
-	virtual bool GetFlatness() const { return false; }
 	virtual float GetScale() const { return false; }
 	XMMATRIX* GetLocalMatrix() { return &myLocalMatrix; }
 	XMVECTOR* GetPosition() { return &myLocalMatrix.r[3]; }

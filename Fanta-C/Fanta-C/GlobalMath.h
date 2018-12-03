@@ -5,8 +5,8 @@
 #include "GlobalDirectX.h"
 #include "GlobalTypedefs.h"
 
-static uchar mathIterator;
 static float dotProduct;
+static uchar mathIterator;
 
 class GlobalMath
 {

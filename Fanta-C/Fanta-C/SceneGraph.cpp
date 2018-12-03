@@ -3,6 +3,7 @@
 #include "SceneGraph.h"			// Connection to declarations
 
 #include "Camera.h"
+#include "Grid.h"
 #include "ScriptManager.h"
 #include "TestScene.h"
 #pragma endregion
@@ -11,9 +12,12 @@
 SceneGraph::SceneGraph(ushort* clientDimensions)
 {
 	// DON'T TOUCH! 
-	// Every scene needs a camera
+	// Every scene needs a camera and for now a grid
 	// Create Camera - Camera needs to always be first
 	AddObjectToScene(new ObjectManager(new Camera(clientDimensions)), nullptr);
+
+	// Create Grid
+	AddObjectToScene(new ObjectManager(new Grid, false, true), nullptr);
 }
 #pragma endregion
 

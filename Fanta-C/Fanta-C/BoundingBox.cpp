@@ -5,23 +5,37 @@
 #pragma endregion
 
 #pragma region Public Interface
+void BoundingBox::AddCollidingObject(ObjectManager* collidingObject)
+{
+	// If object is not in container, add it
+	if (!CheckIfObjectInContainer(collidingObject))
+		collidingObjects[collidingObject->GetUniqueID()] = collidingObject;
+}
+void BoundingBox::CalculateMinMax(XMVECTOR* myPosition)
+{
+	// XYZ
+	for (boundingIterators[1] = 0; boundingIterators[1] < 3; ++boundingIterators[1])
+	{
+		// Assign min
+		minMax[0].m128_f32[boundingIterators[1]] = myPosition->m128_f32[boundingIterators[1]] - extents.m128_f32[boundingIterators[1]];
+
+		// Assign max										
+		minMax[1].m128_f32[boundingIterators[1]] = myPosition->m128_f32[boundingIterators[1]] + extents.m128_f32[boundingIterators[1]];
+	}
+}
 bool BoundingBox::CheckIfObjectInContainer(ObjectManager* collidingObject)
 {
-	// Search every object in container
-	for (boundingIterator = 0; boundingIterator < collidingObjects.size(); ++boundingIterator)
-	{
-		// If object is in the container, let caller know
-		if (collidingObject == collidingObjects.at(boundingIterator))
-			return true;
-	}
+	// If object is in the container
+	if (collidingObjects.find(collidingObject->GetUniqueID()) != collidingObjects.end())
+		return true;
 
-	// If object is not in the container, let caller know
+	// If object is not in the container
 	return false;
 }
 #pragma endregion
 void BoundingBox::RemoveCollidingObject(ObjectManager* removeObject)
 {
-	collidingObjects.erase(std::remove(collidingObjects.begin(), collidingObjects.end(), removeObject), collidingObjects.end());
+	collidingObjects.erase(removeObject->GetUniqueID());
 }
 
 #pragma region Private

@@ -4,21 +4,23 @@
 // System Headers
 #include <vector>
 
-// My Headers
-#include "GlobalDirectX.h"
-#include "GlobalTypedefs.h"
+// Forward Declarations
+class ObjectManager;
 
 class CollisionManager
 {
-	bool					isColliding;
-	class ObjectManager*	objectsBeingChecked[2];
-	ushort					collisionIterators[4];
-	XMVECTOR				min[2];						
-	XMVECTOR				max[2];
+	class BoundingBoxCollision* boundingBoxCollisionPtr;
+	class PartitioningManager*	partitioningManagerPtr;
 
 public:
+	// Initialization
+	CollisionManager(ObjectManager* grid);
+
 	// Update
-	void Update(std::vector<class ObjectManager*>* collidableObjects);
+	void Update(std::vector<ObjectManager*>* collidableObjects);
+
+	// Clean Up
+	~CollisionManager();
 };
 
 #endif

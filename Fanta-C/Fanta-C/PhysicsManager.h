@@ -10,12 +10,13 @@
 class PhysicsManager
 {
 	class CollisionManager* collisionManager;
+
 public:
 	// Initialization
-	PhysicsManager() { collisionManager = new CollisionManager; }
+	PhysicsManager(class ObjectManager* grid) { collisionManager = new CollisionManager(grid); }
 
 	// Update
-	void Update(std::vector<class ObjectManager*>* collidableObjects);
+	void Update(std::vector<ObjectManager*>* collidableObjects);
 
 	// Clean Up
 	~PhysicsManager() { if (collisionManager) delete collisionManager; }

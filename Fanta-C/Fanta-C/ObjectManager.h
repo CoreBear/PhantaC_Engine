@@ -14,10 +14,12 @@ class ObjectManager
 	ColliderManager*	colliderManagerPtr = nullptr;			
 	Mesh*				meshPtr = nullptr;				// Renderable shape
 	Transform*			transformPtr = nullptr;
+	uint				uniqueObjectID;
+	static uint			idCounter;
 
 public:
 	// Initialization
-	ObjectManager(Camera* camera) : meshPtr(camera) { transformPtr = new Transform(camera->GetViewMatrix()); }
+	ObjectManager(Camera* camera);
 	ObjectManager(Mesh* inMesh, bool collidable, bool renderable, const XMVECTOR& position = { 0, 0, 0, 1 }, const XMVECTOR& forward = { 0, 0, 1, 1 }, const XMVECTOR& up = { 0, 1, 0, 1 });
 
 	// Clean Up
@@ -28,6 +30,7 @@ public:
 	ColliderManager* GetColliderManager() { return colliderManagerPtr; }
 	Mesh* GetMesh() { return meshPtr; }
 	Transform* GetTransform() { return transformPtr; }
+	uint GetUniqueID() { return uniqueObjectID; }
 };
 
 #endif

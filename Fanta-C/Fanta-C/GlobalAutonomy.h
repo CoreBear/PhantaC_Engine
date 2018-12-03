@@ -3,11 +3,12 @@
 
 // My Headers
 #include "GlobalDirectX.h"
-#include "GlobalWorldInfo.h"
 
 // Variables
 static XMMATRIX* myMatrix;
 static XMVECTOR targetVector;
+const static XMVECTOR worldOrigin = { 0, 0, 0, 1 };
+const static XMVECTOR worldUp = XMVectorSet(0, 1, 0, 1);
 
 class GlobalAutonomy
 {

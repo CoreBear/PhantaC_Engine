@@ -52,7 +52,7 @@ class Renderer
 
 public:
 	// Initialization
-	Renderer(HWND* windowHandle, class SceneManager* sceneManagerPtr, const ushort* clientDimensions, ushort targetFPS, ObjectManager* cameraObject);
+	Renderer(HWND* windowHandle, class SceneManager* sceneManagerPtr, const ushort* clientDimensions, uchar targetFPS, ObjectManager* cameraObject);
 
 	// Update
 	void Update(std::vector<ObjectManager*>* renderableObjects, ObjectManager* cameraObject);

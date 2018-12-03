@@ -20,7 +20,7 @@ protected:
 		// Variables
 		std::vector<class ScriptManager*>	myScripts;
 		ObjectManager*						object = nullptr;
-		ushort								objectIterator[3];
+		uchar								objectIterator[2];
 
 		// Initialization
 		SceneObject(ObjectManager* inObject) { object = inObject; }
@@ -103,6 +103,7 @@ public:
 
 	// Accessors
 	ObjectManager* GetCamera() { return sceneObjects.at(0)->object; }
+	ObjectManager* GetGrid() { return sceneObjects.at(1)->object; }
 	PlayerManager* GetPlayer() { return playerPtr; }
 	std::vector<ObjectManager*>* GetCollidableObjects() { return &collidableObjects; }
 	std::vector<ObjectManager*>* GetRenderableObjects() { return &renderableObjects; }
