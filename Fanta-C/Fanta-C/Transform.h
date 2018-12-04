@@ -16,7 +16,11 @@ protected:
 public:
 	// Initialization
 	Transform(XMMATRIX* inMatrix) : myLocalMatrix(*inMatrix) { return; }
-	Transform(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) { myLocalMatrix = XMMatrixLookToRH(position, forward, up); }
+	Transform(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) 
+	{
+		myLocalMatrix = XMMatrixIdentity();
+		myLocalMatrix.r[3] = position;
+	}
 	
 	// Accessors
 	virtual float GetScale() const { return false; }

@@ -3,12 +3,15 @@
 #include "EnvironmentManager.h"			// Connection to declarations
 
 #include "AudioManager.h"
+#include "GlobalConsoleWrite.h"
 #include "GlobalThreading.h"
 #include "InputManager.h"
+#include "ObjectManager.h"
 #include "PhysicsManager.h"
 #include "Renderer.h"
 #include "SceneGraph.h"
 #include "SceneManager.h"
+#include "SceneObject.h"
 #include "SplashManager.h"
 #include "UiManager.h"
 #pragma endregion
@@ -20,8 +23,8 @@ float GlobalTime::deltaTime = 0;
 #pragma region Initialization
 EnvironmentManager::EnvironmentManager(HWND* inWindowHandle, ushort* clientDimensions)
 {
-	// Hacked together for FPS update. Remove later
-	windowHandle = inWindowHandle;
+	// Hacked to write to console
+	handle = inWindowHandle;
 
 	#pragma region Module Creation
 	audioManagerPtr = new AudioManager;
@@ -48,7 +51,7 @@ void EnvironmentManager::InitializeEnvironment(MSG* inMsg)
 	// Assigns the messaging system we will be checking against
 	msg = inMsg;
 	
-	// Launch and run 3 new threads
+	// Launch and run game threads (Input, Physics, Frame)
 	for (uchar i = 0; i < numberOfThreads; ++i)
 		threads[i] = new std::thread(GlobalThreading::RunEnvironmentManagerThreads, i, this, inMsg);
 

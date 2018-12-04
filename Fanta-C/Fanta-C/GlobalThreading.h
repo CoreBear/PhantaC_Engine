@@ -3,9 +3,10 @@
 
 // System Headers
 #include <chrono>
-#include <string>
 
 // My Headers
+#include "GlobalConsoleWrite.h"
+#include "GlobalThreadVariables.h"
 #include "GlobalTime.h"
 
 // Pushes out as many frames as possible
@@ -20,19 +21,22 @@ public:
 	{
 		switch (typeOfThread)
 		{
-		// Input Thread
-		case 0:
+		case GlobalThreadVariables::THREAD::INPUT:
 		{
 			// Run everything function until quit is received
 			while (inMsg->message != WM_QUIT)
 				environmentManager->RunInput();
 		}
 		break;
-
-		// Frame Thread
-		case 1:
+		case GlobalThreadVariables::THREAD::PHYSICS:
 		{
-			const char*								charString;
+			// Run everything function until quit is received
+			while (inMsg->message != WM_QUIT)
+				environmentManager->RunPhysics();
+		}
+		break;
+		case GlobalThreadVariables::THREAD::FRAME:
+		{
 			float									fpsTimeElapsed = 0;
 			std::chrono::duration<float>			chronoDelta;
 			std::chrono::steady_clock::time_point	frameEndTime;
@@ -50,9 +54,10 @@ public:
 
 				// Run modules
 				environmentManager->RunScene();
-				environmentManager->RunPhysics();
+				//environmentManager->RunPhysics();
 				environmentManager->RunRenderer();
 				environmentManager->RunAudio();
+				environmentManager->RunUI();
 
 				// Assign frame's end time
 				frameEndTime = std::chrono::steady_clock::now();
@@ -80,28 +85,13 @@ public:
 					// Reset timer
 					fpsTimeElapsed = 0;
 
-					// Convert number to string
-					fpsString = std::to_string(actualFpsCount).c_str();
-
-					// Convert string to short*
-					charString = fpsString.c_str();
-
 					// Hack to show FPS. Remove later
-					environmentManager->UpdateFPSIndicator(charString);
+					GlobalConsoleWrite::WriteToConsole(actualFpsCount);
 				}
-			#pragma endregion
+				#pragma endregion
 			}
 		}
 		break;
-
-		// UI Thread
-		case 2:
-		{
-			// Run everything function until quit is received
-			while (inMsg->message != WM_QUIT)
-				environmentManager->RunUI();
-		}
-			break;
 		}
 	}
 };

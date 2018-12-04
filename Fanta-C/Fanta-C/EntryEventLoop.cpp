@@ -4,9 +4,8 @@
 #include <thread>
 
 // My Headers
-#include "EventHandler.h"
 #include "EnvironmentManager.h"
-#include "GlobalInput.h"
+#include "GlobalInputVariables.h"
 #include "GlobalThreading.h"
 #include "GlobalTypedefs.h"
 #include "WindowCreator.h"
@@ -18,7 +17,7 @@
 #pragma endregion
 
 #pragma region Global Variables
-bool GlobalInput::keysPressed[9];
+bool GlobalInputVariables::keysPressed[9];
 #pragma endregion
 
 #pragma region Forward Declarations
@@ -30,7 +29,7 @@ bool GlobalInput::keysPressed[9];
 /// environmentManager - Runs everything, except window creation and events 
 void RunEnvironment(EnvironmentManager* environmentManager);
 
-// Event Handler
+// System Event Handler
 /// Summary
 /// Receives system events
 ///
@@ -64,7 +63,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	// this function call will set a breakpoint at the location of a leaked block
 	// set the parameter to the identifier for a leaked block
-	// _CrtSetBreakAlloc(242);
+	// _CrtSetBreakAlloc(248);
 	#pragma endregion
 
 	// Creates the window
@@ -72,7 +71,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 
 	// Creates the game instance
 	EnvironmentManager* environmentManager = new EnvironmentManager(window->GetWindowHandle(), window->GetClientDimensions());
-	
+
 	// Will run until quit message is posted
 	RunEnvironment(environmentManager);
 
@@ -118,7 +117,7 @@ void RunEnvironment(EnvironmentManager* environmentManager)
 }
 #pragma endregion
 
-#pragma region Event Handler
+#pragma region System Event Handler
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
@@ -143,32 +142,32 @@ void KeyPressed(WPARAM wParam)
 {
 	switch (wParam)
 	{
-	case GlobalInput::A:
-		GlobalInput::keysPressed[0] = true;
+	case GlobalInputVariables::A:
+		GlobalInputVariables::keysPressed[0] = true;
 		break;
-	case GlobalInput::D:
-		GlobalInput::keysPressed[1] = true;
+	case GlobalInputVariables::D:
+		GlobalInputVariables::keysPressed[1] = true;
 		break;
-	case GlobalInput::I:
-		GlobalInput::keysPressed[2] = true;
+	case GlobalInputVariables::I:
+		GlobalInputVariables::keysPressed[2] = true;
 		break;
-	case GlobalInput::J:
-		GlobalInput::keysPressed[3] = true;
+	case GlobalInputVariables::J:
+		GlobalInputVariables::keysPressed[3] = true;
 		break;
-	case GlobalInput::K:
-		GlobalInput::keysPressed[4] = true;
+	case GlobalInputVariables::K:
+		GlobalInputVariables::keysPressed[4] = true;
 		break;
-	case GlobalInput::L:
-		GlobalInput::keysPressed[5] = true;
+	case GlobalInputVariables::L:
+		GlobalInputVariables::keysPressed[5] = true;
 		break;
-	case GlobalInput::S:
-		GlobalInput::keysPressed[6] = true;
+	case GlobalInputVariables::S:
+		GlobalInputVariables::keysPressed[6] = true;
 		break;
-	case GlobalInput::W:
-		GlobalInput::keysPressed[7] = true;
+	case GlobalInputVariables::W:
+		GlobalInputVariables::keysPressed[7] = true;
 		break;
-	case GlobalInput::SPACE:
-		GlobalInput::keysPressed[8] = true;
+	case GlobalInputVariables::SPACE:
+		GlobalInputVariables::keysPressed[8] = true;
 		break;
 	default:
 		break;
@@ -178,32 +177,32 @@ void KeyNotPressed(WPARAM wParam)
 {
 	switch (wParam)
 	{
-	case GlobalInput::A:
-		GlobalInput::keysPressed[0] = false;
+	case GlobalInputVariables::A:
+		GlobalInputVariables::keysPressed[0] = false;
 		break;
-	case GlobalInput::D:
-		GlobalInput::keysPressed[1] = false;
+	case GlobalInputVariables::D:
+		GlobalInputVariables::keysPressed[1] = false;
 		break;
-	case GlobalInput::I:
-		GlobalInput::keysPressed[2] = false;
+	case GlobalInputVariables::I:
+		GlobalInputVariables::keysPressed[2] = false;
 		break;
-	case GlobalInput::J:
-		GlobalInput::keysPressed[3] = false;
+	case GlobalInputVariables::J:
+		GlobalInputVariables::keysPressed[3] = false;
 		break;
-	case GlobalInput::K:
-		GlobalInput::keysPressed[4] = false;
+	case GlobalInputVariables::K:
+		GlobalInputVariables::keysPressed[4] = false;
 		break;
-	case GlobalInput::L:
-		GlobalInput::keysPressed[5] = false;
+	case GlobalInputVariables::L:
+		GlobalInputVariables::keysPressed[5] = false;
 		break;
-	case GlobalInput::S:
-		GlobalInput::keysPressed[6] = false;
+	case GlobalInputVariables::S:
+		GlobalInputVariables::keysPressed[6] = false;
 		break;
-	case GlobalInput::W:
-		GlobalInput::keysPressed[7] = false;
+	case GlobalInputVariables::W:
+		GlobalInputVariables::keysPressed[7] = false;
 		break;
-	case GlobalInput::SPACE:
-		GlobalInput::keysPressed[8] = false;
+	case GlobalInputVariables::SPACE:
+		GlobalInputVariables::keysPressed[8] = false;
 		break;
 	default:
 		break;

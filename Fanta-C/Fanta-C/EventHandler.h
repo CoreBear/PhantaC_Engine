@@ -1,25 +1,21 @@
 #ifndef _EVENT_HANDLER_H
 #define _EVENT_HANDLER_H
 
-// System Headers
-#include <Windows.h>
-
 // My Headers
 #include "GlobalTypedefs.h"
 
+// Forward Declarations
+class SceneObject;
+
 class EventHandler
 {
-	static LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-	static void KeyPressed(ushort keyPressed);
-	static void KeyReleased(ushort keyReleased);
-	static void MouseButtonPressed(ushort buttonPressed);
-	static void MouseButtonRelease(ushort buttonReleased);
-	static void MouseMovement(ushort xPosition, ushort yPosition);
-	static void ControllerInput();
+	static void ContinuedCollision(SceneObject* collider, SceneObject* collidee);
+	static void NewCollision(SceneObject* collider, SceneObject* collidee);
+	static void NewSeparation(SceneObject* collider, SceneObject* collidee);
 
 public:
-	// Accessors
-	WNDPROC GetWndProc() { return &WndProc; }
+	// Public Interface
+	static void HandleEvent(uchar eventType, SceneObject* collider = nullptr, SceneObject* collidee = nullptr);
 };
 
 #endif

@@ -6,15 +6,13 @@
 
 // Variables
 static XMMATRIX* myMatrix;
-static XMVECTOR targetVector;
-const static XMVECTOR worldOrigin = { 0, 0, 0, 1 };
-const static XMVECTOR worldUp = XMVectorSet(0, 1, 0, 1);
+static XMVECTOR* targetVector;
 
 class GlobalAutonomy
 {
 public:
 	static void LookAt(XMMATRIX* myMatrix, XMVECTOR* targetPosition);
-	static void TurnTo(class MovingObject* myMovingScript, XMVECTOR* targetPosition);
+	static void TurnTo(class Test* myMovingScript, XMVECTOR* targetPosition);
 };
 
 #endif

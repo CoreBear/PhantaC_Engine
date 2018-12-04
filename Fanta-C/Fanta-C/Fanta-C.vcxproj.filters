@@ -55,29 +55,11 @@
     <Filter Include="Environment\Scene\Object">
       <UniqueIdentifier>{a949469f-77eb-485f-a954-b407f94f87d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Object\Render">
-      <UniqueIdentifier>{a04f61ff-1b32-4d3b-80a0-b4c58282b3a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Mesh">
-      <UniqueIdentifier>{847561fd-312f-4e0e-a1e8-f680006554f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes">
-      <UniqueIdentifier>{4b13d81f-26dc-42ca-a7a7-480e2fa6e1ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Transform">
-      <UniqueIdentifier>{6baef527-b5a3-4934-8b9e-bbb70d654728}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Manager">
-      <UniqueIdentifier>{433a438c-9466-484f-a345-a20e7c733ef5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment\Physics\Collision\Manager">
       <UniqueIdentifier>{8de48af1-c053-405a-bc26-22b98de72237}</UniqueIdentifier>
     </Filter>
     <Filter Include="Environment\Scene\Camera">
       <UniqueIdentifier>{8ab6d898-497e-4c62-bf0d-d39e3a939cec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Scenes">
-      <UniqueIdentifier>{6b83248a-5af9-488e-8e58-d87c92e21459}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{69f23921-366e-4368-9038-ca2416937e37}</UniqueIdentifier>
@@ -112,41 +94,17 @@
     <Filter Include="Game\Scripting\GameObject\MovingObject">
       <UniqueIdentifier>{fa28bc45-9f84-4232-925f-749263d93c74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Object\Collider">
-      <UniqueIdentifier>{43d46425-fcc9-4a4b-8535-d40d6a8d1195}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Collider\Manager">
-      <UniqueIdentifier>{ba5322c4-b732-4102-ac8f-49737eb054a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Collider\BoundingBox">
-      <UniqueIdentifier>{b5c01800-34c1-427e-bea6-a0683e556d9f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Globals\Rendering">
       <UniqueIdentifier>{3e412773-a761-4a8c-b4cf-6278a6fd5010}</UniqueIdentifier>
     </Filter>
     <Filter Include="Globals\Misc">
       <UniqueIdentifier>{b7bc81af-938c-4bef-bfde-2d48a3a1c901}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Scenes\Graph">
-      <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scenes">
       <UniqueIdentifier>{99f706ed-88ec-4974-ae4e-7d4cc44f1c23}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Scenes\Test">
       <UniqueIdentifier>{177e5e3f-c86e-4446-8175-92ab26c300a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\Cube">
-      <UniqueIdentifier>{5af4eff3-a0a9-44f9-b178-fde220769452}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\Pyramid">
-      <UniqueIdentifier>{bf7a76c5-ca5c-4324-8710-5ad5cb5914f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\Sphere">
-      <UniqueIdentifier>{dd9a0b6c-25c7-4767-9fcc-22ae2d5fcd47}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\Render\Shapes\Grid">
-      <UniqueIdentifier>{e14757a9-bde9-48de-8c18-0cae91b6e2c5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Globals\Movement">
       <UniqueIdentifier>{672b02a7-19e6-4bed-ba54-eebd120ddee5}</UniqueIdentifier>
@@ -202,6 +160,57 @@
     <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Seperation">
       <UniqueIdentifier>{05767df9-c1d3-494c-bc37-8e6fdecb34e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Globals\AssistingVariables">
+      <UniqueIdentifier>{48dd2313-b36d-44e6-a057-a11480d7c7ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Events">
+      <UniqueIdentifier>{c791c55a-fadb-4a41-ae89-28fb783b8cf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Graph">
+      <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\SceneObject">
+      <UniqueIdentifier>{233f3a30-8ce2-45a8-8a16-835583b0124e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject">
+      <UniqueIdentifier>{7b52166b-9b34-482a-800e-b28be8115c8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Transform">
+      <UniqueIdentifier>{6baef527-b5a3-4934-8b9e-bbb70d654728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Render">
+      <UniqueIdentifier>{a04f61ff-1b32-4d3b-80a0-b4c58282b3a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Mesh">
+      <UniqueIdentifier>{847561fd-312f-4e0e-a1e8-f680006554f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes">
+      <UniqueIdentifier>{4b13d81f-26dc-42ca-a7a7-480e2fa6e1ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Cube">
+      <UniqueIdentifier>{5af4eff3-a0a9-44f9-b178-fde220769452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Pyramid">
+      <UniqueIdentifier>{bf7a76c5-ca5c-4324-8710-5ad5cb5914f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Sphere">
+      <UniqueIdentifier>{dd9a0b6c-25c7-4767-9fcc-22ae2d5fcd47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Grid">
+      <UniqueIdentifier>{e14757a9-bde9-48de-8c18-0cae91b6e2c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Manager">
+      <UniqueIdentifier>{433a438c-9466-484f-a345-a20e7c733ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Collider">
+      <UniqueIdentifier>{43d46425-fcc9-4a4b-8535-d40d6a8d1195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Collider\Manager">
+      <UniqueIdentifier>{ba5322c4-b732-4102-ac8f-49737eb054a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Collider\BoundingBox">
+      <UniqueIdentifier>{b5c01800-34c1-427e-bea6-a0683e556d9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -229,22 +238,22 @@
       <Filter>Environment\Rendering\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\Cube</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Cube</Filter>
     </ClCompile>
     <ClCompile Include="Pyramid.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\Pyramid</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Pyramid</Filter>
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\Sphere</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Sphere</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
-      <Filter>Environment\Scene\Object\Manager</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Manager</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Environment\Physics\Collision\Manager</Filter>
     </ClCompile>
     <ClCompile Include="SceneGraph.cpp">
-      <Filter>Environment\Scene\Scenes\Graph</Filter>
+      <Filter>Environment\Scene\Graph</Filter>
     </ClCompile>
     <ClCompile Include="Test.cpp">
       <Filter>Game\Scripting\GameObject\Test</Filter>
@@ -271,10 +280,10 @@
       <Filter>Globals\Movement\Transform</Filter>
     </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
-      <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Collider\BoundingBox</Filter>
     </ClCompile>
     <ClCompile Include="Grid.cpp">
-      <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Grid</Filter>
     </ClCompile>
     <ClCompile Include="GlobalAutonomy.cpp">
       <Filter>Globals\Movement\Autonomy</Filter>
@@ -300,6 +309,12 @@
     <ClCompile Include="Partitioner.cpp">
       <Filter>Environment\Physics\Collision\SpatialPartitioning\Seperation</Filter>
     </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Environment\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObject.cpp">
+      <Filter>Environment\Scene\Object\SceneObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -309,7 +324,7 @@
       <Filter>Environment\Rendering\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Environment\Scene\Object\Render\Mesh</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="WindowCreator.h">
       <Filter>Application\Initialization &amp; Events\Window</Filter>
@@ -330,28 +345,28 @@
       <Filter>Environment\Rendering\Debug</Filter>
     </ClInclude>
     <ClInclude Include="MeshLoader.h">
-      <Filter>Environment\Scene\Object\Render\Mesh</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\Cube</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Cube</Filter>
     </ClInclude>
     <ClInclude Include="Pyramid.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\Pyramid</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Pyramid</Filter>
     </ClInclude>
     <ClInclude Include="Sphere.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\Sphere</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Sphere</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Environment\Scene\Object\Transform</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Transform</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
-      <Filter>Environment\Scene\Object\Manager</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Manager</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>Environment\Physics\Collision\Manager</Filter>
     </ClInclude>
     <ClInclude Include="SceneGraph.h">
-      <Filter>Environment\Scene\Scenes\Graph</Filter>
+      <Filter>Environment\Scene\Graph</Filter>
     </ClInclude>
     <ClInclude Include="ScriptManager.h">
       <Filter>Game\Scripting\Manager</Filter>
@@ -381,10 +396,10 @@
       <Filter>Game\Scripting\GameObject\MovingObject</Filter>
     </ClInclude>
     <ClInclude Include="ColliderManager.h">
-      <Filter>Environment\Scene\Object\Collider\Manager</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Collider\Manager</Filter>
     </ClInclude>
     <ClInclude Include="BoundingBox.h">
-      <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Collider\BoundingBox</Filter>
     </ClInclude>
     <ClInclude Include="GlobalRendererStructures.h">
       <Filter>Globals\Rendering</Filter>
@@ -393,9 +408,6 @@
       <Filter>Globals\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="GlobalDirectX.h">
-      <Filter>Globals\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalInput.h">
       <Filter>Globals\Misc</Filter>
     </ClInclude>
     <ClInclude Include="GlobalTime.h">
@@ -408,7 +420,7 @@
       <Filter>Globals\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
-      <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Grid</Filter>
     </ClInclude>
     <ClInclude Include="GlobalAutonomy.h">
       <Filter>Globals\Movement\Autonomy</Filter>
@@ -433,6 +445,27 @@
     </ClInclude>
     <ClInclude Include="Partitioner.h">
       <Filter>Environment\Physics\Collision\SpatialPartitioning\Seperation</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalInputVariables.h">
+      <Filter>Globals\AssistingVariables</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalThreadVariables.h">
+      <Filter>Globals\AssistingVariables</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalEventVariables.h">
+      <Filter>Globals\AssistingVariables</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Environment\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneObject.h">
+      <Filter>Environment\Scene\Object\SceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalWorldVariables.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalConsoleWrite.h">
+      <Filter>Globals\Misc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

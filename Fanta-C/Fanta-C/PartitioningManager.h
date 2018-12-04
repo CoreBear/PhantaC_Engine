@@ -5,7 +5,7 @@
 #include <vector>
 
 // Forward Declarations
-class ObjectManager;
+class SceneObject;
 
 class PartitioningManager
 {
@@ -14,10 +14,10 @@ class PartitioningManager
 
 public:
 	// Initialization
-	PartitioningManager(ObjectManager* grid);
+	PartitioningManager(SceneObject* grid);
 
 	// Update
-	void Update(std::vector<ObjectManager*>* collidableObjects);
+	void Update(std::vector<SceneObject*>* collidableObjects);
 
 	// Accessor
 	PartitionGrid* GetPartitionGrid() { return partitionGridPtr; }

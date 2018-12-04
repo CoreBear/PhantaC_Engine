@@ -23,7 +23,7 @@
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, uchar targetFPS, ObjectManager* cameraObject)
+Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, uchar targetFPS, Camera* camera)
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -170,7 +170,7 @@ Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const usho
 
 	#pragma region Consistant Pipeline Pieces (Will be changed in the future)
 	// Resources
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, static_cast<Camera*>(cameraObject->GetMesh())->GetProjectionMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, camera->GetProjectionMatrix(), 0, 0);
 
 	// Input Assembler
 	deviceContext->IASetInputLayout(inputLayout[INPUT_LAYOUT::DEFAULT]);
@@ -195,13 +195,13 @@ Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const usho
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(std::vector<ObjectManager*>* renderableObjects, ObjectManager* cameraObject)
+void Renderer::Update(std::vector<ObjectManager*>* renderableObjects, Camera* camera)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
 	// Load view matrix (camera's world matrix) into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, cameraObject->GetTransform()->GetLocalMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, camera->GetViewMatrix(), 0, 0);
 
 	//
 	//											Do not add anything above this line

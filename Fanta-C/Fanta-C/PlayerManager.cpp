@@ -2,7 +2,7 @@
 // My Header
 #include "PlayerManager.h"			// Connection to declarations
 
-#include "GlobalInput.h"
+#include "GlobalInputVariables.h"
 #pragma endregion
 
 #pragma region Update
@@ -15,23 +15,23 @@ void PlayerManager::Update()
 #pragma region Private
 void PlayerManager::PlayerInput()
 {
-	if (GlobalInput::keysPressed[0])
+	if (GlobalInputVariables::keysPressed[0])
 		Move(1, 0, 0);
-	if (GlobalInput::keysPressed[1])
+	if (GlobalInputVariables::keysPressed[1])
 		Move(-1, 0, 0);
-	if (GlobalInput::keysPressed[2])
+	if (GlobalInputVariables::keysPressed[2])
 		Pitch(1);
-	if (GlobalInput::keysPressed[3])
+	if (GlobalInputVariables::keysPressed[3])
 		Yaw(-1);
-	if (GlobalInput::keysPressed[4])
+	if (GlobalInputVariables::keysPressed[4])
 		Pitch(-1);
-	if (GlobalInput::keysPressed[5])
+	if (GlobalInputVariables::keysPressed[5])
 		Yaw(1);
-	if (GlobalInput::keysPressed[6])
+	if (GlobalInputVariables::keysPressed[6])
 		Move(0, 0, 1);
-	if (GlobalInput::keysPressed[7])
+	if (GlobalInputVariables::keysPressed[7])
 		Move(0, 0, -1);
-	if (GlobalInput::keysPressed[8])
+	if (GlobalInputVariables::keysPressed[8])
 		return;
 }
 #pragma endregion

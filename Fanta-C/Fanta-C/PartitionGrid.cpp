@@ -4,19 +4,20 @@
 
 #include "Grid.h"
 #include "ObjectManager.h"
+#include "SceneObject.h"
 #include "PartitionCell.h"
 #pragma endregion
 
 #pragma region Initialization
-PartitionGrid::PartitionGrid(ObjectManager* grid)
+PartitionGrid::PartitionGrid(SceneObject* grid)
 {
 	// Edge distance from center
-	float edgeDistance = static_cast<Grid*>(grid->GetMesh())->GetEdgeOfGridDistance();
+	float edgeDistance = static_cast<Grid*>(grid->GetMyObject()->GetMesh())->GetEdgeOfGridDistance();
 
 	// Positions for cell creation
 	float position[2] = { -edgeDistance, -edgeDistance };
 	
-	const float numberOfCellsInEachDirection = 7;
+	const float numberOfCellsInEachDirection = 10;
 	const float cellDepthWidth = (edgeDistance * 2) / numberOfCellsInEachDirection;
 
 	PartitionCell* newCell;

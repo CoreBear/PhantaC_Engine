@@ -1,0 +1,9 @@
+#ifndef _GLOBAL_EVENT_VARIABLES_H
+#define _GLOBAL_EVENT_VARIABLES_H
+
+struct GlobalEventVariables
+{
+	enum EVENT { CONTINUED_COLLISION, NEW_COLLISION, NEW_SEPARATION };
+};
+
+#endif

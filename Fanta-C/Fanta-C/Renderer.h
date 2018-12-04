@@ -12,6 +12,7 @@
 #include <vector>
 
 // Forward Declarations
+class Camera;
 class Object;
 class ObjectManager;
 
@@ -52,10 +53,10 @@ class Renderer
 
 public:
 	// Initialization
-	Renderer(HWND* windowHandle, class SceneManager* sceneManagerPtr, const ushort* clientDimensions, uchar targetFPS, ObjectManager* cameraObject);
+	Renderer(HWND* windowHandle, class SceneManager* sceneManagerPtr, const ushort* clientDimensions, uchar targetFPS, Camera* cameraObject);
 
 	// Update
-	void Update(std::vector<ObjectManager*>* renderableObjects, ObjectManager* cameraObject);
+	void Update(std::vector<ObjectManager*>* renderableObjects, Camera* cameraObject);
 
 	// Clean-up
 	~Renderer();

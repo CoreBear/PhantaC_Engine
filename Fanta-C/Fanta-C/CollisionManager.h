@@ -5,7 +5,7 @@
 #include <vector>
 
 // Forward Declarations
-class ObjectManager;
+class SceneObject;
 
 class CollisionManager
 {
@@ -14,10 +14,10 @@ class CollisionManager
 
 public:
 	// Initialization
-	CollisionManager(ObjectManager* grid);
+	CollisionManager(SceneObject* grid);
 
 	// Update
-	void Update(std::vector<ObjectManager*>* collidableObjects);
+	void Update(std::vector<SceneObject*>* collidableObjects);
 
 	// Clean Up
 	~CollisionManager();

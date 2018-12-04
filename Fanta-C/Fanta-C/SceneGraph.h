@@ -8,36 +8,30 @@
 #include "GlobalTransform.h"
 #include "GlobalTypedefs.h"
 #include "ObjectManager.h"
+#include "SceneObject.h"
 
 // Forward Declarations
+class Camera;
 class PlayerManager;
+class ScriptManager;
 
 class SceneGraph
 {
 protected:
-	struct SceneObject
-	{
-		// Variables
-		std::vector<class ScriptManager*>	myScripts;
-		ObjectManager*						object = nullptr;
-		uchar								objectIterator[2];
-
-		// Initialization
-		SceneObject(ObjectManager* inObject) { object = inObject; }
-
-		// Update
-		void Update();
-
-		// Clean Up
-		~SceneObject();
-	};
-
-	// Camera will always be the first object in the scene
+	Camera*						sceneCameraPtr;
 	PlayerManager*				playerPtr;
-	std::vector<ObjectManager*> collidableObjects;
-	std::vector<ObjectManager*> renderableObjects;
+	std::vector<ObjectManager*>	renderableObjects;
+	std::vector<SceneObject*>	collidableObjects;
 	std::vector<SceneObject*>	sceneObjects;
 	ushort						graphIterator[3];
+
+	/// Summary
+	/// Checks if child is a child of parent
+	///
+	/// Parameters
+	/// child - The object that wants to be added to parent's child list
+	/// parent - The object that may receive child in it's child list
+	bool CheckIfAlreadyChildToParent(SceneObject* child, SceneObject* parent);
 
 public:
 	// Initialization
@@ -52,7 +46,7 @@ public:
 	///
 	/// Parameters
 	/// object - The object that will be added to the collidable container
-	void AddObjectToCollide(ObjectManager* object) { collidableObjects.push_back(object); }
+	void AddObjectToCollide(SceneObject* object) { collidableObjects.push_back(object); }
 	/// Summary
 	/// Adds paramtered object into the renderable container that will be passed to the renderer manager
 	///
@@ -64,7 +58,7 @@ public:
 	///
 	/// Parameters
 	/// object - The object that will be added to the scene container
-	void AddObjectToScene(ObjectManager* object, SceneObject* sceneObject);
+	void AddObjectToScene(ObjectManager* object);
 	/// Summary
 	/// Adds a script to the scene object
 	///
@@ -73,11 +67,18 @@ public:
 	/// script - The scrtip that will be added to the object
 	void AddScript(SceneObject* object, ScriptManager* script);
 	/// Summary
+	/// Childs object to parent
+	///
+	/// Parameters
+	/// child - The object that wants to be added to parent's child list
+	/// parent - The object that may receive child in it's child list
+	void ChildObjectToParent(SceneObject* child, SceneObject* parent);
+	/// Summary
 	/// Removes the parametered object from the collidable container
 	///
 	/// Parameters
 	/// object - The object that will be removed from the collidable container
-	void RemoveObjectFromCollide(ObjectManager* object);
+	void RemoveObjectFromCollide(SceneObject* object);
 	/// Summary
 	/// Removes the parametered object from the renderable container
 	///
@@ -102,10 +103,10 @@ public:
 	~SceneGraph();
 
 	// Accessors
-	ObjectManager* GetCamera() { return sceneObjects.at(0)->object; }
-	ObjectManager* GetGrid() { return sceneObjects.at(1)->object; }
+	Camera* GetCamera() { return sceneCameraPtr; }
 	PlayerManager* GetPlayer() { return playerPtr; }
-	std::vector<ObjectManager*>* GetCollidableObjects() { return &collidableObjects; }
+	SceneObject* GetGrid() { return sceneObjects.at(0); }
+	std::vector<SceneObject*>* GetCollidableObjects() { return &collidableObjects; }
 	std::vector<ObjectManager*>* GetRenderableObjects() { return &renderableObjects; }
 };
 

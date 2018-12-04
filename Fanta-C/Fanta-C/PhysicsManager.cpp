@@ -2,11 +2,11 @@
 // My Headers
 #include "PhysicsManager.h"			// Connection to declarations
 
-#include "ObjectManager.h"
+#include "SceneObject.h"
 #pragma endregion
 
 #pragma region Update
-void PhysicsManager::Update(std::vector<ObjectManager*>* collidableObjects)
+void PhysicsManager::Update(std::vector<SceneObject*>* collidableObjects)
 {
 	collisionManager->Update(collidableObjects);
 }

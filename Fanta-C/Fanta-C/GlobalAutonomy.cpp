@@ -4,7 +4,9 @@
 
 #include "GlobalMath.h"
 #include "GlobalTransform.h"
-#include "MovingObject.h"
+#include "GlobalWorldVariables.h"
+#include "ObjectManager.h"
+#include "Test.h"
 #pragma endregion
 
 #pragma region MyRegion
@@ -25,26 +27,28 @@ void GlobalAutonomy::LookAt(XMMATRIX* myMatrix, XMVECTOR* targetPosition)
 	myMatrix->r[1] = XMVector3Cross(myMatrix->r[2], myMatrix->r[0]);
 	myMatrix->r[1] = XMVector3Normalize(myMatrix->r[1]);
 }
-void GlobalAutonomy::TurnTo(MovingObject* myMovingScript, XMVECTOR* targetPosition)
+void GlobalAutonomy::TurnTo(Test* myMovingScript, XMVECTOR* targetPosition)
 {
-	myMatrix = myMovingScript->GetMyObject()->GetTransform()->GetLocalMatrix();
+	myMatrix = myMovingScript->GetMyObject()->GetMyObject()->GetTransform()->GetLocalMatrix();
 
 	// Direction to target
-	targetVector = XMVectorSubtract(*targetPosition, myMatrix->r[3]);
+	targetVector = GlobalMath::VectorSubtraction(targetPosition, &myMatrix->r[3]);
 	
 	// Normilize direction
-	targetVector = XMVector3Normalize(targetVector);
+	GlobalMath::Normalize(targetVector);
+	//targetVector = XMVector3Normalize(targetVector);
 
 	// Normalize X
-	myMatrix->r[0] = XMVector3Normalize(myMatrix->r[0]);
+	GlobalMath::Normalize(&myMatrix->r[0]);
+	//myMatrix->r[0] = XMVector3Normalize(myMatrix->r[0]);
 	
 	// Around the Y-Axis
-	GlobalTransform::RotateOnYAxis(myMovingScript->GetAngularVelocity() * -GlobalMath::Vector4DotProduct(targetVector, myMatrix->r[0]), *myMatrix);
+	GlobalTransform::RotateOnYAxis(myMovingScript->GetAngularVelocity() * -GlobalMath::Vector4DotProduct(targetVector, &myMatrix->r[0]), *myMatrix);
 
 	// Normalize Y
 	myMatrix->r[1] = XMVector3Normalize(myMatrix->r[1]);
 
 	// Around the X-Axis
-	GlobalTransform::RotateOnXAxis(myMovingScript->GetAngularVelocity() * -GlobalMath::Vector4DotProduct(targetVector, myMatrix->r[1]), *myMatrix);
+	GlobalTransform::RotateOnXAxis(myMovingScript->GetAngularVelocity() * -GlobalMath::Vector4DotProduct(targetVector, &myMatrix->r[1]), *myMatrix);
 }
 #pragma endregion

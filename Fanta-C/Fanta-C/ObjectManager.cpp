@@ -1,6 +1,6 @@
 #pragma region Dependencies
 // My Headers
-#include "ObjectManager.h"			// Connection to declaractions
+#include "ObjectManager.h"			// Connection to declarations
 #pragma endregion
 
 #pragma region Forward Declarations

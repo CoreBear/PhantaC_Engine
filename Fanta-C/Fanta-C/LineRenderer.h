@@ -10,9 +10,9 @@
 
 class LineRenderer
 {
-	constexpr static ushort containerCapacity = 5000;
-	ushort currentCount = 0;
-	std::array<SIMPLE_VERTEX, containerCapacity> lineVertices;
+	constexpr static ushort							containerCapacity = 5000;
+	ushort											currentCount = 0;
+	std::array<SIMPLE_VERTEX, containerCapacity>	lineVertices;
 
 public:
 	// Public Interface

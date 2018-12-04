@@ -13,7 +13,7 @@ class PartitionGrid
 
 public:
 	// Initialization	
-	PartitionGrid(class ObjectManager* grid);
+	PartitionGrid(class SceneObject* grid);
 
 	// Accessors
 	std::vector<PartitionCell*>* GetGridCells() { return &gridCells; }

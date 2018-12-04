@@ -3,19 +3,22 @@
 #include "BoundingBoxCollision.h"		// Connection to declarations
 
 #include "BoundingBox.h"
+#include "EventHandler.h"
+#include "GlobalEventVariables.h"
 #include "ObjectManager.h"
 #include "PartitionCell.h"
+#include "SceneObject.h"
 #pragma endregion
 
 #pragma region Update
-void BoundingBoxCollision::AssignCollisionObjects(std::vector<ObjectManager*>* collidableObjects)
+void BoundingBoxCollision::AssignCollisionObjects(std::vector<SceneObject*>* collidableObjects)
 {
 	// For each collidable game object
 	for (collisionIterators[1] = 0; collisionIterators[1] < collidableObjects->size(); ++collisionIterators[1])
 	{
 		// The collider being checked against all other collidees
 		objectsBeingChecked[0] = collidableObjects->at(collisionIterators[1]);
-		boxBeingChecked[0] = objectsBeingChecked[0]->GetColliderManager()->GetBoundingBox();
+		boxBeingChecked[0] = objectsBeingChecked[0]->GetMyObject()->GetColliderManager()->GetBoundingBox();
 
 		// For each collidable game object
 		for (collisionIterators[2] = 0; collisionIterators[2] < collidableObjects->size(); ++collisionIterators[2])
@@ -25,7 +28,7 @@ void BoundingBoxCollision::AssignCollisionObjects(std::vector<ObjectManager*>* c
 			{
 				// Assign collidee
 				objectsBeingChecked[1] = collidableObjects->at(collisionIterators[2]);
-				boxBeingChecked[1] = objectsBeingChecked[1]->GetColliderManager()->GetBoundingBox();
+				boxBeingChecked[1] = objectsBeingChecked[1]->GetMyObject()->GetColliderManager()->GetBoundingBox();
 				
 				CheckForCollision();
 			}
@@ -43,23 +46,19 @@ void BoundingBoxCollision::CheckForCollision()
 			boxBeingChecked[0]->GetMinMax(0).m128_f32[collisionIterators[3]] >
 			boxBeingChecked[1]->GetMinMax(1).m128_f32[collisionIterators[3]])
 		{
-			// If collidee is in container, remove it
-			if (boxBeingChecked[0]->CheckIfObjectInContainer(objectsBeingChecked[1]))
-				boxBeingChecked[0]->RemoveCollidingObject(objectsBeingChecked[1]);
+			// Remove collidee from container. There's a check on the other side
+			boxBeingChecked[0]->RemoveCollidingObject(objectsBeingChecked[1]);
 
-			// If collider was previously colliding
-			if (boxBeingChecked[0]->GetColliding())
+			// If no collidee in collider's container
+			if (boxBeingChecked[0]->ContainerEmpty())
 			{
-				// If no collidee in collider's container
-				if (boxBeingChecked[0]->ContainerEmpty())
-				{
-					// Change colliding flag
+				// If collider was previously colliding, change colliding flag
+				if (boxBeingChecked[0]->GetColliding())
 					boxBeingChecked[0]->ToggleColliding();
 
-					// Change color
-					objectsBeingChecked[0]->GetMesh()->ChangeColor(Colors::Green);
-				}
-			}
+				// Inform event handler
+				EventHandler::HandleEvent(GlobalEventVariables::NEW_SEPARATION, objectsBeingChecked[0]);
+			}			
 
 			// Stop checking for collision. No collision occuring
 			return;
@@ -68,19 +67,25 @@ void BoundingBoxCollision::CheckForCollision()
 
 	// If code makes it here, collision is occuring
 
-	// If colliderManager wasn't previously colliding
+	// If collider wasn't previously colliding
 	if (!boxBeingChecked[0]->GetColliding())
 	{
+		// Inform event handler
+		EventHandler::HandleEvent(GlobalEventVariables::NEW_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
+
 		// Change colliding flag
 		boxBeingChecked[0]->ToggleColliding();
-
-		// Change color
-		objectsBeingChecked[0]->GetMesh()->ChangeColor(Colors::Red);
 	}
 
-	// If collidee is not in container, add it
-	if (!boxBeingChecked[0]->CheckIfObjectInContainer(objectsBeingChecked[1]))
-		boxBeingChecked[0]->AddCollidingObject(objectsBeingChecked[1]);
+	// If collider was previously colliding
+	else
+	{
+		// Inform event handler
+		EventHandler::HandleEvent(GlobalEventVariables::CONTINUED_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
+	}
+
+	// Add collidee to container. There's a check on the other side
+	boxBeingChecked[0]->AddCollidingObject(objectsBeingChecked[1]);
 }
 void BoundingBoxCollision::Update(std::vector<PartitionCell*>* gridCells)
 {

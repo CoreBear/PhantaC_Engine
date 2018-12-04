@@ -7,16 +7,19 @@
 // My Headers
 #include "CollisionManager.h"
 
+// Forward Declarations
+class SceneObject;
+
 class PhysicsManager
 {
 	class CollisionManager* collisionManager;
 
 public:
 	// Initialization
-	PhysicsManager(class ObjectManager* grid) { collisionManager = new CollisionManager(grid); }
+	PhysicsManager(SceneObject* grid) { collisionManager = new CollisionManager(grid); }
 
 	// Update
-	void Update(std::vector<ObjectManager*>* collidableObjects);
+	void Update(std::vector<SceneObject*>* collidableObjects);
 
 	// Clean Up
 	~PhysicsManager() { if (collisionManager) delete collisionManager; }

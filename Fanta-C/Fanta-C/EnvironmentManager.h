@@ -12,7 +12,6 @@ class EnvironmentManager
 {	
 	// Game Variables
 	class AudioManager*						audioManagerPtr;
-	HWND*									windowHandle;				// Will be used to manually update the window
 	class InputManager*						inputManagerPtr;
 	MSG*									msg;
 	class PhysicsManager*					physicsManagerPtr;
@@ -43,7 +42,6 @@ public:
 	///
 	/// Parameters
 	/// fps - The text that will be used for the udpate
-	void UpdateFPSIndicator(const char* fps) { SetWindowText(*windowHandle, fps); }
 
 	// Thread Functions
 	void RunAudio();

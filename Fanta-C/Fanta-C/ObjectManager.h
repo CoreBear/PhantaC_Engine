@@ -2,9 +2,9 @@
 #define _OBJECT_MANAGER_H
 
 // My Headers
+#include "GlobalTypedefs.h"
 #include "Camera.h"
 #include "ColliderManager.h"
-#include "GlobalTypedefs.h"
 #include "Mesh.h"
 #include "Transform.h"
 

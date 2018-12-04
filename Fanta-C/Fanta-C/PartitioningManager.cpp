@@ -2,13 +2,13 @@
 // My Headers
 #include "PartitioningManager.h"		// Connection to declarations
 
-#include "ObjectManager.h"
 #include "PartitionGrid.h"
 #include "Partitioner.h"
+#include "SceneObject.h"
 #pragma endregion
 
 #pragma region Initialization
-PartitioningManager::PartitioningManager(ObjectManager* grid)
+PartitioningManager::PartitioningManager(SceneObject* grid)
 {
 	partitionGridPtr = new PartitionGrid(grid);
 	partitionerPtr = new Partitioner;
@@ -16,7 +16,7 @@ PartitioningManager::PartitioningManager(ObjectManager* grid)
 #pragma endregion
 
 #pragma region Update
-void PartitioningManager::Update(std::vector<ObjectManager*>* collidableObjects)
+void PartitioningManager::Update(std::vector<SceneObject*>* collidableObjects)
 {
 	partitionerPtr->Update(collidableObjects, partitionGridPtr->GetGridCells());
 }
