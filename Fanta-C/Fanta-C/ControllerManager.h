@@ -9,9 +9,14 @@
 
 class ControllerManager
 {
-	DWORD				dwResult;		// Used to store if a controller is connected to a controller
-	XINPUT_STATE		state;			// Data type that stores all the current states 
-	XINPUT_VIBRATION	vibration;
+	static ControllerManager*	controllerManagerInstance;
+	DWORD						dwResult;		// Used to store if a controller is connected to a controller
+	XINPUT_STATE				state;			// Data type that stores all the current states 
+	XINPUT_VIBRATION			vibration;
+
+	ControllerManager() { return; }
+	ControllerManager(ControllerManager const&) = delete;
+	ControllerManager operator=(ControllerManager const&) = delete;
 
 public:
 	// Bumpers
@@ -52,6 +57,9 @@ public:
 	// Vibrations
 	void VibrateOff();
 	bool VibrateOn(int powerLeft, int powerRight);
+
+	// Accessors
+	static ControllerManager* GetInstance();
 };
 
 #endif

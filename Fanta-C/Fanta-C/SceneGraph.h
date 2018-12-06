@@ -24,6 +24,7 @@ protected:
 	std::vector<SceneObject*>	collidableObjects;
 	std::vector<SceneObject*>	sceneObjects;
 	ushort						graphIterator[3];
+	constexpr static ushort		maxNumberOfSceneObjects = 5000; // 
 
 	/// Summary
 	/// Checks if child is a child of parent
@@ -108,6 +109,7 @@ public:
 	SceneObject* GetGrid() { return sceneObjects.at(0); }
 	std::vector<SceneObject*>* GetCollidableObjects() { return &collidableObjects; }
 	std::vector<ObjectManager*>* GetRenderableObjects() { return &renderableObjects; }
+	static const ushort GetMaxNumberOfSceneObjects() { return maxNumberOfSceneObjects; }
 };
 
 #endif

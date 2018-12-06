@@ -5,17 +5,20 @@
 #include "GlobalDirectX.h"
 #include "GlobalTypedefs.h"
 
-const static float multiplicativeThird = float(1) / 3;
-static float		dotProduct;
-static float		normValue;
-static uchar		mathIterator;
-static XMVECTOR*	returnedVector;
+
 class GlobalMath
 {
+	static float		dotProduct;
+	static float		normValue;
+	static XMMATRIX*	tempMatrix;
+	static XMVECTOR*	tempVector;
+
 public:
 		// Public Interface
 	static float AbsoluteValue(float value);
+	static XMVECTOR* CrossProduct(XMVECTOR* firstVector, XMVECTOR* secondVector);
 	static float Lerp(float min, float max, float length);
+	static XMMATRIX* MatrixMultiplication(XMMATRIX* movingMatrix, XMMATRIX* intoMatrix);
 	static void Normalize(XMVECTOR* inVector);
 	template<typename Generic> static Generic Square(Generic value);
 	static float Vector3DotProduct(XMVECTOR* firstVector, XMVECTOR* secondVector);

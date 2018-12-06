@@ -7,15 +7,22 @@
 // My Headers
 #include "GlobalTypedefs.h"
 
+// Forward Declarations
+class SceneObject;
+
 class PartitionGrid
 {
-	std::vector<class PartitionCell*> gridCells;
+	static PartitionGrid*				partitionGridInstance;
+	std::vector<class PartitionCell*>	gridCells;
+
+	// Initialization	
+	PartitionGrid(SceneObject* grid);
+	PartitionGrid(PartitionGrid const&) = delete;
+	PartitionGrid operator=(PartitionGrid const&) = delete;
 
 public:
-	// Initialization	
-	PartitionGrid(class SceneObject* grid);
-
 	// Accessors
+	static PartitionGrid* GetInstance(SceneObject* grid);
 	std::vector<PartitionCell*>* GetGridCells() { return &gridCells; }
 
 	// Clean Up

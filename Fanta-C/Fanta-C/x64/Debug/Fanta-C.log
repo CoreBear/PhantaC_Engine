@@ -1,5 +1,4 @@
-﻿  TestScene.cpp
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\testscene.cpp(16): warning C4101: 'z': unreferenced local variable
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\testscene.cpp(16): warning C4101: 'y': unreferenced local variable
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\testscene.cpp(16): warning C4101: 'x': unreferenced local variable
+﻿  EnvironmentManager.cpp
+  InputManager.cpp
+  Generating Code...
   Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Debug\Fanta-C.exe

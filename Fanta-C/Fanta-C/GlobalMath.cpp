@@ -3,26 +3,71 @@
 #include "GlobalMath.h"			// Connection to declarations
 #pragma endregion
 
+#pragma region Forward Declarations
+float GlobalMath::dotProduct = 0;
+float GlobalMath::normValue = 0;
+XMMATRIX* GlobalMath::tempMatrix = &XMMatrixIdentity();
+XMVECTOR* GlobalMath::tempVector = &XMVectorZero();
+#pragma endregion
+
 #pragma region Public Interface
 float GlobalMath::AbsoluteValue(float value)
 {
 	return (value > 0) ? value : -value;
 }
+XMVECTOR* GlobalMath::CrossProduct(XMVECTOR* firstVector, XMVECTOR* secondVector)
+{
+	tempVector->m128_f32[0] = (firstVector->m128_f32[1] * secondVector->m128_f32[2]) - (firstVector->m128_f32[2] * secondVector->m128_f32[1]);
+	tempVector->m128_f32[1] = (firstVector->m128_f32[2] * secondVector->m128_f32[0]) - (firstVector->m128_f32[0] * secondVector->m128_f32[2]);
+	tempVector->m128_f32[2] = (firstVector->m128_f32[0] * secondVector->m128_f32[1]) - (firstVector->m128_f32[1] * secondVector->m128_f32[0]);
+
+	return tempVector;
+}
 float GlobalMath::Lerp(float min, float max, float length)
 {
 	return ((max - min) * length) + min;
+}
+XMMATRIX* GlobalMath::MatrixMultiplication(XMMATRIX* movingMatrix, XMMATRIX* intoMatrix)
+{
+	// X-Axis
+	tempMatrix->r[0].m128_f32[0] = (movingMatrix->r[0].m128_f32[0] * intoMatrix->r[0].m128_f32[0]) + (movingMatrix->r[0].m128_f32[1] * intoMatrix->r[1].m128_f32[0]) + (movingMatrix->r[0].m128_f32[2] * intoMatrix->r[2].m128_f32[0]) + (movingMatrix->r[0].m128_f32[3] * intoMatrix->r[3].m128_f32[0]);
+	tempMatrix->r[0].m128_f32[1] = (movingMatrix->r[0].m128_f32[0] * intoMatrix->r[0].m128_f32[1]) + (movingMatrix->r[0].m128_f32[1] * intoMatrix->r[1].m128_f32[1]) + (movingMatrix->r[0].m128_f32[2] * intoMatrix->r[2].m128_f32[1]) + (movingMatrix->r[0].m128_f32[3] * intoMatrix->r[3].m128_f32[1]);
+	tempMatrix->r[0].m128_f32[2] = (movingMatrix->r[0].m128_f32[0] * intoMatrix->r[0].m128_f32[2]) + (movingMatrix->r[0].m128_f32[1] * intoMatrix->r[1].m128_f32[2]) + (movingMatrix->r[0].m128_f32[2] * intoMatrix->r[2].m128_f32[2]) + (movingMatrix->r[0].m128_f32[3] * intoMatrix->r[3].m128_f32[2]);
+	tempMatrix->r[0].m128_f32[3] = (movingMatrix->r[0].m128_f32[0] * intoMatrix->r[0].m128_f32[3]) + (movingMatrix->r[0].m128_f32[1] * intoMatrix->r[1].m128_f32[3]) + (movingMatrix->r[0].m128_f32[2] * intoMatrix->r[2].m128_f32[3]) + (movingMatrix->r[0].m128_f32[3] * intoMatrix->r[3].m128_f32[3]);
+	
+	// Y-Axis
+	tempMatrix->r[1].m128_f32[0] = (movingMatrix->r[1].m128_f32[0] * intoMatrix->r[0].m128_f32[0]) + (movingMatrix->r[1].m128_f32[1] * intoMatrix->r[1].m128_f32[0]) + (movingMatrix->r[1].m128_f32[2] * intoMatrix->r[2].m128_f32[0]) + (movingMatrix->r[1].m128_f32[3] * intoMatrix->r[3].m128_f32[0]);
+	tempMatrix->r[1].m128_f32[1] = (movingMatrix->r[1].m128_f32[0] * intoMatrix->r[0].m128_f32[1]) + (movingMatrix->r[1].m128_f32[1] * intoMatrix->r[1].m128_f32[1]) + (movingMatrix->r[1].m128_f32[2] * intoMatrix->r[2].m128_f32[1]) + (movingMatrix->r[1].m128_f32[3] * intoMatrix->r[3].m128_f32[1]);
+	tempMatrix->r[1].m128_f32[2] = (movingMatrix->r[1].m128_f32[0] * intoMatrix->r[0].m128_f32[2]) + (movingMatrix->r[1].m128_f32[1] * intoMatrix->r[1].m128_f32[2]) + (movingMatrix->r[1].m128_f32[2] * intoMatrix->r[2].m128_f32[2]) + (movingMatrix->r[1].m128_f32[3] * intoMatrix->r[3].m128_f32[2]);
+	tempMatrix->r[1].m128_f32[3] = (movingMatrix->r[1].m128_f32[0] * intoMatrix->r[0].m128_f32[3]) + (movingMatrix->r[1].m128_f32[1] * intoMatrix->r[1].m128_f32[3]) + (movingMatrix->r[1].m128_f32[2] * intoMatrix->r[2].m128_f32[3]) + (movingMatrix->r[1].m128_f32[3] * intoMatrix->r[3].m128_f32[3]);
+	
+	// Z-Axis
+	tempMatrix->r[2].m128_f32[0] = (movingMatrix->r[2].m128_f32[0] * intoMatrix->r[0].m128_f32[0]) + (movingMatrix->r[2].m128_f32[1] * intoMatrix->r[1].m128_f32[0]) + (movingMatrix->r[2].m128_f32[2] * intoMatrix->r[2].m128_f32[0]) + (movingMatrix->r[2].m128_f32[3] * intoMatrix->r[3].m128_f32[0]);
+	tempMatrix->r[2].m128_f32[1] = (movingMatrix->r[2].m128_f32[0] * intoMatrix->r[0].m128_f32[1]) + (movingMatrix->r[2].m128_f32[1] * intoMatrix->r[1].m128_f32[1]) + (movingMatrix->r[2].m128_f32[2] * intoMatrix->r[2].m128_f32[1]) + (movingMatrix->r[2].m128_f32[3] * intoMatrix->r[3].m128_f32[1]);
+	tempMatrix->r[2].m128_f32[2] = (movingMatrix->r[2].m128_f32[0] * intoMatrix->r[0].m128_f32[2]) + (movingMatrix->r[2].m128_f32[1] * intoMatrix->r[1].m128_f32[2]) + (movingMatrix->r[2].m128_f32[2] * intoMatrix->r[2].m128_f32[2]) + (movingMatrix->r[2].m128_f32[3] * intoMatrix->r[3].m128_f32[2]);
+	tempMatrix->r[2].m128_f32[3] = (movingMatrix->r[2].m128_f32[0] * intoMatrix->r[0].m128_f32[3]) + (movingMatrix->r[2].m128_f32[1] * intoMatrix->r[1].m128_f32[3]) + (movingMatrix->r[2].m128_f32[2] * intoMatrix->r[2].m128_f32[3]) + (movingMatrix->r[2].m128_f32[3] * intoMatrix->r[3].m128_f32[3]);
+	
+	// Translation-Axis
+	tempMatrix->r[3].m128_f32[0] = (movingMatrix->r[3].m128_f32[0] * intoMatrix->r[0].m128_f32[0]) + (movingMatrix->r[3].m128_f32[1] * intoMatrix->r[1].m128_f32[0]) + (movingMatrix->r[3].m128_f32[2] * intoMatrix->r[2].m128_f32[0]) + (movingMatrix->r[3].m128_f32[3] * intoMatrix->r[3].m128_f32[0]);
+	tempMatrix->r[3].m128_f32[1] = (movingMatrix->r[3].m128_f32[0] * intoMatrix->r[0].m128_f32[1]) + (movingMatrix->r[3].m128_f32[1] * intoMatrix->r[1].m128_f32[1]) + (movingMatrix->r[3].m128_f32[2] * intoMatrix->r[2].m128_f32[1]) + (movingMatrix->r[3].m128_f32[3] * intoMatrix->r[3].m128_f32[1]);
+	tempMatrix->r[3].m128_f32[2] = (movingMatrix->r[3].m128_f32[0] * intoMatrix->r[0].m128_f32[2]) + (movingMatrix->r[3].m128_f32[1] * intoMatrix->r[1].m128_f32[2]) + (movingMatrix->r[3].m128_f32[2] * intoMatrix->r[2].m128_f32[2]) + (movingMatrix->r[3].m128_f32[3] * intoMatrix->r[3].m128_f32[2]);
+	tempMatrix->r[3].m128_f32[3] = (movingMatrix->r[3].m128_f32[0] * intoMatrix->r[0].m128_f32[3]) + (movingMatrix->r[3].m128_f32[1] * intoMatrix->r[1].m128_f32[3]) + (movingMatrix->r[3].m128_f32[2] * intoMatrix->r[2].m128_f32[3]) + (movingMatrix->r[3].m128_f32[3] * intoMatrix->r[3].m128_f32[3]);
+
+	return tempMatrix;
 }
 void GlobalMath::Normalize(XMVECTOR* inVector)
 {
 	normValue = 0;
 
-	for (mathIterator = 0; mathIterator < 3; ++mathIterator)
-		normValue += inVector->m128_f32[mathIterator] * inVector->m128_f32[mathIterator];
+	normValue += inVector->m128_f32[0] * inVector->m128_f32[0];
+	normValue += inVector->m128_f32[1] * inVector->m128_f32[1];
+	normValue += inVector->m128_f32[2] * inVector->m128_f32[2];
+	
+	normValue = sqrtf(normValue);
 
-	normValue *= multiplicativeThird;
-
-	for (mathIterator = 0; mathIterator < 3; ++mathIterator)
-		inVector->m128_f32[mathIterator] /= normValue;
+	inVector->m128_f32[0] /= normValue;
+	inVector->m128_f32[1] /= normValue;
+	inVector->m128_f32[2] /= normValue;
 }
 template<typename Generic> Generic GlobalMath::Square(Generic value)
 {
@@ -32,8 +77,9 @@ float GlobalMath::Vector3DotProduct(XMVECTOR* firstVector, XMVECTOR* secondVecto
 {
 	dotProduct = 0;
 
-	for (mathIterator = 0; mathIterator < 3; ++mathIterator)
-		dotProduct += firstVector->m128_f32[mathIterator] * secondVector->m128_f32[mathIterator];
+	dotProduct += firstVector->m128_f32[0] * secondVector->m128_f32[0];
+	dotProduct += firstVector->m128_f32[1] * secondVector->m128_f32[1];
+	dotProduct += firstVector->m128_f32[2] * secondVector->m128_f32[2];
 
 	return dotProduct;
 }
@@ -41,16 +87,21 @@ float GlobalMath::Vector4DotProduct(XMVECTOR* firstVector, XMVECTOR* secondVecto
 {
 	dotProduct = 0;
 
-	for (mathIterator = 0; mathIterator < 4; ++mathIterator)
-		dotProduct += firstVector->m128_f32[mathIterator] * secondVector->m128_f32[mathIterator];
+	dotProduct += firstVector->m128_f32[0] * secondVector->m128_f32[0];
+	dotProduct += firstVector->m128_f32[1] * secondVector->m128_f32[1];
+	dotProduct += firstVector->m128_f32[2] * secondVector->m128_f32[2];
+	dotProduct += firstVector->m128_f32[3] * secondVector->m128_f32[3];
 
 	return dotProduct;
 }
 XMVECTOR* GlobalMath::VectorSubtraction(XMVECTOR* firstVector, XMVECTOR* secondVector)
 {
-	for (mathIterator = 0; mathIterator < 4; ++mathIterator)
-		returnedVector->m128_f32[mathIterator] = firstVector->m128_f32[mathIterator] - secondVector->m128_f32[mathIterator];
+	tempVector->m128_f32[0] = firstVector->m128_f32[0] - secondVector->m128_f32[0];
+	tempVector->m128_f32[1] = firstVector->m128_f32[1] - secondVector->m128_f32[1];
+	tempVector->m128_f32[2] = firstVector->m128_f32[2] - secondVector->m128_f32[2];
+	tempVector->m128_f32[3] = 0;
 
-	return returnedVector;
+	return tempVector;
 }
+
 #pragma endregion

@@ -3,6 +3,10 @@
 #include "WindowCreator.h"			// Connection to declarations
 #pragma endregion
 
+#pragma region Forward Declarations
+WindowCreator* WindowCreator::windowCreatorInstance = nullptr;
+#pragma endregion
+
 #pragma region Initialization
 WindowCreator::WindowCreator(HINSTANCE hInstance, int cmdShow, WNDPROC wndProc)
 {
@@ -29,5 +33,17 @@ WindowCreator::WindowCreator(HINSTANCE hInstance, int cmdShow, WNDPROC wndProc)
 
 	// Forces client area of the window to be painted
 	UpdateWindow(windowHandle);
+}
+WindowCreator* WindowCreator::GetInstance(HINSTANCE hInstance, int cmdShow, WNDPROC wndProc)
+{
+	// If there is already and instance, return it
+	if (windowCreatorInstance) return windowCreatorInstance;
+	
+	// If there isn't already an instance, create one and return it
+	else
+	{
+		windowCreatorInstance = new WindowCreator(hInstance, cmdShow, wndProc);
+		return windowCreatorInstance;
+	}
 }
 #pragma endregion

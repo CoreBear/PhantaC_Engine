@@ -118,6 +118,7 @@
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BoundingBox.cpp" />
     <ClCompile Include="BoundingBoxCollision.cpp" />
+    <ClCompile Include="BulletTrail.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="ControllerManager.cpp" />
@@ -127,6 +128,7 @@
     <ClCompile Include="GlobalAutonomy.cpp" />
     <ClCompile Include="GlobalTransform.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineRenderer.cpp" />
     <ClCompile Include="EntryEventLoop.cpp" />
     <ClCompile Include="GlobalMath.cpp" />
@@ -138,7 +140,6 @@
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="Partitioner.cpp" />
     <ClCompile Include="SceneObject.cpp" />
-    <ClCompile Include="SplashManager.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
@@ -147,13 +148,13 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sphere.cpp" />
-    <ClCompile Include="UiManager.cpp" />
     <ClCompile Include="WindowCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="BoundingBoxCollision.h" />
+    <ClInclude Include="BulletTrail.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="CollisionManager.h" />
@@ -173,6 +174,7 @@
     <ClInclude Include="GlobalTransform.h" />
     <ClInclude Include="GlobalWorldVariables.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="Line.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshLoader.h" />
@@ -185,7 +187,6 @@
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="ScriptManager.h" />
     <ClInclude Include="Partitioner.h" />
-    <ClInclude Include="SplashManager.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Transform.h" />
@@ -199,7 +200,6 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="GlobalTypedefs.h" />
-    <ClInclude Include="UiManager.h" />
     <ClInclude Include="WindowCreator.h" />
   </ItemGroup>
   <ItemGroup>

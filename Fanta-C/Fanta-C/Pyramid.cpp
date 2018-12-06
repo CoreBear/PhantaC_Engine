@@ -20,15 +20,15 @@ void Pyramid::CreateMesh(float inWidth, float inHeight, float inDepth, float inS
 	{
 		if (reusableIterator < 4)
 		{
-			vertices[reusableIterator].localPos.x = (reusableIterator % 4 == 0 || reusableIterator % 4 == 3) ? -inWidth * inScale : inWidth * inScale;
-			vertices[reusableIterator].localPos.y = -inHeight * inScale;
-			vertices[reusableIterator].localPos.z = (reusableIterator < 2) ? -inDepth * inScale : inDepth * inScale;
+			vertices[reusableIterator].localPos.m128_f32[0] = (reusableIterator % 4 == 0 || reusableIterator % 4 == 3) ? -inWidth * inScale : inWidth * inScale;
+			vertices[reusableIterator].localPos.m128_f32[1] = -inHeight * inScale;
+			vertices[reusableIterator].localPos.m128_f32[2] = (reusableIterator < 2) ? -inDepth * inScale : inDepth * inScale;
 		}
 		else
 		{
-			vertices[reusableIterator].localPos.x = 0;
-			vertices[reusableIterator].localPos.y = inHeight * inScale;
-			vertices[reusableIterator].localPos.z = 0;
+			vertices[reusableIterator].localPos.m128_f32[0] = 0;
+			vertices[reusableIterator].localPos.m128_f32[1] = inHeight * inScale;
+			vertices[reusableIterator].localPos.m128_f32[2] = 0;
 		}
 
 	}

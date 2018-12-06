@@ -18,6 +18,7 @@ class ObjectManager;
 
 class Renderer
 {
+	static Renderer*				rendererInstance;
 	// Misc Variables
 	LineRenderer					lineRenderer;									// Object that renders lines on screen
 	MeshLoader						meshLoader;										// Adds mesh lines to the line renderer
@@ -51,12 +52,17 @@ class Renderer
 	// Clean Up
 	template<typename Generic> void ReleaseResource(Generic& ptr);
 
-public:
 	// Initialization
 	Renderer(HWND* windowHandle, class SceneManager* sceneManagerPtr, const ushort* clientDimensions, uchar targetFPS, Camera* cameraObject);
+	Renderer(Renderer const&) = delete;
+	Renderer operator=(Renderer const&) = delete;
 
+public:
 	// Update
 	void Update(std::vector<ObjectManager*>* renderableObjects, Camera* cameraObject);
+
+	// Accessors
+	static Renderer* GetInstance(HWND* windowHandle = nullptr, class SceneManager* sceneManagerPtr = nullptr, const ushort* clientDimensions = nullptr, uchar targetFPS = 0, Camera* cameraObject = nullptr);
 
 	// Clean-up
 	~Renderer();

@@ -118,23 +118,8 @@
     <Filter Include="Globals\Math">
       <UniqueIdentifier>{b52233d6-985e-4a4c-8b9d-dd7f15c6743d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\FrontEnd">
-      <UniqueIdentifier>{9bf5b288-5c70-48d3-ba2f-5b6eea660f50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\FrontEnd\UI">
-      <UniqueIdentifier>{52f62444-0786-4b04-99b0-24344ab9b377}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\FrontEnd\UI\Manager">
-      <UniqueIdentifier>{7a838632-4c6b-44df-8b0b-57e40f49a35b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\FrontEnd\Splash">
-      <UniqueIdentifier>{6d3eb8bc-aa8b-4fd5-9da6-d44abe359d94}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment\Physics\Collision\BoundingBox">
       <UniqueIdentifier>{df3a748a-b032-4441-97f5-a7640c649d5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\FrontEnd\Splash\Manager">
-      <UniqueIdentifier>{f5011952-1e5a-4d6e-b3a9-883236faab00}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application\Initialization &amp; Events">
       <UniqueIdentifier>{a091c51a-ee2a-4291-b2f6-53bca9a2689d}</UniqueIdentifier>
@@ -211,6 +196,15 @@
     <Filter Include="Environment\Scene\Object\PhysicalObject\Collider\BoundingBox">
       <UniqueIdentifier>{b5c01800-34c1-427e-bea6-a0683e556d9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines">
+      <UniqueIdentifier>{9c39dc72-8f69-493f-ac30-5f1c2e3af048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\LineBase">
+      <UniqueIdentifier>{1bc47020-4177-4a67-94d3-9ba12caee854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\BulletTrail">
+      <UniqueIdentifier>{2a02df5e-4930-4d65-b0af-e6079abd63a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -264,9 +258,6 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>Game\Scenes\Test</Filter>
     </ClCompile>
-    <ClCompile Include="UiManager.cpp">
-      <Filter>Environment\FrontEnd\UI\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Environment\Input\Manager</Filter>
     </ClCompile>
@@ -294,9 +285,6 @@
     <ClCompile Include="BoundingBoxCollision.cpp">
       <Filter>Environment\Physics\Collision\BoundingBox</Filter>
     </ClCompile>
-    <ClCompile Include="SplashManager.cpp">
-      <Filter>Environment\FrontEnd\Splash\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="PartitioningManager.cpp">
       <Filter>Environment\Physics\Collision\SpatialPartitioning\Manager</Filter>
     </ClCompile>
@@ -314,6 +302,12 @@
     </ClCompile>
     <ClCompile Include="SceneObject.cpp">
       <Filter>Environment\Scene\Object\SceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\LineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletTrail.cpp">
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\BulletTrail</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -380,9 +374,6 @@
     <ClInclude Include="TestScene.h">
       <Filter>Game\Scenes\Test</Filter>
     </ClInclude>
-    <ClInclude Include="UiManager.h">
-      <Filter>Environment\FrontEnd\UI\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Environment\Input\Manager</Filter>
     </ClInclude>
@@ -431,9 +422,6 @@
     <ClInclude Include="BoundingBoxCollision.h">
       <Filter>Environment\Physics\Collision\BoundingBox</Filter>
     </ClInclude>
-    <ClInclude Include="SplashManager.h">
-      <Filter>Environment\FrontEnd\Splash\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="PartitioningManager.h">
       <Filter>Environment\Physics\Collision\SpatialPartitioning\Manager</Filter>
     </ClInclude>
@@ -466,6 +454,12 @@
     </ClInclude>
     <ClInclude Include="GlobalConsoleWrite.h">
       <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\LineBase</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletTrail.h">
+      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\BulletTrail</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

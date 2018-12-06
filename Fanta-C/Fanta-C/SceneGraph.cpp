@@ -17,11 +17,11 @@ SceneGraph::SceneGraph(ushort* clientDimensions)
 	#pragma region DONT TOUCH
 	// Every scene needs a camera and for now a player and a grid
 	// Create Camera - Camera needs to always be first
-	sceneCameraPtr = new Camera(clientDimensions);
+	sceneCameraPtr = Camera::GetInstance(clientDimensions);
 	//AddObjectToScene(new ObjectManager(new Camera(clientDimensions)));
 
 	// Add player script to camera scene object and and camera to player script
-	playerPtr = new PlayerManager(sceneCameraPtr, 20, 50);
+	playerPtr = new PlayerManager(sceneCameraPtr, this, 20, 100);
 
 	// Create Grid
 	AddObjectToScene(new ObjectManager(new Grid, false, true));

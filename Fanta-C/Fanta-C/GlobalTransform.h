@@ -10,8 +10,9 @@ class ColliderManager;
 
 class GlobalTransform
 {
-	static XMMATRIX transformMatrix;
-	static XMVECTOR translationVector;
+	static XMMATRIX*	transformMatrix;
+	static XMVECTOR		tempPosition;
+	static XMVECTOR*	translationVector;
 
 public:
 	static void RotateOnWorldXAxis(float angle, XMMATRIX& inLocalMatrix);
@@ -23,7 +24,7 @@ public:
 	static void Scale(float x, float y, float z, ColliderManager* colliderManager, XMMATRIX& inLocalMatrix);
 	static void Translate(float x, float y, float z, XMMATRIX& inLocalMatrix);
 	static void UniformScale(float value, ColliderManager* colliderManager, XMMATRIX& inLocalMatrix);
-	//static void WorldTranslate(ushort index, float speed, XMMATRIX* inLocalMatrix);
+	static void WorldTranslate(float x, float y, float z, XMMATRIX& inLocalMatrix);
 };
 
 #endif

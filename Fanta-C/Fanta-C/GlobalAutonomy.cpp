@@ -13,19 +13,19 @@
 void GlobalAutonomy::LookAt(XMMATRIX* myMatrix, XMVECTOR* targetPosition)
 {
 	// Generate and normalize Z (forward)
-	myMatrix->r[2] = XMVectorSubtract(*targetPosition, myMatrix->r[3]);
-	myMatrix->r[2] = XMVector3Normalize(myMatrix->r[2]);
+	myMatrix->r[2] = *GlobalMath::VectorSubtraction(targetPosition, &myMatrix->r[3]);
+	GlobalMath::Normalize(&myMatrix->r[2]);
 
 	// Temp up for generating X (right)
 	myMatrix->r[1] = worldUp;
 
 	// Generate and normalize X (right)
-	myMatrix->r[0] = XMVector3Cross(myMatrix->r[1], myMatrix->r[2]);
-	myMatrix->r[0] = XMVector3Normalize(myMatrix->r[0]);
+	myMatrix->r[0] = *GlobalMath::CrossProduct(&myMatrix->r[1], &myMatrix->r[2]);
+	GlobalMath::Normalize(&myMatrix->r[0]);
 
 	// Generate and normalize Y (up)
-	myMatrix->r[1] = XMVector3Cross(myMatrix->r[2], myMatrix->r[0]);
-	myMatrix->r[1] = XMVector3Normalize(myMatrix->r[1]);
+	myMatrix->r[1] = *GlobalMath::CrossProduct(&myMatrix->r[2], &myMatrix->r[0]);
+	GlobalMath::Normalize(&myMatrix->r[1]);
 }
 void GlobalAutonomy::TurnTo(Test* myMovingScript, XMVECTOR* targetPosition)
 {
@@ -36,19 +36,17 @@ void GlobalAutonomy::TurnTo(Test* myMovingScript, XMVECTOR* targetPosition)
 	
 	// Normilize direction
 	GlobalMath::Normalize(targetVector);
-	//targetVector = XMVector3Normalize(targetVector);
 
 	// Normalize X
 	GlobalMath::Normalize(&myMatrix->r[0]);
-	//myMatrix->r[0] = XMVector3Normalize(myMatrix->r[0]);
 	
 	// Around the Y-Axis
-	GlobalTransform::RotateOnYAxis(myMovingScript->GetAngularVelocity() * -GlobalMath::Vector4DotProduct(targetVector, &myMatrix->r[0]), *myMatrix);
+	GlobalTransform::RotateOnWorldYAxis(myMovingScript->GetAngularVelocity() * -GlobalMath::Vector3DotProduct(targetVector, &myMatrix->r[0]), *myMatrix);
 
 	// Normalize Y
-	myMatrix->r[1] = XMVector3Normalize(myMatrix->r[1]);
+	GlobalMath::Normalize(&myMatrix->r[1]);
 
 	// Around the X-Axis
-	GlobalTransform::RotateOnXAxis(myMovingScript->GetAngularVelocity() * -GlobalMath::Vector4DotProduct(targetVector, &myMatrix->r[1]), *myMatrix);
+	GlobalTransform::RotateOnXAxis(myMovingScript->GetAngularVelocity() * -GlobalMath::Vector3DotProduct(targetVector, &myMatrix->r[1]), *myMatrix);
 }
 #pragma endregion

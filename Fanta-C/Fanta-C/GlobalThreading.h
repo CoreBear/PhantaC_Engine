@@ -21,13 +21,6 @@ public:
 	{
 		switch (typeOfThread)
 		{
-		case GlobalThreadVariables::THREAD::INPUT:
-		{
-			// Run everything function until quit is received
-			while (inMsg->message != WM_QUIT)
-				environmentManager->RunInput();
-		}
-		break;
 		case GlobalThreadVariables::THREAD::PHYSICS:
 		{
 			// Run everything function until quit is received
@@ -53,11 +46,11 @@ public:
 				frameStartTime = std::chrono::steady_clock::now();
 
 				// Run modules
+				environmentManager->RunInput();
 				environmentManager->RunScene();
 				//environmentManager->RunPhysics();
 				environmentManager->RunRenderer();
 				environmentManager->RunAudio();
-				environmentManager->RunUI();
 
 				// Assign frame's end time
 				frameEndTime = std::chrono::steady_clock::now();

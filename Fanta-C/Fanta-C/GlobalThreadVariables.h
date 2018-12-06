@@ -3,7 +3,7 @@
 
 struct GlobalThreadVariables
 {
-	enum THREAD { INPUT = 0, PHYSICS, FRAME };
+	enum THREAD { PHYSICS = 0, FRAME };
 };
 
 #endif

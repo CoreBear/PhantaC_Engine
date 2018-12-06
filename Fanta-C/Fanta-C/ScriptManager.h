@@ -8,13 +8,12 @@
 
 class ScriptManager
 {
-protected:	
-	// Just a hack to test functionality. Remove
-	virtual void AssignTarget(XMVECTOR* inTargetPosition) { return; }
-	
 public:
 	// Update
-	virtual void Update() = 0;
+	virtual void Update() { return; }
+
+	// Just a hack to test functionality. Remove
+	virtual void AssignTarget(XMVECTOR* inTargetPosition) { return; }
 };
 
 #endif

@@ -3,6 +3,10 @@
 #include "Camera.h"		// Connection to declarations
 #pragma endregion
 
+#pragma region Forward Declarations
+Camera* Camera::cameraInstance = nullptr;
+#pragma endregion
+
 #pragma region Initialization
 Camera::Camera(const ushort* clientDimensions)
 {
@@ -11,6 +15,27 @@ Camera::Camera(const ushort* clientDimensions)
 	const XMVECTOR cameraVectors[3] = { XMVectorSet(0, 3, -20, 1), XMVectorSet(0, 0, 1, 0), XMVectorSet(0, 1, 0, 0) };
 	
 	projectionMatrix = XMMatrixPerspectiveFovLH(verticalFOV, float(clientDimensions[1]) / clientDimensions[0], nearFarPlaneDistances[0], nearFarPlaneDistances[1]);
-	viewMatrix = XMMatrixLookAtLH(cameraVectors[0], cameraVectors[1], cameraVectors[2]);
+	viewMatrix = XMMatrixInverse(nullptr, XMMatrixLookAtLH(cameraVectors[0], cameraVectors[1], cameraVectors[2]));
+
+	// Orthonormal fast inverse in graphics one
+	// Create an object that stores the camera
+	// Inverse the view matrix and leave it
+	// Use the object that stores the camera's transform to bring the camera into world space
+	// https://www.3dgep.com/understanding-the-view-matrix/#Transformations
+}
+#pragma endregion
+
+#pragma region Accessors
+Camera* Camera::GetInstance(const ushort * clientDimensions)
+{
+	// If instance has been created, return it
+	if (cameraInstance) return cameraInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		cameraInstance = new Camera(clientDimensions);
+		return cameraInstance;
+	}
 }
 #pragma endregion

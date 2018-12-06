@@ -22,6 +22,10 @@
 #include "BasicVertexShader.csh"
 #pragma endregion
 
+#pragma region Forward Declarations
+Renderer* Renderer::rendererInstance = nullptr;
+#pragma endregion
+
 #pragma region Initialization
 Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, uchar targetFPS, Camera* camera)
 {
@@ -200,8 +204,9 @@ void Renderer::Update(std::vector<ObjectManager*>* renderableObjects, Camera* ca
 	// Reset color to black and set depth to max
 	ResetScreen();
 
-	// Load view matrix (camera's world matrix) into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, camera->GetViewMatrix(), 0, 0);
+	//// Load view matrix (camera's world matrix) into vram
+	//deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, camera->GetViewMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &XMMatrixInverse(nullptr, *camera->GetViewMatrix()), 0, 0);
 
 	//
 	//											Do not add anything above this line
@@ -219,6 +224,18 @@ void Renderer::Update(std::vector<ObjectManager*>* renderableObjects, Camera* ca
 
 	// Show frame to user
 	swapChain->Present(vSync, 0);
+}
+Renderer * Renderer::GetInstance(HWND * windowHandle, SceneManager * sceneManagerPtr, const ushort * clientDimensions, uchar targetFPS, Camera * cameraObject)
+{
+	// If instance is already created, return it
+	if (rendererInstance) return rendererInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		rendererInstance = new Renderer(windowHandle, sceneManagerPtr, clientDimensions, targetFPS, cameraObject);
+		return rendererInstance;
+	}
 }
 #pragma endregion
 

@@ -4,7 +4,7 @@
 #pragma endregion
 
 #pragma region Public Interface
-void LineRenderer::AddNewLine(XMFLOAT3 lineStart, XMFLOAT3 lineEnd, XMVECTORF32 startColor, XMVECTORF32 endColor)
+void LineRenderer::AddNewLine(XMVECTOR lineStart, XMVECTOR lineEnd, XMVECTORF32 startColor, XMVECTORF32 endColor)
 {
 	if (currentCount < containerCapacity)
 	{

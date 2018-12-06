@@ -17,7 +17,8 @@
 #pragma endregion
 
 #pragma region Global Variables
-bool GlobalInputVariables::keysPressed[9];
+bool GlobalInputVariables::KeyDownThisFrame[9];
+bool GlobalInputVariables::KeyIsDown[9];
 #pragma endregion
 
 #pragma region Forward Declarations
@@ -54,6 +55,7 @@ void KeyPressed(WPARAM wParam);
 /// Parameters
 /// wParam - The value of the key being released
 void KeyNotPressed(WPARAM wParam);
+void KeyDownHandling(uchar index);
 #pragma endregion
 
 #pragma region Application Entry Function
@@ -67,10 +69,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	#pragma endregion
 
 	// Creates the window
-	WindowCreator* window = new WindowCreator(hInstance, cmdShow, &WndProc);
+	WindowCreator* window = WindowCreator::GetInstance(hInstance, cmdShow, &WndProc);
 
 	// Creates the game instance
-	EnvironmentManager* environmentManager = new EnvironmentManager(window->GetWindowHandle(), window->GetClientDimensions());
+	EnvironmentManager* environmentManager = EnvironmentManager::GetInstance(window->GetWindowHandle(), window->GetClientDimensions());
 
 	// Will run until quit message is posted
 	RunEnvironment(environmentManager);
@@ -143,31 +145,31 @@ void KeyPressed(WPARAM wParam)
 	switch (wParam)
 	{
 	case GlobalInputVariables::A:
-		GlobalInputVariables::keysPressed[0] = true;
+		KeyDownHandling(0);
 		break;
 	case GlobalInputVariables::D:
-		GlobalInputVariables::keysPressed[1] = true;
+		KeyDownHandling(1);
 		break;
 	case GlobalInputVariables::I:
-		GlobalInputVariables::keysPressed[2] = true;
+		KeyDownHandling(2);
 		break;
 	case GlobalInputVariables::J:
-		GlobalInputVariables::keysPressed[3] = true;
+		KeyDownHandling(3);
 		break;
 	case GlobalInputVariables::K:
-		GlobalInputVariables::keysPressed[4] = true;
+		KeyDownHandling(4);
 		break;
 	case GlobalInputVariables::L:
-		GlobalInputVariables::keysPressed[5] = true;
+		KeyDownHandling(5);
 		break;
 	case GlobalInputVariables::S:
-		GlobalInputVariables::keysPressed[6] = true;
+		KeyDownHandling(6);
 		break;
 	case GlobalInputVariables::W:
-		GlobalInputVariables::keysPressed[7] = true;
+		KeyDownHandling(7);
 		break;
 	case GlobalInputVariables::SPACE:
-		GlobalInputVariables::keysPressed[8] = true;
+		KeyDownHandling(8);
 		break;
 	default:
 		break;
@@ -178,34 +180,54 @@ void KeyNotPressed(WPARAM wParam)
 	switch (wParam)
 	{
 	case GlobalInputVariables::A:
-		GlobalInputVariables::keysPressed[0] = false;
+		GlobalInputVariables::KeyIsDown[0] = false;
 		break;
 	case GlobalInputVariables::D:
-		GlobalInputVariables::keysPressed[1] = false;
+		GlobalInputVariables::KeyIsDown[1] = false;
 		break;
 	case GlobalInputVariables::I:
-		GlobalInputVariables::keysPressed[2] = false;
+		GlobalInputVariables::KeyIsDown[2] = false;
 		break;
 	case GlobalInputVariables::J:
-		GlobalInputVariables::keysPressed[3] = false;
+		GlobalInputVariables::KeyIsDown[3] = false;
 		break;
 	case GlobalInputVariables::K:
-		GlobalInputVariables::keysPressed[4] = false;
+		GlobalInputVariables::KeyIsDown[4] = false;
 		break;
 	case GlobalInputVariables::L:
-		GlobalInputVariables::keysPressed[5] = false;
+		GlobalInputVariables::KeyIsDown[5] = false;
 		break;
 	case GlobalInputVariables::S:
-		GlobalInputVariables::keysPressed[6] = false;
+		GlobalInputVariables::KeyIsDown[6] = false;
 		break;
 	case GlobalInputVariables::W:
-		GlobalInputVariables::keysPressed[7] = false;
+		GlobalInputVariables::KeyIsDown[7] = false;
 		break;
 	case GlobalInputVariables::SPACE:
-		GlobalInputVariables::keysPressed[8] = false;
+		GlobalInputVariables::KeyIsDown[8] = false;
 		break;
 	default:
 		break;
+	}
+}
+void KeyDownHandling(uchar index)
+{
+	// If key was up last frame
+	if (!GlobalInputVariables::KeyIsDown[index])
+	{
+		// Key is now pressed
+		GlobalInputVariables::KeyIsDown[index] = true;
+
+		// Key went down this frame
+		GlobalInputVariables::KeyDownThisFrame[index] = true;
+	}
+
+	// If key was down last frame
+	else
+	{
+		// If key went down last frame, flip flag
+		if (GlobalInputVariables::KeyDownThisFrame[index])
+ 			GlobalInputVariables::KeyDownThisFrame[index] = false;
 	}
 }
 #pragma endregion

@@ -9,11 +9,12 @@
 void Test::Update()
 {
 	//GlobalTransform::Translate(-velocity * GlobalTime::deltaTime, 0, 0, *myObject->GetMyObject()->GetTransform()->GetLocalMatrix());
-	//if (targetPosition)
-		//GlobalAutonomy::LookAt(myObject->GetTransform()->GetLocalMatrix(), targetPosition);
+	if (targetPosition)
+		GlobalAutonomy::LookAt(myObject->GetMyObject()->GetTransform()->GetLocalMatrix(), targetPosition);
 		//GlobalAutonomy::TurnTo(this, targetPosition);
 
 	// Rotate
-	GlobalTransform::RotateOnXAxis(angularVelocity * GlobalTime::deltaTime, *myObject->GetMyObject()->GetTransform()->GetLocalMatrix());
-	GlobalTransform::RotateOnYAxis(angularVelocity * GlobalTime::deltaTime, *myObject->GetMyObject()->GetTransform()->GetLocalMatrix());
+	//GlobalTransform::RotateOnXAxis(angularVelocity * GlobalTime::deltaTime, *myObject->GetMyObject()->GetTransform()->GetLocalMatrix());
+	//GlobalTransform::RotateOnYAxis(angularVelocity * GlobalTime::deltaTime, *myObject->GetMyObject()->GetTransform()->GetLocalMatrix());
+	GlobalTransform::Translate(0, 0, velocity * GlobalTime::deltaTime, *myObject->GetMyObject()->GetTransform()->GetLocalMatrix());
 }

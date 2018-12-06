@@ -7,11 +7,15 @@
 #include "SceneObject.h"
 #pragma endregion
 
+#pragma region Forward Declarations
+PartitioningManager* PartitioningManager::partitioningManagerInstance = nullptr;
+#pragma endregion
+
 #pragma region Initialization
 PartitioningManager::PartitioningManager(SceneObject* grid)
 {
-	partitionGridPtr = new PartitionGrid(grid);
-	partitionerPtr = new Partitioner;
+	partitionGridPtr = PartitionGrid::GetInstance(grid);
+	partitionerPtr = Partitioner::GetInstance();
 }
 #pragma endregion
 
@@ -19,6 +23,21 @@ PartitioningManager::PartitioningManager(SceneObject* grid)
 void PartitioningManager::Update(std::vector<SceneObject*>* collidableObjects)
 {
 	partitionerPtr->Update(collidableObjects, partitionGridPtr->GetGridCells());
+}
+#pragma endregion
+
+#pragma region Accessors
+PartitioningManager * PartitioningManager::GetInstance(SceneObject * grid)
+{
+	// If instance is already created, return it
+	if (partitioningManagerInstance) return partitioningManagerInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		partitioningManagerInstance = new PartitioningManager(grid);
+		return partitioningManagerInstance;
+	}
 }
 #pragma endregion
 

@@ -9,18 +9,22 @@ class SceneObject;
 
 class PartitioningManager
 {
-	class PartitionGrid*	partitionGridPtr;
-	class Partitioner*		partitionerPtr;
+	class Partitioner*			partitionerPtr;
+	class PartitionGrid*		partitionGridPtr;
+	static PartitioningManager* partitioningManagerInstance;
 
-public:
 	// Initialization
 	PartitioningManager(SceneObject* grid);
+	PartitioningManager(PartitioningManager const&) = delete;
+	PartitioningManager operator=(PartitioningManager const&) = delete;
 
+public:
 	// Update
 	void Update(std::vector<SceneObject*>* collidableObjects);
 
-	// Accessor
+	// Accessors
 	PartitionGrid* GetPartitionGrid() { return partitionGridPtr; }
+	static PartitioningManager* GetInstance(SceneObject* grid);
 
 	// Clean Up
 	~PartitioningManager();

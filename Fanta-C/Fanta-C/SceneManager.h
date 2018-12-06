@@ -10,16 +10,20 @@
 class SceneManager
 {			
 	class SceneGraph* scenePtr;
+	static SceneManager* sceneManagerInstance;
 
-public:
 	// Initialization
 	SceneManager(ushort* clientDimensions, HWND* windowHandle, uchar targetFPS);
+	SceneManager(SceneManager const&) = delete;
+	SceneManager operator= (SceneManager const&) = delete;
 
+public:
 	// Update
 	void Update();
 
 	// Accessors
 	SceneGraph* GetScenePtr() { return scenePtr; }
+	static SceneManager* GetInstance(ushort* clientDimensions = nullptr, HWND* windowHandle = nullptr, uchar targetFPS = 0);
 
 	// Clean up
 	~SceneManager();

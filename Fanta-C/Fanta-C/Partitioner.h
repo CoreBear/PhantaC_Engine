@@ -12,11 +12,19 @@ class SceneObject;
 
 class Partitioner
 {
-	ushort iterators[2];
+	static Partitioner*	partitionerInstance;
+	ushort				iterators[2];
+
+	Partitioner() { return; }
+	Partitioner(Partitioner const&) = delete;
+	Partitioner operator=(Partitioner const&) = delete;
 
 public:
 	// Update
 	void Update(std::vector<SceneObject*>* collidableObject, std::vector<class PartitionCell*>* gridCells);
+
+	// Accessors
+	static Partitioner* GetInstance();
 };
 
 #endif

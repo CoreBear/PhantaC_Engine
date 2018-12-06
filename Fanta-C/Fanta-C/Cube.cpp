@@ -20,9 +20,9 @@ void Cube::CreateMesh(float inWidth, float inHeight, float inDepth, float inScal
 {
 	for (reusableIterator = 0; reusableIterator < numberOfLinesTriIndicesVertices[2]; ++reusableIterator)
 	{
-		vertices[reusableIterator].localPos.x = (reusableIterator % 4 == 0 || reusableIterator % 4 == 3) ? -inWidth * inScale : inWidth * inScale;
-		vertices[reusableIterator].localPos.y = (reusableIterator % 4 < 2) ? inHeight * inScale : -inHeight * inScale;
-		vertices[reusableIterator].localPos.z = (reusableIterator < 4) ? -inDepth * inScale : inDepth * inScale;
+		vertices[reusableIterator].localPos.m128_f32[0] = (reusableIterator % 4 == 0 || reusableIterator % 4 == 3) ? -inWidth * inScale : inWidth * inScale;
+		vertices[reusableIterator].localPos.m128_f32[1] = (reusableIterator % 4 < 2) ? inHeight * inScale : -inHeight * inScale;
+		vertices[reusableIterator].localPos.m128_f32[2] = (reusableIterator < 4) ? -inDepth * inScale : inDepth * inScale;
 	}
 
 	char tempIndices[] =

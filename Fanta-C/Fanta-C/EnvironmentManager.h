@@ -12,21 +12,23 @@ class EnvironmentManager
 {	
 	// Game Variables
 	class AudioManager*						audioManagerPtr;
+	static EnvironmentManager*				environmentManagerInstance;
 	class InputManager*						inputManagerPtr;
 	MSG*									msg;
 	class PhysicsManager*					physicsManagerPtr;
 	class Renderer*							rendererPtr;
 	class SceneManager*						sceneManagerPtr;
-	const static char						numberOfThreads = 3;
+	const static char						numberOfThreads = 2;
 	std::thread*							threads[numberOfThreads];
 	const char								targetFPS = 60;
-	class UiManager*						uiManagerPtr;
 
-public:
 
 	// Initialization
 	EnvironmentManager(HWND* inWindowHandle, ushort* clientDimensions);
+	EnvironmentManager(EnvironmentManager const&) = delete;
+	EnvironmentManager operator=(EnvironmentManager const&) = delete;
 
+public:
 	// Public Interface
 	/// Summary
 	/// Starts the threads that will run player input and update all
@@ -49,7 +51,9 @@ public:
 	void RunPhysics();
 	void RunRenderer();
 	void RunScene();
-	void RunUI();
+
+	// Accessors
+	static EnvironmentManager* GetInstance(HWND* inWindowHandle, ushort* clientDimensions);
 
 	// Clean Up
 	~EnvironmentManager();

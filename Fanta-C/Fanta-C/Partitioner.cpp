@@ -6,6 +6,10 @@
 #include "SceneObject.h"
 #pragma endregion
 
+#pragma region Forward Declarations
+Partitioner* Partitioner::partitionerInstance = nullptr;
+#pragma endregion
+
 #pragma region Update
 void Partitioner::Update(std::vector<SceneObject*>* collidableObject, std::vector<PartitionCell*>* gridCells)
 {
@@ -30,6 +34,21 @@ void Partitioner::Update(std::vector<SceneObject*>* collidableObject, std::vecto
 				gridCells->at(iterators[0])->RemoveObject(collidableObject->at(iterators[1]));
 			}
 		}
+	}
+}
+#pragma endregion
+
+#pragma region Accessors
+Partitioner * Partitioner::GetInstance()
+{
+	// If instance is already created, return it
+	if (partitionerInstance) return partitionerInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		partitionerInstance = new Partitioner;
+		return partitionerInstance;
 	}
 }
 #pragma endregion

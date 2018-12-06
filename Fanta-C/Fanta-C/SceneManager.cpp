@@ -6,6 +6,10 @@
 #include "TestScene.h"
 #pragma endregion
 
+#pragma region Forward Declarations
+SceneManager* SceneManager::sceneManagerInstance = nullptr;
+#pragma endregion
+
 #pragma region Initialization
 SceneManager::SceneManager(ushort* clientDimensions, HWND* windowHandle, uchar targetFPS)
 {		
@@ -18,6 +22,21 @@ SceneManager::SceneManager(ushort* clientDimensions, HWND* windowHandle, uchar t
 void SceneManager::Update()
 {	
 	scenePtr->Update();
+}
+#pragma endregion
+
+#pragma region Accessors
+SceneManager * SceneManager::GetInstance(ushort * clientDimensions, HWND * windowHandle, uchar targetFPS)
+{
+	// If instance is already created, return it
+	if (sceneManagerInstance) return sceneManagerInstance;
+
+	// If instance is not created, create it and return it
+	else
+	{
+		sceneManagerInstance = new SceneManager(clientDimensions, windowHandle, targetFPS);
+		return sceneManagerInstance;
+	}
 }
 #pragma endregion
 

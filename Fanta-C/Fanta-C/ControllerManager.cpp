@@ -3,6 +3,10 @@
 #include "ControllerManager.h"			// Connection to declarations
 #pragma endregion
 
+#pragma region Forward Declarations
+ControllerManager* ControllerManager::controllerManagerInstance = nullptr;
+#pragma endregion
+
 #pragma region Bumpers
 bool ControllerManager::LeftBumper()
 {
@@ -211,5 +215,20 @@ bool ControllerManager::VibrateOn(int powerLeft, int powerRight)
 	}
 	else
 		return false;
+}
+#pragma endregion
+
+#pragma region Accessors
+ControllerManager * ControllerManager::GetInstance()
+{
+	// If instance has been created, return it
+	if (controllerManagerInstance) return controllerManagerInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		controllerManagerInstance = new ControllerManager;
+		return controllerManagerInstance;
+	}
 }
 #pragma endregion

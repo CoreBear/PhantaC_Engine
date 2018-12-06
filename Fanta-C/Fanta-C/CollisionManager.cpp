@@ -8,11 +8,15 @@
 #include "SceneManager.h"
 #pragma endregion
 
+#pragma region Forward Declarations
+CollisionManager* CollisionManager::collisionManagerInstance = nullptr;
+#pragma endregion
+
 #pragma region Initialization
 CollisionManager::CollisionManager(SceneObject* grid)
 {
-	boundingBoxCollisionPtr = new BoundingBoxCollision; 
-	partitioningManagerPtr = new PartitioningManager(grid);
+	boundingBoxCollisionPtr = BoundingBoxCollision::GetInstance(); 
+	partitioningManagerPtr = PartitioningManager::GetInstance(grid);
 }
 #pragma endregion
 
@@ -21,6 +25,21 @@ void CollisionManager::Update(std::vector<SceneObject*>* collidableObject)
 {
 	partitioningManagerPtr->Update(collidableObject);
 	boundingBoxCollisionPtr->Update(partitioningManagerPtr->GetPartitionGrid()->GetGridCells());
+}
+#pragma endregion
+
+#pragma region Accessors
+CollisionManager * CollisionManager::GetInstance(SceneObject * grid)
+{
+	// If instance is already created, return it
+	if (collisionManagerInstance) return collisionManagerInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		collisionManagerInstance = new CollisionManager(grid);
+		return collisionManagerInstance;
+	}
 }
 #pragma endregion
 

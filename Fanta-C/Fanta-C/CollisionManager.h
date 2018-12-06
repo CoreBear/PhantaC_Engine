@@ -10,14 +10,20 @@ class SceneObject;
 class CollisionManager
 {
 	class BoundingBoxCollision* boundingBoxCollisionPtr;
+	static CollisionManager*	collisionManagerInstance;
 	class PartitioningManager*	partitioningManagerPtr;
 
-public:
 	// Initialization
 	CollisionManager(SceneObject* grid);
+	CollisionManager(CollisionManager const&) = delete;
+	CollisionManager operator=(CollisionManager const&) = delete;
 
+public:
 	// Update
 	void Update(std::vector<SceneObject*>* collidableObjects);
+
+	// Accessors
+	static CollisionManager* GetInstance(SceneObject* grid = nullptr);
 
 	// Clean Up
 	~CollisionManager();

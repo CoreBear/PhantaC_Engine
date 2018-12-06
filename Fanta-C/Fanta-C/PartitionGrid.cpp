@@ -8,6 +8,10 @@
 #include "PartitionCell.h"
 #pragma endregion
 
+#pragma region Forward Declarations
+PartitionGrid* PartitionGrid::partitionGridInstance = nullptr;
+#pragma endregion
+
 #pragma region Initialization
 PartitionGrid::PartitionGrid(SceneObject* grid)
 {
@@ -42,6 +46,21 @@ PartitionGrid::PartitionGrid(SceneObject* grid)
 		position[0] = -edgeDistance;
 		// Move y-axis position up one
 		position[1] += cellDepthWidth;
+	}
+}
+#pragma endregion
+
+#pragma region Accessors
+PartitionGrid * PartitionGrid::GetInstance(SceneObject * grid)
+{
+	// If instance is already created, return it
+	if (partitionGridInstance) return partitionGridInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		partitionGridInstance = new PartitionGrid(grid);
+		return partitionGridInstance;
 	}
 }
 #pragma endregion

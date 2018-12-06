@@ -13,10 +13,10 @@
 #include "SceneManager.h"
 #include "SceneObject.h"
 #include "SplashManager.h"
-#include "UiManager.h"
 #pragma endregion
 
-#pragma region Global Variables (Do This Better)
+#pragma region Forward Declarations
+EnvironmentManager* EnvironmentManager::environmentManagerInstance = nullptr;
 float GlobalTime::deltaTime = 0;
 #pragma endregion
 
@@ -27,21 +27,16 @@ EnvironmentManager::EnvironmentManager(HWND* inWindowHandle, ushort* clientDimen
 	handle = inWindowHandle;
 
 	#pragma region Module Creation
-	audioManagerPtr = new AudioManager;
+	audioManagerPtr = AudioManager::GetInstance();
 
-	inputManagerPtr = new InputManager;
+	sceneManagerPtr = SceneManager::GetInstance(clientDimensions, inWindowHandle, targetFPS);
 
-	sceneManagerPtr = new SceneManager(clientDimensions, inWindowHandle, targetFPS);
+	inputManagerPtr = InputManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetPlayer());
 
-	physicsManagerPtr = new PhysicsManager(sceneManagerPtr->GetScenePtr()->GetGrid());
+	physicsManagerPtr = PhysicsManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetGrid());
 	
-	rendererPtr = new Renderer(inWindowHandle, sceneManagerPtr, clientDimensions, targetFPS, sceneManagerPtr->GetScenePtr()->GetCamera());
-	
-	uiManagerPtr = new UiManager;
+	rendererPtr = Renderer::GetInstance(inWindowHandle, sceneManagerPtr, clientDimensions, targetFPS, sceneManagerPtr->GetScenePtr()->GetCamera());
 	#pragma endregion
-
-	// Runs splash screen(s)
-	SplashManager splashManager;
 }
 #pragma endregion
 
@@ -67,7 +62,21 @@ void EnvironmentManager::RunInput() { inputManagerPtr->Update(); }
 void EnvironmentManager::RunPhysics() { physicsManagerPtr->Update(sceneManagerPtr->GetScenePtr()->GetCollidableObjects()); }
 void EnvironmentManager::RunRenderer() { rendererPtr->Update(sceneManagerPtr->GetScenePtr()->GetRenderableObjects(), sceneManagerPtr->GetScenePtr()->GetCamera()); }
 void EnvironmentManager::RunScene() { sceneManagerPtr->Update(); }
-void EnvironmentManager::RunUI() { uiManagerPtr->Update(); }
+#pragma endregion
+
+#pragma region Accessors
+EnvironmentManager* EnvironmentManager::GetInstance(HWND * inWindowHandle, ushort * clientDimensions)
+{
+	// If instance has already been created
+	if (environmentManagerInstance) return environmentManagerInstance;
+
+	// If instance has not been created, create one and return it
+	else
+	{
+		environmentManagerInstance = new EnvironmentManager(inWindowHandle, clientDimensions);
+		return environmentManagerInstance;
+	}
+}
 #pragma endregion
 
 #pragma region Clean Up
@@ -78,7 +87,6 @@ EnvironmentManager::~EnvironmentManager()
 	if (physicsManagerPtr) delete physicsManagerPtr;
 	if (rendererPtr) delete rendererPtr;
 	if (sceneManagerPtr) delete sceneManagerPtr;
-	if (uiManagerPtr) delete uiManagerPtr;
 
 	// Delete all threads
 	for (uchar i = 0; i < numberOfThreads; ++i)

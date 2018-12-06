@@ -3,6 +3,6 @@
 
 #include "GlobalDirectX.h"
 
-struct SIMPLE_VERTEX { DirectX::XMFLOAT3 localPos; DirectX::XMVECTORF32 color; };
+struct SIMPLE_VERTEX { XMVECTOR localPos; XMVECTORF32 color; };
 
 #endif

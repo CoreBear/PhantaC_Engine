@@ -6,6 +6,7 @@
 #include "ObjectManager.h"
 #include "Pyramid.h"
 #include "SceneObject.h"
+#include "ScriptManager.h"
 #include "Sphere.h"
 #include "Test.h"
 #pragma endregion
@@ -37,14 +38,17 @@ TestScene::TestScene(ushort* clientDimensions) : SceneGraph(clientDimensions)
 	//	AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x), 3, 50));
 
 	// This is 3375 objects - Runs great in release
-	//for (x = -35; x < 36; x += 5)
-	//	for (y = -35; y < 36; y += 5)
-	//		for (z = -35; z < 36; z += 5)
-	//			AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(x, y, z, 1)));
-	//
-	//// Adding scripts to objects - Make sure this number is within the range of cube numbers
-	//for (x = 1500; x < 3300; ++x)
-	//	AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x), 3, 50));
+	for (x = -35; x < 36; x += 5)
+		for (y = -35; y < 36; y += 5)
+			for (z = -35; z < 36; z += 5)
+				AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(x, y, z, 1)));
+	
+	// Adding scripts to objects - Make sure this number is within the range of cube numbers
+	for (x = 1500; x < 3300; ++x)
+	{
+		AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x), 3, 50));
+		sceneObjects.at(x)->GetMyScripts()->at(0)->AssignTarget(&sceneCameraPtr->GetViewMatrix()->r[3]);
+	}
 
 	// This is 1000 objects - Runs great in release, not useable in debug
 	//for (x = -10; x < 36; x += 5)
@@ -61,8 +65,8 @@ TestScene::TestScene(ushort* clientDimensions) : SceneGraph(clientDimensions)
 	//	for (y = -10; y < 31; y += 5)
 	//		for (z = -10; z < 31; z += 5)
 	//			AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(x, y, z, 1)));
-
-	// Adding scripts to objects - Make sure this number is within the range of cube numbers
+	//
+	//// Adding scripts to objects - Make sure this number is within the range of cube numbers
 	//for (x = 300; x < 729; ++x)
 	//	AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x), 3, 50));
 
@@ -71,10 +75,13 @@ TestScene::TestScene(ushort* clientDimensions) : SceneGraph(clientDimensions)
 	//	for (y = -10; y < 11; y += 5)
 	//		for (z = -10; z < 11; z += 5)
 	//			AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(x, y, z, 1)));
-
-	// Adding scripts to objects - Make sure this number is within the range of cube numbers
-	//for (x = 50; x < 125; ++x)
+	//
+	//// Adding scripts to objects - Make sure this number is within the range of cube numbers
+	//for (x = 50; x < 120; ++x)
+	//{
 	//	AddScript(sceneObjects.at(x), new Test(sceneObjects.at(x), 3, 50));
+	//	sceneObjects.at(x)->GetMyScripts()->at(0)->AssignTarget(&sceneCameraPtr->GetViewMatrix()->r[3]);
+	//}
 
 	// This is 64 objects - Runs well in both
 	//for (x = -7; x < 9; x += 5)
@@ -88,15 +95,15 @@ TestScene::TestScene(ushort* clientDimensions) : SceneGraph(clientDimensions)
 	
 	// This is just 1 object
 	AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(5, 0, 0, 1)));
-	AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(4, 2.5f, 0, 1)));
+	AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(2.5f, 0, 0, 1)));
 	//AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(7.25f, 0, 0, 1)));
 	//AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(5, 0, 2.25f, 1)));
 	//AddObjectToScene(new ObjectManager(new Cube(1, 1, 1), true, true, XMVectorSet(5, 0, -2.25f, 1)));
 
-	AddScript(sceneObjects.at(1), new Test(sceneObjects.at(1), 3, 100));
+	AddScript(sceneObjects.at(1), new Test(sceneObjects.at(1), 3, 0.5f));
 	
 	// Example of assigning targets for lookAt and turnTowards
-	//sceneObjects.at(2)->myScripts.at(0)->AssignTarget(sceneObjects.at(0)->object->GetTransform()->GetPosition());
+	sceneObjects.at(1)->GetMyScripts()->at(0)->AssignTarget(&sceneCameraPtr->GetViewMatrix()->r[3]);
 	
 	// Rescaling objects - Will resize from current size, not 1
 	//GlobalTransform::Scale(.5f, .5f, .5f, sceneObjects.at(2)->object->GetColliderManager(), sceneObjects.at(2)->object->GetTransform()->GetLocalMatrix());

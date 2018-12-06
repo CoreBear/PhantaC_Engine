@@ -20,17 +20,17 @@ void Sphere::CreateMesh(float inWidth, float inHeight, float inDepth, float inSc
 	// Horizontal circle
 	for (reusableIterator = 0; reusableIterator < halfNumberOfVertices; ++reusableIterator)
 	{
-		vertices[reusableIterator].localPos.x = cos(XMConvertToRadians(reusableIterator)) * inWidth * inScale;
-		vertices[reusableIterator].localPos.y = 0;
-		vertices[reusableIterator].localPos.z = sin(XMConvertToRadians(reusableIterator)) * inDepth * inScale;
+		vertices[reusableIterator].localPos.m128_f32[0] = cos(XMConvertToRadians(reusableIterator)) * inWidth * inScale;
+		vertices[reusableIterator].localPos.m128_f32[1] = 0;
+		vertices[reusableIterator].localPos.m128_f32[2] = sin(XMConvertToRadians(reusableIterator)) * inDepth * inScale;
 	}
 
 	// Vertical circle
 	for (; reusableIterator < numberOfVertices; ++reusableIterator)
 	{
-		vertices[reusableIterator].localPos.x = cos(XMConvertToRadians(reusableIterator)) * inWidth * inScale;
-		vertices[reusableIterator].localPos.y = sin(XMConvertToRadians(reusableIterator)) * inHeight * inScale;
-		vertices[reusableIterator].localPos.z = 0;
+		vertices[reusableIterator].localPos.m128_f32[0] = cos(XMConvertToRadians(reusableIterator)) * inWidth * inScale;
+		vertices[reusableIterator].localPos.m128_f32[1] = sin(XMConvertToRadians(reusableIterator)) * inHeight * inScale;
+		vertices[reusableIterator].localPos.m128_f32[2] = 0;
 	}
 }
 #pragma endregion

@@ -10,7 +10,24 @@
 #include "SceneObject.h"
 #pragma endregion
 
+#pragma region Forward Declarations
+BoundingBoxCollision* BoundingBoxCollision::bbCollisionInstance = nullptr;
+#pragma endregion
+
 #pragma region Update
+void BoundingBoxCollision::Update(std::vector<PartitionCell*>* gridCells)
+{
+	// For each cell
+	for (collisionIterators[0] = 0; collisionIterators[0] < gridCells->size(); ++collisionIterators[0])
+	{
+		// If there is more than one object in cell, run collision on all objects in cell
+		if (gridCells->at(collisionIterators[0])->GetObjectsInsideOfMe()->size() > 1)
+			AssignCollisionObjects(gridCells->at(collisionIterators[0])->GetObjectsInsideOfMe());
+	}
+}
+#pragma endregion
+
+#pragma region Private
 void BoundingBoxCollision::AssignCollisionObjects(std::vector<SceneObject*>* collidableObjects)
 {
 	// For each collidable game object
@@ -58,7 +75,7 @@ void BoundingBoxCollision::CheckForCollision()
 
 				// Inform event handler
 				EventHandler::HandleEvent(GlobalEventVariables::NEW_SEPARATION, objectsBeingChecked[0]);
-			}			
+			}
 
 			// Stop checking for collision. No collision occuring
 			return;
@@ -87,14 +104,19 @@ void BoundingBoxCollision::CheckForCollision()
 	// Add collidee to container. There's a check on the other side
 	boxBeingChecked[0]->AddCollidingObject(objectsBeingChecked[1]);
 }
-void BoundingBoxCollision::Update(std::vector<PartitionCell*>* gridCells)
+#pragma endregion
+
+#pragma region Accessors
+BoundingBoxCollision * BoundingBoxCollision::GetInstance()
 {
-	// For each cell
-	for (collisionIterators[0] = 0; collisionIterators[0] < gridCells->size(); ++collisionIterators[0])
+	// If instance is created, return it
+	if (bbCollisionInstance) return bbCollisionInstance;
+
+	// If instance has not been created, create it and return it
+	else
 	{
-		// If there is more than one object in cell, run collision on all objects in cell
-		if (gridCells->at(collisionIterators[0])->GetObjectsInsideOfMe()->size() > 1)
-			AssignCollisionObjects(gridCells->at(collisionIterators[0])->GetObjectsInsideOfMe());
+		bbCollisionInstance = new BoundingBoxCollision;
+		return bbCollisionInstance;
 	}
 }
 #pragma endregion
