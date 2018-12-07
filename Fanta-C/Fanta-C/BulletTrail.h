@@ -6,6 +6,8 @@
 
 class BulletTrail : public Line
 {
+	const static float lifeTime;
+
 public:
 	// Update
 	void Update() override { return; }

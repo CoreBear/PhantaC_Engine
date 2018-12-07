@@ -10,7 +10,7 @@ PhysicsManager* PhysicsManager::physicsManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Update
-void PhysicsManager::Update(std::vector<SceneObject*>* collidableObjects)
+void PhysicsManager::Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects)
 {
 	collisionManager->Update(collidableObjects);
 }

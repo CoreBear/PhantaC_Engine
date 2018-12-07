@@ -1,8 +1,9 @@
 #ifndef _PARTITIONING_MANAGER_H
 #define _PARTITIONING_MANAGER_H
 
-// System Headers
-#include <vector>
+// My Headers
+#include "GlobalSceneVariables.h"
+#include "MyArray.h"
 
 // Forward Declarations
 class SceneObject;
@@ -20,7 +21,7 @@ class PartitioningManager
 
 public:
 	// Update
-	void Update(std::vector<SceneObject*>* collidableObjects);
+	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects);
 
 	// Accessors
 	PartitionGrid* GetPartitionGrid() { return partitionGridPtr; }

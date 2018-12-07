@@ -1,11 +1,10 @@
 #ifndef _PARTITIONER_H
 #define _PARTITIONER_H
 
-// System Headers
-#include <vector>
-
 // My Headers
+#include "GlobalSceneVariables.h"
 #include "GlobalTypedefs.h"
+#include "MyArray.h"
 
 // Forward Declarations
 class SceneObject;
@@ -21,7 +20,7 @@ class Partitioner
 
 public:
 	// Update
-	void Update(std::vector<SceneObject*>* collidableObject, std::vector<class PartitionCell*>* gridCells);
+	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, class PartitionGrid* grid);
 
 	// Accessors
 	static Partitioner* GetInstance();

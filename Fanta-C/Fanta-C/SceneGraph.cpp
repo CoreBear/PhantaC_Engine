@@ -2,9 +2,9 @@
 // My Headers
 #include "SceneGraph.h"			// Connection to declarations
 
+#include "AgentManager.h"
 #include "Camera.h"
 #include "Grid.h"
-#include "ObjectManager.h"
 #include "PlayerManager.h"
 #include "SceneObject.h"
 #include "ScriptManager.h"
@@ -18,13 +18,13 @@ SceneGraph::SceneGraph(ushort* clientDimensions)
 	// Every scene needs a camera and for now a player and a grid
 	// Create Camera - Camera needs to always be first
 	sceneCameraPtr = Camera::GetInstance(clientDimensions);
-	//AddObjectToScene(new ObjectManager(new Camera(clientDimensions)));
+	//AddObjectToScene(new SceneObject(new Camera(clientDimensions)));
 
 	// Add player script to camera scene object and and camera to player script
-	playerPtr = new PlayerManager(sceneCameraPtr, this, 20, 100);
+	playerPtr = PlayerManager::GetInstance(sceneCameraPtr, this, 20, 100);
 
 	// Create Grid
-	AddObjectToScene(new ObjectManager(new Grid, false, true));
+	AddObjectToScene(new SceneObject(new Grid, false, true));
 	#pragma endregion
 }
 #pragma endregion
@@ -32,27 +32,34 @@ SceneGraph::SceneGraph(ushort* clientDimensions)
 #pragma region Update
 void SceneGraph::Update()
 {
+	//DON'T FORGET---------------------------Things will be popping in and out of the scene...make sure to wait until after update of every script before removing 
+	//things from the sceneobjects container, so it won't conflict with the looping. Adding things is fine, so long as we add to the back of the container
+
 	// Update player
 	playerPtr->Update();
 
 	// Update every object in the scene
-	for (graphIterator[0] = 0; graphIterator[0] < sceneObjects.size(); ++graphIterator[0])
-		sceneObjects.at(graphIterator[0])->Update();
+	for (graphIterator[0] = 0; graphIterator[0] < sceneObjects.GetSize(); ++graphIterator[0])
+		static_cast<SceneObject*>(sceneObjects.At(graphIterator[0]))->Update();
 }
 #pragma endregion
 
 #pragma region Public Interface
-void SceneGraph::AddObjectToScene(ObjectManager* object)
+void SceneGraph::AddObjectToScene(SceneObject* object)
 {
-	// Create new scene object
-	SceneObject* newSceneObject = new SceneObject(object);
+	if (sceneObjects.GetSize() < GlobalSceneVariables::maxNumberOfSceneObjects)
+	{
+		// Add new object to scene objects
+		sceneObjects.AddToBack(object);
 
-	// Add new object to scene objects
-	sceneObjects.push_back(newSceneObject);
+		// Put into containers to run collisions and rendering on it
+		if (object->GetColliderManager()) collidableObjects.AddToBack(object);
+		if (object->GetRenderable()) renderableObjects.AddToBack(object);
+	}
 
-	// Put into containers to run collisions and rendering on it
-	if (object->GetColliderManager()) collidableObjects.push_back(newSceneObject);
-	if (object->GetRenderable()) renderableObjects.push_back(object);
+	// This is specifically here to let you know that you've tried to instantiate more objects than the scene allows
+	else
+		char mistake = 0;
 }
 void SceneGraph::AddScript(SceneObject* object, ScriptManager* script)
 {
@@ -67,30 +74,33 @@ void SceneGraph::ChildObjectToParent(SceneObject* child, SceneObject* parent)
 void SceneGraph::RemoveObjectFromCollide(SceneObject* object)
 {
 	// For each collidable object
-	for (graphIterator[2] = 0; graphIterator[2] < collidableObjects.size(); ++graphIterator[2])
+	for (graphIterator[2] = 0; graphIterator[2] < collidableObjects.GetSize(); ++graphIterator[2])
 	{
 		// If object is a collidable object, remove it
-		if (object == collidableObjects.at(graphIterator[2]))
-			collidableObjects.erase(collidableObjects.begin() + graphIterator[2]);
+		if (object == collidableObjects.At(graphIterator[2]))
+			collidableObjects.RemoveAt(graphIterator[2]);
+		//collidableObjects.erase(collidableObjects.begin() + graphIterator[2]);
 	}
 }
-void SceneGraph::RemoveObjectFromRender(ObjectManager* object)
+void SceneGraph::RemoveObjectFromRender(SceneObject* object)
 {
 	// For each renderable object
-	for (graphIterator[2] = 0; graphIterator[2] < renderableObjects.size(); ++graphIterator[2])
+	for (graphIterator[2] = 0; graphIterator[2] < renderableObjects.GetSize(); ++graphIterator[2])
 	{
 		// If oject is a renderable object, remove it
-		if (object == renderableObjects.at(graphIterator[2]))
-			renderableObjects.erase(renderableObjects.begin() + graphIterator[2]);
+		if (object == renderableObjects.At(graphIterator[2]))
+			renderableObjects.RemoveAt(graphIterator[2]);
+		//renderableObjects.erase(renderableObjects.begin() + graphIterator[2]);
 	}
 }
 void SceneGraph::RemoveObjectFromScene(SceneObject* object)
 {
 	RemoveObjectFromCollide(object);
-	RemoveObjectFromRender(object->GetMyObject());
+	RemoveObjectFromRender(object);
 
 	// Remove object from scene
-	sceneObjects.erase(std::remove(sceneObjects.begin(), sceneObjects.end(), object), sceneObjects.end());
+	sceneObjects.Remove(object);
+	//sceneObjects.erase(std::remove(sceneObjects.begin(), sceneObjects.end(), object), sceneObjects.end());
 
 	delete object;
 }
@@ -122,8 +132,13 @@ SceneGraph::~SceneGraph()
 	// Delete camera
 	delete sceneCameraPtr;
 
-	// Delete all scene objects
-	for (graphIterator[2] = 0; graphIterator[2] < sceneObjects.size(); ++graphIterator[2])
-		if (sceneObjects.at(graphIterator[2])) delete sceneObjects.at(graphIterator[2]);
+	for (graphIterator[0] = 0; graphIterator[0] < sceneObjects.GetSize(); ++graphIterator[0])
+	{
+		if (sceneObjects.At(graphIterator[0]))
+		{
+			delete sceneObjects.At(graphIterator[0]);
+			sceneObjects.At(graphIterator[0]);
+		}
+	}
 }
 #pragma endregion

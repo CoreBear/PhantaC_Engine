@@ -1,8 +1,10 @@
 #ifndef _COLLISION_MANAGER_H
 #define _COLLISION_MANAGER_H
 
-// System Headers
-#include <vector>
+// My Headers
+#include "GlobalTypedefs.h"
+#include "GlobalSceneVariables.h"
+#include "MyArray.h"
 
 // Forward Declarations
 class SceneObject;
@@ -20,7 +22,7 @@ class CollisionManager
 
 public:
 	// Update
-	void Update(std::vector<SceneObject*>* collidableObjects);
+	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects);
 
 	// Accessors
 	static CollisionManager* GetInstance(SceneObject* grid = nullptr);

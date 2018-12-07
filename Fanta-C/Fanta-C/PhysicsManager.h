@@ -1,11 +1,11 @@
 #ifndef _PHYSICS_MANAGER_H
 #define _PHYSICS_MANAGER_H
 
-// System Headers
-#include <vector>
-
 // My Headers
 #include "CollisionManager.h"
+#include "GlobalTypedefs.h"
+#include "GlobalSceneVariables.h"
+#include "MyArray.h"
 
 // Forward Declarations
 class SceneObject;
@@ -22,7 +22,7 @@ class PhysicsManager
 
 public:
 	// Update
-	void Update(std::vector<SceneObject*>* collidableObjects);
+	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects);
 
 	// Accessors
 	static PhysicsManager* GetInstance(SceneObject* grid = nullptr);

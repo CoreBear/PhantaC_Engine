@@ -1,11 +1,9 @@
 #ifndef _PARTITION_GRID_H
 #define _PARTITION_GRID_H
 
-// System Header
-#include <vector>
-
 // My Headers
 #include "GlobalTypedefs.h"
+#include "PartitionCell.h"
 
 // Forward Declarations
 class SceneObject;
@@ -13,7 +11,8 @@ class SceneObject;
 class PartitionGrid
 {
 	static PartitionGrid*				partitionGridInstance;
-	std::vector<class PartitionCell*>	gridCells;
+	class PartitionCell*				gridCells;
+	uchar								numberOfTotalCells;
 
 	// Initialization	
 	PartitionGrid(SceneObject* grid);
@@ -23,10 +22,11 @@ class PartitionGrid
 public:
 	// Accessors
 	static PartitionGrid* GetInstance(SceneObject* grid);
-	std::vector<PartitionCell*>* GetGridCells() { return &gridCells; }
+	PartitionCell* GetGridCells() { return gridCells; }
+	uchar GetNumberOfTotalCells() { return numberOfTotalCells; }
 
 	// Clean Up
-	~PartitionGrid();
+	~PartitionGrid() { delete[] gridCells; }
 };
 
 #endif

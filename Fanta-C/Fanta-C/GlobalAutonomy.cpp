@@ -2,11 +2,10 @@
 // My Headers
 #include "GlobalAutonomy.h"			// Connection to declarations
 
+#include "AgentManager.h"
 #include "GlobalMath.h"
 #include "GlobalTransform.h"
 #include "GlobalWorldVariables.h"
-#include "ObjectManager.h"
-#include "Test.h"
 #pragma endregion
 
 #pragma region MyRegion
@@ -17,7 +16,7 @@ void GlobalAutonomy::LookAt(XMMATRIX* myMatrix, XMVECTOR* targetPosition)
 	GlobalMath::Normalize(&myMatrix->r[2]);
 
 	// Temp up for generating X (right)
-	myMatrix->r[1] = worldUp;
+	myMatrix->r[1] = GlobalWorldVariables::worldUp;
 
 	// Generate and normalize X (right)
 	myMatrix->r[0] = *GlobalMath::CrossProduct(&myMatrix->r[1], &myMatrix->r[2]);
@@ -27,9 +26,9 @@ void GlobalAutonomy::LookAt(XMMATRIX* myMatrix, XMVECTOR* targetPosition)
 	myMatrix->r[1] = *GlobalMath::CrossProduct(&myMatrix->r[2], &myMatrix->r[0]);
 	GlobalMath::Normalize(&myMatrix->r[1]);
 }
-void GlobalAutonomy::TurnTo(Test* myMovingScript, XMVECTOR* targetPosition)
+void GlobalAutonomy::TurnTo(AgentManager* myMovingScript, XMVECTOR* targetPosition)
 {
-	myMatrix = myMovingScript->GetMyObject()->GetMyObject()->GetTransform()->GetLocalMatrix();
+	myMatrix = myMovingScript->GetMyObject()->GetTransform()->GetLocalMatrix();
 
 	// Direction to target
 	targetVector = GlobalMath::VectorSubtraction(targetPosition, &myMatrix->r[3]);

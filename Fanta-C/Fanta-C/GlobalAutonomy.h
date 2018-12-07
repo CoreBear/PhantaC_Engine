@@ -12,7 +12,7 @@ class GlobalAutonomy
 {
 public:
 	static void LookAt(XMMATRIX* myMatrix, XMVECTOR* targetPosition);
-	static void TurnTo(class Test* myMovingScript, XMVECTOR* targetPosition);
+	static void TurnTo(class AgentManager* myMovingScript, XMVECTOR* targetPosition);
 };
 
 #endif

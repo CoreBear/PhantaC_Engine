@@ -21,10 +21,10 @@ CollisionManager::CollisionManager(SceneObject* grid)
 #pragma endregion
 
 #pragma region Update
-void CollisionManager::Update(std::vector<SceneObject*>* collidableObject)
+void CollisionManager::Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects)
 {
-	partitioningManagerPtr->Update(collidableObject);
-	boundingBoxCollisionPtr->Update(partitioningManagerPtr->GetPartitionGrid()->GetGridCells());
+	partitioningManagerPtr->Update(collidableObjects);
+	boundingBoxCollisionPtr->Update(partitioningManagerPtr->GetPartitionGrid());
 }
 #pragma endregion
 

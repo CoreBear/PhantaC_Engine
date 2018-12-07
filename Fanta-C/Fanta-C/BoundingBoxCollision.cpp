@@ -3,10 +3,10 @@
 #include "BoundingBoxCollision.h"		// Connection to declarations
 
 #include "BoundingBox.h"
-#include "EventHandler.h"
 #include "GlobalEventVariables.h"
-#include "ObjectManager.h"
+#include "GlobalInputVariables.h"
 #include "PartitionCell.h"
+#include "PartitionGrid.h"
 #include "SceneObject.h"
 #pragma endregion
 
@@ -15,37 +15,37 @@ BoundingBoxCollision* BoundingBoxCollision::bbCollisionInstance = nullptr;
 #pragma endregion
 
 #pragma region Update
-void BoundingBoxCollision::Update(std::vector<PartitionCell*>* gridCells)
+void BoundingBoxCollision::Update(PartitionGrid* grid)
 {
 	// For each cell
-	for (collisionIterators[0] = 0; collisionIterators[0] < gridCells->size(); ++collisionIterators[0])
+	for (collisionIterators[0] = 0; collisionIterators[0] < grid->GetNumberOfTotalCells(); ++collisionIterators[0])
 	{
 		// If there is more than one object in cell, run collision on all objects in cell
-		if (gridCells->at(collisionIterators[0])->GetObjectsInsideOfMe()->size() > 1)
-			AssignCollisionObjects(gridCells->at(collisionIterators[0])->GetObjectsInsideOfMe());
+		if (grid->GetGridCells()[collisionIterators[0]].GetObjectsInsideOfMe()->GetSize() > 1)
+			AssignCollisionObjects(grid->GetGridCells()[collisionIterators[0]].GetObjectsInsideOfMe());
 	}
 }
 #pragma endregion
 
 #pragma region Private
-void BoundingBoxCollision::AssignCollisionObjects(std::vector<SceneObject*>* collidableObjects)
+void BoundingBoxCollision::AssignCollisionObjects(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects)
 {
 	// For each collidable game object
-	for (collisionIterators[1] = 0; collisionIterators[1] < collidableObjects->size(); ++collisionIterators[1])
+	for (collisionIterators[1] = 0; collisionIterators[1] < collidableObjects->GetSize(); ++collisionIterators[1])
 	{
 		// The collider being checked against all other collidees
-		objectsBeingChecked[0] = collidableObjects->at(collisionIterators[1]);
-		boxBeingChecked[0] = objectsBeingChecked[0]->GetMyObject()->GetColliderManager()->GetBoundingBox();
+		objectsBeingChecked[0] = collidableObjects->At(collisionIterators[1]);
+		boxBeingChecked[0] = objectsBeingChecked[0]->GetColliderManager()->GetBoundingBox();
 
 		// For each collidable game object
-		for (collisionIterators[2] = 0; collisionIterators[2] < collidableObjects->size(); ++collisionIterators[2])
+		for (collisionIterators[2] = 0; collisionIterators[2] < collidableObjects->GetSize(); ++collisionIterators[2])
 		{
 			// If collider position is not the same as collidee position
 			if (collisionIterators[1] != collisionIterators[2])
 			{
 				// Assign collidee
-				objectsBeingChecked[1] = collidableObjects->at(collisionIterators[2]);
-				boxBeingChecked[1] = objectsBeingChecked[1]->GetMyObject()->GetColliderManager()->GetBoundingBox();
+				objectsBeingChecked[1] = collidableObjects->At(collisionIterators[2]);
+				boxBeingChecked[1] = objectsBeingChecked[1]->GetColliderManager()->GetBoundingBox();
 				
 				CheckForCollision();
 			}
@@ -74,7 +74,7 @@ void BoundingBoxCollision::CheckForCollision()
 					boxBeingChecked[0]->ToggleColliding();
 
 				// Inform event handler
-				EventHandler::HandleEvent(GlobalEventVariables::NEW_SEPARATION, objectsBeingChecked[0]);
+				eventManagerPtr->HandleEvent(GlobalEventVariables::NEW_SEPARATION, objectsBeingChecked[0]);
 			}
 
 			// Stop checking for collision. No collision occuring
@@ -88,7 +88,7 @@ void BoundingBoxCollision::CheckForCollision()
 	if (!boxBeingChecked[0]->GetColliding())
 	{
 		// Inform event handler
-		EventHandler::HandleEvent(GlobalEventVariables::NEW_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
+		eventManagerPtr->HandleEvent(GlobalEventVariables::NEW_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
 
 		// Change colliding flag
 		boxBeingChecked[0]->ToggleColliding();
@@ -98,7 +98,7 @@ void BoundingBoxCollision::CheckForCollision()
 	else
 	{
 		// Inform event handler
-		EventHandler::HandleEvent(GlobalEventVariables::CONTINUED_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
+		eventManagerPtr->HandleEvent(GlobalEventVariables::CONTINUED_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
 	}
 
 	// Add collidee to container. There's a check on the other side

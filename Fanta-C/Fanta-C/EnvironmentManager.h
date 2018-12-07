@@ -3,25 +3,21 @@
 
 // System Headers
 #include <Windows.h>
-#include <thread>
 
 // My Headers
 #include "GlobalTypedefs.h"
+#include "GlobalSceneVariables.h"
 
 class EnvironmentManager
 {	
 	// Game Variables
 	class AudioManager*						audioManagerPtr;
 	static EnvironmentManager*				environmentManagerInstance;
-	class InputManager*						inputManagerPtr;
-	MSG*									msg;
+	class EventManager*						eventManagerPtr;
 	class PhysicsManager*					physicsManagerPtr;
 	class Renderer*							rendererPtr;
 	class SceneManager*						sceneManagerPtr;
-	const static char						numberOfThreads = 2;
-	std::thread*							threads[numberOfThreads];
 	const char								targetFPS = 60;
-
 
 	// Initialization
 	EnvironmentManager(HWND* inWindowHandle, ushort* clientDimensions);
@@ -31,14 +27,6 @@ class EnvironmentManager
 public:
 	// Public Interface
 	/// Summary
-	/// Starts the threads that will run player input and update all
-	/// components of the frame
-	///
-	/// Parameters
-	/// msg - The container that holds events and will signal to the
-	/// threads, when the quit conditions is met
-	void InitializeEnvironment(MSG* msg);
-	/// Summary
 	/// Hacked. Delete later
 	/// Updates the fps in the window's title bar
 	///
@@ -47,7 +35,7 @@ public:
 
 	// Thread Functions
 	void RunAudio();
-	void RunInput();
+	void RunEventHandler();
 	void RunPhysics();
 	void RunRenderer();
 	void RunScene();

@@ -1,6 +1,8 @@
 #pragma region Dependencies
 // My Headers
 #include "Sphere.h"		// Connection to declarations
+
+#include "GlobalMath.h"
 #include "LineRenderer.h"
 #pragma endregion
 
@@ -20,16 +22,16 @@ void Sphere::CreateMesh(float inWidth, float inHeight, float inDepth, float inSc
 	// Horizontal circle
 	for (reusableIterator = 0; reusableIterator < halfNumberOfVertices; ++reusableIterator)
 	{
-		vertices[reusableIterator].localPos.m128_f32[0] = cos(XMConvertToRadians(reusableIterator)) * inWidth * inScale;
+		vertices[reusableIterator].localPos.m128_f32[0] = cos(GlobalMath::ConvertToRadians(reusableIterator)) * inWidth * inScale;
 		vertices[reusableIterator].localPos.m128_f32[1] = 0;
-		vertices[reusableIterator].localPos.m128_f32[2] = sin(XMConvertToRadians(reusableIterator)) * inDepth * inScale;
+		vertices[reusableIterator].localPos.m128_f32[2] = sin(GlobalMath::ConvertToRadians(reusableIterator)) * inDepth * inScale;
 	}
 
 	// Vertical circle
 	for (; reusableIterator < numberOfVertices; ++reusableIterator)
 	{
-		vertices[reusableIterator].localPos.m128_f32[0] = cos(XMConvertToRadians(reusableIterator)) * inWidth * inScale;
-		vertices[reusableIterator].localPos.m128_f32[1] = sin(XMConvertToRadians(reusableIterator)) * inHeight * inScale;
+		vertices[reusableIterator].localPos.m128_f32[0] = cos(GlobalMath::ConvertToRadians(reusableIterator)) * inWidth * inScale;
+		vertices[reusableIterator].localPos.m128_f32[1] = sin(GlobalMath::ConvertToRadians(reusableIterator)) * inHeight * inScale;
 		vertices[reusableIterator].localPos.m128_f32[2] = 0;
 	}
 }

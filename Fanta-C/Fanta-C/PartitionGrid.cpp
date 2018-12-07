@@ -3,7 +3,6 @@
 #include "PartitionGrid.h"		// Connection to declarations
 
 #include "Grid.h"
-#include "ObjectManager.h"
 #include "SceneObject.h"
 #include "PartitionCell.h"
 #pragma endregion
@@ -16,27 +15,25 @@ PartitionGrid* PartitionGrid::partitionGridInstance = nullptr;
 PartitionGrid::PartitionGrid(SceneObject* grid)
 {
 	// Edge distance from center
-	float edgeDistance = static_cast<Grid*>(grid->GetMyObject()->GetMesh())->GetEdgeOfGridDistance();
+	float edgeDistance = static_cast<Grid*>(grid->GetMesh())->GetEdgeOfGridDistance();
 
 	// Positions for cell creation
 	float position[2] = { -edgeDistance, -edgeDistance };
 	
-	const float numberOfCellsInEachDirection = 10;
-	const float cellDepthWidth = (edgeDistance * 2) / numberOfCellsInEachDirection;
-
-	PartitionCell* newCell;
-
-	// -1, because the the precision error adds more unwanted cells on the end
-	// Generate an unknown amount of cells on y-axis
-	while (position[1] < edgeDistance - 1)
+	const uchar XZAxes = 2;
+	const uchar numberOfCellsInEachDirection = 10;
+	const float cellDepthWidth = (edgeDistance * XZAxes) / numberOfCellsInEachDirection;
+	numberOfTotalCells = numberOfCellsInEachDirection * numberOfCellsInEachDirection;
+	gridCells = new PartitionCell[numberOfTotalCells];
+	
+	// Z Axis
+	for (uchar zIterator = 0, indexer = 0, xIterator; zIterator < numberOfCellsInEachDirection; ++zIterator)
 	{
-		// Generate an unknown amount of cells on x-axis
-		while (position[0] < edgeDistance - 1)
+		// X Axis
+		for (xIterator = 0; xIterator < numberOfCellsInEachDirection; ++xIterator)
 		{
-			// Create new cell, populate information, add to vector
-			newCell = new PartitionCell(position[0], position[1], cellDepthWidth, cellDepthWidth);
-			gridCells.push_back(newCell);
-			
+			gridCells[indexer++].DelayedInitialization(position[0], position[1], position[0] + cellDepthWidth, position[1] + cellDepthWidth);
+
 			// Update x-axis position to shift to next cell
 			position[0] += cellDepthWidth;
 		}
@@ -44,6 +41,7 @@ PartitionGrid::PartitionGrid(SceneObject* grid)
 		// Update positions
 		// Move x-axis position back to the beginning
 		position[0] = -edgeDistance;
+
 		// Move y-axis position up one
 		position[1] += cellDepthWidth;
 	}
@@ -62,13 +60,5 @@ PartitionGrid * PartitionGrid::GetInstance(SceneObject * grid)
 		partitionGridInstance = new PartitionGrid(grid);
 		return partitionGridInstance;
 	}
-}
-#pragma endregion
-
-#pragma region Clean Up
-PartitionGrid::~PartitionGrid()
-{
-	for (ushort i = 0; i < gridCells.size(); ++i)
-		delete gridCells.at(i);
 }
 #pragma endregion

@@ -16,12 +16,6 @@ Camera::Camera(const ushort* clientDimensions)
 	
 	projectionMatrix = XMMatrixPerspectiveFovLH(verticalFOV, float(clientDimensions[1]) / clientDimensions[0], nearFarPlaneDistances[0], nearFarPlaneDistances[1]);
 	viewMatrix = XMMatrixInverse(nullptr, XMMatrixLookAtLH(cameraVectors[0], cameraVectors[1], cameraVectors[2]));
-
-	// Orthonormal fast inverse in graphics one
-	// Create an object that stores the camera
-	// Inverse the view matrix and leave it
-	// Use the object that stores the camera's transform to bring the camera into world space
-	// https://www.3dgep.com/understanding-the-view-matrix/#Transformations
 }
 #pragma endregion
 

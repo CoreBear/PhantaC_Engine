@@ -2,31 +2,38 @@
 #define _PLAYER_MANAGER_H
 
 // My Headers
-#include "Camera.h"
-#include "GlobalTransform.h"
+#include "GlobalTypedefs.h"
 #include "MovingObject.h"
-#include "ObjectManager.h"
-#include "SceneGraph.h"
-#include "SceneObject.h"
+
+// Forward Declarations
+class Camera;
+class SceneGraph;
 
 class PlayerManager : public MovingObject
 {
-	// Variables
-	Camera*			camera;
-	ObjectManager*	bulletTrail;		// Hacked together. Remove
-	SceneGraph*		sceneGraphPtr;		// Look into creating a function pointer for this
+	Camera*					camera;
+	static PlayerManager*	playerManagerInstance;
 
+	// Hacked together shooting mechanic. Will remove
+	class SceneObject*	bulletTrail;	
+	SceneGraph*			sceneGraphPtr;		
+	const uchar			trailDistance = 50;
+	
+	// Initialization
+	PlayerManager(Camera* inCamera, SceneGraph* sceneGraph, float inVelocity, float inAngularVelocity) : camera(inCamera), sceneGraphPtr(sceneGraph), MovingObject(inVelocity, inAngularVelocity) { return; }
+	PlayerManager(PlayerManager const&) = delete;
+	PlayerManager operator=(PlayerManager const&) = delete;
 
 public:
-	// Initialization
-	PlayerManager(Camera* inCamera, SceneGraph* sceneGraph, float inVelocity = 1, float inAngularVelocity = 1) : camera(inCamera), sceneGraphPtr(sceneGraph), MovingObject(inVelocity, inAngularVelocity) { return; }
-
 	// Public Interface
-	void Move(char x, char y, char z) {	GlobalTransform::Translate(x * GlobalTime::deltaTime * velocity, y * GlobalTime::deltaTime * velocity, z * GlobalTime::deltaTime * velocity, *camera->GetViewMatrix()); }
-	void Pitch(char angle) { GlobalTransform::RotateOnXAxis(angle * GlobalTime::deltaTime * angularVelocity, *camera->GetViewMatrix()); }
+	void Move(char x, char y, char z);
+	void Pitch(char angle);
+	void Roll(char angle);
 	void Shoot();
-	void Roll(char angle) { GlobalTransform::RotateOnZAxis(angle * GlobalTime::deltaTime * angularVelocity, *camera->GetViewMatrix()); }
-	void Yaw(char angle) { GlobalTransform::RotateOnWorldYAxis(angle * GlobalTime::deltaTime * angularVelocity, *camera->GetViewMatrix()); }
+	void Yaw(char angle);
+
+	// Accessors
+	static PlayerManager* GetInstance(Camera* inCamera, SceneGraph* sceneGraph, float inVelocity = 1, float inAngularVelocity = 1);
 };
 
 #endif

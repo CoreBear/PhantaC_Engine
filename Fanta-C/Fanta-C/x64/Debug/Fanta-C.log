@@ -1,4 +1,4 @@
-﻿  EnvironmentManager.cpp
-  InputManager.cpp
+﻿  ControllerManager.cpp
+  EventManager.cpp
   Generating Code...
   Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Debug\Fanta-C.exe

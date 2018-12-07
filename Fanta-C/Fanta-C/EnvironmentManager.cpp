@@ -3,35 +3,27 @@
 #include "EnvironmentManager.h"			// Connection to declarations
 
 #include "AudioManager.h"
-#include "GlobalConsoleWrite.h"
-#include "GlobalThreading.h"
-#include "InputManager.h"
-#include "ObjectManager.h"
+#include "EventManager.h"
 #include "PhysicsManager.h"
 #include "Renderer.h"
 #include "SceneGraph.h"
 #include "SceneManager.h"
 #include "SceneObject.h"
-#include "SplashManager.h"
 #pragma endregion
 
 #pragma region Forward Declarations
 EnvironmentManager* EnvironmentManager::environmentManagerInstance = nullptr;
-float GlobalTime::deltaTime = 0;
 #pragma endregion
 
 #pragma region Initialization
 EnvironmentManager::EnvironmentManager(HWND* inWindowHandle, ushort* clientDimensions)
 {
-	// Hacked to write to console
-	handle = inWindowHandle;
-
 	#pragma region Module Creation
 	audioManagerPtr = AudioManager::GetInstance();
 
 	sceneManagerPtr = SceneManager::GetInstance(clientDimensions, inWindowHandle, targetFPS);
 
-	inputManagerPtr = InputManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetPlayer());
+	eventManagerPtr = EventManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetPlayer());
 
 	physicsManagerPtr = PhysicsManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetGrid());
 	
@@ -40,27 +32,11 @@ EnvironmentManager::EnvironmentManager(HWND* inWindowHandle, ushort* clientDimen
 }
 #pragma endregion
 
-#pragma region Public Interface
-void EnvironmentManager::InitializeEnvironment(MSG* inMsg)
-{	
-	// Assigns the messaging system we will be checking against
-	msg = inMsg;
-	
-	// Launch and run game threads (Input, Physics, Frame)
-	for (uchar i = 0; i < numberOfThreads; ++i)
-		threads[i] = new std::thread(GlobalThreading::RunEnvironmentManagerThreads, i, this, inMsg);
-
-	// Loose thread comes here to wait. Fix this later
-	// Join threads before returning control over to the application level
-	for (auto& thread : threads) thread->join();	
-}
-#pragma endregion
-
 #pragma region Thread Functions
 void EnvironmentManager::RunAudio() { audioManagerPtr->Update(); }
-void EnvironmentManager::RunInput() { inputManagerPtr->Update(); }
-void EnvironmentManager::RunPhysics() { physicsManagerPtr->Update(sceneManagerPtr->GetScenePtr()->GetCollidableObjects()); }
-void EnvironmentManager::RunRenderer() { rendererPtr->Update(sceneManagerPtr->GetScenePtr()->GetRenderableObjects(), sceneManagerPtr->GetScenePtr()->GetCamera()); }
+void EnvironmentManager::RunEventHandler() { eventManagerPtr->Update(); }
+void EnvironmentManager::RunPhysics() { physicsManagerPtr->Update(sceneManagerPtr->GetScenePtr()->GetcollidableObjects()); }
+void EnvironmentManager::RunRenderer() { rendererPtr->Update(sceneManagerPtr->GetScenePtr()->GetrenderableObjects(), sceneManagerPtr->GetScenePtr()->GetCamera()); }
 void EnvironmentManager::RunScene() { sceneManagerPtr->Update(); }
 #pragma endregion
 
@@ -83,13 +59,9 @@ EnvironmentManager* EnvironmentManager::GetInstance(HWND * inWindowHandle, ushor
 EnvironmentManager::~EnvironmentManager()
 {
 	if (audioManagerPtr) delete audioManagerPtr;
-	if (inputManagerPtr) delete inputManagerPtr;
+	if (eventManagerPtr) delete eventManagerPtr;
 	if (physicsManagerPtr) delete physicsManagerPtr;
 	if (rendererPtr) delete rendererPtr;
 	if (sceneManagerPtr) delete sceneManagerPtr;
-
-	// Delete all threads
-	for (uchar i = 0; i < numberOfThreads; ++i)
-		delete threads[i];
 }
 #pragma endregion

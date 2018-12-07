@@ -3,7 +3,6 @@
 #include "BoundingBox.h"		// Connection to declarations
 
 #include "GlobalMath.h"
-#include "ObjectManager.h"
 #include "SceneObject.h"
 #pragma endregion
 
@@ -14,7 +13,7 @@ void BoundingBox::AddCollidingObject(SceneObject* collidingObject)
 {
 	// If object is not in container, add it
 	if (!CheckIfObjectInContainer(collidingObject))
-		collidingObjects[collidingObject->GetMyObject()->GetUniqueID()] = collidingObject;
+		collidingObjects[collidingObject->GetUniqueID()] = collidingObject;
 }
 void BoundingBox::CalculateMinMax(XMMATRIX* myLocalMatrix, XMVECTOR* min, XMVECTOR* max)
 {
@@ -55,7 +54,7 @@ void BoundingBox::CalculateMinMax(XMMATRIX* myLocalMatrix, XMVECTOR* min, XMVECT
 bool BoundingBox::CheckIfObjectInContainer(SceneObject* collidingObject)
 {
 	// If object is in the container
-	if (collidingObjects.find(collidingObject->GetMyObject()->GetUniqueID()) != collidingObjects.end())
+	if (collidingObjects.find(collidingObject->GetUniqueID()) != collidingObjects.end())
 		return true;
 
 	// If object is not in the container
@@ -65,7 +64,7 @@ bool BoundingBox::CheckIfObjectInContainer(SceneObject* collidingObject)
 void BoundingBox::RemoveCollidingObject(SceneObject* removeObject)
 {
 	if (CheckIfObjectInContainer(removeObject))
-		collidingObjects.erase(removeObject->GetMyObject()->GetUniqueID());
+		collidingObjects.erase(removeObject->GetUniqueID());
 }
 
 #pragma region Private

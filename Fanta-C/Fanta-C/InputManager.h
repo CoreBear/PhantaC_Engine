@@ -2,32 +2,27 @@
 #define _INPUT_MANAGER_H
 
 // My Headers
-#include "ControllerManager.h"
+#include "GlobalTypedefs.h"
 
 // Forward Declarations
 class PlayerManager;
 
 class InputManager
 {
-	ControllerManager*		controllerManagerPtr;
 	static InputManager*	inputManagerInstance;
 	PlayerManager*			playerManagerPtr;
 
 	// Initialization
-	InputManager(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager) { controllerManagerPtr = ControllerManager::GetInstance(); }
+	InputManager(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager) { return; }
 	InputManager(InputManager const&) = delete;
 	InputManager operator=(InputManager const&) = delete;
 
 public:
-	// Update
-	void Update();
+	// Public Interface
+	void HandleInput(bool downThisFrame, uchar key);
 
 	// Accessors
 	static InputManager* GetInstance(PlayerManager* inPlayerManager = nullptr);
-
-	// Clean Up
-	~InputManager() { if (controllerManagerPtr) delete controllerManagerPtr; }
-
 };
 
 #endif

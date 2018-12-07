@@ -4,6 +4,8 @@
 #pragma endregion
 
 #pragma region Forward Declarations
+float GlobalMath::toDegreesPI = XM_PI / 180.0f;
+float GlobalMath::toRadiansPI = 180.0f / XM_PI;
 float GlobalMath::dotProduct = 0;
 float GlobalMath::normValue = 0;
 XMMATRIX* GlobalMath::tempMatrix = &XMMatrixIdentity();
@@ -11,10 +13,8 @@ XMVECTOR* GlobalMath::tempVector = &XMVectorZero();
 #pragma endregion
 
 #pragma region Public Interface
-float GlobalMath::AbsoluteValue(float value)
-{
-	return (value > 0) ? value : -value;
-}
+float GlobalMath::ConvertToDegrees(float degrees) { return degrees * toDegreesPI; }
+float GlobalMath::ConvertToRadians(float degrees) { return degrees * toRadiansPI; }
 XMVECTOR* GlobalMath::CrossProduct(XMVECTOR* firstVector, XMVECTOR* secondVector)
 {
 	tempVector->m128_f32[0] = (firstVector->m128_f32[1] * secondVector->m128_f32[2]) - (firstVector->m128_f32[2] * secondVector->m128_f32[1]);
@@ -23,9 +23,40 @@ XMVECTOR* GlobalMath::CrossProduct(XMVECTOR* firstVector, XMVECTOR* secondVector
 
 	return tempVector;
 }
-float GlobalMath::Lerp(float min, float max, float length)
+XMMATRIX* GlobalMath::FastInverse(XMMATRIX* inMatrix)
 {
-	return ((max - min) * length) + min;
+	// Transpose the 3X3
+	// X-Axis
+	tempMatrix->r[0].m128_f32[0] = inMatrix->r[0].m128_f32[0];
+	tempMatrix->r[0].m128_f32[1] = inMatrix->r[1].m128_f32[0];
+	tempMatrix->r[0].m128_f32[2] = inMatrix->r[2].m128_f32[0];
+								   
+	// Y-Axis					   
+	tempMatrix->r[1].m128_f32[0] = inMatrix->r[0].m128_f32[1];
+	tempMatrix->r[1].m128_f32[1] = inMatrix->r[1].m128_f32[1];
+	tempMatrix->r[1].m128_f32[2] = inMatrix->r[2].m128_f32[1];
+								   
+	// Z-Axis					   
+	tempMatrix->r[2].m128_f32[0] = inMatrix->r[0].m128_f32[2];
+	tempMatrix->r[2].m128_f32[1] = inMatrix->r[1].m128_f32[2];
+	tempMatrix->r[2].m128_f32[2] = inMatrix->r[2].m128_f32[2];
+
+	// Multiplying position    X															Y																Z
+	tempVector->m128_f32[0] = (tempMatrix->r[0].m128_f32[0] * inMatrix->r[3].m128_f32[0]) + (tempMatrix->r[0].m128_f32[1] * inMatrix->r[3].m128_f32[0]) + (tempMatrix->r[0].m128_f32[2] * inMatrix->r[3].m128_f32[0]);
+	tempVector->m128_f32[1] = (tempMatrix->r[1].m128_f32[0] * inMatrix->r[3].m128_f32[1]) + (tempMatrix->r[1].m128_f32[1] * inMatrix->r[3].m128_f32[1]) + (tempMatrix->r[1].m128_f32[2] * inMatrix->r[3].m128_f32[1]);
+	tempVector->m128_f32[2] = (tempMatrix->r[2].m128_f32[0] * inMatrix->r[3].m128_f32[2]) + (tempMatrix->r[2].m128_f32[1] * inMatrix->r[3].m128_f32[2]) + (tempMatrix->r[2].m128_f32[2] * inMatrix->r[3].m128_f32[2]);
+
+	// Negate vector
+	tempVector->m128_f32[0] = -tempVector->m128_f32[0];
+	tempVector->m128_f32[1] = -tempVector->m128_f32[1];
+	tempVector->m128_f32[2] = -tempVector->m128_f32[2];
+
+	// Apply position
+	inMatrix->r[3].m128_f32[0] = tempVector->m128_f32[0];
+	inMatrix->r[3].m128_f32[1] = tempVector->m128_f32[1];
+	inMatrix->r[3].m128_f32[2] = tempVector->m128_f32[2];
+
+	return inMatrix;
 }
 XMMATRIX* GlobalMath::MatrixMultiplication(XMMATRIX* movingMatrix, XMMATRIX* intoMatrix)
 {

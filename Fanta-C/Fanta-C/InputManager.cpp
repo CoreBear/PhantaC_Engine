@@ -10,42 +10,45 @@
 InputManager* InputManager::inputManagerInstance = nullptr;
 #pragma endregion
 
-#pragma region Update
-void InputManager::Update()
+#pragma region Public Interface
+void InputManager::HandleInput(bool downThisFrame, uchar key)
 {
-	// If a controller is plugged in, run it
-	if (controllerManagerPtr->CheckControllerStatus())
+	switch (key)
 	{
-
-	}
-
-	// If no controller
-	else
-	{
-		if (GlobalInputVariables::KeyIsDown[0])
-			playerManagerPtr->Move(-1, 0, 0);
-		if (GlobalInputVariables::KeyIsDown[1])
-			playerManagerPtr->Move(1, 0, 0);
-		if (GlobalInputVariables::KeyIsDown[2])
-			playerManagerPtr->Pitch(-1);
-		if (GlobalInputVariables::KeyIsDown[3])
-			playerManagerPtr->Yaw(1);
-		if (GlobalInputVariables::KeyIsDown[4])
-			playerManagerPtr->Pitch(1);
-		if (GlobalInputVariables::KeyIsDown[5])
-			playerManagerPtr->Yaw(-1);
-		if (GlobalInputVariables::KeyIsDown[6])
-			playerManagerPtr->Move(0, 0, -1);
-		if (GlobalInputVariables::KeyIsDown[7])
-			playerManagerPtr->Move(0, 0, 1);
-		if (GlobalInputVariables::KeyDownThisFrame[8])
-			playerManagerPtr->Shoot();
+	case 0:
+		playerManagerPtr->Move(-1, 0, 0);
+		break;
+	case 1:
+		playerManagerPtr->Move(1, 0, 0);
+		break;
+	case 2:
+		playerManagerPtr->Pitch(-1);
+		break;
+	case 3:
+		playerManagerPtr->Yaw(1);
+		break;
+	case 4:
+		playerManagerPtr->Pitch(1);
+		break;
+	case 5:
+		playerManagerPtr->Yaw(-1);
+		break;
+	case 6:
+		playerManagerPtr->Move(0, 0, -1);
+		break;
+	case 7:
+		playerManagerPtr->Move(0, 0, 1);
+		break;
+	case 8:
+		// Only allows shooting once per key press
+		if (downThisFrame) playerManagerPtr->Shoot();
+		break;
 	}
 }
 #pragma endregion
 
 #pragma region Accessors
-InputManager * InputManager::GetInstance(PlayerManager * inPlayerManager)
+InputManager* InputManager::GetInstance(PlayerManager * inPlayerManager)
 {
 	// If instance has already been created, return it
 	if (inputManagerInstance) return inputManagerInstance;

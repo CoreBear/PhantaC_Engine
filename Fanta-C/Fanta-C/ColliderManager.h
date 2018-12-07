@@ -12,7 +12,7 @@ class ColliderManager
 
 public:
 	// Initialization
-	ColliderManager(float inWidth, float inHeight, float inDepth, float inScale) { myBoundingBox = new BoundingBox(inWidth, inHeight, inDepth, inScale); }
+	ColliderManager(float inWidth, float inHeight, float inDepth, float inScale) : myBoundingBox(new BoundingBox(inWidth, inHeight, inDepth, inScale)) { return; }
 
 	// Accessors
 	BoundingBox* GetBoundingBox() { return myBoundingBox; }

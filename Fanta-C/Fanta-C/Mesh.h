@@ -2,6 +2,7 @@
 #define _MESH_H
 
 // My Headers
+#include <DirectXColors.h>
 #include "GlobalDirectX.h"
 #include "GlobalTypedefs.h"
 #include "LineRenderer.h"

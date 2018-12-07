@@ -5,13 +5,14 @@
 #include <string>
 #include <Windows.h>
 
-static HWND* handle;
-static std::string conversionString;
-static const char* conversionChar;
-
 class GlobalConsoleWrite
 {
 public:
+	// Variables
+	static HWND* handle;
+	static std::string conversionString;
+	static const char* conversionChar;
+
 	template<typename Generic> static void ConvertNumberToString(Generic value) { conversionString = std::to_string(value); }
 	static void ConvertStringToCharPtr() { conversionChar = conversionString.c_str(); }
 	static void WriteToConsole(const char* text) { SetWindowText(*handle, text); }

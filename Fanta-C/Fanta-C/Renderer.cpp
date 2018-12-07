@@ -2,9 +2,10 @@
 // My Headers
 #include "Renderer.h"				// Connection to declarations
 #include "Camera.h"
+#include "GlobalMath.h"
 #include "GlobalVramStructures.h"
-#include "ObjectManager.h"
 #include "SceneManager.h"
+#include "SceneObject.h"
 
 // System Headers
 #include <d3dcompiler.h>			// Required for loading and compiling HLSL shaders
@@ -199,22 +200,22 @@ Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const usho
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(std::vector<ObjectManager*>* renderableObjects, Camera* camera)
+void Renderer::Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* renderableObjects, Camera* camera)
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
 	//// Load view matrix (camera's world matrix) into vram
-	//deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, camera->GetViewMatrix(), 0, 0);
 	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &XMMatrixInverse(nullptr, *camera->GetViewMatrix()), 0, 0);
+	//deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, GlobalMath::FastInverse(camera->GetViewMatrix()), 0, 0);
 
 	//
 	//											Do not add anything above this line
 	// ------------------------------------------------------------------------------------------------------------------------------- 
 	//											Add anything you want to draw below this line
 	//	
-	for (renderIterator = 0; renderIterator < renderableObjects->size(); ++renderIterator)
-		DrawLines(renderableObjects->at(renderIterator));
+	for (renderIterator = 0; renderIterator < renderableObjects->GetSize(); ++renderIterator)
+		DrawLines(renderableObjects->At(renderIterator));
 	
 	//
 	//											Add anything you want to draw above this line
@@ -245,7 +246,7 @@ void Renderer::ResetScreen()
 	deviceContext->ClearRenderTargetView(renderTargetView[RENDER_TARGET_VIEW::DEFAULT], DirectX::Colors::Black);
 	deviceContext->ClearDepthStencilView(depthStencilView[DEPTH_STENCIL_VIEW::DEFAULT], D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, maxZBufferDepth, 0);
 }
-void Renderer::DrawLines(ObjectManager* object)
+void Renderer::DrawLines(SceneObject* object)
 {
 	meshLoader.AddLinesToLineRenderer(lineRenderer, object->GetMesh());
 

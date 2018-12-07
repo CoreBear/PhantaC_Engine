@@ -1,19 +1,34 @@
 #ifndef _KEYBOARD_MANAGER_H
 #define _KEYBOARD_MANAGER_H
 
-// System Headers
-#include <unordered_map>
+// My Headers
+#include "GlobalTypedefs.h"
+
+// Forward Declarations
+class InputManager;
+class PlayerManager;
 
 class KeyboardManager
 {
-	bool keysPressed[11];
+	bool					keyDownThisFrame[9];
+	bool					keyIsDown[9];
+	InputManager*			inputManagerPtr;
+	static KeyboardManager* keyboardManagerInstance;
+	PlayerManager*			playerManagerPtr;
+
+	// Initialization
+	KeyboardManager(PlayerManager* inPlayerManager);
+	KeyboardManager(KeyboardManager const&) = delete;
+	KeyboardManager operator=(KeyboardManager const&) = delete;
+
+	void KeyEventHandler(bool keyDown, uchar index);
 
 public:
 	// Update
-	void Update(std::unordered_map<char, char>* keyMap);
+	void Update();
 
 	// Accessors
-	bool* GetKeysPressed() { return keysPressed; }
+	static KeyboardManager* GetInstance(PlayerManager* inPlayerManager);
 };
 
 #endif

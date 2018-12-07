@@ -20,9 +20,9 @@ PartitioningManager::PartitioningManager(SceneObject* grid)
 #pragma endregion
 
 #pragma region Update
-void PartitioningManager::Update(std::vector<SceneObject*>* collidableObjects)
+void PartitioningManager::Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects)
 {
-	partitionerPtr->Update(collidableObjects, partitionGridPtr->GetGridCells());
+	partitionerPtr->Update(collidableObjects, partitionGridPtr);
 }
 #pragma endregion
 

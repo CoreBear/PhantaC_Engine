@@ -70,30 +70,6 @@
     <Filter Include="Game\Scripting\Manager">
       <UniqueIdentifier>{fd61d9f9-86ab-4a62-b4ff-29d275ac0ca0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scripting\GameObject">
-      <UniqueIdentifier>{95029cd5-3ad6-44f4-9aea-6e30de088613}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Scripting\GameObject\Test">
-      <UniqueIdentifier>{deb338a1-e6f5-4f31-9909-88600177392d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Scripting\GameObject\Player">
-      <UniqueIdentifier>{799824f9-4d40-4069-a9e7-a62479b450c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Input">
-      <UniqueIdentifier>{97093535-8501-42b3-a558-44b18acc5f12}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Input\Manager">
-      <UniqueIdentifier>{6fc1a6bb-8b95-406a-ab0f-d4eed022c275}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Input\Controller">
-      <UniqueIdentifier>{b3926534-50d1-4b5b-ae6e-492d9b850e66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Input\Controller\Manager">
-      <UniqueIdentifier>{5173ecdb-4c7a-46f9-9863-5ea1cdb4139b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Scripting\GameObject\MovingObject">
-      <UniqueIdentifier>{fa28bc45-9f84-4232-925f-749263d93c74}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Globals\Rendering">
       <UniqueIdentifier>{3e412773-a761-4a8c-b4cf-6278a6fd5010}</UniqueIdentifier>
     </Filter>
@@ -127,83 +103,116 @@
     <Filter Include="Application\Initialization &amp; Events\Window">
       <UniqueIdentifier>{0fe76f8e-5a31-4fcd-b4ec-7b4d9d0dc69c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Physics\Collision\SpatialPartitioning">
-      <UniqueIdentifier>{b560505b-da2f-473b-a50b-70d237617da1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Manager">
-      <UniqueIdentifier>{e8360d65-032b-43f3-a6c7-8eea73844400}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Physical">
-      <UniqueIdentifier>{b55ed7bb-4674-4cd9-ab1b-ffbae62e4605}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Physical\Cell">
-      <UniqueIdentifier>{2176a6e2-f675-4651-8768-d9d2c56dc72c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Physical\Grid">
-      <UniqueIdentifier>{2d3b03d2-0f43-410f-ac7a-cea8a15f4b51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Physics\Collision\SpatialPartitioning\Seperation">
-      <UniqueIdentifier>{05767df9-c1d3-494c-bc37-8e6fdecb34e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Globals\AssistingVariables">
-      <UniqueIdentifier>{48dd2313-b36d-44e6-a057-a11480d7c7ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment\Events">
       <UniqueIdentifier>{c791c55a-fadb-4a41-ae89-28fb783b8cf4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Environment\Scene\Graph">
       <UniqueIdentifier>{ece381c0-9294-4ba4-b8f5-76dc8c9e5637}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Object\SceneObject">
-      <UniqueIdentifier>{233f3a30-8ce2-45a8-8a16-835583b0124e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject">
-      <UniqueIdentifier>{7b52166b-9b34-482a-800e-b28be8115c8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Transform">
-      <UniqueIdentifier>{6baef527-b5a3-4934-8b9e-bbb70d654728}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Render">
-      <UniqueIdentifier>{a04f61ff-1b32-4d3b-80a0-b4c58282b3a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Mesh">
-      <UniqueIdentifier>{847561fd-312f-4e0e-a1e8-f680006554f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes">
-      <UniqueIdentifier>{4b13d81f-26dc-42ca-a7a7-480e2fa6e1ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Cube">
-      <UniqueIdentifier>{5af4eff3-a0a9-44f9-b178-fde220769452}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Pyramid">
-      <UniqueIdentifier>{bf7a76c5-ca5c-4324-8710-5ad5cb5914f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Sphere">
-      <UniqueIdentifier>{dd9a0b6c-25c7-4767-9fcc-22ae2d5fcd47}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Grid">
-      <UniqueIdentifier>{e14757a9-bde9-48de-8c18-0cae91b6e2c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Manager">
-      <UniqueIdentifier>{433a438c-9466-484f-a345-a20e7c733ef5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Collider">
+    <Filter Include="Environment\Scene\Object\Collider">
       <UniqueIdentifier>{43d46425-fcc9-4a4b-8535-d40d6a8d1195}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Collider\Manager">
+    <Filter Include="Environment\Scene\Object\Collider\Manager">
       <UniqueIdentifier>{ba5322c4-b732-4102-ac8f-49737eb054a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Collider\BoundingBox">
+    <Filter Include="Environment\Scene\Object\Collider\BoundingBox">
       <UniqueIdentifier>{b5c01800-34c1-427e-bea6-a0683e556d9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines">
+    <Filter Include="Environment\Scene\Object\Render">
+      <UniqueIdentifier>{a04f61ff-1b32-4d3b-80a0-b4c58282b3a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Mesh">
+      <UniqueIdentifier>{847561fd-312f-4e0e-a1e8-f680006554f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Shapes">
+      <UniqueIdentifier>{4b13d81f-26dc-42ca-a7a7-480e2fa6e1ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Cube">
+      <UniqueIdentifier>{5af4eff3-a0a9-44f9-b178-fde220769452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Pyramid">
+      <UniqueIdentifier>{bf7a76c5-ca5c-4324-8710-5ad5cb5914f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Sphere">
+      <UniqueIdentifier>{dd9a0b6c-25c7-4767-9fcc-22ae2d5fcd47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Grid">
+      <UniqueIdentifier>{e14757a9-bde9-48de-8c18-0cae91b6e2c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Lines">
       <UniqueIdentifier>{9c39dc72-8f69-493f-ac30-5f1c2e3af048}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\LineBase">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Lines\LineBase">
       <UniqueIdentifier>{1bc47020-4177-4a67-94d3-9ba12caee854}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\BulletTrail">
+    <Filter Include="Environment\Scene\Object\Render\Shapes\Lines\BulletTrail">
       <UniqueIdentifier>{2a02df5e-4930-4d65-b0af-e6079abd63a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Transform">
+      <UniqueIdentifier>{6baef527-b5a3-4934-8b9e-bbb70d654728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Globals\Assisting Variables">
+      <UniqueIdentifier>{48dd2313-b36d-44e6-a057-a11480d7c7ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\Spatial Partitioning">
+      <UniqueIdentifier>{b560505b-da2f-473b-a50b-70d237617da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\Spatial Partitioning\Manager">
+      <UniqueIdentifier>{e8360d65-032b-43f3-a6c7-8eea73844400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\Spatial Partitioning\Physical">
+      <UniqueIdentifier>{b55ed7bb-4674-4cd9-ab1b-ffbae62e4605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\Spatial Partitioning\Physical\Cell">
+      <UniqueIdentifier>{2176a6e2-f675-4651-8768-d9d2c56dc72c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\Spatial Partitioning\Physical\Grid">
+      <UniqueIdentifier>{2d3b03d2-0f43-410f-ac7a-cea8a15f4b51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Collision\Spatial Partitioning\Seperation">
+      <UniqueIdentifier>{05767df9-c1d3-494c-bc37-8e6fdecb34e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Scene\Object\Physical Object">
+      <UniqueIdentifier>{233f3a30-8ce2-45a8-8a16-835583b0124e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripting\Game Object">
+      <UniqueIdentifier>{95029cd5-3ad6-44f4-9aea-6e30de088613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripting\Game Object\Player">
+      <UniqueIdentifier>{799824f9-4d40-4069-a9e7-a62479b450c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripting\Game Object\Moving Object">
+      <UniqueIdentifier>{fa28bc45-9f84-4232-925f-749263d93c74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripting\Game Object\Agent">
+      <UniqueIdentifier>{deb338a1-e6f5-4f31-9909-88600177392d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Events\Input">
+      <UniqueIdentifier>{97093535-8501-42b3-a558-44b18acc5f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Events\Input\Manager">
+      <UniqueIdentifier>{6fc1a6bb-8b95-406a-ab0f-d4eed022c275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Events\Input\Controller">
+      <UniqueIdentifier>{b3926534-50d1-4b5b-ae6e-492d9b850e66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Events\Input\Controller\Manager">
+      <UniqueIdentifier>{5173ecdb-4c7a-46f9-9863-5ea1cdb4139b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Memory\Data Structures">
+      <UniqueIdentifier>{576ce9e0-be72-41b7-8823-d92d9f261d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Events\Manager">
+      <UniqueIdentifier>{46999e65-0eb4-463f-b30f-920742b61e14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Initialization &amp; Events\Threading">
+      <UniqueIdentifier>{c2d26f0d-ec55-4d30-82dd-f7306760f2ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Initialization &amp; Events\Threading\Manager">
+      <UniqueIdentifier>{c4024b81-0992-45e7-b1b1-1b8e45e43e0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Events\Input\KeyBoard">
+      <UniqueIdentifier>{c5643bca-3954-42ac-869a-f7ab2179eda9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -232,16 +241,13 @@
       <Filter>Environment\Rendering\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Cube</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Cube</Filter>
     </ClCompile>
     <ClCompile Include="Pyramid.cpp">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Pyramid</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Pyramid</Filter>
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Sphere</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectManager.cpp">
-      <Filter>Environment\Scene\Object\PhysicalObject\Manager</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Sphere</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Environment\Physics\Collision\Manager</Filter>
@@ -249,20 +255,17 @@
     <ClCompile Include="SceneGraph.cpp">
       <Filter>Environment\Scene\Graph</Filter>
     </ClCompile>
-    <ClCompile Include="Test.cpp">
-      <Filter>Game\Scripting\GameObject\Test</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
-      <Filter>Game\Scripting\GameObject\Player</Filter>
+      <Filter>Game\Scripting\Game Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
       <Filter>Game\Scenes\Test</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
-      <Filter>Environment\Input\Manager</Filter>
+      <Filter>Environment\Events\Input\Manager</Filter>
     </ClCompile>
     <ClCompile Include="ControllerManager.cpp">
-      <Filter>Environment\Input\Controller\Manager</Filter>
+      <Filter>Environment\Events\Input\Controller\Manager</Filter>
     </ClCompile>
     <ClCompile Include="EntryEventLoop.cpp">
       <Filter>Application\Initialization &amp; Events</Filter>
@@ -271,10 +274,10 @@
       <Filter>Globals\Movement\Transform</Filter>
     </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
-      <Filter>Environment\Scene\Object\PhysicalObject\Collider\BoundingBox</Filter>
+      <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
     </ClCompile>
     <ClCompile Include="Grid.cpp">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Grid</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
     </ClCompile>
     <ClCompile Include="GlobalAutonomy.cpp">
       <Filter>Globals\Movement\Autonomy</Filter>
@@ -286,28 +289,40 @@
       <Filter>Environment\Physics\Collision\BoundingBox</Filter>
     </ClCompile>
     <ClCompile Include="PartitioningManager.cpp">
-      <Filter>Environment\Physics\Collision\SpatialPartitioning\Manager</Filter>
+      <Filter>Environment\Physics\Collision\Spatial Partitioning\Manager</Filter>
     </ClCompile>
     <ClCompile Include="PartitionCell.cpp">
-      <Filter>Environment\Physics\Collision\SpatialPartitioning\Physical\Cell</Filter>
+      <Filter>Environment\Physics\Collision\Spatial Partitioning\Physical\Cell</Filter>
     </ClCompile>
     <ClCompile Include="PartitionGrid.cpp">
-      <Filter>Environment\Physics\Collision\SpatialPartitioning\Physical\Grid</Filter>
+      <Filter>Environment\Physics\Collision\Spatial Partitioning\Physical\Grid</Filter>
     </ClCompile>
     <ClCompile Include="Partitioner.cpp">
-      <Filter>Environment\Physics\Collision\SpatialPartitioning\Seperation</Filter>
-    </ClCompile>
-    <ClCompile Include="EventHandler.cpp">
-      <Filter>Environment\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneObject.cpp">
-      <Filter>Environment\Scene\Object\SceneObject</Filter>
+      <Filter>Environment\Physics\Collision\Spatial Partitioning\Seperation</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\LineBase</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Lines\LineBase</Filter>
     </ClCompile>
     <ClCompile Include="BulletTrail.cpp">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\BulletTrail</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Lines\BulletTrail</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObject.cpp">
+      <Filter>Environment\Scene\Object\Physical Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AgentManager.cpp">
+      <Filter>Game\Scripting\Game Object\Agent</Filter>
+    </ClCompile>
+    <ClCompile Include="MyArray.cpp">
+      <Filter>Environment\Memory\Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Environment\Events\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadManager.cpp">
+      <Filter>Application\Initialization &amp; Events\Threading\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardManager.cpp">
+      <Filter>Environment\Events\Input\KeyBoard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -318,7 +333,7 @@
       <Filter>Environment\Rendering\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Mesh</Filter>
+      <Filter>Environment\Scene\Object\Render\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="WindowCreator.h">
       <Filter>Application\Initialization &amp; Events\Window</Filter>
@@ -339,22 +354,19 @@
       <Filter>Environment\Rendering\Debug</Filter>
     </ClInclude>
     <ClInclude Include="MeshLoader.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Mesh</Filter>
+      <Filter>Environment\Scene\Object\Render\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Cube</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Cube</Filter>
     </ClInclude>
     <ClInclude Include="Pyramid.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Pyramid</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Pyramid</Filter>
     </ClInclude>
     <ClInclude Include="Sphere.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Sphere</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Sphere</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Transform</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectManager.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Manager</Filter>
+      <Filter>Environment\Scene\Object\Transform</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>Environment\Physics\Collision\Manager</Filter>
@@ -365,32 +377,29 @@
     <ClInclude Include="ScriptManager.h">
       <Filter>Game\Scripting\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Test.h">
-      <Filter>Game\Scripting\GameObject\Test</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerManager.h">
-      <Filter>Game\Scripting\GameObject\Player</Filter>
+      <Filter>Game\Scripting\Game Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="TestScene.h">
       <Filter>Game\Scenes\Test</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
-      <Filter>Environment\Input\Manager</Filter>
+      <Filter>Environment\Events\Input\Manager</Filter>
     </ClInclude>
     <ClInclude Include="ControllerManager.h">
-      <Filter>Environment\Input\Controller\Manager</Filter>
+      <Filter>Environment\Events\Input\Controller\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GlobalTransform.h">
       <Filter>Globals\Movement\Transform</Filter>
     </ClInclude>
     <ClInclude Include="MovingObject.h">
-      <Filter>Game\Scripting\GameObject\MovingObject</Filter>
+      <Filter>Game\Scripting\Game Object\Moving Object</Filter>
     </ClInclude>
     <ClInclude Include="ColliderManager.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Collider\Manager</Filter>
+      <Filter>Environment\Scene\Object\Collider\Manager</Filter>
     </ClInclude>
     <ClInclude Include="BoundingBox.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Collider\BoundingBox</Filter>
+      <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
     </ClInclude>
     <ClInclude Include="GlobalRendererStructures.h">
       <Filter>Globals\Rendering</Filter>
@@ -398,20 +407,14 @@
     <ClInclude Include="GlobalVramStructures.h">
       <Filter>Globals\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalDirectX.h">
-      <Filter>Globals\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalTime.h">
       <Filter>Globals\Misc</Filter>
     </ClInclude>
     <ClInclude Include="GlobalTypedefs.h">
       <Filter>Globals\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalThreading.h">
-      <Filter>Globals\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="Grid.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Grid</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
     </ClInclude>
     <ClInclude Include="GlobalAutonomy.h">
       <Filter>Globals\Movement\Autonomy</Filter>
@@ -423,31 +426,22 @@
       <Filter>Environment\Physics\Collision\BoundingBox</Filter>
     </ClInclude>
     <ClInclude Include="PartitioningManager.h">
-      <Filter>Environment\Physics\Collision\SpatialPartitioning\Manager</Filter>
+      <Filter>Environment\Physics\Collision\Spatial Partitioning\Manager</Filter>
     </ClInclude>
     <ClInclude Include="PartitionCell.h">
-      <Filter>Environment\Physics\Collision\SpatialPartitioning\Physical\Cell</Filter>
+      <Filter>Environment\Physics\Collision\Spatial Partitioning\Physical\Cell</Filter>
     </ClInclude>
     <ClInclude Include="PartitionGrid.h">
-      <Filter>Environment\Physics\Collision\SpatialPartitioning\Physical\Grid</Filter>
+      <Filter>Environment\Physics\Collision\Spatial Partitioning\Physical\Grid</Filter>
     </ClInclude>
     <ClInclude Include="Partitioner.h">
-      <Filter>Environment\Physics\Collision\SpatialPartitioning\Seperation</Filter>
+      <Filter>Environment\Physics\Collision\Spatial Partitioning\Seperation</Filter>
     </ClInclude>
     <ClInclude Include="GlobalInputVariables.h">
-      <Filter>Globals\AssistingVariables</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalThreadVariables.h">
-      <Filter>Globals\AssistingVariables</Filter>
+      <Filter>Globals\Assisting Variables</Filter>
     </ClInclude>
     <ClInclude Include="GlobalEventVariables.h">
-      <Filter>Globals\AssistingVariables</Filter>
-    </ClInclude>
-    <ClInclude Include="EventHandler.h">
-      <Filter>Environment\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneObject.h">
-      <Filter>Environment\Scene\Object\SceneObject</Filter>
+      <Filter>Globals\Assisting Variables</Filter>
     </ClInclude>
     <ClInclude Include="GlobalWorldVariables.h">
       <Filter>Globals\Misc</Filter>
@@ -456,10 +450,34 @@
       <Filter>Globals\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Line.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\LineBase</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Lines\LineBase</Filter>
     </ClInclude>
     <ClInclude Include="BulletTrail.h">
-      <Filter>Environment\Scene\Object\PhysicalObject\Render\Shapes\Lines\BulletTrail</Filter>
+      <Filter>Environment\Scene\Object\Render\Shapes\Lines\BulletTrail</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneObject.h">
+      <Filter>Environment\Scene\Object\Physical Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AgentManager.h">
+      <Filter>Game\Scripting\Game Object\Agent</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalSceneVariables.h">
+      <Filter>Globals\Assisting Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="MyArray.h">
+      <Filter>Environment\Memory\Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Environment\Events\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadManager.h">
+      <Filter>Application\Initialization &amp; Events\Threading\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalDirectX.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardManager.h">
+      <Filter>Environment\Events\Input\KeyBoard</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

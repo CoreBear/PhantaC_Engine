@@ -3,18 +3,19 @@
 
 // My Headers
 #include "GlobalRendererStructures.h"
+#include "GlobalSceneVariables.h"
 #include "GlobalTypedefs.h"
 #include "LineRenderer.h"
 #include "MeshLoader.h"
+#include "MyArray.h"
 
 // System Headers
 #include <d3d11.h>	
-#include <vector>
 
 // Forward Declarations
 class Camera;
 class Object;
-class ObjectManager;
+class SceneObject;
 
 class Renderer
 {
@@ -47,7 +48,7 @@ class Renderer
 	
 	// Private
 	void ResetScreen();
-	void DrawLines(ObjectManager* object);
+	void DrawLines(SceneObject* object);
 
 	// Clean Up
 	template<typename Generic> void ReleaseResource(Generic& ptr);
@@ -59,7 +60,7 @@ class Renderer
 
 public:
 	// Update
-	void Update(std::vector<ObjectManager*>* renderableObjects, Camera* cameraObject);
+	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* renderableObjects, Camera* cameraObject);
 
 	// Accessors
 	static Renderer* GetInstance(HWND* windowHandle = nullptr, class SceneManager* sceneManagerPtr = nullptr, const ushort* clientDimensions = nullptr, uchar targetFPS = 0, Camera* cameraObject = nullptr);

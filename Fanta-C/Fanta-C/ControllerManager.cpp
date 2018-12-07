@@ -1,10 +1,17 @@
 #pragma region Dependencies
 // My Headers
 #include "ControllerManager.h"			// Connection to declarations
+
+#include "InputManager.h"
+#include "PlayerManager.h"
 #pragma endregion
 
 #pragma region Forward Declarations
 ControllerManager* ControllerManager::controllerManagerInstance = nullptr;
+#pragma endregion
+
+#pragma region MyRegion
+ControllerManager::ControllerManager(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager), inputManagerPtr(InputManager::GetInstance(inPlayerManager)) { return; }
 #pragma endregion
 
 #pragma region Bumpers
@@ -219,7 +226,7 @@ bool ControllerManager::VibrateOn(int powerLeft, int powerRight)
 #pragma endregion
 
 #pragma region Accessors
-ControllerManager * ControllerManager::GetInstance()
+ControllerManager* ControllerManager::GetInstance(PlayerManager* inPlayerManager)
 {
 	// If instance has been created, return it
 	if (controllerManagerInstance) return controllerManagerInstance;
@@ -227,7 +234,7 @@ ControllerManager * ControllerManager::GetInstance()
 	// If instance has not been created, create it and return it
 	else
 	{
-		controllerManagerInstance = new ControllerManager;
+		controllerManagerInstance = new ControllerManager(inPlayerManager);
 		return controllerManagerInstance;
 	}
 }
