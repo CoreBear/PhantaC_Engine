@@ -9,33 +9,44 @@
 #pragma endregion
 
 #pragma region Forward Declarations
-const char*		GlobalConsoleWrite::conversionChar = nullptr;
-float			GlobalTime::deltaTime = 0;
-HWND*			GlobalConsoleWrite::handle = nullptr;
-std::string		GlobalConsoleWrite::conversionString;
-ThreadManager*	ThreadManager::threadManagerInstance = nullptr;
+const char*				GlobalConsoleWrite::conversionChar = nullptr;
+float					GlobalTime::deltaTime = 0;
+HWND*					GlobalConsoleWrite::handle = nullptr;
+std::string				GlobalConsoleWrite::conversionString;
+ThreadManager*			ThreadManager::threadManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initializaiton & Running
-ThreadManager::ThreadManager(EnvironmentManager* inEnvironmentManager, MSG* inMsg, WindowCreator* window) : environmentManager(inEnvironmentManager)
+ThreadManager::ThreadManager(EnvironmentManager* inEnvironmentManager, MSG* inMsg, WindowCreator* window)
 {
-	// Flag to let other threads know they can skip this functionality
-	bool firstThreadHasPassedThisPoint = false;
+	// Flags that allow other threads to skip this functionality
+	bool mainThreadHasPassedFirstPoint = false;
+	bool mainThreadHasPassedSecondPoint = false;
 
 	// Assign the handle for console/header writing
 	GlobalConsoleWrite::handle = window->GetWindowHandle();
 
 	// Launches the first thread
-	threads[0] = new std::thread(FrameThread, inEnvironmentManager, inMsg);
+	threads[0] = new std::thread(InputLogicThread, inEnvironmentManager, inMsg);
 	
 	// In place for the second thread
-	if (!firstThreadHasPassedThisPoint)
+	if (!mainThreadHasPassedFirstPoint)
 	{
 		// Flip flag so other threads cannot follow and get stuck in the loop
-		firstThreadHasPassedThisPoint = true;
+		mainThreadHasPassedFirstPoint = true;
 
 		// Launces the second thread
 		threads[1] = new std::thread(PhysicsThread, inEnvironmentManager, inMsg);
+	}
+
+	// In place for the second thread
+	if (!mainThreadHasPassedSecondPoint)
+	{
+		// Flip flag so other threads cannot follow and get stuck in the loop
+		mainThreadHasPassedSecondPoint = true;
+
+		// Launces the third thread
+		threads[2] = new std::thread(RenderThread, inEnvironmentManager, inMsg);
 	}
 }
 #pragma endregion
@@ -65,7 +76,16 @@ ThreadManager::~ThreadManager()
 #pragma endregion
 
 #pragma region Private
-void ThreadManager::FrameThread(EnvironmentManager* inEnvironmentManager, MSG* inMsg)
+void ThreadManager::InputLogicThread(EnvironmentManager* inEnvironmentManager, MSG* inMsg)
+{
+	// Run everything function until quit is received
+	while (inMsg->message != WM_QUIT)
+	{
+		inEnvironmentManager->RunEventHandler();
+		inEnvironmentManager->RunScene();
+	}
+}
+void ThreadManager::RenderThread(EnvironmentManager* inEnvironmentManager, MSG* inMsg)
 {
 	float									fpsTimeElapsed = 0;
 	std::chrono::duration<float>			chronoDelta;
@@ -82,11 +102,8 @@ void ThreadManager::FrameThread(EnvironmentManager* inEnvironmentManager, MSG* i
 		// Assign the start time for the frame
 		frameStartTime = std::chrono::steady_clock::now();
 
-		// Run modules
-		inEnvironmentManager->RunEventHandler();
-		inEnvironmentManager->RunScene();
+		// Run module
 		inEnvironmentManager->RunRenderer();
-		inEnvironmentManager->RunAudio();
 
 		// Assign frame's end time
 		frameEndTime = std::chrono::steady_clock::now();

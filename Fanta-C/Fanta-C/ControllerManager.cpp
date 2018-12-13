@@ -2,7 +2,6 @@
 // My Headers
 #include "ControllerManager.h"			// Connection to declarations
 
-#include "InputManager.h"
 #include "PlayerManager.h"
 #pragma endregion
 

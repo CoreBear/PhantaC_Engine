@@ -19,8 +19,8 @@ public:
 		container = new Generic[max];
 
 		// For each object, set to nullptr
-		for (iterator = 0; iterator < capacity; ++iterator)
-			container[iterator] = nullptr;
+		//for (iterator = 0; iterator < capacity; ++iterator)
+		//	container[iterator] = nullptr;
 	}
 	void AddToBack(Generic object)
 	{

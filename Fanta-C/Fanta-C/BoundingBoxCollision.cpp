@@ -74,7 +74,7 @@ void BoundingBoxCollision::CheckForCollision()
 					boxBeingChecked[0]->ToggleColliding();
 
 				// Inform event handler
-				eventManagerPtr->HandleEvent(GlobalEventVariables::NEW_SEPARATION, objectsBeingChecked[0]);
+				eventManagerPtr->HandleCollision(GlobalEventVariables::NEW_SEPARATION, objectsBeingChecked[0], objectsBeingChecked[1]);
 			}
 
 			// Stop checking for collision. No collision occuring
@@ -88,7 +88,7 @@ void BoundingBoxCollision::CheckForCollision()
 	if (!boxBeingChecked[0]->GetColliding())
 	{
 		// Inform event handler
-		eventManagerPtr->HandleEvent(GlobalEventVariables::NEW_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
+		eventManagerPtr->HandleCollision(GlobalEventVariables::NEW_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
 
 		// Change colliding flag
 		boxBeingChecked[0]->ToggleColliding();
@@ -98,7 +98,7 @@ void BoundingBoxCollision::CheckForCollision()
 	else
 	{
 		// Inform event handler
-		eventManagerPtr->HandleEvent(GlobalEventVariables::CONTINUED_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
+		eventManagerPtr->HandleCollision(GlobalEventVariables::CONTINUED_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
 	}
 
 	// Add collidee to container. There's a check on the other side

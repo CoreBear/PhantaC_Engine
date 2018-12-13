@@ -7,6 +7,9 @@
 #include <XInput.h>					// Defines XBOX controller API 
 #pragma comment(lib, "XInput.lib")	// Library containing necessary 360 // functions // // //	i do not know if this actually works yet because i have not had a chance to test it properly! //	when i tried it at home i got a LNK error which the 'XInputGetState' // // // // // // 
 
+// My Headers
+#include "InputManager.h"
+
 // Forward Declarations
 class InputManager;
 class PlayerManager;
@@ -66,6 +69,8 @@ public:
 
 	// Accessors
 	static ControllerManager* GetInstance(PlayerManager* inPlayerManager);
+
+	~ControllerManager() { delete inputManagerPtr; }
 };
 
 #endif

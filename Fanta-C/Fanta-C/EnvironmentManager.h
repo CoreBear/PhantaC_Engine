@@ -6,18 +6,17 @@
 
 // My Headers
 #include "GlobalTypedefs.h"
-#include "GlobalSceneVariables.h"
 
 class EnvironmentManager
 {	
 	// Game Variables
-	class AudioManager*						audioManagerPtr;
-	static EnvironmentManager*				environmentManagerInstance;
-	class EventManager*						eventManagerPtr;
-	class PhysicsManager*					physicsManagerPtr;
-	class Renderer*							rendererPtr;
-	class SceneManager*						sceneManagerPtr;
-	const char								targetFPS = 60;
+	class AudioManager*														audioManagerPtr;
+	const char																targetFPS = 60;
+	static EnvironmentManager*												environmentManagerInstance;
+	class EventManager*														eventManagerPtr;
+	class PhysicsManager*													physicsManagerPtr;
+	class Renderer*															rendererPtr;
+	class SceneManager*														sceneManagerPtr;
 
 	// Initialization
 	EnvironmentManager(HWND* inWindowHandle, ushort* clientDimensions);

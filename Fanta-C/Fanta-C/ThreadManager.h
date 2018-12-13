@@ -14,18 +14,18 @@ class WindowCreator;
 
 class ThreadManager
 {
-	EnvironmentManager*		environmentManager;
-	static ThreadManager*	threadManagerInstance;
-	const static uchar		numberOfThreads = 2;
-	std::thread*			threads[numberOfThreads];
-	uchar					iterator;
+	static ThreadManager*			threadManagerInstance;
+	const static uchar				numberOfThreads = 3;
+	std::thread*					threads[numberOfThreads];
+	uchar							iterator;
 
 	// Initialization & Running
 	ThreadManager(EnvironmentManager* inEnvironmentManager, MSG* inMsg, WindowCreator* window);
 	ThreadManager(ThreadManager const&) = delete;
 	ThreadManager operator=(ThreadManager const&) = delete;
 
-	static void FrameThread(EnvironmentManager* inEnvironmentManager, MSG* inMsg);
+	static void InputLogicThread(EnvironmentManager* inEnvironmentManager, MSG* inMsg);
+	static void RenderThread(EnvironmentManager* inEnvironmentManager, MSG* inMsg);
 	static void PhysicsThread(EnvironmentManager* inEnvironmentManager, MSG* inMsg);
 
 public:

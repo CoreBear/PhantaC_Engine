@@ -23,7 +23,7 @@ EnvironmentManager::EnvironmentManager(HWND* inWindowHandle, ushort* clientDimen
 
 	sceneManagerPtr = SceneManager::GetInstance(clientDimensions, inWindowHandle, targetFPS);
 
-	eventManagerPtr = EventManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetPlayer());
+	eventManagerPtr = EventManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetPlayer(), sceneManagerPtr->GetScenePtr());
 
 	physicsManagerPtr = PhysicsManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetGrid());
 	
@@ -35,8 +35,8 @@ EnvironmentManager::EnvironmentManager(HWND* inWindowHandle, ushort* clientDimen
 #pragma region Thread Functions
 void EnvironmentManager::RunAudio() { audioManagerPtr->Update(); }
 void EnvironmentManager::RunEventHandler() { eventManagerPtr->Update(); }
-void EnvironmentManager::RunPhysics() { physicsManagerPtr->Update(sceneManagerPtr->GetScenePtr()->GetcollidableObjects()); }
-void EnvironmentManager::RunRenderer() { rendererPtr->Update(sceneManagerPtr->GetScenePtr()->GetrenderableObjects(), sceneManagerPtr->GetScenePtr()->GetCamera()); }
+void EnvironmentManager::RunPhysics() { physicsManagerPtr->Update(sceneManagerPtr->GetScenePtr()->GetCollidableObjects()); }
+void EnvironmentManager::RunRenderer() { rendererPtr->Update(sceneManagerPtr->GetScenePtr()->GetRenderableObjects(), sceneManagerPtr->GetScenePtr()->GetCamera()); }
 void EnvironmentManager::RunScene() { sceneManagerPtr->Update(); }
 #pragma endregion
 

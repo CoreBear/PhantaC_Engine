@@ -7,14 +7,16 @@
 // Forward Declarations
 class PlayerManager;
 class SceneObject;
+class SceneGraph;
 
 class EventManager
 {
-	class ControllerManager*	controllerManagerPtr;
-	static EventManager*		eventManagerInstance;
-	class KeyboardManager*		keyboardManagerPtr;
+	class ControllerManager*												controllerManagerPtr;
+	static EventManager*													eventManagerInstance;
+	class KeyboardManager*													keyboardManagerPtr;
+	SceneGraph*																sceneGraphPtr;
 
-	EventManager(PlayerManager* inPlayerManager);
+	EventManager(PlayerManager* inPlayerManager, SceneGraph* inSceneGraph);
 	EventManager(EventManager const&) = delete;
 	EventManager operator=(EventManager const&) = delete;
 
@@ -28,10 +30,10 @@ public:
 	void Update();
 
 	// Public Interface
-	void HandleEvent(uchar eventType, SceneObject* collider = nullptr, SceneObject* collidee = nullptr);
+	void HandleCollision(uchar eventType, SceneObject* collider, SceneObject* collidee);
 
 	// Accessor
-	static EventManager* GetInstance(PlayerManager* inPlayerManager = nullptr);
+	static EventManager* GetInstance(PlayerManager* inPlayerManager = nullptr, SceneGraph* inSceneGraph = nullptr);
 
 	// Clean Up
 	~EventManager();

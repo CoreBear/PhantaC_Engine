@@ -6,6 +6,7 @@
 #include "GlobalEventVariables.h"
 #include "KeyboardManager.h"
 #include "PlayerManager.h"
+#include "SceneGraph.h"
 #include "SceneObject.h"
 #pragma endregion
 
@@ -14,7 +15,7 @@ EventManager* EventManager::eventManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-EventManager::EventManager(PlayerManager* inPlayerManager)
+EventManager::EventManager(PlayerManager* inPlayerManager, SceneGraph* inSceneGraph) : sceneGraphPtr(inSceneGraph)
 {
 	controllerManagerPtr = ControllerManager::GetInstance(inPlayerManager);
 	keyboardManagerPtr = KeyboardManager::GetInstance(inPlayerManager);
@@ -22,7 +23,7 @@ EventManager::EventManager(PlayerManager* inPlayerManager)
 #pragma endregion
 
 #pragma region Public Interface
-void EventManager::HandleEvent(uchar eventType, SceneObject* collider, SceneObject* collidee)
+void EventManager::HandleCollision(uchar eventType, SceneObject* collider, SceneObject* collidee)
 {
 	switch (eventType)
 	{
@@ -72,7 +73,7 @@ void EventManager::NewSeparation(SceneObject* collider, SceneObject* collidee)
 #pragma endregion
 
 #pragma region Accessors
-EventManager* EventManager::GetInstance(PlayerManager* inPlayerManager)
+EventManager* EventManager::GetInstance(PlayerManager* inPlayerManager, SceneGraph* inSceneGraph)
 {
 	// If instance is already created, return it
 	if (eventManagerInstance) return eventManagerInstance;
@@ -80,7 +81,7 @@ EventManager* EventManager::GetInstance(PlayerManager* inPlayerManager)
 	// If instance has not been created, create it and return it
 	else
 	{
-		eventManagerInstance = new EventManager(inPlayerManager);
+		eventManagerInstance = new EventManager(inPlayerManager, inSceneGraph);
 		return eventManagerInstance;
 	}
 }

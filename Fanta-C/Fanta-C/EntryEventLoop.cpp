@@ -23,6 +23,7 @@
 ///
 /// Parameters
 /// environmentManager - Runs everything, except window creation and events 
+/// window - Creates window
 void RunEnvironment(EnvironmentManager* environmentManager, WindowCreator* window);
 // System Event Handler
 /// Summary
@@ -40,6 +41,15 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 #pragma endregion
 
 #pragma region Application Entry Function
+// Program Entry
+/// Summary
+/// The first function that is called to run the program
+///
+/// Parameters
+/// hInstance - Hangle to current application instance
+/// prevInstance - Handle to previous application instance
+/// cmdLine - Pointer to null-terminated string specifying the command line for the applciation, excluding the program name
+/// cmdShow - Specifies how the window will be shown
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine, int cmdShow)
 {
 	#pragma region Leak Detection

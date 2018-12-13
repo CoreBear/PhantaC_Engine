@@ -34,13 +34,13 @@ void SceneGraph::Update()
 {
 	//DON'T FORGET---------------------------Things will be popping in and out of the scene...make sure to wait until after update of every script before removing 
 	//things from the sceneobjects container, so it won't conflict with the looping. Adding things is fine, so long as we add to the back of the container
-
+	
 	// Update player
 	playerPtr->Update();
 
 	// Update every object in the scene
 	for (graphIterator[0] = 0; graphIterator[0] < sceneObjects.GetSize(); ++graphIterator[0])
-		static_cast<SceneObject*>(sceneObjects.At(graphIterator[0]))->Update();
+		sceneObjects.At(graphIterator[0])->Update();
 }
 #pragma endregion
 
@@ -79,7 +79,6 @@ void SceneGraph::RemoveObjectFromCollide(SceneObject* object)
 		// If object is a collidable object, remove it
 		if (object == collidableObjects.At(graphIterator[2]))
 			collidableObjects.RemoveAt(graphIterator[2]);
-		//collidableObjects.erase(collidableObjects.begin() + graphIterator[2]);
 	}
 }
 void SceneGraph::RemoveObjectFromRender(SceneObject* object)
@@ -90,7 +89,6 @@ void SceneGraph::RemoveObjectFromRender(SceneObject* object)
 		// If oject is a renderable object, remove it
 		if (object == renderableObjects.At(graphIterator[2]))
 			renderableObjects.RemoveAt(graphIterator[2]);
-		//renderableObjects.erase(renderableObjects.begin() + graphIterator[2]);
 	}
 }
 void SceneGraph::RemoveObjectFromScene(SceneObject* object)
@@ -100,7 +98,6 @@ void SceneGraph::RemoveObjectFromScene(SceneObject* object)
 
 	// Remove object from scene
 	sceneObjects.Remove(object);
-	//sceneObjects.erase(std::remove(sceneObjects.begin(), sceneObjects.end(), object), sceneObjects.end());
 
 	delete object;
 }

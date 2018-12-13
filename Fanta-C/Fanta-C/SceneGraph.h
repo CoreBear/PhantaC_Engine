@@ -37,7 +37,6 @@ public:
 
 	// Update
 	void Update();
-
 	// Public Interface
 	/// Summary
 	/// Adds paramtered object into the collidable container that will be passed to the collision manager
@@ -105,8 +104,8 @@ public:
 	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetSceneObjects() { return &sceneObjects; }
 	PlayerManager* GetPlayer() { return playerPtr; }
 	SceneObject* GetGrid() { return sceneObjects.At(0); }
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetcollidableObjects() { return &collidableObjects; }
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetrenderableObjects() { return &renderableObjects; }
+	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetCollidableObjects() { return &collidableObjects; }
+	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetRenderableObjects() { return &renderableObjects; }
 };
 
 #endif

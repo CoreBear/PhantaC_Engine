@@ -19,10 +19,9 @@ class SceneObject;
 
 class Renderer
 {
-	static Renderer*				rendererInstance;
-	// Misc Variables
 	LineRenderer					lineRenderer;									// Object that renders lines on screen
 	MeshLoader						meshLoader;										// Adds mesh lines to the line renderer
+	static Renderer*				rendererInstance;
 	ushort							renderIterator;									// Iterator for object rendering
 
 	// Pipeline Variables
@@ -31,6 +30,7 @@ class Renderer
 	const UINT						offset = 0;										// Offset of bytes between first element of vert buffer and first element that will be used
 	const UINT						simpleVertexStride = sizeof(SIMPLE_VERTEX);		// Size (in bytes) of the elements that are to be used from that vertex buffer
 	
+	// D3D Variables
 	D3D11_MAPPED_SUBRESOURCE		resourceForVertBuffer;							// Resource for transferring information into vertex buffer
 	D3D11_VIEWPORT					viewPort[VIEWPORT::COUNT];						// Index 0 - Main Camera. 1 - Rear View. Tells D3D11 what portion of the screen/surface to draw to (normally all of it)
 	ID3D11Buffer*					constantBuffers[CONSTANT_BUFFER_TYPE::COUNT];	// Buffers used to update ram

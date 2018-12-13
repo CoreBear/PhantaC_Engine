@@ -16,22 +16,22 @@ void InputManager::HandleInput(bool downThisFrame, uchar key)
 	switch (key)
 	{
 	case 0:
-		playerManagerPtr->Move(-1, 0, 0);
-		break;
-	case 1:
-		playerManagerPtr->Move(1, 0, 0);
-		break;
-	case 2:
-		playerManagerPtr->Pitch(-1);
-		break;
-	case 3:
 		playerManagerPtr->Yaw(1);
 		break;
-	case 4:
+	case 1:
+		playerManagerPtr->Yaw(-1);
+		break;
+	case 2:
 		playerManagerPtr->Pitch(1);
 		break;
+	case 3:
+		playerManagerPtr->Roll(1);
+		break;
+	case 4:
+		playerManagerPtr->Pitch(-1);
+		break;
 	case 5:
-		playerManagerPtr->Yaw(-1);
+		playerManagerPtr->Roll(-1);
 		break;
 	case 6:
 		playerManagerPtr->Move(0, 0, -1);
