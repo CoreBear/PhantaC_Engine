@@ -21,15 +21,7 @@ protected:
 	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	renderableObjects;
 	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	sceneObjects;
 	PlayerManager*															playerPtr;
-	ushort																	graphIterator[3];
-
-	/// Summary
-	/// Checks if child is a child of parent
-	///
-	/// Parameters
-	/// child - The object that wants to be added to parent's child list
-	/// parent - The object that may receive child in it's child list
-	bool CheckIfAlreadyChildToParent(SceneObject* child, SceneObject* parent);
+	ushort																	graphIterator[2];
 
 public:
 	// Initialization
@@ -64,13 +56,6 @@ public:
 	/// script - The scrtip that will be added to the object
 	void AddScript(SceneObject* object, ScriptManager* script);
 	/// Summary
-	/// Childs object to parent
-	///
-	/// Parameters
-	/// child - The object that wants to be added to parent's child list
-	/// parent - The object that may receive child in it's child list
-	void ChildObjectToParent(SceneObject* child, SceneObject* parent);
-	/// Summary
 	/// Removes the parametered object from the collidable container
 	///
 	/// Parameters
@@ -101,11 +86,11 @@ public:
 
 	// Accessors
 	Camera* GetCamera() { return sceneCameraPtr; }
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetSceneObjects() { return &sceneObjects; }
 	PlayerManager* GetPlayer() { return playerPtr; }
 	SceneObject* GetGrid() { return sceneObjects.At(0); }
 	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetCollidableObjects() { return &collidableObjects; }
 	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetRenderableObjects() { return &renderableObjects; }
+	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetSceneObjects() { return &sceneObjects; }
 };
 
 #endif

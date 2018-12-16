@@ -6,23 +6,31 @@
 
 // Forward Declarations
 class PlayerManager;
+class SceneObject;
+class SceneGraph;
 
 class InputManager
 {
-	static InputManager*	inputManagerInstance;
-	PlayerManager*			playerManagerPtr;
+	// Variables
+	class ControllerManager*												controllerManagerPtr;
+	static InputManager*													inputManagerInstance;
+	class KeyboardManager*													keyboardManagerPtr;
+	SceneGraph*																sceneGraphPtr;
 
 	// Initialization
-	InputManager(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager) { return; }
+	InputManager(PlayerManager* inPlayerManager, SceneGraph* inSceneGraph);
 	InputManager(InputManager const&) = delete;
 	InputManager operator=(InputManager const&) = delete;
 
 public:
-	// Public Interface
-	void HandleInput(bool downThisFrame, uchar key);
+	// Initialization
+	static InputManager* GetInstance(PlayerManager* inPlayerManager = nullptr, SceneGraph* inSceneGraph = nullptr);
+	
+	// Update
+	void Update();
 
-	// Accessors
-	static InputManager* GetInstance(PlayerManager* inPlayerManager = nullptr);
+	// Clean Up
+	~InputManager();
 };
 
 #endif

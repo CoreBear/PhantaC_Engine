@@ -10,6 +10,7 @@
 
 class WindowCreator
 {
+	// Variables
 	HWND					windowHandle;							// Instance/Pointer to the program window
 	LPCSTR					windowClassName = "Fanta-CWinClass";	// Unique for the application
 	LPCSTR					windowName = "Fanta-C Engine";			// Name of window
@@ -22,11 +23,12 @@ class WindowCreator
 	WindowCreator& operator=(WindowCreator const&) = delete;
 
 public:
+	// Initialization
+	static WindowCreator* GetInstance(HINSTANCE hInstance, int cmdShow, WNDPROC wndProc);
 
 	// Accessors
 	HWND * GetWindowHandle() { return &windowHandle; }
 	ushort* GetClientDimensions() { return clientDimensions; }
-	static WindowCreator* GetInstance(HINSTANCE hInstance, int cmdShow, WNDPROC wndProc);
 };
 
 #endif

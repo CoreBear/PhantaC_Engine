@@ -12,6 +12,7 @@ class SceneObject;
 
 class PhysicsManager
 {
+	// Variables
 	class CollisionManager* collisionManager;
 	static PhysicsManager*	physicsManagerInstance;
 
@@ -21,11 +22,11 @@ class PhysicsManager
 	PhysicsManager operator=(PhysicsManager const&) = delete;
 
 public:
-	// Update
-	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects);
-
-	// Accessors
+	// Initialization
 	static PhysicsManager* GetInstance(SceneObject* grid = nullptr);
+
+	// Update
+	void Update();
 
 	// Clean Up
 	~PhysicsManager() { if (collisionManager) delete collisionManager; }

@@ -2,7 +2,7 @@
 #define _BOUNDING_BOX_COLLISION_H
 
 // My Headers
-#include "EventManager.h"
+#include "InputManager.h"
 #include "GlobalDirectX.h"
 #include "GlobalSceneVariables.h"
 #include "GlobalTypedefs.h"
@@ -13,31 +13,33 @@ class SceneObject;
 
 class BoundingBoxCollision
 {
+	// Variables
 	float							extentLength;
 	float							lengthToCorner;
 	float							objectAxisPosition;
 	class BoundingBox*				boxBeingChecked[2];
 	static BoundingBoxCollision*	bbCollisionInstance;
-	EventManager*					eventManagerPtr;
+	InputManager*					inputManagerPtr;
 	SceneObject*					objectsBeingChecked[2];
 	ushort							collisionIterators[5];
 	XMVECTOR						min[2];
 	XMVECTOR						max[2];
 
-	BoundingBoxCollision() { eventManagerPtr = EventManager::GetInstance(); }
+	// Initialization
+	BoundingBoxCollision() { inputManagerPtr = InputManager::GetInstance(); }
 	BoundingBoxCollision(BoundingBoxCollision const&) = delete;
 	BoundingBoxCollision operator=(BoundingBoxCollision const&) = delete;
 
-	// Private Functions
+	// Private Functionality
 	void AssignCollisionObjects(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects);
 	void CheckForCollision();
 
 public:
+	// Initialization
+	static BoundingBoxCollision* GetInstance();
+
 	// Update
 	void Update(class PartitionGrid* grid);
-
-	// Accessors
-	static BoundingBoxCollision* GetInstance();
 };
 
 #endif

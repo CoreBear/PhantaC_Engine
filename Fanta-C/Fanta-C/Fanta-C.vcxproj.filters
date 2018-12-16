@@ -181,9 +181,6 @@
     <Filter Include="Game\Scripting\Game Object\Player">
       <UniqueIdentifier>{799824f9-4d40-4069-a9e7-a62479b450c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scripting\Game Object\Moving Object">
-      <UniqueIdentifier>{fa28bc45-9f84-4232-925f-749263d93c74}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scripting\Game Object\Agent">
       <UniqueIdentifier>{deb338a1-e6f5-4f31-9909-88600177392d}</UniqueIdentifier>
     </Filter>
@@ -193,26 +190,26 @@
     <Filter Include="Environment\Events\Input\Manager">
       <UniqueIdentifier>{6fc1a6bb-8b95-406a-ab0f-d4eed022c275}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Events\Input\Controller">
-      <UniqueIdentifier>{b3926534-50d1-4b5b-ae6e-492d9b850e66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Events\Input\Controller\Manager">
-      <UniqueIdentifier>{5173ecdb-4c7a-46f9-9863-5ea1cdb4139b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Environment\Memory\Data Structures">
       <UniqueIdentifier>{576ce9e0-be72-41b7-8823-d92d9f261d82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Events\Manager">
+    <Filter Include="Game\Scripting\Game Object\Mobility">
+      <UniqueIdentifier>{fa28bc45-9f84-4232-925f-749263d93c74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Events\Input\Handler">
       <UniqueIdentifier>{46999e65-0eb4-463f-b30f-920742b61e14}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Initialization &amp; Events\Threading">
-      <UniqueIdentifier>{c2d26f0d-ec55-4d30-82dd-f7306760f2ef}</UniqueIdentifier>
+    <Filter Include="Environment\Events\Input\Devices">
+      <UniqueIdentifier>{6a2bd89f-2831-49a2-baae-3f62127fc970}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Initialization &amp; Events\Threading\Manager">
-      <UniqueIdentifier>{c4024b81-0992-45e7-b1b1-1b8e45e43e0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Events\Input\KeyBoard">
+    <Filter Include="Environment\Events\Input\Devices\KeyBoard">
       <UniqueIdentifier>{c5643bca-3954-42ac-869a-f7ab2179eda9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Events\Input\Devices\Controller">
+      <UniqueIdentifier>{b3926534-50d1-4b5b-ae6e-492d9b850e66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Events\Input\Devices\Controller\Manager">
+      <UniqueIdentifier>{5173ecdb-4c7a-46f9-9863-5ea1cdb4139b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -261,11 +258,8 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>Game\Scenes\Test</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Environment\Events\Input\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="ControllerManager.cpp">
-      <Filter>Environment\Events\Input\Controller\Manager</Filter>
+      <Filter>Environment\Events\Input\Devices\Controller\Manager</Filter>
     </ClCompile>
     <ClCompile Include="EntryEventLoop.cpp">
       <Filter>Application\Initialization &amp; Events</Filter>
@@ -312,17 +306,14 @@
     <ClCompile Include="AgentManager.cpp">
       <Filter>Game\Scripting\Game Object\Agent</Filter>
     </ClCompile>
-    <ClCompile Include="MyArray.cpp">
-      <Filter>Environment\Memory\Data Structures</Filter>
-    </ClCompile>
-    <ClCompile Include="EventManager.cpp">
-      <Filter>Environment\Events\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadManager.cpp">
-      <Filter>Application\Initialization &amp; Events\Threading\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="KeyboardManager.cpp">
-      <Filter>Environment\Events\Input\KeyBoard</Filter>
+      <Filter>Environment\Events\Input\Devices\KeyBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Environment\Events\Input\Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Environment\Events\Input\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -383,17 +374,14 @@
     <ClInclude Include="TestScene.h">
       <Filter>Game\Scenes\Test</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Environment\Events\Input\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="ControllerManager.h">
-      <Filter>Environment\Events\Input\Controller\Manager</Filter>
+      <Filter>Environment\Events\Input\Devices\Controller\Manager</Filter>
     </ClInclude>
     <ClInclude Include="GlobalTransform.h">
       <Filter>Globals\Movement\Transform</Filter>
     </ClInclude>
     <ClInclude Include="MovingObject.h">
-      <Filter>Game\Scripting\Game Object\Moving Object</Filter>
+      <Filter>Game\Scripting\Game Object\Mobility</Filter>
     </ClInclude>
     <ClInclude Include="ColliderManager.h">
       <Filter>Environment\Scene\Object\Collider\Manager</Filter>
@@ -440,9 +428,6 @@
     <ClInclude Include="GlobalInputVariables.h">
       <Filter>Globals\Assisting Variables</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalEventVariables.h">
-      <Filter>Globals\Assisting Variables</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalWorldVariables.h">
       <Filter>Globals\Misc</Filter>
     </ClInclude>
@@ -467,17 +452,20 @@
     <ClInclude Include="MyArray.h">
       <Filter>Environment\Memory\Data Structures</Filter>
     </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Environment\Events\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadManager.h">
-      <Filter>Application\Initialization &amp; Events\Threading\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalDirectX.h">
       <Filter>Globals\Misc</Filter>
     </ClInclude>
     <ClInclude Include="KeyboardManager.h">
-      <Filter>Environment\Events\Input\KeyBoard</Filter>
+      <Filter>Environment\Events\Input\Devices\KeyBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="NonMovingObject.h">
+      <Filter>Game\Scripting\Game Object\Mobility</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Environment\Events\Input\Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Environment\Events\Input\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

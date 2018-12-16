@@ -11,6 +11,21 @@
 Partitioner* Partitioner::partitionerInstance = nullptr;
 #pragma endregion
 
+#pragma region Initialization
+Partitioner * Partitioner::GetInstance()
+{
+	// If instance is already created, return it
+	if (partitionerInstance) return partitionerInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		partitionerInstance = new Partitioner;
+		return partitionerInstance;
+	}
+}
+#pragma endregion
+
 #pragma region Update
 void Partitioner::Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, PartitionGrid* grid)
 {
@@ -35,21 +50,6 @@ void Partitioner::Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOf
 				grid->GetGridCells()[iterators[0]].RemoveObject(collidableObjects->At(iterators[1]));
 			}
 		}
-	}
-}
-#pragma endregion
-
-#pragma region Accessors
-Partitioner * Partitioner::GetInstance()
-{
-	// If instance is already created, return it
-	if (partitionerInstance) return partitionerInstance;
-
-	// If instance has not been created, create it and return it
-	else
-	{
-		partitionerInstance = new Partitioner;
-		return partitionerInstance;
 	}
 }
 #pragma endregion

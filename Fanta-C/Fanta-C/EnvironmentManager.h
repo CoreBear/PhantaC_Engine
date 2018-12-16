@@ -2,45 +2,50 @@
 #define _ENVIRONMENT_MANAGER_H
 
 // System Headers
+#include <chrono>
 #include <Windows.h>
 
 // My Headers
+#include "GlobalConsoleWrite.h"
 #include "GlobalTypedefs.h"
+
+// Foreward Declarations
+class WindowCreator;
 
 class EnvironmentManager
 {	
-	// Game Variables
-	class AudioManager*														audioManagerPtr;
-	const char																targetFPS = 60;
-	static EnvironmentManager*												environmentManagerInstance;
-	class EventManager*														eventManagerPtr;
-	class PhysicsManager*													physicsManagerPtr;
-	class Renderer*															rendererPtr;
-	class SceneManager*														sceneManagerPtr;
+	// Variables
+	class AudioManager*						audioManagerPtr;
+	const char								targetFPS = 60;
+	static EnvironmentManager*				environmentManagerInstance;
+	class InputManager*						inputManagerPtr;
+	float									fpsTimeElapsed = 0;
+	class PhysicsManager*					physicsManagerPtr;
+	class Renderer*							rendererPtr;
+	class SceneManager*						sceneManagerPtr;
+	std::chrono::duration<float>			chronoDelta;
+	std::chrono::steady_clock::time_point	frameEndTime;
+	std::chrono::steady_clock::time_point	frameStartTime;
+	std::string								fpsString;
+	ushort									actualFpsCount;
+	ushort									frameCounter = 0;
+	const ushort							thousandMilliseconds = 1000;	// Milliseconds
 
 	// Initialization
-	EnvironmentManager(HWND* inWindowHandle, ushort* clientDimensions);
+	EnvironmentManager(WindowCreator* window);
 	EnvironmentManager(EnvironmentManager const&) = delete;
 	EnvironmentManager operator=(EnvironmentManager const&) = delete;
 
+	// Private Functionality
+	void FPSEnd();
+	void FPSStart();
+
 public:
-	// Public Interface
-	/// Summary
-	/// Hacked. Delete later
-	/// Updates the fps in the window's title bar
-	///
-	/// Parameters
-	/// fps - The text that will be used for the udpate
+	// Initialization
+	static EnvironmentManager* GetInstance(WindowCreator* window);
 
-	// Thread Functions
-	void RunAudio();
-	void RunEventHandler();
-	void RunPhysics();
-	void RunRenderer();
-	void RunScene();
-
-	// Accessors
-	static EnvironmentManager* GetInstance(HWND* inWindowHandle, ushort* clientDimensions);
+	// Update
+	void Update();
 
 	// Clean Up
 	~EnvironmentManager();

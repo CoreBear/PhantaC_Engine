@@ -11,7 +11,22 @@
 #pragma endregion
 
 #pragma region Forward Declarations
-PlayerManager* PlayerManager::playerManagerInstance = nullptr;
+PlayerManager*	PlayerManager::playerManagerInstance = nullptr;
+#pragma endregion
+
+#pragma region Initialization
+PlayerManager * PlayerManager::GetInstance(Camera* inCamera, SceneGraph* sceneGraph, float inVelocity, float inAngularVelocity)
+{
+	// If instance is already created, return it
+	if (playerManagerInstance) return playerManagerInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		playerManagerInstance = new PlayerManager(inCamera, sceneGraph, inVelocity, inAngularVelocity);
+		return playerManagerInstance;
+	}
+}
 #pragma endregion
 
 #pragma region Public Interface
@@ -34,19 +49,4 @@ void PlayerManager::Shoot()
 	sceneGraphPtr->AddObjectToScene(bulletTrail);
 }
 void PlayerManager::Yaw(char angle) { GlobalTransform::RotateOnWorldYAxis(angle * GlobalTime::deltaTime * angularVelocity, *camera->GetViewMatrix()); }
-#pragma endregion
-
-#pragma region Accessors
-PlayerManager * PlayerManager::GetInstance(Camera* inCamera, SceneGraph* sceneGraph, float inVelocity, float inAngularVelocity)
-{
-	// If instance is already created, return it
-	if (playerManagerInstance) return playerManagerInstance;
-
-	// If instance has not been created, create it and return it
-	else
-	{
-		playerManagerInstance = new PlayerManager(inCamera, sceneGraph, inVelocity, inAngularVelocity);
-		return playerManagerInstance;
-	}
-}
 #pragma endregion

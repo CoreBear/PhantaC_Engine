@@ -11,6 +11,7 @@ class SceneObject;
 
 class CollisionManager
 {
+	// Variables
 	class BoundingBoxCollision* boundingBoxCollisionPtr;
 	static CollisionManager*	collisionManagerInstance;
 	class PartitioningManager*	partitioningManagerPtr;
@@ -21,11 +22,11 @@ class CollisionManager
 	CollisionManager operator=(CollisionManager const&) = delete;
 
 public:
-	// Update
-	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects);
-
-	// Accessors
+	// Initialization
 	static CollisionManager* GetInstance(SceneObject* grid = nullptr);
+
+	// Update
+	void Update();
 
 	// Clean Up
 	~CollisionManager();

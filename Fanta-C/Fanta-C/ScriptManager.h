@@ -1,6 +1,7 @@
 #ifndef _SCRIPT_MANAGER_H
 #define _SCRIPT_MANAGER_H
 
+// Abstract Base Class
 class ScriptManager
 {
 public:

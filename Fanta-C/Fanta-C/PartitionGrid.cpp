@@ -46,9 +46,6 @@ PartitionGrid::PartitionGrid(SceneObject* grid)
 		position[1] += cellDepthWidth;
 	}
 }
-#pragma endregion
-
-#pragma region Accessors
 PartitionGrid * PartitionGrid::GetInstance(SceneObject * grid)
 {
 	// If instance is already created, return it

@@ -124,7 +124,7 @@
     <ClCompile Include="ControllerManager.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="EnvironmentManager.cpp" />
-    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="GlobalAutonomy.cpp" />
     <ClCompile Include="GlobalTransform.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -133,7 +133,6 @@
     <ClCompile Include="LineRenderer.cpp" />
     <ClCompile Include="EntryEventLoop.cpp" />
     <ClCompile Include="GlobalMath.cpp" />
-    <ClCompile Include="MyArray.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="PartitionGrid.cpp" />
     <ClCompile Include="PartitionCell.cpp" />
@@ -146,10 +145,9 @@
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Pyramid.cpp" />
     <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sphere.cpp" />
-    <ClCompile Include="ThreadManager.cpp" />
     <ClCompile Include="WindowCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,11 +161,10 @@
     <ClInclude Include="ControllerManager.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="EnvironmentManager.h" />
-    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="GlobalAutonomy.h" />
     <ClInclude Include="GlobalConsoleWrite.h" />
     <ClInclude Include="GlobalDirectX.h" />
-    <ClInclude Include="GlobalEventVariables.h" />
     <ClInclude Include="GlobalInputVariables.h" />
     <ClInclude Include="GlobalMath.h" />
     <ClInclude Include="GlobalSceneVariables.h" />
@@ -181,6 +178,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="MyArray.h" />
+    <ClInclude Include="NonMovingObject.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="PartitionGrid.h" />
     <ClInclude Include="PartitionCell.h" />
@@ -191,7 +189,6 @@
     <ClInclude Include="Partitioner.h" />
     <ClInclude Include="AgentManager.h" />
     <ClInclude Include="TestScene.h" />
-    <ClInclude Include="ThreadManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="GlobalVramStructures.h" />
@@ -199,7 +196,7 @@
     <ClInclude Include="Pyramid.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="GlobalRendererStructures.h" />
-    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="GlobalTypedefs.h" />

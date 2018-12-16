@@ -7,7 +7,6 @@
 #include "EnvironmentManager.h"
 #include "GlobalInputVariables.h"
 #include "GlobalTypedefs.h"
-#include "ThreadManager.h"
 #include "WindowCreator.h"
 
 // Leak Detection
@@ -17,14 +16,24 @@
 #pragma endregion
 
 #pragma region Forward Declarations
-// Application Loop
+// Application
 /// Summary
 /// Launches the thread that runs environment level of the application
-///
+/// and runs system event loop
 /// Parameters
 /// environmentManager - Runs everything, except window creation and events 
 /// window - Creates window
-void RunEnvironment(EnvironmentManager* environmentManager, WindowCreator* window);
+void RunApplication(EnvironmentManager* environmentManager, WindowCreator* window);
+
+// Environment
+/// Summary
+/// Runs the environment that houses the game
+///
+/// Parameters
+/// environmentManager - Runs everything, except window creation and events 
+/// msg - Stores system events
+void RunEnvironment(EnvironmentManager* environmentManager, MSG* msg);
+
 // System Event Handler
 /// Summary
 /// Receives system events
@@ -63,10 +72,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	WindowCreator* window = WindowCreator::GetInstance(hInstance, cmdShow, &WndProc);
 
 	// Creates the game instance
-	EnvironmentManager* environmentManager = EnvironmentManager::GetInstance(window->GetWindowHandle(), window->GetClientDimensions());
+	EnvironmentManager* environmentManager = EnvironmentManager::GetInstance(window);
 	
 	// Will run until quit message is posted
-	RunEnvironment(environmentManager, window);
+	RunApplication(environmentManager, window);
 
 	// Clean Up
 	delete environmentManager;
@@ -77,23 +86,22 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 }
 #pragma endregion
 
-#pragma region Application Loop
-void RunEnvironment(EnvironmentManager* environmentManager, WindowCreator* window)
+#pragma region Application
+void RunApplication(EnvironmentManager* environmentManager, WindowCreator* window)
 {
 	// Flag to let other threads know they can skip this functionality
-	bool firstThreadHasPassedThisPoint = false;
+	bool mainThreadHasBeenHere = false;
 
 	// Container that stores system messages
 	MSG msg = { 0 };
-
-	// Creates the object that the majority of the threads will continue to run in
-	ThreadManager* threadManager = ThreadManager::GetInstance(environmentManager, &msg, window);
 	
+	std::thread* environmentThread = new std::thread(RunEnvironment, environmentManager, &msg);
+
 	// In place for the second thread
-	if (!firstThreadHasPassedThisPoint)
+	if (!mainThreadHasBeenHere)
 	{
 		// Flip flag so other threads cannot follow and get stuck in the loop
-		firstThreadHasPassedThisPoint = true;
+		mainThreadHasBeenHere = true;
 
 		// Event handler loop
 		while (true)
@@ -116,9 +124,18 @@ void RunEnvironment(EnvironmentManager* environmentManager, WindowCreator* windo
 		}
 	}
 
-	// Join threads and delete the manager
-	threadManager->JoinThreads();
-	delete threadManager;
+	// Join threads and delete additional
+	environmentThread->join();
+	delete environmentThread;
+}
+#pragma endregion
+
+#pragma region Environment
+void RunEnvironment(EnvironmentManager* environmentManager, MSG* msg)
+{
+	// Will continue running until quit message is received
+	while (msg->message != WM_QUIT)
+		environmentManager->Update();
 }
 #pragma endregion
 

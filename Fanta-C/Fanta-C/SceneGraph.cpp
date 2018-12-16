@@ -36,7 +36,7 @@ void SceneGraph::Update()
 	//things from the sceneobjects container, so it won't conflict with the looping. Adding things is fine, so long as we add to the back of the container
 	
 	// Update player
-	playerPtr->Update();
+	//playerPtr->Update();
 
 	// Update every object in the scene
 	for (graphIterator[0] = 0; graphIterator[0] < sceneObjects.GetSize(); ++graphIterator[0])
@@ -65,20 +65,14 @@ void SceneGraph::AddScript(SceneObject* object, ScriptManager* script)
 {
 	object->GetMyScripts()->push_back(script);
 }
-void SceneGraph::ChildObjectToParent(SceneObject* child, SceneObject* parent)
-{
-	// If child is not already childed to parent, child it
-	if (!CheckIfAlreadyChildToParent(child, parent))
-		parent->GetMyChildren()->push_back(child);
-}
 void SceneGraph::RemoveObjectFromCollide(SceneObject* object)
 {
 	// For each collidable object
-	for (graphIterator[2] = 0; graphIterator[2] < collidableObjects.GetSize(); ++graphIterator[2])
+	for (graphIterator[1] = 0; graphIterator[1] < collidableObjects.GetSize(); ++graphIterator[1])
 	{
 		// If object is a collidable object, remove it
-		if (object == collidableObjects.At(graphIterator[2]))
-			collidableObjects.RemoveAt(graphIterator[2]);
+		if (object == collidableObjects.At(graphIterator[1]))
+			collidableObjects.RemoveAt(graphIterator[1]);
 	}
 }
 void SceneGraph::RemoveObjectFromRender(SceneObject* object)
@@ -105,18 +99,6 @@ void SceneGraph::RemoveScript(SceneObject* object, ScriptManager* script)
 {
 	// Remove script
 	object->GetMyScripts()->erase(std::remove(object->GetMyScripts()->begin(), object->GetMyScripts()->end(), script), object->GetMyScripts()->end());
-}
-#pragma endregion
-
-#pragma region Private
-bool SceneGraph::CheckIfAlreadyChildToParent(SceneObject* child, SceneObject* parent)
-{
-	// If child is already childed to parent
-	if (std::find(parent->GetMyChildren()->begin(), parent->GetMyChildren()->end(), child) != parent->GetMyChildren()->end())
-		return true;
-
-	// If child is not already childed to parent
-	return false;
 }
 #pragma endregion
 

@@ -11,19 +11,21 @@ class SceneObject;
 
 class Partitioner
 {
+	// Variables
 	static Partitioner*	partitionerInstance;
 	ushort				iterators[2];
 
+	// Initialization
 	Partitioner() { return; }
 	Partitioner(Partitioner const&) = delete;
 	Partitioner operator=(Partitioner const&) = delete;
 
 public:
+	// Initialization
+	static Partitioner* GetInstance();
+
 	// Update
 	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, class PartitionGrid* grid);
-
-	// Accessors
-	static Partitioner* GetInstance();
 };
 
 #endif

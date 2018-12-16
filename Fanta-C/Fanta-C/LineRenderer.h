@@ -10,6 +10,7 @@
 
 class LineRenderer
 {
+	// Variables
 	constexpr static ushort							containerCapacity = 5000;
 	ushort											currentCount = 0;
 	std::array<SIMPLE_VERTEX, containerCapacity>	lineVertices;

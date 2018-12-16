@@ -7,14 +7,7 @@
 AudioManager* AudioManager::audioManagerInstance = nullptr;
 #pragma endregion
 
-#pragma region Update
-void AudioManager::Update()
-{
-
-}
-#pragma endregion
-
-#pragma region Accessors
+#pragma region Initialization
 AudioManager* AudioManager::GetInstance()
 {
 	// If instance has been created
@@ -26,5 +19,12 @@ AudioManager* AudioManager::GetInstance()
 		audioManagerInstance = new AudioManager;
 		return audioManagerInstance;
 	}
+}
+#pragma endregion
+
+#pragma region Update
+void AudioManager::Update()
+{
+
 }
 #pragma endregion

@@ -5,14 +5,15 @@
 #include "GlobalTypedefs.h"
 
 // Forward Declarations
-class InputManager;
+class InputHandler;
 class PlayerManager;
 
 class KeyboardManager
 {
+	// Variables
 	bool					keyDownThisFrame[9];
 	bool					keyIsDown[9];
-	InputManager*			inputManagerPtr;
+	InputHandler*			inputHandlerPtr;
 	static KeyboardManager* keyboardManagerInstance;
 	PlayerManager*			playerManagerPtr;
 
@@ -24,11 +25,11 @@ class KeyboardManager
 	void KeyEventHandler(bool keyDown, uchar index);
 
 public:
+	// Initialization
+	static KeyboardManager* GetInstance(PlayerManager* inPlayerManager);
+	
 	// Update
 	void Update();
-
-	// Accessors
-	static KeyboardManager* GetInstance(PlayerManager* inPlayerManager);
 };
 
 #endif

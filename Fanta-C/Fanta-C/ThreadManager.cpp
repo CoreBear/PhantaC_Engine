@@ -99,41 +99,9 @@ void ThreadManager::RenderThread(EnvironmentManager* inEnvironmentManager, MSG* 
 	// Run everything function until quit is received
 	while (inMsg->message != WM_QUIT)
 	{
-		// Assign the start time for the frame
-		frameStartTime = std::chrono::steady_clock::now();
 
 		// Run module
 		inEnvironmentManager->RunRenderer();
-
-		// Assign frame's end time
-		frameEndTime = std::chrono::steady_clock::now();
-
-		// Get delta time in chrono standards and assign it to global delta time
-		chronoDelta = frameEndTime - frameStartTime;
-		GlobalTime::deltaTime = chronoDelta.count();
-
-		#pragma region FPS Counter
-		// Update the time for fps update
-		fpsTimeElapsed += GlobalTime::deltaTime * thousandMilliseconds;
-
-		// Increment for each frame completed
-		++frameCounter;
-
-		// Update fps every half a second
-		if (fpsTimeElapsed > thousandMilliseconds)
-		{
-			// Store the number of frames counted
-			actualFpsCount = frameCounter;
-
-			// Zero out frames counted for the next cycle
-			frameCounter = 0;
-
-			// Reset timer
-			fpsTimeElapsed = 0;
-
-			// Hack to show FPS. Remove later
-			GlobalConsoleWrite::WriteToConsole(actualFpsCount);
-		}
 		#pragma endregion
 	}
 }

@@ -7,6 +7,7 @@
 
 template<typename Generic, ushort max> class MyArray
 {
+	// Variables
 	Generic*	container;		// The actual container that will store objects
 	ushort		capacity;		// The number of spaces available
 	ushort		iterator;
@@ -22,6 +23,9 @@ public:
 		//for (iterator = 0; iterator < capacity; ++iterator)
 		//	container[iterator] = nullptr;
 	}
+
+
+	// Public Interface
 	void AddToBack(Generic object)
 	{
 		// Assign the next open position as the object and increment the counter
@@ -62,6 +66,9 @@ public:
 		container[index] = container[size - 1];
 		--size;
 	}
+
+
+	// Clean Up
 	~MyArray() { if (container) delete container; }
 };
 

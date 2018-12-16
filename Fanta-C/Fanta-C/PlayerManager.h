@@ -11,6 +11,7 @@ class SceneGraph;
 
 class PlayerManager : public MovingObject
 {
+	// Variables
 	Camera*					camera;
 	static PlayerManager*	playerManagerInstance;
 
@@ -33,7 +34,7 @@ public:
 	void Yaw(char angle);
 
 	// Accessors
-	static PlayerManager* GetInstance(Camera* inCamera, SceneGraph* sceneGraph, float inVelocity = 1, float inAngularVelocity = 1);
+	static PlayerManager* GetInstance(Camera* inCamera, SceneGraph* sceneGraph, float inVelocity, float inAngularVelocity);
 };
 
 #endif

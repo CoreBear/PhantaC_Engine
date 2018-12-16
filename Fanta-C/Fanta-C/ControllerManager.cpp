@@ -9,8 +9,20 @@
 ControllerManager* ControllerManager::controllerManagerInstance = nullptr;
 #pragma endregion
 
-#pragma region MyRegion
-ControllerManager::ControllerManager(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager), inputManagerPtr(InputManager::GetInstance(inPlayerManager)) { return; }
+#pragma region Initialization
+ControllerManager::ControllerManager(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager), inputHandlerPtr(InputHandler::GetInstance(inPlayerManager)) { return; }
+ControllerManager* ControllerManager::GetInstance(PlayerManager* inPlayerManager)
+{
+	// If instance has been created, return it
+	if (controllerManagerInstance) return controllerManagerInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		controllerManagerInstance = new ControllerManager(inPlayerManager);
+		return controllerManagerInstance;
+	}
+}
 #pragma endregion
 
 #pragma region Bumpers
@@ -221,20 +233,5 @@ bool ControllerManager::VibrateOn(int powerLeft, int powerRight)
 	}
 	else
 		return false;
-}
-#pragma endregion
-
-#pragma region Accessors
-ControllerManager* ControllerManager::GetInstance(PlayerManager* inPlayerManager)
-{
-	// If instance has been created, return it
-	if (controllerManagerInstance) return controllerManagerInstance;
-
-	// If instance has not been created, create it and return it
-	else
-	{
-		controllerManagerInstance = new ControllerManager(inPlayerManager);
-		return controllerManagerInstance;
-	}
 }
 #pragma endregion

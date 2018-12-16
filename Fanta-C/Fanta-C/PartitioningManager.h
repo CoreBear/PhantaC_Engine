@@ -10,6 +10,7 @@ class SceneObject;
 
 class PartitioningManager
 {
+	// Variables
 	class Partitioner*			partitionerPtr;
 	class PartitionGrid*		partitionGridPtr;
 	static PartitioningManager* partitioningManagerInstance;
@@ -20,12 +21,14 @@ class PartitioningManager
 	PartitioningManager operator=(PartitioningManager const&) = delete;
 
 public:
+	// Initialization
+	static PartitioningManager* GetInstance(SceneObject* grid);
+
 	// Update
 	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects);
 
 	// Accessors
 	PartitionGrid* GetPartitionGrid() { return partitionGridPtr; }
-	static PartitioningManager* GetInstance(SceneObject* grid);
 
 	// Clean Up
 	~PartitioningManager();

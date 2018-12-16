@@ -8,6 +8,7 @@
 
 class AgentManager : public MovingObject
 {
+	// Variables
 	SceneObject*	myObject;
 	XMVECTOR*		targetPosition;
 
@@ -18,6 +19,7 @@ public:
 	// Update
 	void Update() override;
 
+	// Hack
 	void AssignTarget(XMVECTOR* inTargetPosition) { targetPosition = inTargetPosition; }
 
 	// Accessors

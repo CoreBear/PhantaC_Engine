@@ -3,7 +3,6 @@
 #include "BoundingBoxCollision.h"		// Connection to declarations
 
 #include "BoundingBox.h"
-#include "GlobalEventVariables.h"
 #include "GlobalInputVariables.h"
 #include "PartitionCell.h"
 #include "PartitionGrid.h"
@@ -12,6 +11,21 @@
 
 #pragma region Forward Declarations
 BoundingBoxCollision* BoundingBoxCollision::bbCollisionInstance = nullptr;
+#pragma endregion
+
+#pragma region Initialization
+BoundingBoxCollision * BoundingBoxCollision::GetInstance()
+{
+	// If instance is created, return it
+	if (bbCollisionInstance) return bbCollisionInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		bbCollisionInstance = new BoundingBoxCollision;
+		return bbCollisionInstance;
+	}
+}
 #pragma endregion
 
 #pragma region Update
@@ -74,7 +88,7 @@ void BoundingBoxCollision::CheckForCollision()
 					boxBeingChecked[0]->ToggleColliding();
 
 				// Inform event handler
-				eventManagerPtr->HandleCollision(GlobalEventVariables::NEW_SEPARATION, objectsBeingChecked[0], objectsBeingChecked[1]);
+				//inputManagerPtr->HandleCollision(GlobalEventVariables::NEW_SEPARATION, objectsBeingChecked[0], objectsBeingChecked[1]);
 			}
 
 			// Stop checking for collision. No collision occuring
@@ -88,7 +102,7 @@ void BoundingBoxCollision::CheckForCollision()
 	if (!boxBeingChecked[0]->GetColliding())
 	{
 		// Inform event handler
-		eventManagerPtr->HandleCollision(GlobalEventVariables::NEW_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
+		//inputManagerPtr->HandleCollision(GlobalEventVariables::NEW_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
 
 		// Change colliding flag
 		boxBeingChecked[0]->ToggleColliding();
@@ -98,25 +112,10 @@ void BoundingBoxCollision::CheckForCollision()
 	else
 	{
 		// Inform event handler
-		eventManagerPtr->HandleCollision(GlobalEventVariables::CONTINUED_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
+		//inputManagerPtr->HandleCollision(GlobalEventVariables::CONTINUED_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
 	}
 
 	// Add collidee to container. There's a check on the other side
 	boxBeingChecked[0]->AddCollidingObject(objectsBeingChecked[1]);
-}
-#pragma endregion
-
-#pragma region Accessors
-BoundingBoxCollision * BoundingBoxCollision::GetInstance()
-{
-	// If instance is created, return it
-	if (bbCollisionInstance) return bbCollisionInstance;
-
-	// If instance has not been created, create it and return it
-	else
-	{
-		bbCollisionInstance = new BoundingBoxCollision;
-		return bbCollisionInstance;
-	}
 }
 #pragma endregion

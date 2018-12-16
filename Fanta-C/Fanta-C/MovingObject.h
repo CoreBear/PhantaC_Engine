@@ -8,6 +8,7 @@
 class MovingObject : public ScriptManager
 {
 protected:
+	// Variables
 	float velocity;
 	float angularVelocity;
 

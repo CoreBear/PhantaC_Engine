@@ -9,14 +9,7 @@
 PhysicsManager* PhysicsManager::physicsManagerInstance = nullptr;
 #pragma endregion
 
-#pragma region Update
-void PhysicsManager::Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects)
-{
-	collisionManager->Update(collidableObjects);
-}
-#pragma endregion
-
-#pragma region Accessors
+#pragma region Initialization
 PhysicsManager* PhysicsManager::GetInstance(SceneObject * grid)
 {
 	// If instance has been created, return it
@@ -28,5 +21,12 @@ PhysicsManager* PhysicsManager::GetInstance(SceneObject * grid)
 		physicsManagerInstance = new PhysicsManager(grid);
 		return physicsManagerInstance;
 	}
+}
+#pragma endregion
+
+#pragma region Update
+void PhysicsManager::Update()
+{
+	collisionManager->Update();
 }
 #pragma endregion

@@ -16,7 +16,7 @@ void PartitionCell::DelayedInitialization(float minX, float minZ, float maxX, fl
 }
 #pragma endregion
 
-#pragma region ublic Interface
+#pragma region Public Interface
 void PartitionCell::AddObject(SceneObject* inObject)
 {
 	// If object is not inside of this cell, add it to container

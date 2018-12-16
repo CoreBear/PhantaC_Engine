@@ -4,8 +4,10 @@
 #include "Camera.h"
 #include "GlobalMath.h"
 #include "GlobalVramStructures.h"
+#include "SceneGraph.h"
 #include "SceneManager.h"
 #include "SceneObject.h"
+#include "WindowCreator.h"
 
 // System Headers
 #include <d3dcompiler.h>			// Required for loading and compiling HLSL shaders
@@ -28,19 +30,19 @@ Renderer* Renderer::rendererInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const ushort* clientDimensions, uchar targetFPS, Camera* camera)
+Renderer::Renderer(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS) : cameraPtr(sceneManagerPtr->GetScenePtr()->GetCamera()), renderableObjects(sceneManagerPtr->GetScenePtr()->GetRenderableObjects())
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
 	ZeroMemory(&swapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
 	swapChainDesc.BufferCount = 1;										// Number of buffers in swap chain
-	swapChainDesc.BufferDesc.Width = clientDimensions[1];
-	swapChainDesc.BufferDesc.Height = clientDimensions[0];
+	swapChainDesc.BufferDesc.Width = window->GetClientDimensions()[1];
+	swapChainDesc.BufferDesc.Height = window->GetClientDimensions()[0];
 	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	swapChainDesc.BufferDesc.RefreshRate.Numerator = targetFPS;
 	swapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;		// Describes surface usage and CPU access options for back buffer
-	swapChainDesc.OutputWindow = *windowHandle;
+	swapChainDesc.OutputWindow = *window->GetWindowHandle();
 	swapChainDesc.SampleDesc.Count = 1;									// Number of multisamples per pixel
 	swapChainDesc.SampleDesc.Quality = 0;								// Image quality level
 	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;				// Discards the back buffer info when swapped
@@ -118,8 +120,8 @@ Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const usho
 
 	#pragma region Viewport
 	// Initialize the viewport to occupy the entire client area (main camera's viewport)
-	viewPort[VIEWPORT::DEFAULT].Width = static_cast<float>(clientDimensions[1]);
-	viewPort[VIEWPORT::DEFAULT].Height = static_cast<float>(clientDimensions[0]);
+	viewPort[VIEWPORT::DEFAULT].Width = static_cast<float>(window->GetClientDimensions()[1]);
+	viewPort[VIEWPORT::DEFAULT].Height = static_cast<float>(window->GetClientDimensions()[0]);
 	viewPort[VIEWPORT::DEFAULT].TopLeftX = 0.0f;
 	viewPort[VIEWPORT::DEFAULT].TopLeftY = 0.0f;
 	viewPort[VIEWPORT::DEFAULT].MinDepth = 0.0f;
@@ -137,8 +139,8 @@ Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const usho
 	depthStencilBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;	// How to bind to pipeline
 	depthStencilBufferDesc.CPUAccessFlags = 0;						// No CPU access required.
 	depthStencilBufferDesc.Format = DXGI_FORMAT_D32_FLOAT;
-	depthStencilBufferDesc.Width = clientDimensions[1];
-	depthStencilBufferDesc.Height = clientDimensions[0];
+	depthStencilBufferDesc.Width = window->GetClientDimensions()[1];
+	depthStencilBufferDesc.Height = window->GetClientDimensions()[0];
 	depthStencilBufferDesc.MipLevels = 1;							// Max mip levels in the texture
 	depthStencilBufferDesc.SampleDesc.Count = 1;					// Match with swapChain's value
 	depthStencilBufferDesc.SampleDesc.Quality = 0;					// Match with swapChain's value
@@ -175,7 +177,7 @@ Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const usho
 
 	#pragma region Consistant Pipeline Pieces (Will be changed in the future)
 	// Resources
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, camera->GetProjectionMatrix(), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::APPLICATION], 0, nullptr, cameraPtr->GetProjectionMatrix(), 0, 0);
 
 	// Input Assembler
 	deviceContext->IASetInputLayout(inputLayout[INPUT_LAYOUT::DEFAULT]);
@@ -197,23 +199,35 @@ Renderer::Renderer(HWND* windowHandle, SceneManager* sceneManagerPtr, const usho
 	deviceContext->OMSetDepthStencilState(depthStencilState[DEPTH_STENCIL_STATE::DEFAULT], 1);
 	#pragma endregion
 }
+Renderer * Renderer::GetInstance(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS)
+{
+	// If instance is already created, return it
+	if (rendererInstance) return rendererInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		rendererInstance = new Renderer(window, sceneManagerPtr, targetFPS);
+		return rendererInstance;
+	}
+}
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* renderableObjects, Camera* camera)
+void Renderer::Update()
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
 	//// Load view matrix (camera's world matrix) into vram
-	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &XMMatrixInverse(nullptr, *camera->GetViewMatrix()), 0, 0);
-	//deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, GlobalMath::FastInverse(camera->GetViewMatrix()), 0, 0);
+	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &XMMatrixInverse(nullptr, *cameraPtr->GetViewMatrix()), 0, 0);
 
 	//
 	//											Do not add anything above this line
 	// ------------------------------------------------------------------------------------------------------------------------------- 
 	//											Add anything you want to draw below this line
 	//	
+
 	for (renderIterator = 0; renderIterator < renderableObjects->GetSize(); ++renderIterator)
 		DrawLines(renderableObjects->At(renderIterator));
 	
@@ -225,18 +239,6 @@ void Renderer::Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSce
 
 	// Show frame to user
 	swapChain->Present(vSync, 0);
-}
-Renderer * Renderer::GetInstance(HWND * windowHandle, SceneManager * sceneManagerPtr, const ushort * clientDimensions, uchar targetFPS, Camera * cameraObject)
-{
-	// If instance is already created, return it
-	if (rendererInstance) return rendererInstance;
-
-	// If instance has not been created, create it and return it
-	else
-	{
-		rendererInstance = new Renderer(windowHandle, sceneManagerPtr, clientDimensions, targetFPS, cameraObject);
-		return rendererInstance;
-	}
 }
 #pragma endregion
 

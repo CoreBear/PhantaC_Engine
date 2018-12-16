@@ -13,6 +13,7 @@ class SceneObject;
 
 class PartitionCell
 {
+	// Variables
 	float																	maxs[2] = {0, 0};
 	float																	mins[2] = {0, 0};
 	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	objectsInsideOfMyContainer;

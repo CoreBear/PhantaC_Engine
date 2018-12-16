@@ -7,13 +7,16 @@
 // My Headers
 #include "GlobalTypedefs.h"
 
+// Foreward Declarations
+class WindowCreator;
+
 class SceneManager
 {			
 	class SceneGraph* scenePtr;
 	static SceneManager* sceneManagerInstance;
 
 	// Initialization
-	SceneManager(ushort* clientDimensions, HWND* windowHandle, uchar targetFPS);
+	SceneManager(WindowCreator* window, uchar targetFPS);
 	SceneManager(SceneManager const&) = delete;
 	SceneManager operator= (SceneManager const&) = delete;
 
@@ -23,7 +26,7 @@ public:
 
 	// Accessors
 	SceneGraph* GetScenePtr() { return scenePtr; }
-	static SceneManager* GetInstance(ushort* clientDimensions = nullptr, HWND* windowHandle = nullptr, uchar targetFPS = 0);
+	static SceneManager* GetInstance(WindowCreator* windowHandle, uchar targetFPS);
 
 	// Clean up
 	~SceneManager();

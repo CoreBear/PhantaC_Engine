@@ -10,6 +10,7 @@ class SceneObject;
 
 class PartitionGrid
 {
+	// Variables
 	static PartitionGrid*				partitionGridInstance;
 	class PartitionCell*				gridCells;
 	uchar								numberOfTotalCells;
@@ -20,8 +21,10 @@ class PartitionGrid
 	PartitionGrid operator=(PartitionGrid const&) = delete;
 
 public:
-	// Accessors
+	// Initialization
 	static PartitionGrid* GetInstance(SceneObject* grid);
+
+	// Accessors
 	PartitionCell* GetGridCells() { return gridCells; }
 	uchar GetNumberOfTotalCells() { return numberOfTotalCells; }
 

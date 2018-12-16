@@ -3,7 +3,7 @@
 #include "KeyboardManager.h"		// Connection to declarations
 
 #include "GlobalInputVariables.h"
-#include "InputManager.h"
+#include "InputHandler.h"
 #include "PlayerManager.h"
 
 // System Headers
@@ -14,8 +14,20 @@
 KeyboardManager* KeyboardManager::keyboardManagerInstance = nullptr;
 #pragma endregion
 
-#pragma region MyRegion
-KeyboardManager::KeyboardManager(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager), inputManagerPtr(InputManager::GetInstance(inPlayerManager)) { return; }
+#pragma region Initialization
+KeyboardManager::KeyboardManager(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager), inputHandlerPtr(InputHandler::GetInstance(inPlayerManager)) { return; }
+KeyboardManager* KeyboardManager::GetInstance(PlayerManager* inPlayerManager)
+{
+	// If instance is already created, return it
+	if (keyboardManagerInstance) return keyboardManagerInstance;
+
+	// If instance has not been created, create it and return it
+	else
+	{
+		keyboardManagerInstance = new KeyboardManager(inPlayerManager);
+		return keyboardManagerInstance;
+	}
+}
 #pragma endregion
 
 #pragma region Update
@@ -51,22 +63,7 @@ void KeyboardManager::Update()
 }
 #pragma endregion
 
-#pragma region Accessors
-KeyboardManager* KeyboardManager::GetInstance(PlayerManager* inPlayerManager)
-{
-	// If instance is already created, return it
-	if (keyboardManagerInstance) return keyboardManagerInstance;
-
-	// If instance has not been created, create it and return it
-	else
-	{
-		keyboardManagerInstance = new KeyboardManager(inPlayerManager);
-		return keyboardManagerInstance;
-	}
-}
-#pragma endregion
-
-#pragma region Private
+#pragma region Private Functionality
 void KeyboardManager::KeyEventHandler(bool keyDown, uchar index)
 {
 	// If key is pressed
@@ -82,7 +79,7 @@ void KeyboardManager::KeyEventHandler(bool keyDown, uchar index)
 			keyDownThisFrame[index] = true;
 
 			// Send to manager for processing
-			inputManagerPtr->HandleInput(true, index);
+			inputHandlerPtr->HandleInput(true, index);
 		}
 
 		// If key was down last frame
@@ -93,7 +90,7 @@ void KeyboardManager::KeyEventHandler(bool keyDown, uchar index)
 				keyDownThisFrame[index] = false;
 
 			// Send to manager for processing
-			inputManagerPtr->HandleInput(false, index);
+			inputHandlerPtr->HandleInput(false, index);
 		}
 	}
 
