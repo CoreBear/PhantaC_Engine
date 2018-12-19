@@ -6,6 +6,7 @@
 #include "GlobalInputVariables.h"
 #include "PartitionCell.h"
 #include "PartitionGrid.h"
+#include "ScriptManager.h"
 #include "SceneObject.h"
 #pragma endregion
 
@@ -60,7 +61,7 @@ void BoundingBoxCollision::AssignCollisionObjects(MyArray<SceneObject*, GlobalSc
 				// Assign collidee
 				objectsBeingChecked[1] = collidableObjects->At(collisionIterators[2]);
 				boxBeingChecked[1] = objectsBeingChecked[1]->GetColliderManager()->GetBoundingBox();
-				
+
 				CheckForCollision();
 			}
 		}
@@ -87,8 +88,9 @@ void BoundingBoxCollision::CheckForCollision()
 				if (boxBeingChecked[0]->GetColliding())
 					boxBeingChecked[0]->ToggleColliding();
 
-				// Inform event handler
-				//inputManagerPtr->HandleCollision(GlobalEventVariables::NEW_SEPARATION, objectsBeingChecked[0], objectsBeingChecked[1]);
+				// If object has a script, call its new separation function
+				if (!objectsBeingChecked[0]->GetMyScripts()->empty())
+					objectsBeingChecked[0]->GetMyScripts()->at(0)->NewSeparation();
 			}
 
 			// Stop checking for collision. No collision occuring
@@ -96,26 +98,28 @@ void BoundingBoxCollision::CheckForCollision()
 		}
 	}
 
-	// If code makes it here, collision is occuring
+	// IF CODE MAKES IT HERE, COLLISION IS OCCURING!!!
+
+	// Add collidee to container. There's a check on the other side
+	boxBeingChecked[0]->AddCollidingObject(objectsBeingChecked[1]);
 
 	// If collider wasn't previously colliding
 	if (!boxBeingChecked[0]->GetColliding())
 	{
-		// Inform event handler
-		//inputManagerPtr->HandleCollision(GlobalEventVariables::NEW_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
+		// If object has a script, call its new collision function
+		if (!objectsBeingChecked[0]->GetMyScripts()->empty())
+			objectsBeingChecked[0]->GetMyScripts()->at(0)->NewCollision(objectsBeingChecked[1]);
 
 		// Change colliding flag
 		boxBeingChecked[0]->ToggleColliding();
 	}
 
-	// If collider was previously colliding
+	// If collider was previously colliding, pass colliding objects
 	else
 	{
-		// Inform event handler
-		//inputManagerPtr->HandleCollision(GlobalEventVariables::CONTINUED_COLLISION, objectsBeingChecked[0], objectsBeingChecked[1]);
+		// If object has a script, call its continued collision function
+		if (!objectsBeingChecked[0]->GetMyScripts()->empty())
+			objectsBeingChecked[0]->GetMyScripts()->at(0)->ContinuedCollision(boxBeingChecked[0]->GetCollidingObjects());
 	}
-
-	// Add collidee to container. There's a check on the other side
-	boxBeingChecked[0]->AddCollidingObject(objectsBeingChecked[1]);
 }
 #pragma endregion

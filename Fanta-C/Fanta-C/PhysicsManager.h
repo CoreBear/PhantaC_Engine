@@ -17,13 +17,13 @@ class PhysicsManager
 	static PhysicsManager*	physicsManagerInstance;
 
 	// Initialization
-	PhysicsManager(SceneObject* grid) { collisionManager = CollisionManager::GetInstance(grid); }
+	PhysicsManager(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid) { collisionManager = CollisionManager::GetInstance(collidableObjects, grid); }
 	PhysicsManager(PhysicsManager const&) = delete;
 	PhysicsManager operator=(PhysicsManager const&) = delete;
 
 public:
 	// Initialization
-	static PhysicsManager* GetInstance(SceneObject* grid = nullptr);
+	static PhysicsManager* GetInstance(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid);
 
 	// Update
 	void Update();

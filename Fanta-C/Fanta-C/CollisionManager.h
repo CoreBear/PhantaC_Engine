@@ -17,13 +17,13 @@ class CollisionManager
 	class PartitioningManager*	partitioningManagerPtr;
 
 	// Initialization
-	CollisionManager(SceneObject* grid);
+	CollisionManager(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid);
 	CollisionManager(CollisionManager const&) = delete;
 	CollisionManager operator=(CollisionManager const&) = delete;
 
 public:
 	// Initialization
-	static CollisionManager* GetInstance(SceneObject* grid = nullptr);
+	static CollisionManager* GetInstance(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid);
 
 	// Update
 	void Update();

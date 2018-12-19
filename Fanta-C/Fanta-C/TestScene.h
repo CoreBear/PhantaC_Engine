@@ -6,6 +6,7 @@
 
 class TestScene : public SceneGraph
 {
+
 public:
 	// Initialization
 	TestScene(ushort* clientDimensions);

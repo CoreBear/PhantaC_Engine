@@ -3,25 +3,24 @@
 
 // My Headers
 #include "GlobalSceneVariables.h"
-#include "GlobalTransform.h"
 #include "GlobalTypedefs.h"
 #include "MyArray.h"
+#include "Pooler.h"
 #include "SceneObject.h"
 
 // Forward Declarations
 class Camera;
 class PlayerManager;
+class Pooler;
 class ScriptManager;
 
 class SceneGraph
 {
 protected:
-	Camera*																	sceneCameraPtr;
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	collidableObjects;
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	renderableObjects;
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	sceneObjects;
-	PlayerManager*															playerPtr;
-	ushort																	graphIterator[2];
+	Camera*			sceneCameraPtr;
+	PlayerManager*	playerPtr;
+	Pooler*			poolerInstance;
+	ushort			graphIterator[2];
 
 public:
 	// Initialization
@@ -35,13 +34,19 @@ public:
 	///
 	/// Parameters
 	/// object - The object that will be added to the collidable container
-	void AddObjectToCollide(SceneObject* object) { collidableObjects.AddToBack(object); }
+	void AddObjectToCollide(SceneObject* object) { poolerInstance->collidableObjects.AddToBack(object); }
+	/// Summary
+	/// Adds paramtered object into the removable container that will be cleared at the end of the frame
+	///
+	/// Parameters
+	/// object - The object that will be added to the removable container
+	void AddObjectToRemove(SceneObject* object) { poolerInstance->removableObjects.AddToBack(object); }
 	/// Summary
 	/// Adds paramtered object into the renderable container that will be passed to the renderer manager
 	///
 	/// Parameters
 	/// object - The object that will be added to the renderable container
-	void AddObjectToRender(SceneObject* object) { renderableObjects.AddToBack(object); }
+	void AddObjectToRender(SceneObject* object) { poolerInstance->renderableObjects.AddToBack(object); }
 	/// Summary
 	/// Adds paramtered object into the scene container that updates scripts
 	///
@@ -49,37 +54,9 @@ public:
 	/// object - The object that will be added to the scene container
 	void AddObjectToScene(SceneObject* object);
 	/// Summary
-	/// Adds a script to the scene object
-	///
-	/// Parameters
-	/// object - The object that will receive the script
-	/// script - The scrtip that will be added to the object
-	void AddScript(SceneObject* object, ScriptManager* script);
-	/// Summary
-	/// Removes the parametered object from the collidable container
-	///
-	/// Parameters
-	/// object - The object that will be removed from the collidable container
-	void RemoveObjectFromCollide(SceneObject* object);
-	/// Summary
-	/// Removes the parametered object from the renderable container
-	///
-	/// Parameters
-	/// object - The object that will be removed from the renderable container
-	void RemoveObjectFromRender(SceneObject* object);
-	/// Summary
-	/// Removes the parametered object from the scene objects container
-	///
-	/// Parameters
-	/// object - The object that will be removed from the scene objects container
-	void RemoveObjectFromScene(SceneObject* object);
-	/// Summary
-	/// Removes script from scene object
-	///
-	/// Parameters
-	/// object - The object that will lose the script
-	/// script - The scrtip that will be removed from the object
-	void RemoveScript(SceneObject* object, ScriptManager* script);
+	/// Removes objects that are cleared for removal
+	/// Does this after scene has been rendered
+	void CleanScene();
 
 	// Clean Up
 	~SceneGraph();
@@ -87,10 +64,11 @@ public:
 	// Accessors
 	Camera* GetCamera() { return sceneCameraPtr; }
 	PlayerManager* GetPlayer() { return playerPtr; }
-	SceneObject* GetGrid() { return sceneObjects.At(0); }
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetCollidableObjects() { return &collidableObjects; }
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetRenderableObjects() { return &renderableObjects; }
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetSceneObjects() { return &sceneObjects; }
+	SceneObject* GetGrid() { return poolerInstance->sceneObjects.At(0); }
+	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetCollidableObjects() { return &poolerInstance->collidableObjects; }
+	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetRemovableObjects() { return &poolerInstance->removableObjects; }
+	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetRenderableObjects() { return &poolerInstance->renderableObjects; }
+	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* GetSceneObjects() { return &poolerInstance->sceneObjects; }
 };
 
 #endif

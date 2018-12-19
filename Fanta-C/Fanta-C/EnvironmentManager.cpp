@@ -10,6 +10,7 @@
 #include "SceneGraph.h"
 #include "SceneManager.h"
 #include "SceneObject.h"
+#include "UiManager.h"
 #include "WindowCreator.h"
 #pragma endregion
 
@@ -22,7 +23,7 @@ EnvironmentManager*	EnvironmentManager::environmentManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-EnvironmentManager::EnvironmentManager(WindowCreator* window)
+EnvironmentManager::EnvironmentManager(WindowCreator* window) : fpsTimeElapsed(0), targetFPS(60), frameCounter(0), thousandMilliseconds(1000)
 {
 	// Assign the handle for console/header writing
 	GlobalConsoleWrite::handle = window->GetWindowHandle();
@@ -34,9 +35,11 @@ EnvironmentManager::EnvironmentManager(WindowCreator* window)
 
 	inputManagerPtr = InputManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetPlayer(), sceneManagerPtr->GetScenePtr());
 
-	physicsManagerPtr = PhysicsManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetGrid());
+	physicsManagerPtr = PhysicsManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetCollidableObjects(), sceneManagerPtr->GetScenePtr()->GetGrid());
 	
 	rendererPtr = Renderer::GetInstance(window, sceneManagerPtr, targetFPS);
+
+	uiManagerPtr = UiManager::GetInstance();
 	#pragma endregion
 }
 EnvironmentManager* EnvironmentManager::GetInstance(WindowCreator* window)
@@ -57,11 +60,13 @@ EnvironmentManager* EnvironmentManager::GetInstance(WindowCreator* window)
 void EnvironmentManager::Update()
 {
 	FPSStart();
-	audioManagerPtr->Update();
 	inputManagerPtr->Update();
-	physicsManagerPtr->Update();
-	rendererPtr->Update();
 	sceneManagerPtr->Update();
+	physicsManagerPtr->Update();
+	uiManagerPtr->Update();
+	rendererPtr->Update();
+	audioManagerPtr->Update();
+	sceneManagerPtr->GetScenePtr()->CleanScene();
 	FPSEnd();
 }
 #pragma endregion
@@ -114,5 +119,6 @@ EnvironmentManager::~EnvironmentManager()
 	if (physicsManagerPtr) delete physicsManagerPtr;
 	if (rendererPtr) delete rendererPtr;
 	if (sceneManagerPtr) delete sceneManagerPtr;
+	if (uiManagerPtr) delete uiManagerPtr;
 }
 #pragma endregion

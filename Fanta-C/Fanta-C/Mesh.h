@@ -19,8 +19,7 @@ protected:
 
 public:
 	// Initialization
-	Mesh() { return; }
-	Mesh(float inWidth, float inHeight, float inDepth, float inScale, XMVECTORF32 inColor) : depth(inDepth), height(inHeight), scale(inScale), width(inWidth), color(inColor) { return; }
+	Mesh(XMVECTORF32 inColor = Colors::White, float inDepth = 1, float inHeight =1 , float inWidth = 1, float inScale = 1) : depth(inDepth), height(inHeight), scale(inScale), width(inWidth), color(inColor) { return; }
 
 	// Public Interface
 	/// Summary
@@ -34,7 +33,7 @@ public:
 	///
 	/// Parameters
 	/// inColor - The color that the mesh will be changed to
-	void ChangeColor(XMVECTORF32 inColor) { color = inColor; }
+	void ChangeColor(XMVECTORF32 inColor) { if (inColor != color) color = inColor; }
 
 	// Accessors
 	float GetDepth() const { return depth; }

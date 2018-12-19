@@ -15,7 +15,6 @@ void Grid::AddMyLinesToRenderer(LineRenderer& lineRenderer)
 #pragma region Private
 void Grid::CreateMesh()
 {
-	uchar		lineDistanceApart = 1;
 	ushort		numberOfLinesTotal = ushort(numberOfVertices * 0.5f);				
 	ushort		numberOfLinesEachDirection = ushort(numberOfLinesTotal * 0.5f);		
 	ushort		integerHalfOfLinesEachDirection = ushort(numberOfLinesEachDirection * 0.5f);

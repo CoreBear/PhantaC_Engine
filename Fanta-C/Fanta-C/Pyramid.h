@@ -15,7 +15,7 @@ class Pyramid : public Mesh
 
 public:
 	// Initialization
-	Pyramid(float inWidth, float inHeight, float inDepth, float inScale = 1) : Mesh(inWidth, inHeight, inDepth, inScale, Colors::Blue) { CreateMesh(inWidth, inHeight, inDepth, inScale); }
+	Pyramid(float inWidth, float inHeight, float inDepth, float inScale = 1) : Mesh(Colors::Blue, inWidth, inHeight, inDepth, inScale) { CreateMesh(inWidth, inHeight, inDepth, inScale); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

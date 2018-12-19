@@ -7,25 +7,28 @@
 #include "MyArray.h"
 
 // Forward Declarations
+class PartitionGrid;
 class SceneObject;
 
 class Partitioner
 {
 	// Variables
-	static Partitioner*	partitionerInstance;
-	ushort				iterators[2];
+	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>*	collidableObjects;
+	PartitionGrid*															grid;
+	static Partitioner*														partitionerInstance;
+	ushort																	iterators[2];
 
 	// Initialization
-	Partitioner() { return; }
+	Partitioner(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* inCollidableObjects, PartitionGrid* inGrid) : collidableObjects(inCollidableObjects), grid(inGrid) { return; }
 	Partitioner(Partitioner const&) = delete;
 	Partitioner operator=(Partitioner const&) = delete;
 
 public:
 	// Initialization
-	static Partitioner* GetInstance();
+	static Partitioner* GetInstance(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* inCollidableObjects, PartitionGrid* inGrid);
 
 	// Update
-	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, class PartitionGrid* grid);
+	void Update();
 };
 
 #endif

@@ -16,16 +16,16 @@ class PartitioningManager
 	static PartitioningManager* partitioningManagerInstance;
 
 	// Initialization
-	PartitioningManager(SceneObject* grid);
+	PartitioningManager(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid);
 	PartitioningManager(PartitioningManager const&) = delete;
 	PartitioningManager operator=(PartitioningManager const&) = delete;
 
 public:
 	// Initialization
-	static PartitioningManager* GetInstance(SceneObject* grid);
+	static PartitioningManager* GetInstance(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid);
 
 	// Update
-	void Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects);
+	void Update();
 
 	// Accessors
 	PartitionGrid* GetPartitionGrid() { return partitionGridPtr; }

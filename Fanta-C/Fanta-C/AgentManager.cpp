@@ -10,6 +10,12 @@
 #pragma region Update
 void AgentManager::Update()
 {
+	#pragma region DO NOT TOUCH!!!
+	// Runs collision logic updates on AgentManager.h
+	// When collision occurs, use AgentManager.h to script what happens
+	CollidingObject::Update();
+	#pragma endregion
+
 	//GlobalTransform::Translate(-velocity * GlobalTime::deltaTime, 0, 0, *myObject->GetTransform()->GetLocalMatrix());
 	if (targetPosition)
 		GlobalAutonomy::LookAt(myObject->GetTransform()->GetLocalMatrix(), targetPosition);

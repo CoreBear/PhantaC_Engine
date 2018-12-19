@@ -1,2 +1,7 @@
-﻿  EventManager.cpp
-c:\users\corym\desktop\phantac_engine\fanta-c\fanta-c\eventmanager.cpp(68): error C2059: syntax error: ')'
+﻿  TestScene.cpp
+  Generating code
+  4 of 803 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Release\Fanta-C.exe

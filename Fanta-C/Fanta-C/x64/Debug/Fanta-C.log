@@ -1,13 +1,2 @@
-﻿  AudioManager.cpp
-  BoundingBoxCollision.cpp
-  CollisionManager.cpp
-  ControllerManager.cpp
-  InputManager.cpp
-  KeyboardManager.cpp
-  PartitionCell.cpp
-  PartitionGrid.cpp
-  Partitioner.cpp
-  PartitioningManager.cpp
-  PlayerManager.cpp
-  Generating Code...
+﻿  TestScene.cpp
   Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Debug\Fanta-C.exe

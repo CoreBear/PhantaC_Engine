@@ -16,7 +16,6 @@ class EnvironmentManager
 {	
 	// Variables
 	class AudioManager*						audioManagerPtr;
-	const char								targetFPS = 60;
 	static EnvironmentManager*				environmentManagerInstance;
 	class InputManager*						inputManagerPtr;
 	float									fpsTimeElapsed = 0;
@@ -27,6 +26,8 @@ class EnvironmentManager
 	std::chrono::steady_clock::time_point	frameEndTime;
 	std::chrono::steady_clock::time_point	frameStartTime;
 	std::string								fpsString;
+	const uchar								targetFPS = 60;
+	class UiManager*						uiManagerPtr;
 	ushort									actualFpsCount;
 	ushort									frameCounter = 0;
 	const ushort							thousandMilliseconds = 1000;	// Milliseconds

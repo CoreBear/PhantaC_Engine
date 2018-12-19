@@ -13,12 +13,12 @@ CollisionManager* CollisionManager::collisionManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-CollisionManager::CollisionManager(SceneObject* grid)
+CollisionManager::CollisionManager(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid)
 {
 	boundingBoxCollisionPtr = BoundingBoxCollision::GetInstance(); 
-	partitioningManagerPtr = PartitioningManager::GetInstance(grid);
+	partitioningManagerPtr = PartitioningManager::GetInstance(collidableObjects, grid);
 }
-CollisionManager * CollisionManager::GetInstance(SceneObject * grid)
+CollisionManager* CollisionManager::GetInstance(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid)
 {
 	// If instance is already created, return it
 	if (collisionManagerInstance) return collisionManagerInstance;
@@ -26,7 +26,7 @@ CollisionManager * CollisionManager::GetInstance(SceneObject * grid)
 	// If instance has not been created, create it and return it
 	else
 	{
-		collisionManagerInstance = new CollisionManager(grid);
+		collisionManagerInstance = new CollisionManager(collidableObjects, grid);
 		return collisionManagerInstance;
 	}
 }
@@ -35,8 +35,8 @@ CollisionManager * CollisionManager::GetInstance(SceneObject * grid)
 #pragma region Update
 void CollisionManager::Update()
 {
-	//partitioningManagerPtr->Update(collidableObjects);
-	//boundingBoxCollisionPtr->Update(partitioningManagerPtr->GetPartitionGrid());
+	partitioningManagerPtr->Update();
+	boundingBoxCollisionPtr->Update(partitioningManagerPtr->GetPartitionGrid());
 }
 #pragma endregion
 

@@ -6,7 +6,9 @@
 
 class Grid : public Mesh
 {
+
 	float						edgeOfGridDistance;					
+	float						lineDistanceApart;
 	constexpr static ushort		numberOfVertices = 500;				// Make sure this number is a multiple of 4. Half the number of lines
 	SIMPLE_VERTEX				vertices[numberOfVertices];			// First 22 are horizontal
 
@@ -15,7 +17,7 @@ class Grid : public Mesh
 
 public:
 	// Initialization
-	Grid() : Mesh(1, 1, 1, 1, Colors::White) { CreateMesh(); }
+	Grid(float inLineDistanceApart = 1) : lineDistanceApart(inLineDistanceApart), Mesh(Colors::White, 1, 1, 1, 1) { CreateMesh(); }
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;

@@ -2,15 +2,21 @@
 #define _BULLET_TRAIL_H
 
 // My Headers
-#include "Line.h"
+#include "NonMovingObject.h"
 
-class BulletTrail : public Line
+class BulletTrail : public NonMovingObject
 {
-	const static float lifeTime;
+	// Variables
+	constexpr static float	lifeTime = 0.1f;
+	float					timeAlive;
 
 public:
+	// Initialization
+	BulletTrail(SceneGraph* inSceneGraph, SceneObject* inObject) : timeAlive(0), NonMovingObject(inSceneGraph, inObject) { return; }
+	void ReInit() { timeAlive = 0; }
+
 	// Update
-	void Update() override { return; }
+	void Update();
 };
 
 #endif

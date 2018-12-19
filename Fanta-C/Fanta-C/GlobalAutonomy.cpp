@@ -40,12 +40,12 @@ void GlobalAutonomy::TurnTo(AgentManager* myMovingScript, XMVECTOR* targetPositi
 	GlobalMath::Normalize(&myMatrix->r[0]);
 	
 	// Around the Y-Axis
-	GlobalTransform::RotateOnWorldYAxis(myMovingScript->GetAngularVelocity() * -GlobalMath::Vector3DotProduct(targetVector, &myMatrix->r[0]), *myMatrix);
+	GlobalTransform::RotateOnWorldYAxis(myMovingScript->GetYawVelocity() * -GlobalMath::Vector3DotProduct(targetVector, &myMatrix->r[0]), *myMatrix);
 
 	// Normalize Y
 	GlobalMath::Normalize(&myMatrix->r[1]);
 
 	// Around the X-Axis
-	GlobalTransform::RotateOnXAxis(myMovingScript->GetAngularVelocity() * -GlobalMath::Vector3DotProduct(targetVector, &myMatrix->r[1]), *myMatrix);
+	GlobalTransform::RotateOnXAxis(myMovingScript->GetPitchVelocity() * -GlobalMath::Vector3DotProduct(targetVector, &myMatrix->r[1]), *myMatrix);
 }
 #pragma endregion

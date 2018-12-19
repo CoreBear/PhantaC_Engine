@@ -2,25 +2,30 @@
 #define _MOVING_OBJECT_H
 
 // My Headers
+#include "CollidingObject.h"
 #include "GlobalTime.h"
-#include "ScriptManager.h"
 
-class MovingObject : public ScriptManager
+class MovingObject : public CollidingObject
 {
 protected:
 	// Variables
+	float pitchVelocity;
+	float rollVelocity;
 	float velocity;
-	float angularVelocity;
+	float yawVelocity;
 
 public:
 	// Initialization
-	MovingObject(float inVelocity, float inAngularVelocity) : velocity(inVelocity), angularVelocity(inAngularVelocity) { return; }
+	MovingObject(SceneGraph* inSceneGraph, SceneObject* inObject, float inpitchVelocity, float inRollVelocity, float inVelocity, float inYawVelocity) : pitchVelocity(inpitchVelocity), rollVelocity(inRollVelocity), velocity(inVelocity), yawVelocity(inYawVelocity), CollidingObject(inSceneGraph, inObject) { return; }
 
 	// Update
-	virtual void Update() { return; }
+	//virtual void Update() { return; }
 
 	// Accessors
-	float GetAngularVelocity() { return angularVelocity; }
+	float GetPitchVelocity() { return pitchVelocity; }
+	float GetRollVelocity() { return rollVelocity; }
+	float GetVelocity() { return velocity; }
+	float GetYawVelocity() { return yawVelocity; }
 };
 
 #endif

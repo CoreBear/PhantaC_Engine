@@ -9,8 +9,13 @@ class Line : public Mesh
 	SIMPLE_VERTEX vertices[2];
 
 public:
-	// Update
-	virtual void Update() { return; }
+	// Initialization
+	Line() { return; }
+	Line(const XMVECTORF32* inColor, XMVECTOR* startPosition, XMVECTOR* endPosition) : Mesh(*inColor)
+	{
+		SetLineColor(inColor);
+		SetPositions(startPosition, endPosition);
+	}
 
 	// Public Interface
 	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override { lineRenderer.AddNewLine(vertices[0].localPos, vertices[1].localPos, vertices[0].color, vertices[1].color); }

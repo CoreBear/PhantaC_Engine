@@ -55,8 +55,10 @@ public:
 
 	// Accessors
 	bool GetColliding() { return isColliding; }
+	std::unordered_map<ushort, SceneObject*>* GetCollidingObjects() { return &collidingObjects; }
 	XMVECTOR& GetExtents() { return extents; }
 	XMVECTOR& GetMinMax(ushort index) { return minMax[index]; }
+
 
 	// Mutators
 	void SetExtents(float x, float y, float z);

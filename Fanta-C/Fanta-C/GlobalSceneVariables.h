@@ -7,7 +7,7 @@
 struct GlobalSceneVariables
 {
 	// The extra 1 is for the grid
-	constexpr static ushort maxNumberOfSceneObjects = 1001;		
+	constexpr static ushort maxNumberOfSceneObjects = 201;		
 };
 
 #endif

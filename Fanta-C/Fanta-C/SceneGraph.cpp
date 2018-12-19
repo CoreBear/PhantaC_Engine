@@ -12,8 +12,15 @@
 #pragma endregion
 
 #pragma region Initialization
-SceneGraph::SceneGraph(ushort* clientDimensions)
+SceneGraph::SceneGraph(ushort* clientDimensions) : poolerInstance(Pooler::GetInstance())
 {
+	// Figure out how to do this in container
+	{
+		// For each object, set to nullptr 
+		for (graphIterator[0] = 0; graphIterator[0] < poolerInstance->sceneObjects.GetCapacity(); ++graphIterator[0])
+			poolerInstance->sceneObjects.SetAt(graphIterator[0], nullptr);
+	}
+
 	#pragma region DONT TOUCH
 	// Every scene needs a camera and for now a player and a grid
 	// Create Camera - Camera needs to always be first
@@ -21,10 +28,10 @@ SceneGraph::SceneGraph(ushort* clientDimensions)
 	//AddObjectToScene(new SceneObject(new Camera(clientDimensions)));
 
 	// Add player script to camera scene object and and camera to player script
-	playerPtr = PlayerManager::GetInstance(sceneCameraPtr, this, 20, 100);
+	playerPtr = PlayerManager::GetInstance(sceneCameraPtr, this, 150, 150, 20, 20);
 
 	// Create Grid
-	AddObjectToScene(new SceneObject(new Grid, false, true));
+	AddObjectToScene(new SceneObject(new Grid(1), false, true));
 	#pragma endregion
 }
 #pragma endregion
@@ -39,66 +46,41 @@ void SceneGraph::Update()
 	//playerPtr->Update();
 
 	// Update every object in the scene
-	for (graphIterator[0] = 0; graphIterator[0] < sceneObjects.GetSize(); ++graphIterator[0])
-		sceneObjects.At(graphIterator[0])->Update();
+	for (graphIterator[0] = 0; graphIterator[0] < poolerInstance->sceneObjects.GetSize(); ++graphIterator[0])
+		poolerInstance->sceneObjects.At(graphIterator[0])->Update();
 }
 #pragma endregion
 
 #pragma region Public Interface
 void SceneGraph::AddObjectToScene(SceneObject* object)
 {
-	if (sceneObjects.GetSize() < GlobalSceneVariables::maxNumberOfSceneObjects)
+	if (poolerInstance->sceneObjects.GetSize() < GlobalSceneVariables::maxNumberOfSceneObjects)
 	{
 		// Add new object to scene objects
-		sceneObjects.AddToBack(object);
+		poolerInstance->sceneObjects.AddToBack(object);
 
 		// Put into containers to run collisions and rendering on it
-		if (object->GetColliderManager()) collidableObjects.AddToBack(object);
-		if (object->GetRenderable()) renderableObjects.AddToBack(object);
+		if (object->GetColliderManager()) poolerInstance->collidableObjects.AddToBack(object);
+		if (object->GetRenderable()) poolerInstance->renderableObjects.AddToBack(object);
 	}
 
 	// This is specifically here to let you know that you've tried to instantiate more objects than the scene allows
-	else
-		char mistake = 0;
+	//else
+	//	char mistake = 0;
 }
-void SceneGraph::AddScript(SceneObject* object, ScriptManager* script)
+void SceneGraph::CleanScene()
 {
-	object->GetMyScripts()->push_back(script);
-}
-void SceneGraph::RemoveObjectFromCollide(SceneObject* object)
-{
-	// For each collidable object
-	for (graphIterator[1] = 0; graphIterator[1] < collidableObjects.GetSize(); ++graphIterator[1])
+	// For each removable object, set active to false and remove from each container
+	for (graphIterator[0] = 0; graphIterator[0] < poolerInstance->removableObjects.GetSize(); ++graphIterator[0])
 	{
-		// If object is a collidable object, remove it
-		if (object == collidableObjects.At(graphIterator[1]))
-			collidableObjects.RemoveAt(graphIterator[1]);
+		poolerInstance->removableObjects.At(graphIterator[0])->SetActive(false);
+		poolerInstance->collidableObjects.Remove(poolerInstance->removableObjects.At(graphIterator[0]));
+		poolerInstance->renderableObjects.Remove(poolerInstance->removableObjects.At(graphIterator[0]));
+		poolerInstance->sceneObjects.Remove(poolerInstance->removableObjects.At(graphIterator[0]));
 	}
-}
-void SceneGraph::RemoveObjectFromRender(SceneObject* object)
-{
-	// For each renderable object
-	for (graphIterator[2] = 0; graphIterator[2] < renderableObjects.GetSize(); ++graphIterator[2])
-	{
-		// If oject is a renderable object, remove it
-		if (object == renderableObjects.At(graphIterator[2]))
-			renderableObjects.RemoveAt(graphIterator[2]);
-	}
-}
-void SceneGraph::RemoveObjectFromScene(SceneObject* object)
-{
-	RemoveObjectFromCollide(object);
-	RemoveObjectFromRender(object);
 
-	// Remove object from scene
-	sceneObjects.Remove(object);
-
-	delete object;
-}
-void SceneGraph::RemoveScript(SceneObject* object, ScriptManager* script)
-{
-	// Remove script
-	object->GetMyScripts()->erase(std::remove(object->GetMyScripts()->begin(), object->GetMyScripts()->end(), script), object->GetMyScripts()->end());
+	// Clear the container for the next frame
+	poolerInstance->removableObjects.Clear();
 }
 #pragma endregion
 
@@ -111,13 +93,7 @@ SceneGraph::~SceneGraph()
 	// Delete camera
 	delete sceneCameraPtr;
 
-	for (graphIterator[0] = 0; graphIterator[0] < sceneObjects.GetSize(); ++graphIterator[0])
-	{
-		if (sceneObjects.At(graphIterator[0]))
-		{
-			delete sceneObjects.At(graphIterator[0]);
-			sceneObjects.At(graphIterator[0]);
-		}
-	}
+	// Delete pooler
+	delete poolerInstance;
 }
 #pragma endregion

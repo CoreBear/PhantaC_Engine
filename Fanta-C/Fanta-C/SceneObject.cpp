@@ -20,7 +20,7 @@ SceneObject::SceneObject(Camera* camera) : meshPtr(camera)
 SceneObject::SceneObject(Mesh* inMesh, bool collidable, bool inRenderable, const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) : renderable(inRenderable), meshPtr(inMesh)
 {
 	// Assign colliderManager
-	if (collidable) colliderManagerPtr = new ColliderManager(meshPtr->GetWidth(), meshPtr->GetHeight(), meshPtr->GetDepth(), meshPtr->GetScale());
+	colliderManagerPtr = (collidable) ? new ColliderManager(meshPtr->GetWidth(), meshPtr->GetHeight(), meshPtr->GetDepth(), meshPtr->GetScale()) : nullptr;
 
 	// Assign transform
 	transformPtr = new Transform(position, forward, up);

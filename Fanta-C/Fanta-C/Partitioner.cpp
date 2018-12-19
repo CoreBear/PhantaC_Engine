@@ -12,7 +12,7 @@ Partitioner* Partitioner::partitionerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-Partitioner * Partitioner::GetInstance()
+Partitioner* Partitioner::GetInstance(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* inCollidableObjects, PartitionGrid* inGrid)
 {
 	// If instance is already created, return it
 	if (partitionerInstance) return partitionerInstance;
@@ -20,14 +20,14 @@ Partitioner * Partitioner::GetInstance()
 	// If instance has not been created, create it and return it
 	else
 	{
-		partitionerInstance = new Partitioner;
+		partitionerInstance = new Partitioner(inCollidableObjects, inGrid);
 		return partitionerInstance;
 	}
 }
 #pragma endregion
 
 #pragma region Update
-void Partitioner::Update(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, PartitionGrid* grid)
+void Partitioner::Update()
 {
 	// Add objects to cells
 	// For each cell

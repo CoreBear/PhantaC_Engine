@@ -19,13 +19,13 @@ class PartitionCell
 	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	objectsInsideOfMyContainer;
 	ushort																	iterator;
 	XMVECTOR																checkObjectsMinMax[2];		// Index 0 - Min. Index 1 - Max
-
-public:
+	
+public:	
 	// Initialization
 	PartitionCell() { return; }
 	void DelayedInitialization(float minX, float minZ, float maxX, float maxZ);
 	
-	// Public Interface
+	// Private Functionality
 	void AddObject(SceneObject* inObject);
 	bool IsObjectInsideOfMyArea(SceneObject* checkObject);
 	bool IsObjectInsideOfMyContainer(SceneObject* checkObject);

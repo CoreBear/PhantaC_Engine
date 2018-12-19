@@ -9,14 +9,19 @@
 class AgentManager : public MovingObject
 {
 	// Variables
-	SceneObject*	myObject;
 	XMVECTOR*		targetPosition;
+
+protected:
+	// Protected Functionality
+	void CollisionEnter() override { myObject->GetMesh()->ChangeColor(Colors::Red); }
+	void CollisionExit() override { myObject->GetMesh()->ChangeColor(Colors::Green); }
+	void CollisionContinue() override { myObject->GetMesh()->ChangeColor(Colors::Red); }
 
 public:
 	// Initialization
-	AgentManager(SceneObject* inObject, float inVelocity = 1, float inAngularVelocity = 1) : myObject(inObject), MovingObject(inVelocity, inAngularVelocity) { return; }
+	AgentManager(SceneGraph* inSceneGraph, SceneObject* inObject, float inPitchVelocity = 1, float inRollVelocity = 1, float inVelocity = 1, float inYawVelocity = 1) : MovingObject(inSceneGraph, inObject, inPitchVelocity, inRollVelocity, inVelocity, inYawVelocity) { return; }
 
-	// Update
+	// Update - Runs object logic update
 	void Update() override;
 
 	// Hack

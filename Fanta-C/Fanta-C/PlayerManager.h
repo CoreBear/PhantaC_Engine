@@ -7,6 +7,7 @@
 
 // Forward Declarations
 class Camera;
+class Pooler;
 class SceneGraph;
 
 class PlayerManager : public MovingObject
@@ -14,14 +15,14 @@ class PlayerManager : public MovingObject
 	// Variables
 	Camera*					camera;
 	static PlayerManager*	playerManagerInstance;
+	Pooler*					poolerInstance;
 
 	// Hacked together shooting mechanic. Will remove
 	class SceneObject*	bulletTrail;	
-	SceneGraph*			sceneGraphPtr;		
 	const uchar			trailDistance = 50;
 	
 	// Initialization
-	PlayerManager(Camera* inCamera, SceneGraph* sceneGraph, float inVelocity, float inAngularVelocity) : camera(inCamera), sceneGraphPtr(sceneGraph), MovingObject(inVelocity, inAngularVelocity) { return; }
+	PlayerManager(Camera* inCamera, SceneGraph* inSceneGraph, float inPitchVelocity, float inRollVelocity, float inVelocity, float inYawVelocity) : camera(inCamera), poolerInstance(Pooler::GetInstance()), MovingObject(inSceneGraph, nullptr, inPitchVelocity, inRollVelocity, inVelocity, inYawVelocity) { return; }
 	PlayerManager(PlayerManager const&) = delete;
 	PlayerManager operator=(PlayerManager const&) = delete;
 
@@ -34,7 +35,7 @@ public:
 	void Yaw(char angle);
 
 	// Accessors
-	static PlayerManager* GetInstance(Camera* inCamera, SceneGraph* sceneGraph, float inVelocity, float inAngularVelocity);
+	static PlayerManager* GetInstance(Camera* inCamera, SceneGraph* sceneGraph, float inPitchVelocity, float inRollVelocity, float inVelocity, float inYawVelocity);
 };
 
 #endif

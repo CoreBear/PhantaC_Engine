@@ -12,10 +12,13 @@
 #include "Transform.h"
 
 // Forward Declarations
+class SceneGraph;
 class ScriptManager;
+class Transform;
 
 class SceneObject
 {
+	bool						active = false;
 	bool						renderable;
 	ColliderManager*			colliderManagerPtr = nullptr;			
 	Mesh*						meshPtr = nullptr;				// Renderable shape
@@ -26,7 +29,6 @@ class SceneObject
 	std::vector<SceneObject*>	myChildren;
 	std::vector<ScriptManager*>	myScripts;
 
-
 public:
 	// Initialization
 	SceneObject() { return; }
@@ -36,10 +38,14 @@ public:
 	// Update
 	void Update();
 
+	// Public Interface
+	void AddScript(ScriptManager* script) { myScripts.push_back(script); }
+
 	// Clean Up
 	~SceneObject();
 
 	// Accessors
+	bool GetActive() { return active; }
 	bool GetRenderable() { return renderable; }
 	ColliderManager* GetColliderManager() { return colliderManagerPtr; }
 	Mesh* GetMesh() { return meshPtr; }
@@ -47,6 +53,7 @@ public:
 	uint GetUniqueID() { return uniqueObjectID; }
 	std::vector<SceneObject*>* GetMyChildren() { return &myChildren; }
 	std::vector<ScriptManager*>* GetMyScripts() { return &myScripts; }
+	void SetActive(bool inActive) { active = inActive; }
 };
 
 #endif
