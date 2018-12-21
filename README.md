@@ -10,3 +10,5 @@ Things I plan on implementing:
 - Artificial game intelligence
 - Mouse & Keyboard support
 - XBox controller support
+- Data structures
+- Design patterns
