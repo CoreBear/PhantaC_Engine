@@ -12,3 +12,7 @@ Things I plan on implementing:
 - XBox controller support
 - Data structures
 - Design patterns
+
+Things to learn from:
+- Think about const correctness from the beginning
+- Planning saves time in the long run
