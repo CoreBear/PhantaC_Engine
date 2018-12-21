@@ -27,7 +27,7 @@ public:
 	///
 	/// Parameters
 	/// lineRenderer - The container that stores the lines that will be uploaded into vram
-	virtual void AddMyLinesToRenderer(LineRenderer& lineRenderer) { return; }
+	virtual void AddMyLinesToRenderer(LineRenderer* lineRenderer) { return; }
 	/// Summary
 	/// Changes the mesh's color at runtime
 	///

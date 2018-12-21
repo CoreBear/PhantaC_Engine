@@ -1,20 +1,31 @@
 #ifndef _UI_MANAGER_H
 #define _UI_MANAGER_H
 
+// My Headers
+#include "Reticle.h"
+
+// Forward Declarations
+class Renderer;
+
 class UiManager
 {
-	static UiManager* uiManagerInstance;
+	Renderer*			renderPtr;
+	Reticle				reticle;
+	static UiManager*	uiManagerInstance;
 
-	UiManager() { return; }
+	UiManager(Renderer* renderer) : renderPtr(renderer) { return; }
 	UiManager(UiManager const&) = delete;
 	UiManager operator=(UiManager const&) = delete;
 
 public:
+	// Initialization
+	static UiManager* GetInstance(Renderer* renderer);
+
 	// Update
-	void Update() { return; }
+	void Update();
 
 	// Accessors
-	static UiManager* GetInstance();
+	Reticle* GetReticle() { return &reticle; }
 };
 
 #endif

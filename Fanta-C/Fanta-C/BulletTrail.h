@@ -12,8 +12,7 @@ class BulletTrail : public NonMovingObject
 
 public:
 	// Initialization
-	BulletTrail(SceneGraph* inSceneGraph, SceneObject* inObject) : timeAlive(0), NonMovingObject(inSceneGraph, inObject) { return; }
-	void ReInit() { timeAlive = 0; }
+	BulletTrail(SceneObject* inObject) : timeAlive(0), NonMovingObject(inObject) { return; }
 
 	// Update
 	void Update();

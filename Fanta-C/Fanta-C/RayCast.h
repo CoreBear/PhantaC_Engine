@@ -3,19 +3,26 @@
 
 // My Headers
 #include "GlobalDirectX.h"
+#include "SceneObject.h"
 
-struct RayCast
+class RayCast
 {
 private:
 	// Variables
-	XMVECTOR startEnd[2];
-
-	// Private Functionality
-	bool Hit();
+	static constexpr float	allowableLimit = 0.99f; // Strict for now
+	static uchar			objectCheckStartIndex;
+	static ushort			iterator;
+	static XMVECTOR			checkObjectsMinMax[2];
+	static XMVECTOR			checkedObjectDirection;
+	static XMVECTOR			rayCastDirection;
+	static XMVECTOR			startEnd[2];
 
 public:
 	// Public Interface
-	bool Cast(XMVECTOR* startPosition, XMVECTOR* endPosition);
+	static SceneObject* Cast(XMVECTOR* startPosition, XMVECTOR* endPosition);
+
+	// Mutators
+	static void UpdateRayCastStartIndex(uchar index);
 };
 
 #endif

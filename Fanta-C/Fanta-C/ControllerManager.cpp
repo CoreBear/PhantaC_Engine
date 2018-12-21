@@ -10,8 +10,8 @@ ControllerManager* ControllerManager::controllerManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-ControllerManager::ControllerManager(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager), inputHandlerPtr(InputHandler::GetInstance(inPlayerManager)) { return; }
-ControllerManager* ControllerManager::GetInstance(PlayerManager* inPlayerManager)
+ControllerManager::ControllerManager(PlayerManager& inPlayerManager) : playerManagerPtr(&inPlayerManager), inputHandlerPtr(InputHandler::GetInstance(inPlayerManager)) { return; }
+ControllerManager* ControllerManager::GetInstance(PlayerManager& inPlayerManager)
 {
 	// If instance has been created, return it
 	if (controllerManagerInstance) return controllerManagerInstance;

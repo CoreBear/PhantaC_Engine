@@ -6,34 +6,19 @@
 #include "GlobalTypedefs.h"
 #include "MyArray.h"
 
-class Pooler
+struct Pooler
 {
 	// Variables
-	static Pooler*			poolerInstance;
-	constexpr static uchar	numberOfProjectilesToPool = 10;
-	ushort					iterator;
-
-	// Private Functionality
-	Pooler() { return; }
-	Pooler(Pooler const&) = delete;
-	Pooler operator=(Pooler const&) = delete;
-
-public:
-	// Variables (Public for now)
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	collidableObjects;
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	removableObjects;
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	renderableObjects;
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	sceneObjects;
-	MyArray<SceneObject*, numberOfProjectilesToPool>						bulletTrailPool;
-
-	// Initialization
-	static Pooler* GetInstance();
-
-	// Public Interface
-	SceneObject* SpawnBulletTrail(XMVECTOR* startPosition, XMVECTOR* endPosition);
+	static MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects> activeObjects;
+	static MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects> removeFromActive;
+	static MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects> sceneObjects;													 
+	static Pooler*																poolerInstance;
+	static constexpr uchar														numberOfBulletsTrailsToPool = 10;
+	static ushort																bulletTrailIndices[2];
+	static ushort																iterator;
 
 	// Clean Up
-	~Pooler();
+	static void PoolerDestructor();
 };
 
 #endif

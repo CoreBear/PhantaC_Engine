@@ -14,15 +14,15 @@ class SceneObject;
 class PartitionCell
 {
 	// Variables
-	float																	maxs[2] = {0, 0};
-	float																	mins[2] = {0, 0};
+	float																	maxs[2];
+	float																	mins[2];
 	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>	objectsInsideOfMyContainer;
 	ushort																	iterator;
 	XMVECTOR																checkObjectsMinMax[2];		// Index 0 - Min. Index 1 - Max
 	
 public:	
 	// Initialization
-	PartitionCell() { return; }
+	PartitionCell() : maxs{ 0, 0 }, mins{ 0,0 } { return; }
 	void DelayedInitialization(float minX, float minZ, float maxX, float maxZ);
 	
 	// Private Functionality

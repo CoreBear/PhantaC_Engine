@@ -14,13 +14,13 @@ class InputHandler
 	PlayerManager*			playerManagerPtr;
 
 	// Initialization
-	InputHandler(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager) { return; }
+	InputHandler(PlayerManager& inPlayerManager) : playerManagerPtr(&inPlayerManager) { return; }
 	InputHandler(InputHandler const&) = delete;
 	InputHandler operator=(InputHandler const&) = delete;
 
 public:
 	// Initilization
-	static InputHandler* GetInstance(PlayerManager* inPlayerManager = nullptr);
+	static InputHandler* GetInstance(PlayerManager& inPlayerManager);
 
 	// Public Interface
 	void HandleInput(bool downThisFrame, uchar key);

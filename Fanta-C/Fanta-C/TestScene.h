@@ -9,7 +9,7 @@ class TestScene : public SceneGraph
 
 public:
 	// Initialization
-	TestScene(ushort* clientDimensions);
+	TestScene(bool useGrid, ushort* clientDimensions);
 };
 
 #endif

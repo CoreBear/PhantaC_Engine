@@ -12,22 +12,22 @@ SceneManager* SceneManager::sceneManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-SceneManager::SceneManager(WindowCreator* window, uchar targetFPS)
+SceneManager::SceneManager(WindowCreator& window, uchar targetFPS)
 {		
 	// Assign whatever scene you want to run
-	scenePtr = new TestScene(window->GetClientDimensions());
+	scenePtr = new TestScene(true, window.GetClientDimensions());
 }
 #pragma endregion
 
 #pragma region Update
 void SceneManager::Update()
 {	
-	scenePtr->Update();
+	scenePtr->UpdateScripts();
 }
 #pragma endregion
 
 #pragma region Accessors
-SceneManager * SceneManager::GetInstance(WindowCreator * window, uchar targetFPS)
+SceneManager * SceneManager::GetInstance(WindowCreator& window, uchar targetFPS)
 {
 	// If instance is already created, return it
 	if (sceneManagerInstance) return sceneManagerInstance;

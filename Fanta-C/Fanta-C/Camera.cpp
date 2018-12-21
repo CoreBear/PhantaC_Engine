@@ -8,7 +8,7 @@ Camera* Camera::cameraInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-Camera::Camera(const ushort* clientDimensions)
+Camera::Camera(const ushort* clientDimensions) : SceneObject(this)
 {
 	const float	nearFarPlaneDistances[2] = { 1.0f, 100.0f };	// 0 - NearZ. 1 - FarZ
 	const float	verticalFOV = XMConvertToRadians(45.0f);

@@ -11,13 +11,7 @@
 // Abstract Base Class
 class ScriptManager
 {
-protected:
-	SceneGraph * sceneGraphPtr;
-
 public:
-	// Initialization
-	ScriptManager(SceneGraph* inSceneGraph) : sceneGraphPtr(inSceneGraph) { return; }
-
 	// Update - Runs entire object update
 	virtual void Update() = 0;
 

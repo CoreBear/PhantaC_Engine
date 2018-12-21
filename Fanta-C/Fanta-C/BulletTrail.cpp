@@ -15,6 +15,9 @@ void BulletTrail::Update()
 	// If the object has lived longer than its lifetime
 	// add to the container that will remove it at the end of the frame
 	if (timeAlive > lifeTime)
-		sceneGraphPtr->AddObjectToRemove(myObject);
+	{
+		timeAlive = 0;
+		SceneGraph::RemoveFromActive(myObject);
+	}
 }
 #pragma endregion

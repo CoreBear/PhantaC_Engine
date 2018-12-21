@@ -16,7 +16,7 @@ protected:
 public:
 	// Initialization
 	Transform(XMMATRIX* inMatrix) : myLocalMatrix(*inMatrix) { return; }
-	Transform(const XMVECTOR& position, const XMVECTOR& forward, const XMVECTOR& up) 
+	Transform(const XMVECTOR& position) 
 	{
 		myLocalMatrix = XMMatrixIdentity();
 		myLocalMatrix.r[3] = position;
@@ -26,6 +26,9 @@ public:
 	virtual float GetScale() const { return false; }
 	XMMATRIX* GetLocalMatrix() { return &myLocalMatrix; }
 	XMVECTOR* GetPosition() { return &myLocalMatrix.r[3]; }
+
+	// Mutators
+	void SetLocalMatrix(XMMATRIX* inMatrix) { myLocalMatrix = *inMatrix; }
 };
 
 #endif&

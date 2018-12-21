@@ -31,7 +31,7 @@ protected:
 
 public:
 	// Initialization
-	CollidingObject(SceneGraph* inSceneGraph, SceneObject* inObject) : continuedCollision(false), newCollision(false), newSeparation(false), myObject(inObject), ScriptManager(inSceneGraph) { return; }
+	CollidingObject(SceneObject* inObject) : continuedCollision(false), newCollision(false), newSeparation(false), myObject(inObject) { return; }
 	
 	// Update - Runs object collision functionality
 	virtual void Update() { CollisionHandling(); }

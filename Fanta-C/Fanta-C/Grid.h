@@ -20,7 +20,7 @@ public:
 	Grid(float inLineDistanceApart = 1) : lineDistanceApart(inLineDistanceApart), Mesh(Colors::White, 1, 1, 1, 1) { CreateMesh(); }
 
 	// Public Interface
-	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;
+	void AddMyLinesToRenderer(LineRenderer* lineRenderer) override;
 
 	// Accessors
 	float GetEdgeOfGridDistance() { return edgeOfGridDistance; }

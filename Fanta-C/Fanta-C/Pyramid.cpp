@@ -5,17 +5,17 @@
 #pragma endregion
 
 #pragma region Public Interface
-void Pyramid::AddMyLinesToRenderer(LineRenderer& lineRenderer)
+void Pyramid::AddMyLinesToRenderer(LineRenderer* lineRenderer)
 {
 	for (reusableIterator = 0; reusableIterator < numberOfLineIndicesVertices[0]; ++reusableIterator)
-		lineRenderer.AddNewLine(vertices[lineIndices[reusableIterator][0]].localPos, vertices[lineIndices[reusableIterator][1]].localPos, color, color);
+		lineRenderer->AddNewLine(vertices[lineIndices[reusableIterator][0]].localPos, vertices[lineIndices[reusableIterator][1]].localPos, color, color);
 }
 #pragma endregion
 
 #pragma region Private
 void Pyramid::CreateMesh(float inWidth, float inHeight, float inDepth, float inScale)
 {
-	// Create Vertices
+		// Create Vertices
 	for (reusableIterator = 0; reusableIterator < numberOfLineIndicesVertices[1]; ++reusableIterator)
 	{
 		if (reusableIterator < 4)
@@ -30,7 +30,6 @@ void Pyramid::CreateMesh(float inWidth, float inHeight, float inDepth, float inS
 			vertices[reusableIterator].localPos.m128_f32[1] = inHeight * inScale;
 			vertices[reusableIterator].localPos.m128_f32[2] = 0;
 		}
-
 	}
 
 	// Create Indices

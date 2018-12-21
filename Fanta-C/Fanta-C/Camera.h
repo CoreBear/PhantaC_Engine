@@ -2,10 +2,11 @@
 #define _CAMERA_H
 
 // My Headers
+#include "GlobalDirectX.h"
 #include "GlobalTypedefs.h"
-#include "Mesh.h"
+#include "SceneObject.h"
 
-class Camera : public Mesh
+class Camera : public SceneObject
 {
 	XMMATRIX projectionMatrix;
 	XMMATRIX viewMatrix;

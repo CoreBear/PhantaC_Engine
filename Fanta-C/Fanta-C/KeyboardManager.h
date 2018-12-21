@@ -18,7 +18,7 @@ class KeyboardManager
 	PlayerManager*			playerManagerPtr;
 
 	// Initialization
-	KeyboardManager(PlayerManager* inPlayerManager);
+	KeyboardManager(PlayerManager& inPlayerManager);
 	KeyboardManager(KeyboardManager const&) = delete;
 	KeyboardManager operator=(KeyboardManager const&) = delete;
 
@@ -26,7 +26,7 @@ class KeyboardManager
 
 public:
 	// Initialization
-	static KeyboardManager* GetInstance(PlayerManager* inPlayerManager);
+	static KeyboardManager* GetInstance(PlayerManager& inPlayerManager);
 	
 	// Update
 	void Update();

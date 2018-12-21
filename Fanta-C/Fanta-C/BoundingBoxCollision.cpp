@@ -43,23 +43,23 @@ void BoundingBoxCollision::Update(PartitionGrid* grid)
 #pragma endregion
 
 #pragma region Private
-void BoundingBoxCollision::AssignCollisionObjects(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects)
+void BoundingBoxCollision::AssignCollisionObjects(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* objectsInMyContainer)
 {
 	// For each collidable game object
-	for (collisionIterators[1] = 0; collisionIterators[1] < collidableObjects->GetSize(); ++collisionIterators[1])
+	for (collisionIterators[1] = 0; collisionIterators[1] < objectsInMyContainer->GetSize(); ++collisionIterators[1])
 	{
 		// The collider being checked against all other collidees
-		objectsBeingChecked[0] = collidableObjects->At(collisionIterators[1]);
+		objectsBeingChecked[0] = objectsInMyContainer->At(collisionIterators[1]);
 		boxBeingChecked[0] = objectsBeingChecked[0]->GetColliderManager()->GetBoundingBox();
 
 		// For each collidable game object
-		for (collisionIterators[2] = 0; collisionIterators[2] < collidableObjects->GetSize(); ++collisionIterators[2])
+		for (collisionIterators[2] = 0; collisionIterators[2] < objectsInMyContainer->GetSize(); ++collisionIterators[2])
 		{
 			// If collider position is not the same as collidee position
 			if (collisionIterators[1] != collisionIterators[2])
 			{
 				// Assign collidee
-				objectsBeingChecked[1] = collidableObjects->At(collisionIterators[2]);
+				objectsBeingChecked[1] = objectsInMyContainer->At(collisionIterators[2]);
 				boxBeingChecked[1] = objectsBeingChecked[1]->GetColliderManager()->GetBoundingBox();
 
 				CheckForCollision();

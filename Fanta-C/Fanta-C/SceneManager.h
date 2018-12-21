@@ -16,7 +16,7 @@ class SceneManager
 	static SceneManager* sceneManagerInstance;
 
 	// Initialization
-	SceneManager(WindowCreator* window, uchar targetFPS);
+	SceneManager(WindowCreator& window, uchar targetFPS);
 	SceneManager(SceneManager const&) = delete;
 	SceneManager operator= (SceneManager const&) = delete;
 
@@ -26,7 +26,7 @@ public:
 
 	// Accessors
 	SceneGraph* GetScenePtr() { return scenePtr; }
-	static SceneManager* GetInstance(WindowCreator* windowHandle, uchar targetFPS);
+	static SceneManager* GetInstance(WindowCreator& windowHandle, uchar targetFPS);
 
 	// Clean up
 	~SceneManager();

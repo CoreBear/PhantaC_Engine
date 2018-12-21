@@ -11,7 +11,7 @@ struct RASTERIZER_STATE		{ enum { DEFAULT = 0, COUNT }; };
 struct RENDER_TARGET_VIEW	{ enum { DEFAULT = 0, COUNT }; };
 struct TEXTURE2D			{ enum { DEFAULT = 0, COUNT }; };
 struct VERTEX_BUFFER		{ enum { DEFAULT = 0, COUNT }; };
-struct VERTEX_SHADER		{ enum { DEFAULT = 0, COUNT }; };
+struct VERTEX_SHADER		{ enum { BASIC = 0, UI, COUNT }; };
 struct VIEWPORT				{ enum { DEFAULT = 0, COUNT }; };
 
 #endif

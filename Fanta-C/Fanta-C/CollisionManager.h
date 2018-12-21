@@ -3,8 +3,6 @@
 
 // My Headers
 #include "GlobalTypedefs.h"
-#include "GlobalSceneVariables.h"
-#include "MyArray.h"
 
 // Forward Declarations
 class SceneObject;
@@ -17,13 +15,13 @@ class CollisionManager
 	class PartitioningManager*	partitioningManagerPtr;
 
 	// Initialization
-	CollisionManager(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid);
+	CollisionManager(SceneObject* grid);
 	CollisionManager(CollisionManager const&) = delete;
 	CollisionManager operator=(CollisionManager const&) = delete;
 
 public:
 	// Initialization
-	static CollisionManager* GetInstance(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid);
+	static CollisionManager* GetInstance(SceneObject* grid);
 
 	// Update
 	void Update();

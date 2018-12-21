@@ -14,12 +14,12 @@ InputManager* InputManager::inputManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-InputManager::InputManager(PlayerManager* inPlayerManager, SceneGraph* inSceneGraph) : sceneGraphPtr(inSceneGraph)
+InputManager::InputManager(PlayerManager& inPlayerManager, SceneGraph* inSceneGraph) : sceneGraphPtr(inSceneGraph)
 {
 	controllerManagerPtr = ControllerManager::GetInstance(inPlayerManager);
 	keyboardManagerPtr = KeyboardManager::GetInstance(inPlayerManager);
 }
-InputManager* InputManager::GetInstance(PlayerManager* inPlayerManager, SceneGraph* inSceneGraph)
+InputManager* InputManager::GetInstance(PlayerManager& inPlayerManager, SceneGraph* inSceneGraph)
 {
 	// If instance is already created, return it
 	if (inputManagerInstance) return inputManagerInstance;

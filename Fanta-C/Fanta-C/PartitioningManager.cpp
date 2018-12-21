@@ -12,12 +12,12 @@ PartitioningManager* PartitioningManager::partitioningManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-PartitioningManager::PartitioningManager(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid)
+PartitioningManager::PartitioningManager(SceneObject* grid)
 {
 	partitionGridPtr = PartitionGrid::GetInstance(grid);
-	partitionerPtr = Partitioner::GetInstance(collidableObjects, partitionGridPtr);
+	partitionerPtr = Partitioner::GetInstance(partitionGridPtr);
 }
-PartitioningManager* PartitioningManager::GetInstance(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid)
+PartitioningManager* PartitioningManager::GetInstance(SceneObject* grid)
 {
 	// If instance is already created, return it
 	if (partitioningManagerInstance) return partitioningManagerInstance;
@@ -25,7 +25,7 @@ PartitioningManager* PartitioningManager::GetInstance(MyArray<SceneObject*, Glob
 	// If instance has not been created, create it and return it
 	else
 	{
-		partitioningManagerInstance = new PartitioningManager(collidableObjects, grid);
+		partitioningManagerInstance = new PartitioningManager(grid);
 		return partitioningManagerInstance;
 	}
 }

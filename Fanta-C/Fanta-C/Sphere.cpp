@@ -7,10 +7,10 @@
 #pragma endregion
 
 #pragma region Public Interface
-void Sphere::AddMyLinesToRenderer(LineRenderer& lineRenderer)
+void Sphere::AddMyLinesToRenderer(LineRenderer* lineRenderer)
 {
 	for (reusableIterator = 0; reusableIterator < numberOfVertices - 1; ++reusableIterator)
-		lineRenderer.AddNewLine(vertices[reusableIterator].localPos, vertices[reusableIterator + 1].localPos, color, color);
+		lineRenderer->AddNewLine(vertices[reusableIterator].localPos, vertices[reusableIterator + 1].localPos, color, color);
 }
 #pragma endregion
 

@@ -10,7 +10,7 @@ PhysicsManager* PhysicsManager::physicsManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-PhysicsManager* PhysicsManager::GetInstance(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* collidableObjects, SceneObject* grid)
+PhysicsManager* PhysicsManager::GetInstance(SceneObject* grid)
 {
 	// If instance has been created, return it
 	if (physicsManagerInstance) return physicsManagerInstance;
@@ -18,7 +18,7 @@ PhysicsManager* PhysicsManager::GetInstance(MyArray<SceneObject*, GlobalSceneVar
 	// If instance has not been created, create it and return it
 	else
 	{
-		physicsManagerInstance = new PhysicsManager(collidableObjects, grid);
+		physicsManagerInstance = new PhysicsManager(grid);
 		return physicsManagerInstance;
 	}
 }

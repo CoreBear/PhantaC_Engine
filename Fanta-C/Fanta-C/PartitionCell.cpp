@@ -40,7 +40,7 @@ bool PartitionCell::IsObjectInsideOfMyArea(SceneObject* checkObject)
 bool PartitionCell::IsObjectInsideOfMyContainer(SceneObject* checkObject)
 {
 	// If this object exists in map, return true
-	if (objectsInsideOfMyContainer.SizeContains(checkObject))
+	if (objectsInsideOfMyContainer.Contains(checkObject))
 		return true;
 
 	// If this object does not exist in map, return false

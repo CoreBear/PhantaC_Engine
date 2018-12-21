@@ -22,8 +22,7 @@
 /// and runs system event loop
 /// Parameters
 /// environmentManager - Runs everything, except window creation and events 
-/// window - Creates window
-void RunApplication(EnvironmentManager* environmentManager, WindowCreator* window);
+void RunApplication(EnvironmentManager& environmentManager);
 
 // Environment
 /// Summary
@@ -32,7 +31,7 @@ void RunApplication(EnvironmentManager* environmentManager, WindowCreator* windo
 /// Parameters
 /// environmentManager - Runs everything, except window creation and events 
 /// msg - Stores system events
-void RunEnvironment(EnvironmentManager* environmentManager, MSG* msg);
+void RunEnvironment(EnvironmentManager* environmentManager, const MSG* msg);
 
 // System Event Handler
 /// Summary
@@ -65,7 +64,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	// this function call will set a breakpoint at the location of a leaked block
 	// set the parameter to the identifier for a leaked block
-	// _CrtSetBreakAlloc(243);
+	// _CrtSetBreakAlloc(244);
 	#pragma endregion
 
 	// Creates the window
@@ -75,7 +74,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	EnvironmentManager* environmentManager = EnvironmentManager::GetInstance(window);
 	
 	// Will run until quit message is posted
-	RunApplication(environmentManager, window);
+	RunApplication(*environmentManager);
 
 	// Clean Up
 	delete environmentManager;
@@ -87,7 +86,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 #pragma endregion
 
 #pragma region Application
-void RunApplication(EnvironmentManager* environmentManager, WindowCreator* window)
+void RunApplication(EnvironmentManager& environmentManager)
 {
 	// Flag to let other threads know they can skip this functionality
 	bool mainThreadHasBeenHere = false;
@@ -95,7 +94,7 @@ void RunApplication(EnvironmentManager* environmentManager, WindowCreator* windo
 	// Container that stores system messages
 	MSG msg = { 0 };
 	
-	std::thread* environmentThread = new std::thread(RunEnvironment, environmentManager, &msg);
+	std::thread* environmentThread = new std::thread(RunEnvironment, &environmentManager, &msg);
 
 	// In place for the second thread
 	if (!mainThreadHasBeenHere)
@@ -131,7 +130,7 @@ void RunApplication(EnvironmentManager* environmentManager, WindowCreator* windo
 #pragma endregion
 
 #pragma region Environment
-void RunEnvironment(EnvironmentManager* environmentManager, MSG* msg)
+void RunEnvironment(EnvironmentManager* environmentManager, const MSG* msg)
 {
 	// Will continue running until quit message is received
 	while (msg->message != WM_QUIT)

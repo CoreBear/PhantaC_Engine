@@ -12,19 +12,19 @@ class SceneGraph;
 class InputManager
 {
 	// Variables
-	class ControllerManager*												controllerManagerPtr;
-	static InputManager*													inputManagerInstance;
-	class KeyboardManager*													keyboardManagerPtr;
-	SceneGraph*																sceneGraphPtr;
+	class ControllerManager*	controllerManagerPtr;
+	static InputManager*		inputManagerInstance;
+	class KeyboardManager*		keyboardManagerPtr;
+	SceneGraph*					sceneGraphPtr;
 
 	// Initialization
-	InputManager(PlayerManager* inPlayerManager, SceneGraph* inSceneGraph);
+	InputManager(PlayerManager& inPlayerManager, SceneGraph* inSceneGraph);
 	InputManager(InputManager const&) = delete;
 	InputManager operator=(InputManager const&) = delete;
 
 public:
 	// Initialization
-	static InputManager* GetInstance(PlayerManager* inPlayerManager = nullptr, SceneGraph* inSceneGraph = nullptr);
+	static InputManager* GetInstance(PlayerManager& inPlayerManager, SceneGraph* inSceneGraph);
 	
 	// Update
 	void Update();

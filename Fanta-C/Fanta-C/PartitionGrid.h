@@ -11,9 +11,9 @@ class SceneObject;
 class PartitionGrid
 {
 	// Variables
-	static PartitionGrid*				partitionGridInstance;
-	class PartitionCell*				gridCells;
-	uchar								numberOfTotalCells;
+	static PartitionGrid*	partitionGridInstance;
+	class PartitionCell*	gridCells;
+	uchar					numberOfTotalCells;
 
 	// Initialization	
 	PartitionGrid(SceneObject* grid);

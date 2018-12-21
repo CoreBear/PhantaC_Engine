@@ -4,9 +4,13 @@
 #include "Camera.h"
 #include "GlobalMath.h"
 #include "GlobalVramStructures.h"
+#include "LineRenderer.h"
+#include "Mesh.h"
+#include "Pooler.h"
 #include "SceneGraph.h"
 #include "SceneManager.h"
 #include "SceneObject.h"
+#include "UiManager.h"
 #include "WindowCreator.h"
 
 // System Headers
@@ -23,6 +27,7 @@
 // Shaders
 #include "BasicPixelShader.csh"
 #include "BasicVertexShader.csh"
+#include "UiVertexShader.csh"
 #pragma endregion
 
 #pragma region Forward Declarations
@@ -30,7 +35,7 @@ Renderer* Renderer::rendererInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS) : cameraPtr(sceneManagerPtr->GetScenePtr()->GetCamera()), renderableObjects(sceneManagerPtr->GetScenePtr()->GetRenderableObjects())
+Renderer::Renderer(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS) : cameraPtr(&sceneManagerPtr->GetScenePtr()->GetCamera()), lineRenderer(LineRenderer::GetInstance()), uiManagerPtr(UiManager::GetInstance(this))
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -111,7 +116,7 @@ Renderer::Renderer(WindowCreator* window, SceneManager* sceneManagerPtr, uchar t
 	D3D11_BUFFER_DESC vertexBufferDesc;
 	ZeroMemory(&vertexBufferDesc, sizeof(D3D11_BUFFER_DESC));
 	vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	vertexBufferDesc.ByteWidth = sizeof(SIMPLE_VERTEX) * lineRenderer.GetContainerCapacity();
+	vertexBufferDesc.ByteWidth = sizeof(SIMPLE_VERTEX) * lineRenderer->GetContainerCapacity();
 	vertexBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	vertexBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 
@@ -161,8 +166,9 @@ Renderer::Renderer(WindowCreator* window, SceneManager* sceneManagerPtr, uchar t
 	// Create pixel shader
 	device->CreatePixelShader(BasicPixelShader, sizeof(BasicPixelShader), nullptr, &pixelShader[PIXEL_SHADER::DEFAULT]);
 	
-	// Create vertex shader
-	device->CreateVertexShader(BasicVertexShader, sizeof(BasicVertexShader), nullptr, &vertexShader[VERTEX_SHADER::DEFAULT]);
+	// Create vertex shaders
+	device->CreateVertexShader(BasicVertexShader, sizeof(BasicVertexShader), nullptr, &vertexShader[VERTEX_SHADER::BASIC]);
+	device->CreateVertexShader(UiVertexShader, sizeof(UiVertexShader), nullptr, &vertexShader[VERTEX_SHADER::UI]);
 	#pragma endregion
 	
 	#pragma region Input Layout
@@ -185,7 +191,6 @@ Renderer::Renderer(WindowCreator* window, SceneManager* sceneManagerPtr, uchar t
 	deviceContext->IASetVertexBuffers(0, 1, &vertexBuffers[VERTEX_BUFFER::DEFAULT], &simpleVertexStride, &offset);
 
 	// Vertex Shader
-	deviceContext->VSSetShader(vertexShader[VERTEX_SHADER::DEFAULT], nullptr, 0);
 	deviceContext->VSSetConstantBuffers(0, CONSTANT_BUFFER_TYPE::COUNT, constantBuffers);
 
 	// Rasterizer Stage
@@ -199,7 +204,7 @@ Renderer::Renderer(WindowCreator* window, SceneManager* sceneManagerPtr, uchar t
 	deviceContext->OMSetDepthStencilState(depthStencilState[DEPTH_STENCIL_STATE::DEFAULT], 1);
 	#pragma endregion
 }
-Renderer * Renderer::GetInstance(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS)
+Renderer* Renderer::GetInstance(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS)
 {
 	// If instance is already created, return it
 	if (rendererInstance) return rendererInstance;
@@ -214,12 +219,15 @@ Renderer * Renderer::GetInstance(WindowCreator* window, SceneManager* sceneManag
 #pragma endregion
 
 #pragma region Public Interface
-void Renderer::Update()
+void Renderer::DrawDebug()
 {
 	// Reset color to black and set depth to max
 	ResetScreen();
 
-	//// Load view matrix (camera's world matrix) into vram
+	// Set vertex shader for 3D
+	deviceContext->VSSetShader(vertexShader[VERTEX_SHADER::BASIC], nullptr, 0);
+
+	// Load view matrix (camera's world matrix) into vram
 	deviceContext->UpdateSubresource(constantBuffers[CONSTANT_BUFFER_TYPE::FRAME], 0, nullptr, &XMMatrixInverse(nullptr, *cameraPtr->GetViewMatrix()), 0, 0);
 
 	//
@@ -228,9 +236,33 @@ void Renderer::Update()
 	//											Add anything you want to draw below this line
 	//	
 
-	for (renderIterator = 0; renderIterator < renderableObjects->GetSize(); ++renderIterator)
-		DrawLines(renderableObjects->At(renderIterator));
+	// For each renderable objct, pass it to draw lines
+	for (renderIterator = 0; renderIterator < Pooler::activeObjects.GetSize(); ++renderIterator)
+	{
+		if (Pooler::activeObjects.At(renderIterator)->GetRenderable())
+			DrawLines(Pooler::activeObjects.At(renderIterator));
+	}
 	
+	//
+	//											Add anything you want to draw above this line
+	// --------------------------------------------------------------------------------------------------------------------------------
+	//											Do not add anything below this line
+	//
+}
+void Renderer::DrawUI()
+{
+	// Set vertex shader for UI
+	deviceContext->VSSetShader(vertexShader[VERTEX_SHADER::UI], nullptr, 0);
+
+	//
+	//											Do not add anything above this line
+	// ------------------------------------------------------------------------------------------------------------------------------- 
+	//											Add anything you want to draw below this line
+	//	
+
+	// Draw UI element
+	DrawLines(uiManagerPtr->GetReticle());
+
 	//
 	//											Add anything you want to draw above this line
 	// --------------------------------------------------------------------------------------------------------------------------------
@@ -248,8 +280,26 @@ void Renderer::ResetScreen()
 	deviceContext->ClearRenderTargetView(renderTargetView[RENDER_TARGET_VIEW::DEFAULT], DirectX::Colors::Black);
 	deviceContext->ClearDepthStencilView(depthStencilView[DEPTH_STENCIL_VIEW::DEFAULT], D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, maxZBufferDepth, 0);
 }
+void Renderer::DrawLines(Mesh* mesh)
+{
+	// Load mesh into line renderer
+	meshLoader.AddLinesToLineRenderer(lineRenderer, mesh);
+
+	// Load lines into VRAM
+	ZeroMemory(&resourceForVertBuffer, sizeof(resourceForVertBuffer));
+	deviceContext->Map(vertexBuffers[VERTEX_BUFFER::DEFAULT], 0, D3D11_MAP_WRITE_DISCARD, NULL, &resourceForVertBuffer);
+	memcpy(resourceForVertBuffer.pData, lineRenderer->GetAllVertices(), sizeof(SIMPLE_VERTEX) * lineRenderer->GetCurrentVertexCount());
+	deviceContext->Unmap(vertexBuffers[VERTEX_BUFFER::DEFAULT], 0);
+
+	// Render
+	deviceContext->Draw(lineRenderer->GetCurrentVertexCount(), 0);
+
+	// Remove all lines made by line rendererPtr
+	lineRenderer->ClearLines();
+}
 void Renderer::DrawLines(SceneObject* object)
 {
+	// Load mesh into line renderer
 	meshLoader.AddLinesToLineRenderer(lineRenderer, object->GetMesh());
 
 	// Upload object's world matrix into vram
@@ -258,14 +308,14 @@ void Renderer::DrawLines(SceneObject* object)
 	// Load lines into VRAM
 	ZeroMemory(&resourceForVertBuffer, sizeof(resourceForVertBuffer));
 	deviceContext->Map(vertexBuffers[VERTEX_BUFFER::DEFAULT], 0, D3D11_MAP_WRITE_DISCARD, NULL, &resourceForVertBuffer);
-	memcpy(resourceForVertBuffer.pData, lineRenderer.GetAllVertices(), sizeof(SIMPLE_VERTEX) * lineRenderer.GetCurrentVertexCount());
+	memcpy(resourceForVertBuffer.pData, lineRenderer->GetAllVertices(), sizeof(SIMPLE_VERTEX) * lineRenderer->GetCurrentVertexCount());
 	deviceContext->Unmap(vertexBuffers[VERTEX_BUFFER::DEFAULT], 0);
 	
 	// Render
-	deviceContext->Draw(lineRenderer.GetCurrentVertexCount(), 0);
+	deviceContext->Draw(lineRenderer->GetCurrentVertexCount(), 0);
 
 	// Remove all lines made by line rendererPtr
-	lineRenderer.ClearLines();
+	lineRenderer->ClearLines();
 }
 #pragma endregion
 
@@ -312,6 +362,8 @@ Renderer::~Renderer()
 	ReleaseResource(device);
 	ReleaseResource(deviceContext);
 	ReleaseResource(swapChain);
+
+	delete lineRenderer;
 	#pragma endregion
 }
 template<typename Generic> 

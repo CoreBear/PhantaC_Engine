@@ -1,7 +1,35 @@
-﻿  TestScene.cpp
+﻿  BoundingBox.cpp
+  BoundingBoxCollision.cpp
+  BulletTrail.cpp
+  Camera.cpp
+  CollisionManager.cpp
+  ControllerManager.cpp
+  EnvironmentManager.cpp
+  InputManager.cpp
+  GlobalAutonomy.cpp
+  GlobalTransform.cpp
+  KeyboardManager.cpp
+  Pooler.cpp
+  RayCast.cpp
+  SceneObject.cpp
+  PartitionGrid.cpp
+  PartitionCell.cpp
+  PartitioningManager.cpp
+  PlayerManager.cpp
+  SceneGraph.cpp
+  Partitioner.cpp
+  Compiling...
+  AgentManager.cpp
+  Spawner.cpp
+  TestScene.cpp
+  PhysicsManager.cpp
+  Renderer.cpp
+  InputHandler.cpp
+  SceneManager.cpp
+  UiManager.cpp
   Generating code
-  4 of 803 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  180 of 821 functions (21.9%) were compiled, the rest were copied from previous compilation.
+    31 functions were new in current compilation
+    20 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Fanta-C.vcxproj -> C:\Users\corym\Desktop\PhantaC_Engine\Fanta-C\x64\Release\Fanta-C.exe

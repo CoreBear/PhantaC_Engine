@@ -8,10 +8,10 @@
 template<typename Generic, ushort max> class MyArray
 {
 	// Variables
-	Generic*	container;		// The actual container that will store objects
+	Generic*	container;		// The actual container that will store values
 	ushort		capacity;		// The number of spaces available
 	ushort		iterator;
-	ushort		size;			// Current count of objects in container
+	ushort		size;			// Current count of values in container
 
 public:
 	// Initializaiton
@@ -25,79 +25,67 @@ public:
 	//	// If type is a pointer
 	//	if (pointerType)
 	//	{
-	//		// For each object, set to nullptr 
+	//		// For each value, set to nullptr 
 	//		for (iterator = 0; iterator < capacity; ++iterator)
 	//			container[iterator] = nullptr;
 	//	}
 	//}
 
 	// Public Interface
-	void AddToBack(Generic object)
+	void AddToBack(Generic value)
 	{
-		// Assign the next open position as the object and increment the counter
-		container[size] = object;
+		// Assign the next open position as the value and increment the counter
+		container[size] = value;
 		++size;
 	}
 	Generic At(ushort index) { return container[index]; }
-	bool CapacityContains(Generic object)
+	void Clear()
 	{
-		// For each object
-		for (iterator = 0; iterator < capacity; ++iterator)
+		// Just acts like it is clear. Will over write information
+		size = 0;
+	}
+	bool Contains(Generic value)
+	{
+		// For each value
+		for (iterator = 0; iterator < size; ++iterator)
 		{
-			// If the object is found in container, container contains object
-			if (container[iterator] == object)
+			// If the value is found in container, container contains value
+			if (container[iterator] == value)
 				return true;
 		}
 
-		// Container doesn't contain object
+		// Container doesn't contain value
 		return false;
-	}
-	void Clear() 
-	{
-		// Just acts like it is clear. Will over write information
-		size = 0; 
 	}
 	ushort GetCapacity() { return capacity; }
 	ushort GetSize() { return size; }
 	bool IsEmpty() { return (size > 0) ? false : true; }
-	void Remove(Generic object)
+	void Remove(Generic value)
 	{
-		// If the object is found in container, remove it
-		if (SizeContains(object))
+		// If the value is found in container, remove it
+		if (Contains(value))
 			RemoveAt(iterator);
 	}
 	void RemoveAt(ushort index)
 	{
-		// Assign the last object as the index and decrement the counter
-		container[index] = container[size - 1];
+		// If not last value index, assign last value as the indexed value
+		if (index != size - 1)
+			container[index] = container[size - 1];
+
+		// Update container size
 		--size;
 	}
-	ushort ReturnIndex(Generic object)
-	{
-		// If the object is found in container, return its index
-		if (CapacityContains(object))
-			return iterator;
-
-		// Return -1 if object is not in container (This will break code)
-		return -1;
-	}
-	void SetAt(ushort index, Generic object) { container[index] = object; }
-	bool SizeContains(Generic object)
-	{
-		// For each object
-		for (iterator = 0; iterator < size; ++iterator)
-		{
-			// If the object is found in container, container contains object
-			if (container[iterator] == object)
-				return true;
-		}
-
-		// Container doesn't contain object
-		return false;
-	}
+	void SetAt(ushort index, Generic value) { container[index] = value; }
 
 	// Clean Up
-	~MyArray() { if (container) delete container; }
+	~MyArray()
+	{
+		if (container)
+		{
+			delete container;
+			container = nullptr;
+		}
+	}
 };
 
 #endif

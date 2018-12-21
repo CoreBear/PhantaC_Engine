@@ -11,11 +11,20 @@
 class LineRenderer
 {
 	// Variables
+	static LineRenderer*							lineRendererInstance;
 	constexpr static ushort							containerCapacity = 5000;
-	ushort											currentCount = 0;
+	ushort											currentCount;
 	std::array<SIMPLE_VERTEX, containerCapacity>	lineVertices;
 
+	// Initialization
+	LineRenderer() : currentCount(0) { return; }
+	LineRenderer(LineRenderer const&) = delete;
+	LineRenderer operator=(LineRenderer const&) = delete;
+
 public:
+	// Initialization
+	static LineRenderer* GetInstance();
+
 	// Public Interface
 	/// Summary
 	/// Creates lines that will later be added to the renderer module to represent the simple geometry

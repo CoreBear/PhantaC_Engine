@@ -19,7 +19,7 @@ public:
 	Cube(float inWidth, float inHeight, float inDepth, float inScale = 1) : Mesh(Colors::Green, inWidth, inHeight, inDepth, inScale) { CreateMesh(inWidth, inHeight, inDepth, inScale); }
 
 	// Public Interface
-	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override;
+	void AddMyLinesToRenderer(LineRenderer* lineRenderer) override;
 };
 
 #endif

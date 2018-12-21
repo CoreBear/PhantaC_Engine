@@ -4,6 +4,7 @@
 
 #include "PartitionCell.h"
 #include "PartitionGrid.h"
+#include "Pooler.h"
 #include "SceneObject.h"
 #pragma endregion
 
@@ -12,7 +13,7 @@ Partitioner* Partitioner::partitionerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-Partitioner* Partitioner::GetInstance(MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>* inCollidableObjects, PartitionGrid* inGrid)
+Partitioner* Partitioner::GetInstance(PartitionGrid* inGrid)
 {
 	// If instance is already created, return it
 	if (partitionerInstance) return partitionerInstance;
@@ -20,7 +21,7 @@ Partitioner* Partitioner::GetInstance(MyArray<SceneObject*, GlobalSceneVariables
 	// If instance has not been created, create it and return it
 	else
 	{
-		partitionerInstance = new Partitioner(inCollidableObjects, inGrid);
+		partitionerInstance = new Partitioner(inGrid);
 		return partitionerInstance;
 	}
 }
@@ -34,20 +35,23 @@ void Partitioner::Update()
 	for (iterators[0] = 0; iterators[0] < grid->GetNumberOfTotalCells(); ++iterators[0])
 	{
 		// For each collidable object
-		for (iterators[1] = 0; iterators[1] < collidableObjects->GetSize(); ++iterators[1])
+		for (iterators[1] = 0; iterators[1] < Pooler::activeObjects.GetSize(); ++iterators[1])
 		{
-			// If collidable object is inside of the cell's area
-			if (grid->GetGridCells()[iterators[0]].IsObjectInsideOfMyArea(collidableObjects->At(iterators[1])))
+			if (Pooler::activeObjects.At(iterators[1])->GetCollidable())
 			{
-				// Add object to cell's container. A check is being done on the other side
-				grid->GetGridCells()[iterators[0]].AddObject(collidableObjects->At(iterators[1]));
-			}
+				// If collidable object is inside of the cell's area
+				if (grid->GetGridCells()[iterators[0]].IsObjectInsideOfMyArea(Pooler::activeObjects.At(iterators[1])))
+				{
+					// Add object to cell's container. A check is being done on the other side
+					grid->GetGridCells()[iterators[0]].AddObject(Pooler::activeObjects.At(iterators[1]));
+				}
 
-			// If object is not inside the cell's area
-			else
-			{
-				// Remove object from cell's container. A check is being done on the other side
-				grid->GetGridCells()[iterators[0]].RemoveObject(collidableObjects->At(iterators[1]));
+				// If object is not inside the cell's area
+				else
+				{
+					// Remove object from cell's container. A check is being done on the other side
+					grid->GetGridCells()[iterators[0]].RemoveObject(Pooler::activeObjects.At(iterators[1]));
+				}
 			}
 		}
 	}

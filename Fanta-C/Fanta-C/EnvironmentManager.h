@@ -18,7 +18,7 @@ class EnvironmentManager
 	class AudioManager*						audioManagerPtr;
 	static EnvironmentManager*				environmentManagerInstance;
 	class InputManager*						inputManagerPtr;
-	float									fpsTimeElapsed = 0;
+	float									fpsTimeElapsed;
 	class PhysicsManager*					physicsManagerPtr;
 	class Renderer*							rendererPtr;
 	class SceneManager*						sceneManagerPtr;
@@ -26,11 +26,11 @@ class EnvironmentManager
 	std::chrono::steady_clock::time_point	frameEndTime;
 	std::chrono::steady_clock::time_point	frameStartTime;
 	std::string								fpsString;
-	const uchar								targetFPS = 60;
+	const uchar								targetFPS;
 	class UiManager*						uiManagerPtr;
 	ushort									actualFpsCount;
-	ushort									frameCounter = 0;
-	const ushort							thousandMilliseconds = 1000;	// Milliseconds
+	ushort									frameCounter;
+	const ushort							thousandMilliseconds; 
 
 	// Initialization
 	EnvironmentManager(WindowCreator* window);

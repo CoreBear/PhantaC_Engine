@@ -25,13 +25,13 @@ class ControllerManager
 	XINPUT_VIBRATION			vibration;
 
 	// Initialization
-	ControllerManager(PlayerManager* inPlayerManager);
+	ControllerManager(PlayerManager& inPlayerManager);
 	ControllerManager(ControllerManager const&) = delete;
 	ControllerManager operator=(ControllerManager const&) = delete;
 
 public:
 	// Initialization
-	static ControllerManager* GetInstance(PlayerManager* inPlayerManager);
+	static ControllerManager* GetInstance(PlayerManager& inPlayerManager);
 
 	// Bumpers
 	bool LeftBumper();
@@ -73,7 +73,14 @@ public:
 	bool VibrateOn(int powerLeft, int powerRight);
 
 	// Clean Up
-	~ControllerManager() { delete inputHandlerPtr; }
+	~ControllerManager() 
+	{
+		if (inputHandlerPtr)
+		{
+			delete inputHandlerPtr;
+			inputHandlerPtr = nullptr;
+		}
+	}
 };
 
 #endif

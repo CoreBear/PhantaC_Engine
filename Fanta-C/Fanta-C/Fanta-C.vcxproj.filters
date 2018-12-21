@@ -208,12 +208,6 @@
     <Filter Include="Environment\UI\Manager">
       <UniqueIdentifier>{6d057efa-90bb-4813-8565-9d76a5b765ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Environment\Memory\Pool">
-      <UniqueIdentifier>{ea691db7-aa5f-4f37-91ec-e62f8ad75301}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Environment\Physics\Ray Casting">
-      <UniqueIdentifier>{369e5bd3-6e5b-41dd-bc43-9d1e6b6baaa3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scripting\Game Object\Non Player">
       <UniqueIdentifier>{90d5b5df-f88d-4b90-95e2-2f842094d013}</UniqueIdentifier>
     </Filter>
@@ -231,6 +225,21 @@
     </Filter>
     <Filter Include="Game\Scripting\Game Object\Non Player\BulletTrail">
       <UniqueIdentifier>{2a02df5e-4930-4d65-b0af-e6079abd63a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\UI\Reticle">
+      <UniqueIdentifier>{78b0650d-266a-4f5a-aee8-27ea0e3d78fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Physics\Ray Casting">
+      <UniqueIdentifier>{369e5bd3-6e5b-41dd-bc43-9d1e6b6baaa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Memory\Pooling &amp; Spawning">
+      <UniqueIdentifier>{ea691db7-aa5f-4f37-91ec-e62f8ad75301}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Memory\Pooling &amp; Spawning\Pool">
+      <UniqueIdentifier>{5958922e-1619-4ec3-847b-100db35243df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Environment\Memory\Pooling &amp; Spawning\Spawning">
+      <UniqueIdentifier>{70efb644-28eb-4170-b643-d546b2e2503e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -339,10 +348,18 @@
     <ClCompile Include="UiManager.cpp">
       <Filter>Environment\UI\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Pooler.cpp">
-      <Filter>Environment\Memory\Pool</Filter>
+    <ClCompile Include="RayCast.cpp">
+      <Filter>Environment\Physics\Ray Casting</Filter>
     </ClCompile>
-    <ClCompile Include="RayCast.cpp" />
+    <ClCompile Include="Reticle.cpp">
+      <Filter>Environment\UI\Reticle</Filter>
+    </ClCompile>
+    <ClCompile Include="Pooler.cpp">
+      <Filter>Environment\Memory\Pooling &amp; Spawning\Pool</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Environment\Memory\Pooling &amp; Spawning\Spawning</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -501,16 +518,30 @@
     <ClInclude Include="UiManager.h">
       <Filter>Environment\UI\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Pooler.h">
-      <Filter>Environment\Memory\Pool</Filter>
+    <ClInclude Include="RayCast.h">
+      <Filter>Environment\Physics\Ray Casting</Filter>
     </ClInclude>
-    <ClInclude Include="RayCast.h" />
+    <ClInclude Include="Reticle.h">
+      <Filter>Environment\UI\Reticle</Filter>
+    </ClInclude>
+    <ClInclude Include="Pooler.h">
+      <Filter>Environment\Memory\Pooling &amp; Spawning\Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Environment\Memory\Pooling &amp; Spawning\Spawning</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVector.h">
+      <Filter>Environment\Memory\Data Structures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BasicPixelShader.hlsl">
       <Filter>Environment\Rendering\Shaders\Pixel</Filter>
     </FxCompile>
     <FxCompile Include="BasicVertexShader.hlsl">
+      <Filter>Environment\Rendering\Shaders\Vertex</Filter>
+    </FxCompile>
+    <FxCompile Include="UiVertexShader.hlsl">
       <Filter>Environment\Rendering\Shaders\Vertex</Filter>
     </FxCompile>
   </ItemGroup>

@@ -5,12 +5,12 @@
 #pragma endregion
 
 #pragma region Public Interface
-void Cube::AddMyLinesToRenderer(LineRenderer& lineRenderer)
+void Cube::AddMyLinesToRenderer(LineRenderer* lineRenderer)
 {
 	for (reusableIterator = 0; reusableIterator < numberOfLinesTriIndicesVertices[1]; ++reusableIterator)
 	{
 		for (secondIterator = 0; secondIterator < numberOfLinesTriIndicesVertices[0]; ++secondIterator)
-			lineRenderer.AddNewLine(vertices[triIndices[reusableIterator][secondIterator][0]].localPos, vertices[triIndices[reusableIterator][secondIterator][1]].localPos, color, color);
+			lineRenderer->AddNewLine(vertices[triIndices[reusableIterator][secondIterator][0]].localPos, vertices[triIndices[reusableIterator][secondIterator][1]].localPos, color, color);
 	}
 }
 #pragma endregion

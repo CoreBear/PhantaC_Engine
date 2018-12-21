@@ -19,7 +19,7 @@ protected:
 
 public:
 	// Initialization
-	AgentManager(SceneGraph* inSceneGraph, SceneObject* inObject, float inPitchVelocity = 1, float inRollVelocity = 1, float inVelocity = 1, float inYawVelocity = 1) : MovingObject(inSceneGraph, inObject, inPitchVelocity, inRollVelocity, inVelocity, inYawVelocity) { return; }
+	AgentManager(SceneObject* inObject, float inPitchVelocity = 1, float inRollVelocity = 1, float inVelocity = 1, float inYawVelocity = 1) : MovingObject(inObject, inPitchVelocity, inRollVelocity, inVelocity, inYawVelocity) { return; }
 
 	// Update - Runs object logic update
 	void Update() override;

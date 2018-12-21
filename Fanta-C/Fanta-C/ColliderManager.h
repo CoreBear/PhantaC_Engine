@@ -8,7 +8,7 @@
 
 class ColliderManager
 {
-	BoundingBox* myBoundingBox;
+	BoundingBox* myBoundingBox = nullptr;
 
 public:
 	// Initialization
@@ -18,7 +18,14 @@ public:
 	BoundingBox* GetBoundingBox() { return myBoundingBox; }
 
 	// Clean Up
-	~ColliderManager() { if (myBoundingBox) delete myBoundingBox; }
+	~ColliderManager()
+	{
+		if (myBoundingBox)
+		{
+			delete myBoundingBox;
+			myBoundingBox = nullptr;
+		}
+	}
 };
 
 #endif

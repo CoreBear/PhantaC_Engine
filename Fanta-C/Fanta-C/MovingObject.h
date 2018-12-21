@@ -16,7 +16,7 @@ protected:
 
 public:
 	// Initialization
-	MovingObject(SceneGraph* inSceneGraph, SceneObject* inObject, float inpitchVelocity, float inRollVelocity, float inVelocity, float inYawVelocity) : pitchVelocity(inpitchVelocity), rollVelocity(inRollVelocity), velocity(inVelocity), yawVelocity(inYawVelocity), CollidingObject(inSceneGraph, inObject) { return; }
+	MovingObject(SceneObject* inObject, float inpitchVelocity, float inRollVelocity, float inVelocity, float inYawVelocity) : pitchVelocity(inpitchVelocity), rollVelocity(inRollVelocity), velocity(inVelocity), yawVelocity(inYawVelocity), CollidingObject(inObject) { return; }
 
 	// Update
 	//virtual void Update() { return; }

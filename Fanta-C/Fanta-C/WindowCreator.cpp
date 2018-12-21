@@ -9,6 +9,7 @@ WindowCreator* WindowCreator::windowCreatorInstance = nullptr;
 
 #pragma region Initialization
 WindowCreator::WindowCreator(HINSTANCE hInstance, int cmdShow, WNDPROC wndProc)
+	: windowClassName("Fanta-C"), windowName("Fanta-C Engine"), clientDimensions{720, 1280}
 {
 	WNDCLASSEX wndClass = { 0 };
 	wndClass.cbSize = sizeof(WNDCLASSEX);									// Size, in bytes, of this structure

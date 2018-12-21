@@ -15,8 +15,8 @@ KeyboardManager* KeyboardManager::keyboardManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-KeyboardManager::KeyboardManager(PlayerManager* inPlayerManager) : playerManagerPtr(inPlayerManager), inputHandlerPtr(InputHandler::GetInstance(inPlayerManager)) { return; }
-KeyboardManager* KeyboardManager::GetInstance(PlayerManager* inPlayerManager)
+KeyboardManager::KeyboardManager(PlayerManager& inPlayerManager) : playerManagerPtr(&inPlayerManager), inputHandlerPtr(InputHandler::GetInstance(inPlayerManager)) { return; }
+KeyboardManager* KeyboardManager::GetInstance(PlayerManager& inPlayerManager)
 {
 	// If instance is already created, return it
 	if (keyboardManagerInstance) return keyboardManagerInstance;

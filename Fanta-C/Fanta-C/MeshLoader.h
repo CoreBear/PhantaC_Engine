@@ -8,7 +8,7 @@
 class MeshLoader
 {
 public:
-	void AddLinesToLineRenderer(LineRenderer& lineRenderer, Mesh* inMesh) { inMesh->AddMyLinesToRenderer(lineRenderer); }
+	void AddLinesToLineRenderer(LineRenderer* lineRenderer, Mesh* inMesh) { inMesh->AddMyLinesToRenderer(lineRenderer); }
 };
 
 #endif

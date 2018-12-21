@@ -18,7 +18,7 @@ public:
 	}
 
 	// Public Interface
-	void AddMyLinesToRenderer(LineRenderer& lineRenderer) override { lineRenderer.AddNewLine(vertices[0].localPos, vertices[1].localPos, vertices[0].color, vertices[1].color); }
+	void AddMyLinesToRenderer(LineRenderer* lineRenderer) override { lineRenderer->AddNewLine(vertices[0].localPos, vertices[1].localPos, vertices[0].color, vertices[1].color); }
 	void SetEndPosition(XMVECTOR* endPosition) { vertices[1].localPos = *endPosition; }
 	void SetLineColor(const XMVECTORF32* inColor);
 	void SetPositions(XMVECTOR* startPosition, XMVECTOR* endPosition);

@@ -114,22 +114,11 @@ float GlobalMath::Vector3DotProduct(XMVECTOR* firstVector, XMVECTOR* secondVecto
 
 	return dotProduct;
 }
-float GlobalMath::Vector4DotProduct(XMVECTOR* firstVector, XMVECTOR* secondVector)
+XMVECTOR* GlobalMath::VectorSubtraction(XMVECTOR* endPoint, XMVECTOR* startPoint)
 {
-	dotProduct = 0;
-
-	dotProduct += firstVector->m128_f32[0] * secondVector->m128_f32[0];
-	dotProduct += firstVector->m128_f32[1] * secondVector->m128_f32[1];
-	dotProduct += firstVector->m128_f32[2] * secondVector->m128_f32[2];
-	dotProduct += firstVector->m128_f32[3] * secondVector->m128_f32[3];
-
-	return dotProduct;
-}
-XMVECTOR* GlobalMath::VectorSubtraction(XMVECTOR* firstVector, XMVECTOR* secondVector)
-{
-	tempVector->m128_f32[0] = firstVector->m128_f32[0] - secondVector->m128_f32[0];
-	tempVector->m128_f32[1] = firstVector->m128_f32[1] - secondVector->m128_f32[1];
-	tempVector->m128_f32[2] = firstVector->m128_f32[2] - secondVector->m128_f32[2];
+	tempVector->m128_f32[0] = endPoint->m128_f32[0] - startPoint->m128_f32[0];
+	tempVector->m128_f32[1] = endPoint->m128_f32[1] - startPoint->m128_f32[1];
+	tempVector->m128_f32[2] = endPoint->m128_f32[2] - startPoint->m128_f32[2];
 	tempVector->m128_f32[3] = 0;
 
 	return tempVector;

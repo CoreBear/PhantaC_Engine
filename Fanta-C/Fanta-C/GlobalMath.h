@@ -26,8 +26,7 @@ public:
 	static void Normalize(XMVECTOR* inVector);
 	template<typename Generic> static Generic Square(Generic value);
 	static float Vector3DotProduct(XMVECTOR* firstVector, XMVECTOR* secondVector);
-	static float Vector4DotProduct(XMVECTOR* firstVector, XMVECTOR* secondVector);
-	static XMVECTOR* VectorSubtraction(XMVECTOR* firstVector, XMVECTOR* secondVector);
+	static XMVECTOR* VectorSubtraction(XMVECTOR* endPoint, XMVECTOR* startPoint);
 };
 
 #endif

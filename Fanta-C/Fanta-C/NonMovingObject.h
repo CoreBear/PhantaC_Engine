@@ -8,10 +8,7 @@ class NonMovingObject : public CollidingObject
 {
 public:
 	// Initialization
-	NonMovingObject(SceneGraph* inSceneGraph, SceneObject* inObject) : CollidingObject(inSceneGraph, inObject) { return; }
-
-	// Update
-	//virtual void Update() { return; }
+	NonMovingObject(SceneObject* inObject) : CollidingObject(inObject) { return; }
 };
 
 #endif

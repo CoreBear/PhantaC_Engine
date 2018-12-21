@@ -3,18 +3,17 @@
 
 // My Headers
 #include "GlobalRendererStructures.h"
-#include "GlobalSceneVariables.h"
 #include "GlobalTypedefs.h"
-#include "LineRenderer.h"
 #include "MeshLoader.h"
-#include "MyArray.h"
 
 // System Headers
 #include <d3d11.h>	
 
 // Forward Declarations
+class LineRenderer;
 class Object;
 class SceneManager;
+class SceneObject;
 class WindowCreator;
 
 class Renderer
@@ -22,10 +21,10 @@ class Renderer
 	#pragma region Variables
 	// General
 	class Camera*															cameraPtr;
-	LineRenderer															lineRenderer;									// Object that renders lines on screen
+	LineRenderer*															lineRenderer;									// Object that renders lines on screen
 	MeshLoader																meshLoader;										// Adds mesh lines to the line renderer
-	MyArray<SceneObject*, GlobalSceneVariables::maxNumberOfSceneObjects>*	renderableObjects;
 	static Renderer*														rendererInstance;
+	class UiManager*														uiManagerPtr;
 	ushort																	renderIterator;									// Iterator for object rendering
 
 	// Pipeline Variables
@@ -58,6 +57,7 @@ class Renderer
 	
 	// Private Functionality
 	void ResetScreen();
+	void DrawLines(Mesh* mesh);
 	void DrawLines(SceneObject* object);
 
 	// Clean Up
@@ -68,7 +68,8 @@ public:
 	static Renderer* GetInstance(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS);
 
 	// Update
-	void Update();
+	void DrawDebug();
+	void DrawUI();
 
 	// Clean-up
 	~Renderer();

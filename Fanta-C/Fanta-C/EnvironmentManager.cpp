@@ -31,15 +31,15 @@ EnvironmentManager::EnvironmentManager(WindowCreator* window) : fpsTimeElapsed(0
 	#pragma region Module Creation
 	audioManagerPtr = AudioManager::GetInstance();
 
-	sceneManagerPtr = SceneManager::GetInstance(window, targetFPS);
+	sceneManagerPtr = SceneManager::GetInstance(*window, targetFPS);
 
 	inputManagerPtr = InputManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetPlayer(), sceneManagerPtr->GetScenePtr());
 
-	physicsManagerPtr = PhysicsManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetCollidableObjects(), sceneManagerPtr->GetScenePtr()->GetGrid());
+	physicsManagerPtr = PhysicsManager::GetInstance(&sceneManagerPtr->GetScenePtr()->GetGrid());
 	
 	rendererPtr = Renderer::GetInstance(window, sceneManagerPtr, targetFPS);
 
-	uiManagerPtr = UiManager::GetInstance();
+	uiManagerPtr = UiManager::GetInstance(rendererPtr);
 	#pragma endregion
 }
 EnvironmentManager* EnvironmentManager::GetInstance(WindowCreator* window)
@@ -64,7 +64,7 @@ void EnvironmentManager::Update()
 	sceneManagerPtr->Update();
 	physicsManagerPtr->Update();
 	uiManagerPtr->Update();
-	rendererPtr->Update();
+	rendererPtr->DrawDebug();
 	audioManagerPtr->Update();
 	sceneManagerPtr->GetScenePtr()->CleanScene();
 	FPSEnd();

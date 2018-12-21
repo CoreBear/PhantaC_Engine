@@ -135,6 +135,7 @@
     <ClCompile Include="GlobalMath.cpp" />
     <ClCompile Include="Pooler.cpp" />
     <ClCompile Include="RayCast.cpp" />
+    <ClCompile Include="Reticle.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="PartitionGrid.cpp" />
     <ClCompile Include="PartitionCell.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="Partitioner.cpp" />
     <ClCompile Include="AgentManager.cpp" />
+    <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Pyramid.cpp" />
@@ -182,9 +184,11 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="MyArray.h" />
+    <ClInclude Include="MyVector.h" />
     <ClInclude Include="NonMovingObject.h" />
     <ClInclude Include="Pooler.h" />
     <ClInclude Include="RayCast.h" />
+    <ClInclude Include="Reticle.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="PartitionGrid.h" />
     <ClInclude Include="PartitionCell.h" />
@@ -194,6 +198,7 @@
     <ClInclude Include="ScriptManager.h" />
     <ClInclude Include="Partitioner.h" />
     <ClInclude Include="AgentManager.h" />
+    <ClInclude Include="Spawner.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="PhysicsManager.h" />
@@ -231,6 +236,24 @@
     <FxCompile Include="BasicVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename)</VariableName>
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).csh  </HeaderFileOutput>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename)</VariableName>
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).csh  </HeaderFileOutput>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename)</VariableName>
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).csh  </HeaderFileOutput>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename)</VariableName>
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).csh  </HeaderFileOutput>
+    </FxCompile>
+    <FxCompile Include="UiVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>

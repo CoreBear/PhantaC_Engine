@@ -11,7 +11,7 @@ InputHandler* InputHandler::inputHandlerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-InputHandler* InputHandler::GetInstance(PlayerManager * inPlayerManager)
+InputHandler* InputHandler::GetInstance(PlayerManager& inPlayerManager)
 {
 	// If instance has already been created, return it
 	if (inputHandlerInstance) return inputHandlerInstance;
