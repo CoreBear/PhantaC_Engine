@@ -29,6 +29,7 @@ PartitionGrid::PartitionGrid(SceneObject* grid)
 		gridCells = new PartitionCell[numberOfTotalCells];
 
 		// Z Axis
+		
 		for (uchar zIterator = 0, indexer = 0, xIterator; zIterator < numberOfCellsInEachDirection; ++zIterator)
 		{
 			// X Axis

@@ -68,7 +68,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmdLine,
 	#pragma endregion
 
 	// Creates the window
-	WindowCreator* window = WindowCreator::GetInstance(hInstance, cmdShow, &WndProc);
+	Application_Level::WindowCreator* window = Application_Level::WindowCreator::GetInstance(hInstance, cmdShow, &WndProc);
 
 	// Creates the game instance
 	EnvironmentManager* environmentManager = EnvironmentManager::GetInstance(window);

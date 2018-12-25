@@ -8,6 +8,7 @@
 // My Headers
 #include "GlobalConsoleWrite.h"
 #include "GlobalTypedefs.h"
+#include "WindowCreator.h"
 
 // Foreward Declarations
 class WindowCreator;
@@ -33,7 +34,7 @@ class EnvironmentManager
 	const ushort							thousandMilliseconds; 
 
 	// Initialization
-	EnvironmentManager(WindowCreator* window);
+	EnvironmentManager(Application_Level::WindowCreator* window);
 	EnvironmentManager(EnvironmentManager const&) = delete;
 	EnvironmentManager operator=(EnvironmentManager const&) = delete;
 
@@ -43,7 +44,7 @@ class EnvironmentManager
 
 public:
 	// Initialization
-	static EnvironmentManager* GetInstance(WindowCreator* window);
+	static EnvironmentManager* GetInstance(Application_Level::WindowCreator* window);
 
 	// Update
 	void Update();

@@ -1,6 +1,8 @@
 #pragma region Dependencies
 // My Headers
 #include "WindowCreator.h"			// Connection to declarations
+
+using namespace Application_Level;
 #pragma endregion
 
 #pragma region Forward Declarations

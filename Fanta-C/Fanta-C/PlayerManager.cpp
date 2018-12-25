@@ -14,7 +14,7 @@
 #pragma endregion
 
 #pragma region Forward Declarations
-PlayerManager*	PlayerManager::playerManagerInstance = nullptr;
+PlayerManager* PlayerManager::playerManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization

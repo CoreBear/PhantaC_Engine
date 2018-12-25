@@ -18,7 +18,8 @@ TestScene::TestScene(bool useGrid, ushort* clientDimensions) : SceneGraph(useGri
 	short x, y, z;
 
 	#pragma region Enemy Creation
-	// This is 125 objects - Runs well in both
+	#if DEBUG_RUN
+	// This is 27 objects - Runs well in both
 	for (x = -5; x < 6; x += 5)
 	{
 		for (y = -5; y < 6; y += 5)
@@ -33,6 +34,23 @@ TestScene::TestScene(bool useGrid, ushort* clientDimensions) : SceneGraph(useGri
 			}
 		}
 	}
+	#elif RELEASE_RUN
+	// This is 125 objects - Runs well in both
+	for (x = -10; x < 11; x += 5)
+	{
+		for (y = -10; y < 11; y += 5)
+		{
+			for (z = -10; z < 11; z += 5)
+			{
+				if (CreateSceneObject(new SceneObject(new Cube(1, 1, 1), true, true, true, true, XMVectorSet(x, y, z, 1))))
+				{
+					Pooler::sceneObjects.At(numberOfObjectsInScene - 1)->AddScript(new AgentManager(Pooler::sceneObjects.At(numberOfObjectsInScene - 1), 1, 1, 10, 1));
+					static_cast<AgentManager*>(Pooler::sceneObjects.At(numberOfObjectsInScene - 1)->GetMyScripts()->at(0))->AssignTarget(Pooler::sceneObjects.At(1)->GetTransform()->GetPosition());	// Assign target
+				}
+			}
+		}
+	}
+	#endif
 	#pragma endregion
 
 	#pragma region Bullet Trail Creation

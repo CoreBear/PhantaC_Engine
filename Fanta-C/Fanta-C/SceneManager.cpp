@@ -4,7 +4,6 @@
 
 #include "SceneGraph.h"
 #include "TestScene.h"
-#include "WindowCreator.h"
 #pragma endregion
 
 #pragma region Forward Declarations
@@ -12,7 +11,7 @@ SceneManager* SceneManager::sceneManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-SceneManager::SceneManager(WindowCreator& window, uchar targetFPS)
+SceneManager::SceneManager(Application_Level::WindowCreator& window)
 {		
 	// Assign whatever scene you want to run
 	scenePtr = new TestScene(true, window.GetClientDimensions());
@@ -27,7 +26,7 @@ void SceneManager::Update()
 #pragma endregion
 
 #pragma region Accessors
-SceneManager * SceneManager::GetInstance(WindowCreator& window, uchar targetFPS)
+SceneManager* SceneManager::GetInstance(Application_Level::WindowCreator& window)
 {
 	// If instance is already created, return it
 	if (sceneManagerInstance) return sceneManagerInstance;
@@ -35,7 +34,7 @@ SceneManager * SceneManager::GetInstance(WindowCreator& window, uchar targetFPS)
 	// If instance is not created, create it and return it
 	else
 	{
-		sceneManagerInstance = new SceneManager(window, targetFPS);
+		sceneManagerInstance = new SceneManager(window);
 		return sceneManagerInstance;
 	}
 }

@@ -2,7 +2,7 @@
 // My Headers
 #include "PartitionCell.h"		// Connection to declarations
 
-#include "GlobalMath.h"
+#include "Math.h"
 #include "SceneObject.h"
 #pragma endregion
 
@@ -55,7 +55,7 @@ void PartitionCell::RemoveObject(SceneObject* removedObject)
 void PartitionCell::VerifyOrRemoveObjectsFromContainer()
 {
 	// For each object inside of cell
-	for (iterator = 0; iterator < objectsInsideOfMyContainer.GetSize(); ++iterator)
+    for (iterator = 0; iterator < objectsInsideOfMyContainer.GetSize(); ++iterator)
 	{
 		// If object is no longer in cell's area, remove it from its container
 		if (!IsObjectInsideOfMyArea(objectsInsideOfMyContainer.At(iterator)))

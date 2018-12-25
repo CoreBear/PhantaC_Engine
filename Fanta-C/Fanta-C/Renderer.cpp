@@ -1,6 +1,7 @@
 #pragma region Dependencies
 // My Headers
 #include "Renderer.h"				// Connection to declarations
+
 #include "Camera.h"
 #include "GlobalMath.h"
 #include "GlobalVramStructures.h"
@@ -11,7 +12,6 @@
 #include "SceneManager.h"
 #include "SceneObject.h"
 #include "UiManager.h"
-#include "WindowCreator.h"
 
 // System Headers
 #include <d3dcompiler.h>			// Required for loading and compiling HLSL shaders
@@ -35,7 +35,7 @@ Renderer* Renderer::rendererInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-Renderer::Renderer(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS) : cameraPtr(&sceneManagerPtr->GetScenePtr()->GetCamera()), lineRenderer(LineRenderer::GetInstance()), uiManagerPtr(UiManager::GetInstance(this))
+Renderer::Renderer(Application_Level::WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS) : cameraPtr(&sceneManagerPtr->GetScenePtr()->GetCamera()), lineRenderer(LineRenderer::GetInstance()), uiManagerPtr(UiManager::GetInstance(this))
 {
 	#pragma region Device and swap chain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -204,7 +204,7 @@ Renderer::Renderer(WindowCreator* window, SceneManager* sceneManagerPtr, uchar t
 	deviceContext->OMSetDepthStencilState(depthStencilState[DEPTH_STENCIL_STATE::DEFAULT], 1);
 	#pragma endregion
 }
-Renderer* Renderer::GetInstance(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS)
+Renderer* Renderer::GetInstance(Application_Level::WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS)
 {
 	// If instance is already created, return it
 	if (rendererInstance) return rendererInstance;
@@ -326,7 +326,7 @@ Renderer::~Renderer()
 	uchar i;
 
 	#pragma region Buffers
-	for(i = 0; i < CONSTANT_BUFFER_TYPE::COUNT; ++i)
+	for (i = 0; i < CONSTANT_BUFFER_TYPE::COUNT; ++i)
 		ReleaseResource(constantBuffers[i]);
 
 	for (i = 0; i < VERTEX_BUFFER::COUNT; ++i)

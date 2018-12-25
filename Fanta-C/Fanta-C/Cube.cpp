@@ -6,7 +6,7 @@
 
 #pragma region Public Interface
 void Cube::AddMyLinesToRenderer(LineRenderer* lineRenderer)
-{
+{	
 	for (reusableIterator = 0; reusableIterator < numberOfLinesTriIndicesVertices[1]; ++reusableIterator)
 	{
 		for (secondIterator = 0; secondIterator < numberOfLinesTriIndicesVertices[0]; ++secondIterator)

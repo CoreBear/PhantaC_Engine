@@ -3,15 +3,14 @@
 #include "EnvironmentManager.h"			// Connection to declarations
 
 #include "AudioManager.h"
-#include "InputManager.h"
 #include "GlobalTime.h"
+#include "InputManager.h"
 #include "PhysicsManager.h"
 #include "Renderer.h"
 #include "SceneGraph.h"
 #include "SceneManager.h"
 #include "SceneObject.h"
 #include "UiManager.h"
-#include "WindowCreator.h"
 #pragma endregion
 
 #pragma region Forward Declarations
@@ -23,7 +22,7 @@ EnvironmentManager*	EnvironmentManager::environmentManagerInstance = nullptr;
 #pragma endregion
 
 #pragma region Initialization
-EnvironmentManager::EnvironmentManager(WindowCreator* window) : fpsTimeElapsed(0), targetFPS(60), frameCounter(0), thousandMilliseconds(1000)
+EnvironmentManager::EnvironmentManager(Application_Level::WindowCreator* window) : fpsTimeElapsed(0), targetFPS(60), frameCounter(0), thousandMilliseconds(1000)
 {
 	// Assign the handle for console/header writing
 	GlobalConsoleWrite::handle = window->GetWindowHandle();
@@ -31,7 +30,7 @@ EnvironmentManager::EnvironmentManager(WindowCreator* window) : fpsTimeElapsed(0
 	#pragma region Module Creation
 	audioManagerPtr = AudioManager::GetInstance();
 
-	sceneManagerPtr = SceneManager::GetInstance(*window, targetFPS);
+	sceneManagerPtr = SceneManager::GetInstance(*window);
 
 	inputManagerPtr = InputManager::GetInstance(sceneManagerPtr->GetScenePtr()->GetPlayer(), sceneManagerPtr->GetScenePtr());
 
@@ -42,7 +41,7 @@ EnvironmentManager::EnvironmentManager(WindowCreator* window) : fpsTimeElapsed(0
 	uiManagerPtr = UiManager::GetInstance(rendererPtr);
 	#pragma endregion
 }
-EnvironmentManager* EnvironmentManager::GetInstance(WindowCreator* window)
+EnvironmentManager* EnvironmentManager::GetInstance(Application_Level::WindowCreator* window)
 {
 	// If instance has already been created
 	if (environmentManagerInstance) return environmentManagerInstance;

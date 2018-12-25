@@ -35,6 +35,7 @@ SceneObject::SceneObject(Mesh* inMesh, bool inActive, bool inCollidable, bool in
 void SceneObject::Update()
 {
 	// Run every script for object
+	
 	for (objectIterator = 0; objectIterator < myScripts.size(); ++objectIterator)
 		myScripts.at(objectIterator)->Update();
 }

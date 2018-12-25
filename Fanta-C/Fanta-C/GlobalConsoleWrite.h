@@ -16,7 +16,12 @@ public:
 	template<typename Generic> static void ConvertNumberToString(Generic value) { conversionString = std::to_string(value); }
 	static void ConvertStringToCharPtr() { conversionChar = conversionString.c_str(); }
 	static void WriteToConsole(const char* text) { SetWindowText(*handle, text); }
-	template<typename Generic> static void WriteToConsole(Generic value) 
+	static void WriteToConsole(std::string& value)
+	{
+		conversionChar = value.c_str();
+		SetWindowText(*handle, conversionChar);
+	}
+	template<typename Generic> static void WriteToConsole(Generic value)
 	{
 		conversionString = std::to_string(value);
 		conversionChar = conversionString.c_str();

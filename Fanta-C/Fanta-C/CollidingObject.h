@@ -32,7 +32,7 @@ protected:
 public:
 	// Initialization
 	CollidingObject(SceneObject* inObject) : continuedCollision(false), newCollision(false), newSeparation(false), myObject(inObject) { return; }
-	
+
 	// Update - Runs object collision functionality
 	virtual void Update() { CollisionHandling(); }
 

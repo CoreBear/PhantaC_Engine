@@ -26,7 +26,7 @@ SceneObject* RayCast::Cast(XMVECTOR* startPosition, XMVECTOR* endPosition)
 	// Direction from beginning to end of the ray cast
 	rayCastDirection = *GlobalMath::VectorSubtraction(endPosition, startPosition);
 
-	// For each collidable object
+	// For each collidable object	
 	for (iterator = 2; iterator < Pooler::activeObjects.GetSize(); ++iterator)
 	{
 		// Direction from raycaster's position to collidable object

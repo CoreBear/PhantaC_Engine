@@ -294,20 +294,11 @@
     <ClCompile Include="EntryEventLoop.cpp">
       <Filter>Application\Initialization &amp; Events</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalTransform.cpp">
-      <Filter>Globals\Movement\Transform</Filter>
-    </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
       <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
     </ClCompile>
     <ClCompile Include="Grid.cpp">
       <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalAutonomy.cpp">
-      <Filter>Globals\Movement\Autonomy</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalMath.cpp">
-      <Filter>Globals\Math</Filter>
     </ClCompile>
     <ClCompile Include="BoundingBoxCollision.cpp">
       <Filter>Environment\Physics\Collision\BoundingBox</Filter>
@@ -359,6 +350,15 @@
     </ClCompile>
     <ClCompile Include="Spawner.cpp">
       <Filter>Environment\Memory\Pooling &amp; Spawning\Spawning</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalTransform.cpp">
+      <Filter>Globals\Movement\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalAutonomy.cpp">
+      <Filter>Globals\Movement\Autonomy</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalMath.cpp">
+      <Filter>Globals\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -422,9 +422,6 @@
     <ClInclude Include="ControllerManager.h">
       <Filter>Environment\Events\Input\Devices\Controller\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalTransform.h">
-      <Filter>Globals\Movement\Transform</Filter>
-    </ClInclude>
     <ClInclude Include="MovingObject.h">
       <Filter>Game\Scripting\Game Object\Base Classes\Mobility</Filter>
     </ClInclude>
@@ -434,26 +431,8 @@
     <ClInclude Include="BoundingBox.h">
       <Filter>Environment\Scene\Object\Collider\BoundingBox</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalRendererStructures.h">
-      <Filter>Globals\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalVramStructures.h">
-      <Filter>Globals\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalTime.h">
-      <Filter>Globals\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalTypedefs.h">
-      <Filter>Globals\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="Grid.h">
       <Filter>Environment\Scene\Object\Render\Shapes\Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalAutonomy.h">
-      <Filter>Globals\Movement\Autonomy</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalMath.h">
-      <Filter>Globals\Math</Filter>
     </ClInclude>
     <ClInclude Include="BoundingBoxCollision.h">
       <Filter>Environment\Physics\Collision\BoundingBox</Filter>
@@ -470,15 +449,6 @@
     <ClInclude Include="Partitioner.h">
       <Filter>Environment\Physics\Collision\Spatial Partitioning\Seperation</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalInputVariables.h">
-      <Filter>Globals\Assisting Variables</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalWorldVariables.h">
-      <Filter>Globals\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalConsoleWrite.h">
-      <Filter>Globals\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="Line.h">
       <Filter>Environment\Scene\Object\Render\Shapes\Lines\LineBase</Filter>
     </ClInclude>
@@ -491,14 +461,8 @@
     <ClInclude Include="AgentManager.h">
       <Filter>Game\Scripting\Game Object\Non Player\Agent</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalSceneVariables.h">
-      <Filter>Globals\Assisting Variables</Filter>
-    </ClInclude>
     <ClInclude Include="MyArray.h">
       <Filter>Environment\Memory\Data Structures</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalDirectX.h">
-      <Filter>Globals\Misc</Filter>
     </ClInclude>
     <ClInclude Include="KeyboardManager.h">
       <Filter>Environment\Events\Input\Devices\KeyBoard</Filter>
@@ -532,6 +496,42 @@
     </ClInclude>
     <ClInclude Include="MyVector.h">
       <Filter>Environment\Memory\Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalVramStructures.h">
+      <Filter>Globals\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalRendererStructures.h">
+      <Filter>Globals\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalTransform.h">
+      <Filter>Globals\Movement\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalAutonomy.h">
+      <Filter>Globals\Movement\Autonomy</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalWorldVariables.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalTypedefs.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalTime.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalDirectX.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalConsoleWrite.h">
+      <Filter>Globals\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalMath.h">
+      <Filter>Globals\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalSceneVariables.h">
+      <Filter>Globals\Assisting Variables</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalInputVariables.h">
+      <Filter>Globals\Assisting Variables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

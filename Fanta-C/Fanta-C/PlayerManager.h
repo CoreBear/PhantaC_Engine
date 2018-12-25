@@ -19,7 +19,7 @@ class PlayerManager : public MovingObject
 
 	// Hacked together shooting mechanic. Will remove
 	const uchar trailDistance = 50;
-	
+
 	// Initialization
 	PlayerManager(Camera* inCamera, SceneObject* inSceneObject, float inPitchVelocity, float inRollVelocity, float inVelocity, float inYawVelocity) : cameraPtr(inCamera), MovingObject(inSceneObject, inPitchVelocity, inRollVelocity, inVelocity, inYawVelocity) { return; }
 	PlayerManager(PlayerManager const&) = delete;

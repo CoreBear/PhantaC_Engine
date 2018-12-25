@@ -8,7 +8,7 @@
 #include "SceneGraph.h"
 #include "SceneObject.h"
 
-// Abstract Base Class
+	// Abstract Base Class
 class ScriptManager
 {
 public:

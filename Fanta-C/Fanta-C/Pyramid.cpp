@@ -6,7 +6,7 @@
 
 #pragma region Public Interface
 void Pyramid::AddMyLinesToRenderer(LineRenderer* lineRenderer)
-{
+{	
 	for (reusableIterator = 0; reusableIterator < numberOfLineIndicesVertices[0]; ++reusableIterator)
 		lineRenderer->AddNewLine(vertices[lineIndices[reusableIterator][0]].localPos, vertices[lineIndices[reusableIterator][1]].localPos, color, color);
 }

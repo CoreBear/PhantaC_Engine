@@ -15,7 +15,7 @@ class GlobalMath
 	static XMVECTOR*	tempVector;
 
 public:
-		// Public Interface
+	// Public Interface
 	static float AbsoluteValue(float value) { return (value > 0) ? value : -value; }
 	static float ConvertToDegrees(float);
 	static float ConvertToRadians(float);

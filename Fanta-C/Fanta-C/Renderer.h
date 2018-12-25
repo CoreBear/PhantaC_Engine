@@ -5,6 +5,7 @@
 #include "GlobalRendererStructures.h"
 #include "GlobalTypedefs.h"
 #include "MeshLoader.h"
+#include "WindowCreator.h"
 
 // System Headers
 #include <d3d11.h>	
@@ -51,7 +52,7 @@ class Renderer
 	#pragma endregion
 
 	// Initialization
-	Renderer(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS);
+	Renderer(Application_Level::WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS);
 	Renderer(Renderer const&) = delete;
 	Renderer operator=(Renderer const&) = delete;
 	
@@ -65,7 +66,7 @@ class Renderer
 
 public:
 	// Initialization
-	static Renderer* GetInstance(WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS);
+	static Renderer* GetInstance(Application_Level::WindowCreator* window, SceneManager* sceneManagerPtr, uchar targetFPS);
 
 	// Update
 	void DrawDebug();
